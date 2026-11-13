@@ -1,4 +1,4 @@
-# Documentación de Cochabamba Verde
+# Documentación de GeoQocha
 
 Esta carpeta contiene la especificación funcional, técnica y metodológica vigente del proyecto.
 
@@ -20,8 +20,11 @@ Esta carpeta contiene la especificación funcional, técnica y metodológica vig
 - Estrategia vector-first para las capas municipales del GAMC.
 - Proxy backend obligatorio para no exponer credenciales.
 - Contratos API definidos antes de implementar endpoints.
-- Plan ajustado a tres desarrolladores de sistemas.
-- Código inicial: landing page React + Vite y backend Express con `/api/health`.
+- Plan ajustado a tres desarrolladores de sistemas con frentes independientes.
+- Stack objetivo: Next.js + TypeScript + Tailwind, con route handlers para WMS e IA.
+- Copiloto IA acotado: RAG sobre datos precalculados, citas y fallback por reglas.
+- Contrato compartido y mock definidos para el Día 0.
+- Código inicial legado: landing page React + Vite y backend Express con `/api/health`; se migra a Next.js.
 - Resultados distritales reales: todavía no generados.
 
 ## Reglas de mantenimiento

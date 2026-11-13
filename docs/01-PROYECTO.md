@@ -1,22 +1,22 @@
 # 01 — Proyecto
 
-**Cochabamba Verde** — Visualizador de Datos Satelitales para la Gestión Distrital de los 15 Distritos Municipales de Cochabamba.
+**GeoQocha** — Tablero Satelital de Inteligencia Territorial y Calidad de Vida para los 15 Distritos Municipales de Cochabamba.
 
 | Campo | Valor |
 |---|---|
-| Nombre del proyecto | Cochabamba Verde |
+| Nombre del proyecto | GeoQocha |
 | Desafío global | **Be An Earth System Trend Detective!** — NASA International Space Apps Challenge 2026 |
 | Sede | Cochabamba, Bolivia |
 | Categoría municipal GAMC | Transparencia, Participación Ciudadana, Movilidad y Planificación Urbana |
 | Estado | Propuesta funcional y técnica para el desarrollo del MVP |
-| Versión del documento | 1.0 |
-| Última actualización | 10 de noviembre de 2026 |
+| Versión del documento | 1.1 |
+| Última actualización | 13 de noviembre de 2026 |
 
 ---
 
 ## 1. Resumen ejecutivo
 
-**Cochabamba Verde** es una plataforma web interactiva, gratuita y de código abierto para explorar y comparar las condiciones socioambientales de los **15 distritos municipales de Cochabamba**. Combina series históricas de información satelital de la **NASA** con información geoespacial proporcionada por el **Gobierno Autónomo Municipal de Cochabamba (GAMC)**.
+**GeoQocha** es una plataforma web interactiva, gratuita y de código abierto para explorar y comparar las condiciones socioambientales de los **15 distritos municipales de Cochabamba**. Combina series históricas de información satelital de la **NASA** con información geoespacial proporcionada por el **Gobierno Autónomo Municipal de Cochabamba (GAMC)** y un **copiloto de IA** que explica los datos con citas y advertencias metodológicas.
 
 La plataforma busca responder tres preguntas centrales:
 
@@ -51,6 +51,7 @@ La NASA dispone de productos de observación terrestre con mediciones repetidas 
 - ¿Cómo se relacionan espacialmente las condiciones ambientales con la distribución actual de parques, centros educativos, centros de salud y rutas de transporte?
 - ¿Qué diferencias existen entre dos distritos en un año o periodo determinado?
 - ¿Qué distritos presentan señales de atención prioritaria según criterios explícitos?
+- ¿Qué explican los datos sobre un distrito y qué estrategias de concientización o estudio se pueden plantear?
 
 ---
 
@@ -109,10 +110,12 @@ Desarrollar una plataforma web interactiva y de código abierto que integre dato
 |---|---|
 | **1. Dashboard general** | Mapa de los 15 distritos, coropletas y mapas de calor, filtros por año y ranking. |
 | **2. Ficha distrital** | Serie histórica de NDVI/LST y del ICVSA, indicadores urbanos y metadatos de calidad. |
-| **3. Equipamiento y movilidad** | Capas vectoriales y WMS del GAMC, consulta de atributos y rutas de transporte. |
+| **3. Equipamiento y movilidad** | Capas vectoriales y WMS del GAMC, consulta de atributos, rutas de transporte y paradas propuestas ilustrativas. |
 | **4. Comparación** | Dos o más distritos lado a lado, series en el mismo eje y brechas frente al promedio municipal. |
 | **5. Hotspots** | Reglas explícitas para señalar degradación ambiental o déficit de equipamiento. |
 | **6. Análisis de relación** | Dispersión y co-ocurrencia entre tendencia ambiental y acceso a equipamiento/transporte. |
+| **7. Copiloto IA** | Chat y diagnóstico automático que explica hechos precalculados con citas, sin calcular índices ni hotspots. |
+| **8. Concientización** | Estrategias basadas en datos y mensajes ciudadanos sobre deforestación y pérdida de cobertura verde. |
 
 El detalle funcional y los criterios de aceptación están en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS.md).
 
@@ -168,25 +171,26 @@ La metodología completa y las reglas de datos faltantes están en [`02-REQUERIM
 
 > **De los datos satelitales a las decisiones distritales.**
 
-Cochabamba Verde no se limita a colocar imágenes sobre un mapa. Su objetivo es convertir ciencia abierta y datos municipales en respuestas verificables y comprensibles: **cómo se encuentra un distrito, cómo ha cambiado y qué señales requieren mayor atención**.
+GeoQocha no se limita a colocar imágenes sobre un mapa. Su objetivo es convertir ciencia abierta y datos municipales en respuestas verificables y comprensibles: **cómo se encuentra un distrito, cómo ha cambiado y qué señales requieren mayor atención**.
 
 | Lo que ofrece | Diferencial |
 |---|---|
 | Observación satelital NASA + datos municipales GAMC | Integración territorial en una sola herramienta |
 | Series 2015–2025 por distrito | Análisis de tendencia, no solo una fotografía |
 | Índice y metodología abiertos | Resultados auditables y replicables |
-| Hotspots con reglas explicables | Sin cajas negras ni IA generativa innecesaria |
+| Hotspots con reglas explicables | Sin cajas negras: la IA explica, no decide |
+| Copiloto IA con citas y fallback | Respuestas comprensibles y auditables |
 | Código abierto y datos trazables | Reutilizable por municipio, academia y ciudadanía |
 
 ---
 
 ## 8. Alcance del MVP
 
-**Esencial:** mapa de los 15 distritos, NDVI y LST, tendencias 2015–2025, al menos una capa municipal vectorial o WMS, ficha distrital, selector de año, comparador, **ICVSA histórico con año de referencia territorial**, **mapa de calor de LST**, análisis de relación ambiente ↔ equipamiento/transporte, hotspots explicables (ambientales y de equipamiento) y documentación.
+**Esencial:** mapa full-screen de los 15 distritos, NDVI y LST, tendencias 2015–2025, capas WMS del GAMC, rutas y paradas propuestas de transporte, ficha distrital, panel demográfico, gráficos con Recharts, **ICVSA histórico con año de referencia territorial**, **mapa de calor de LST**, análisis de relación ambiente ↔ equipamiento/transporte, hotspots explicables, **copiloto IA con chat y diagnóstico**, **sección de deforestación y concientización** y documentación.
 
-**Deseable:** mapa de calor de severidad, detección de aceleración, serie mensual, enlaces compartibles, más capas municipales, rutas de transporte, población y tasas verificadas, exportación CSV, indicadores de confianza y vista móvil accesible.
+**Deseable:** mapa de calor de severidad, detección de aceleración, serie mensual, enlaces compartibles, más capas municipales, población y tasas verificadas, exportación CSV, indicadores de confianza y vista móvil accesible.
 
-**Fuera del alcance inicial:** autenticación, edición de datos oficiales del GAMC, predicciones complejas con IA, chatbot, ruteo óptimo o tráfico en tiempo real, recomendaciones vinculantes de inversión.
+**Fuera del alcance inicial:** autenticación, edición de datos oficiales del GAMC, IA que calcule el índice o los hotspots, predicciones complejas, ruteo óptimo o tráfico en tiempo real, calificación oficial de seguridad de paradas y recomendaciones vinculantes de inversión.
 
 La delimitación detallada está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS.md#8-alcance-del-mvp).
 
@@ -209,7 +213,7 @@ La delimitación detallada está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS
 
 | Requisito del reto | Respuesta del proyecto | Documento |
 |---|---|---|
-| Tablero web interactivo open source | Dashboard React + backend proxy + licencia abierta | `03`, `06` |
+| Tablero web interactivo open source | Dashboard Next.js + route handlers + licencia abierta | `03`, `06` |
 | 15 distritos municipales | Geometría validada y `district_id` único | `05` |
 | Mínimo 2 variables NASA en un periodo | NDVI (MOD13Q1) y LST (MOD11A2), 2015–2025 | `05` |
 | Índice socioambiental **histórico** 1–100 o semáforo | ICVSA anual con `t_ref` territorial y toggle semáforo | `02` §7.1 |
@@ -219,6 +223,7 @@ La delimitación detallada está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS
 | Comparativa y brechas distritales | Comparador y diferencia vs promedio municipal | `02` RF-21…RF-25, RF-42 |
 | Hotspots de degradación **y déficit de equipamiento** | Reglas explicables con contribución por variable | `02` RF-26…RF-30, RF-43 |
 | Correlación ambiente ↔ transporte/equipamiento | Análisis exploratorio sin afirmar causalidad | `02` RF-41 |
+| Explicación asistida por IA | Chat y diagnóstico con RAG, citas y fallback | `02` RF-48…RF-52, `04` §4.11 |
 | UX/UI para ciudadanía y funcionarios | Lenguaje llano, móvil y accesible | `02` RNF-08, RF-45 |
 
 ---

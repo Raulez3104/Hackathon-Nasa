@@ -1,10 +1,10 @@
-# Cochabamba Verde
+# GeoQocha
 
-## Observatorio socioambiental de los 15 distritos de Cochabamba
+## Tablero satelital de inteligencia territorial y calidad de vida
 
-Cochabamba Verde es una plataforma web de código abierto para explorar y comparar las condiciones socioambientales de los 15 distritos municipales de Cochabamba. Integra observaciones satelitales de NASA con datos geoespaciales del Gobierno Autónomo Municipal de Cochabamba (GAMC).
+GeoQocha es una plataforma web de código abierto para explorar y comparar las condiciones socioambientales de los 15 distritos municipales de Cochabamba. Integra observaciones satelitales de NASA, datos geoespaciales del Gobierno Autónomo Municipal de Cochabamba (GAMC) y un copiloto de IA que explica los datos con citas.
 
-> Estado actual: andamiaje inicial del frontend, landing page y backend base con `/api/health`. El pipeline de datos y el tablero analítico todavía están pendientes.
+> Estado actual: documentación actualizada al plan GeoQocha. El código se migra a una app Next.js; el mock compartido y el contrato de tipos se crean en el Día 0. El pipeline de datos reales todavía está pendiente.
 
 ## Qué busca resolver
 
@@ -18,52 +18,48 @@ Cochabamba Verde es una plataforma web de código abierto para explorar y compar
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | React, TypeScript, Vite |
-| Estilos | CSS; Tailwind CSS previsto en la arquitectura |
+| Frontend | Next.js, React, TypeScript |
+| Estilos | Tailwind CSS |
 | Mapas | Leaflet y React Leaflet |
 | Gráficos | Recharts |
-| Backend | Node.js, Express y TypeScript |
+| Backend | Next.js Route Handlers y TypeScript |
+| IA | Gemini u OpenAI con RAG ligero sobre JSON |
 | Datos | Python y/o Google Earth Engine |
-| Persistencia MVP | JSON, CSV y GeoJSON |
+| Persistencia MVP | JSON y GeoJSON |
 | Persistencia futura | PostgreSQL y PostGIS |
 
 ## Estructura
 
 ```text
-frontend/       # Aplicación React + Vite y landing page
-backend/        # API Express y proxy seguro para GAMC
-data-processing/ # Pipeline NASA/GIS (pendiente de implementar)
+src/            # App Next.js: componentes, servicios, backend y tipos
+public/data/    # Mock compartido y dataset real servido al frontend
+scripts/        # Pipeline NASA/GIS en Python
 data/           # Geometrías, datos procesados y metadatos
 docs/           # Especificación funcional y técnica
+frontend/       # Legado Vite congelado durante la migración
+backend/        # Legado Express congelado durante la migración
 AGENTS.md       # Guía de trabajo para agentes y colaboradores
 MEMORY.md       # Decisiones y estado del proyecto
 ```
 
-## Ejecutar el frontend
+## Ejecutar la aplicación
 
 ```bash
-cd frontend
 npm install
-npm run dev
-```
-
-La landing page estará disponible en `http://localhost:5173`.
-
-## Ejecutar el backend
-
-En otra terminal:
-
-```bash
-cd backend
 copy .env.example .env   # Windows
 # cp .env.example .env   # macOS/Linux
-npm install
 npm run dev
 ```
 
-El endpoint de salud estará disponible en `http://localhost:3000/api/health`.
+La aplicación estará disponible en `http://localhost:3000`. El endpoint de salud estará en `http://localhost:3000/api/health`.
 
-Las credenciales del GAMC deben permanecer únicamente en el `.env` del backend. Nunca deben incluirse en el frontend, en Git ni en la documentación.
+Las credenciales del GAMC y del proveedor de IA deben permanecer únicamente en el `.env` del servidor. Nunca deben incluirse en el cliente, en Git ni en la documentación.
+
+## Modo de datos
+
+- `NEXT_PUBLIC_DATA_MODE=mock` usa `public/data/mock_distritos.json`, etiquetado como ilustrativo.
+- `NEXT_PUBLIC_DATA_MODE=real` usa `public/data/distritos_data.json`, generado por el pipeline.
+- Si el archivo real no existe, la aplicación vuelve al mock con una etiqueta visible.
 
 ## Documentación
 
@@ -78,11 +74,11 @@ La documentación completa está en [`docs/README.md`](./docs/README.md).
 
 ## Equipo de desarrollo
 
-El plan está dimensionado para tres desarrolladores de sistemas:
+El plan está dimensionado para tres desarrolladores de sistemas con frentes independientes:
 
-- **S1:** backend, API, integración y despliegue.
-- **S2:** frontend, mapas y visualización.
-- **S3:** datos, GIS y procesamiento NASA.
+- **DEV1:** mapas, WMS del GAMC y movilidad urbana.
+- **DEV2:** datos NASA, pipeline y backend de IA.
+- **DEV3:** analítica, concientización y chat UI.
 
 ## Fuentes principales
 
@@ -90,8 +86,10 @@ El plan está dimensionado para tres desarrolladores de sistemas:
 - NASA MOD11A2, colección 6.1: LST.
 - [Documentación GAMC](https://recursosgamc.cochabamba.bo/api-doc).
 - [Servicio WMS GAMC](https://serviciosgamc.cochabamba.bo/api/gs/wms).
+- [Google AI (Gemini)](https://ai.google.dev/).
+- [OpenAI Platform](https://platform.openai.com/docs).
 
-Los datos municipales y satelitales deben validarse antes de publicar resultados. Los valores de ejemplo en los contratos son ficticios.
+Los datos municipales y satelitales deben validarse antes de publicar resultados. Los valores de ejemplo en los contratos y el mock son ficticios. La IA solo explica hechos precalculados y nunca sustituye la metodología del ICVSA.
 
 ## Licencia
 

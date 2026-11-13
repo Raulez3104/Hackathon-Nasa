@@ -1,12 +1,14 @@
 # AGENTS.md — Guía para agentes de IA
 
-Instrucciones de trabajo para cualquier agente que colabore en **Cochabamba Verde**. Este archivo describe el contexto, las reglas no negociables y la forma correcta de cambiar el proyecto.
+Instrucciones de trabajo para cualquier agente que colabore en **GeoQocha**. Este archivo describe el contexto, las reglas no negociables y la forma correcta de cambiar el proyecto.
+
+> **Vigencia 2026-11-13:** GeoQocha reemplaza a Cochabamba Verde. El MVP usa Next.js App Router con route handlers, un contrato compartido en `src/types/geoqocha.ts` y un copiloto de IA acotado. Las carpetas `frontend/` y `backend/` actuales son legado congelado hasta completar la migración.
 
 ---
 
 ## 1. Contexto del proyecto
 
-**Cochabamba Verde** es un tablero web interactivo y de código abierto para analizar las condiciones socioambientales de los **15 distritos municipales de Cochabamba**, Bolivia.
+**GeoQocha** es un tablero web interactivo y de código abierto para analizar las condiciones socioambientales de los **15 distritos municipales de Cochabamba**, Bolivia, con un copiloto de IA acotado.
 
 | Campo | Valor |
 |---|---|
@@ -15,7 +17,7 @@ Instrucciones de trabajo para cualquier agente que colabore en **Cochabamba Verd
 | Datos | NASA MODIS (NDVI, LST) + capas del GAMC |
 | Periodo | 2015–2025 |
 | Índice | ICVSA histórico 1–100, con vista semaforizada alternativa |
-| Equipo de desarrollo | 3 desarrolladores de sistemas (S1, S2, S3) |
+| Equipo de desarrollo | 3 desarrolladores de sistemas (DEV1, DEV2, DEV3) |
 
 El proyecto tiene un **andamiaje inicial** de frontend y backend, pero aún no tiene funcionalidades de negocio. No asumas `node_modules`, datos procesados ni endpoints fuera de `/api/health`.
 
@@ -57,17 +59,18 @@ El plan está dimensionado para **3 desarrolladores de sistemas**. No asignes ta
 
 | Persona | Frente | Dueño de |
 |---|---|---|
-| **S1** | Backend, API y despliegue / tech lead | `backend/`, contratos, integración, deploy |
-| **S2** | Frontend, mapas y visualización | `frontend/` |
-| **S3** | Datos, GIS y NASA | `data-processing/`, `data/` |
+| **DEV1** | Mapas, WMS y movilidad urbana | `src/components/map/`, `src/services/wms/`, `src/app/api/gamc/`, `src/backend/gamc/` |
+| **DEV2** | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `src/backend/data/`, `src/backend/ai/`, `src/app/api/ai-analyst/` |
+| **DEV3** | Analítica, concientización y chat UI | `src/components/analytics/`, `src/components/awareness/`, `src/components/ai/` |
 
 **Alcance cerrado:**
 
-- **P0 (obligatorio):** T-01…T-17, T-21, T-27…T-32.
-- **P1 (solo si sobra tiempo):** T-18…T-20, T-33…T-37.
-- **P2 (posterior):** T-22…T-26, T-38.
+- **Día 0 (obligatorio):** T-00 contrato, mock y andamiaje.
+- **P0 (obligatorio):** T1-01…T1-06, T2-01…T2-06, T3-01…T3-06.
+- **P1 (solo si sobra tiempo dentro del mismo frente):** capas adicionales, serie mensual, CSV, enlaces y tarjetas compartibles.
+- **P2 (posterior):** validación con especialistas, PostgreSQL/PostGIS, RAG persistente y validación oficial de paradas.
 
-Toda función nueva exige quitar otra del mismo nivel. No amplíes el alcance por iniciativa propia.
+Toda función nueva exige quitar otra del mismo frente y peso. No amplíes el alcance por iniciativa propia.
 
 ---
 
@@ -84,9 +87,10 @@ Estas reglas protegen la validez del producto. Violarlas invalida el trabajo aun
 7. **No renormalices pesos en silencio.** Si falta una dimensión completa, publica `index_without_territorial` y marca el ICVSA como `insufficient_data`.
 8. **La correlación es exploratoria.** Siempre muestra `n` y una advertencia de no causalidad. No calcules si `n < 8`.
 9. **El semáforo no depende solo del color.** Acompáñalo con texto e ícono.
-10. **Nada de IA generativa** para hotspots, índice o explicaciones: reglas, umbrales y estadísticas reproducibles.
+10. **IA generativa acotada:** solo redacta y explica hechos precalculados, con citas, validación numérica y fallback por reglas. Nunca calcula hotspots, índice, tendencias ni cifras; nunca decide prioridades.
 11. **Distingue datos reales de ejemplos.** Todo dato ficticio debe estar etiquetado como tal.
 12. **Respeta licencias y atribución.** Código MIT; documentación CC BY 4.0; datos municipales solo si sus términos lo permiten.
+13. **No inventes paradas oficiales ni calificaciones de seguridad.** Las paradas propuestas son ilustrativas hasta que exista una fuente municipal verificada.
 
 ---
 
@@ -94,22 +98,28 @@ Estas reglas protegen la validez del producto. Violarlas invalida el trabajo aun
 
 ```text
 NASA MODIS ──> pipeline Python/GEE ──> data/processed/*.json
-GAMC vectores/WMS ──> proxy Express ──> API propia ──> React + Leaflet + Recharts
+GAMC vectores/WMS ──> route handler /api/gamc/wms ──> Next.js + Leaflet + Recharts
+Dataset procesado ──> RAG ligero ──> /api/ai-analyst ──> chat y diagnóstico
 ```
 
 | Capa | Tecnología | Persistencia |
 |---|---|---|
-| Frontend | React + TypeScript + Vite, Tailwind, Leaflet, Recharts | — |
-| Backend | Node.js + Express + TypeScript | Archivos JSON/CSV en el MVP |
+| Frontend | Next.js App Router, React, TypeScript, Tailwind, Leaflet, Recharts | — |
+| Backend | Next.js Route Handlers (Node.js) y TypeScript | Archivos JSON/GeoJSON en el MVP |
+| IA | Gemini u OpenAI con RAG ligero sobre JSON | Sin persistencia de conversaciones |
 | Datos | Python y/o Google Earth Engine | `data/geojson`, `data/processed`, `data/metadata` |
 | Futuro | PostgreSQL + PostGIS | Solo fuera del MVP |
 
 **Estructura objetivo del repositorio:**
 
 ```text
-frontend/
-backend/
-data-processing/
+src/app/
+src/components/{map,analytics,awareness,ai}/
+src/services/wms/
+src/backend/{gamc,data,ai}/
+src/types/
+public/data/
+scripts/
 data/{geojson,processed,metadata}/
 docs/
 .env.example
@@ -117,7 +127,7 @@ LICENSE
 README.md
 ```
 
-**Decisiones de arquitectura vigentes:** AD-01 a AD-08 en `docs/03-ARQUITECTURA.md` §6. No las contradigas sin actualizar el documento y `MEMORY.md`.
+**Decisiones de arquitectura vigentes:** AD-01 a AD-11 en `docs/03-ARQUITECTURA.md` §6. No las contradigas sin actualizar el documento y `MEMORY.md`.
 
 ---
 
@@ -140,8 +150,9 @@ El contrato es **contract-first**: primero se define en `docs/04-CONTRATOS-API.m
 | `GET /api/sources` | Catálogo de fuentes |
 | `GET /api/health` | Estado del servicio |
 | `GET /api/gamc/wms` | Proxy WMS con lista blanca |
+| `POST /api/ai-analyst` | Chat y diagnóstico con RAG acotado |
 
-**Tipos compartidos:** `DistrictYearRecord`, `EquipmentMetrics`, `Trend`, `CorrelationResult`, `Hotspot`.
+**Tipos compartidos:** `DistrictData`, `DistrictGeometry`, `DistrictSeriesPoint`, `DistrictTrend`, `EquipmentMetrics`, `StopPoint`, `DataStatus`, `RiskLevel`, `AIRequest`, `AIResponse`, `AIInsight`, `AIEvidence`, `AICitation`.
 
 **Convenciones:**
 
@@ -157,7 +168,8 @@ El contrato es **contract-first**: primero se define en `docs/04-CONTRATOS-API.m
 
 | Control | Implementación |
 |---|---|
-| Secreto | `GAMC_API_KEY` en `.env`, nunca versionado |
+| Secreto GAMC | `GAMC_API_KEY` en `.env`, nunca versionado |
+| Secreto IA | `AI_API_KEY` solo en el servidor; nunca `NEXT_PUBLIC_*` |
 | Lista blanca | `GAMC_ALLOWED_SERVICE_IDS` |
 | Validación | `REQUEST`, `BBOX`, `WIDTH`, `HEIGHT`, `FORMAT` con rangos estrictos |
 | Operaciones | Solo `GetMap`, `GetLegendGraphic`, `GetFeatureInfo` |
@@ -169,13 +181,18 @@ El contrato es **contract-first**: primero se define en `docs/04-CONTRATOS-API.m
 Variables de entorno previstas:
 
 ```dotenv
-PORT=3000
-NODE_ENV=development
 GAMC_WMS_URL=https://serviciosgamc.cochabamba.bo/api/gs/wms
 GAMC_API_KEY=
 GAMC_ALLOWED_SERVICE_IDS=
-CORS_ORIGIN=http://localhost:5173
-VITE_API_BASE_URL=http://localhost:3000/api
+
+AI_PROVIDER=gemini
+AI_API_KEY=
+AI_MODEL=
+AI_TIMEOUT_MS=20000
+AI_MAX_OUTPUT_TOKENS=800
+
+NEXT_PUBLIC_DATA_MODE=mock
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 ---
@@ -193,7 +210,7 @@ VITE_API_BASE_URL=http://localhost:3000/api
 9. Genera hotspots, brechas, correlación y celdas de mapa de calor.
 10. Publica todo en `data/processed/` con metadatos en `data/metadata/sources.json`.
 
-**Productos esperados:** `districts.geojson`, `transport.geojson`, `equipment.geojson`, `district_year.json`, `district_month.json`, `trends.json`, `equipment_metrics.json`, `hotspots.json`, `correlations.json`, `heatmap_lst.json`, `index.json`, `sources.json`.
+**Productos esperados:** `distritos_data.json`, `districts.geojson`, `transport.geojson`, `equipment.geojson`, `district_year.json`, `district_month.json`, `trends.json`, `equipment_metrics.json`, `hotspots.json`, `correlations.json`, `heatmap_lst.json`, `index.json`, `sources.json`. El mock de desarrollo vive en `public/data/mock_distritos.json`.
 
 ---
 
@@ -201,7 +218,7 @@ VITE_API_BASE_URL=http://localhost:3000/api
 
 1. **Lee antes de escribir.** Identifica el requerimiento (`RF`, `RNF`, `RN`) y la tarea (`T-xx`) que estás resolviendo.
 2. **Contrato primero.** Si cambias la respuesta de la API, actualiza `docs/04-CONTRATOS-API.md`.
-3. **Un dueño por frente.** S1 no edita la UI de S2 sin coordinación; S3 no cambia contratos sin S1.
+3. **Un dueño por frente.** DEV1 no edita la UI de DEV3 sin coordinación; DEV2 no cambia contratos sin aprobación de los tres.
 4. **Datos pequeños y versionables.** Los archivos procesados del MVP caben en el repositorio; no agregues imágenes satelitales crudas.
 5. **Sin sobreingeniería.** Nada de base de datos, autenticación ni estado global complejo en el MVP.
 6. **Degradación elegante.** Si el WMS falla, el mapa base y los indicadores deben seguir funcionando.
@@ -225,22 +242,21 @@ VITE_API_BASE_URL=http://localhost:3000/api
 Cuando exista el andamiaje del proyecto, los comandos de referencia serán:
 
 ```bash
-# Frontend
-cd frontend && npm install && npm run dev
-
-# Backend
-cd backend && npm install && npm run dev
+# Aplicación Next.js
+npm install
+npm run dev
 
 # Verificación
 npm run lint
 npm run typecheck
 npm test
+npm run validate:mock
 
 # Pipeline de datos
-python data-processing/run.py --from 2015 --to 2025
+python scripts/run.py --from 2015 --to 2025
 ```
 
-Hoy no hay `package.json` ni entorno Python. No ejecutes estos comandos como si existieran; primero crea el andamiaje si la tarea lo pide.
+Hoy el `package.json` de la raíz y el entorno Python todavía no existen. No ejecutes estos comandos como si existieran; primero crea el andamiaje si la tarea lo pide.
 
 ---
 
