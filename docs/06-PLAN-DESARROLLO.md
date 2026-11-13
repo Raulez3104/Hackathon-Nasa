@@ -337,6 +337,7 @@ export interface AIResponse {
 | `src/backend/data/` | DEV2 | Lectura y normalización del dataset | Exclusivo |
 | `src/backend/ai/` | DEV2 | RAG, prompts, proveedor y guardrails | Exclusivo |
 | `src/app/api/ai-analyst/` | DEV2 | Endpoint de chat y diagnóstico | Exclusivo |
+| `src/app/api/districts/`, `src/app/api/comparison/`, `src/app/api/hotspots/`, `src/app/api/heatmap/`, `src/app/api/analysis/`, `src/app/api/methodology/`, `src/app/api/sources/`, `src/app/api/health/` | DEV2 | Route handlers de datos procesados y estado del servicio | Exclusivo |
 | `src/components/analytics/` | DEV3 | Panel, fichas y gráficos | Exclusivo |
 | `src/components/awareness/` | DEV3 | Deforestación y concientización | Exclusivo |
 | `src/components/ai/` | DEV3 | Chat UI y tarjetas de diagnóstico | Exclusivo |
@@ -352,6 +353,68 @@ export interface AIResponse {
 3. Los estilos globales solo se tocan en T-00; cada frente usa tokens y clases Tailwind.
 4. Las dependencias nuevas se agregan en un PR `chore/deps/*` y luego se hace rebase.
 5. Los imports entre `src/components/map`, `src/components/analytics` y `src/components/ai` están prohibidos durante el desarrollo; la composición se hace en la integración.
+
+---
+
+## 4.1 Matriz de seguimiento de tareas
+
+Esta matriz es la fuente operativa para conocer el avance del desarrollo. El estado inicial de todas las tareas es `pendiente`.
+
+| ID | Responsable | Entregable resumido | Estado | Evidencia / actualización | Lista para integrar |
+|---|---|---|---|---|---|
+| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `pendiente` | — | No |
+| T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `pendiente` | — | No |
+| T1-02 | DEV1 | Proxy WMS seguro | `pendiente` | — | No |
+| T1-03 | DEV1 | Capas WMS, leyendas y degradación | `pendiente` | — | No |
+| T1-04 | DEV1 | Rutas y paradas propuestas | `pendiente` | — | No |
+| T1-05 | DEV1 | URL, comparación y eventos | `pendiente` | — | No |
+| T1-06 | DEV1 | Calidad, pruebas y documentación del mapa | `pendiente` | — | No |
+| T2-01 | DEV2 | Esqueleto y validación del pipeline | `pendiente` | — | No |
+| T2-02 | DEV2 | Procesamiento NASA NDVI/LST | `pendiente` | — | No |
+| T2-03 | DEV2 | Índice, brechas, correlaciones, hotspots y APIs de datos | `pendiente` | — | No |
+| T2-04 | DEV2 | RAG ligero y contexto con citas | `pendiente` | — | No |
+| T2-05 | DEV2 | Endpoint de IA | `pendiente` | — | No |
+| T2-06 | DEV2 | Guardrails, pruebas y documentación de IA | `pendiente` | — | No |
+| T3-01 | DEV3 | Panel distrital y comparador | `pendiente` | — | No |
+| T3-02 | DEV3 | Fichas, brechas y series históricas | `pendiente` | — | No |
+| T3-03 | DEV3 | Deforestación y concientización | `pendiente` | — | No |
+| T3-04 | DEV3 | Chat IA | `pendiente` | — | No |
+| T3-05 | DEV3 | Diagnóstico automático | `pendiente` | — | No |
+| T3-06 | DEV3 | Hotspots, metodología, fuentes y calidad de UI | `pendiente` | — | No |
+| INT-01 | DEV1 + DEV2 + DEV3 | Integración, QA, despliegue y demo | `pendiente` | — | No aplica |
+
+### Estados permitidos
+
+| Estado | Significado |
+|---|---|
+| `pendiente` | La tarea aún no comenzó. |
+| `en progreso` | Hay trabajo iniciado, pero no cumple todavía el criterio de aceptación. |
+| `bloqueada` | No puede avanzar por una dependencia o decisión documentada. |
+| `completada` | Cumple el criterio de aceptación y tiene pruebas/documentación correspondientes. |
+| `lista para integrar` | Está completada, revisada y puede conectarse con los otros frentes. |
+| `integrada` | Está conectada en la aplicación conjunta y pasó la verificación de integración. |
+
+### Regla de actualización
+
+1. Cada desarrollador actualiza la fila de su tarea junto con el commit o PR de esa tarea.
+2. `completada` exige cumplir la definición de terminado de la sección 10.
+3. `lista para integrar` requiere revisión cruzada y pruebas verdes en la rama del frente.
+4. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`.
+5. La matriz se actualiza mediante PR; no se hacen ediciones simultáneas directas en `dev`.
+6. `MEMORY.md` se actualiza solo si el avance cambia una decisión, contrato, alcance, riesgo o hito general.
+
+### Criterio para iniciar la integración
+
+La integración puede comenzar únicamente cuando las 18 tareas de `T1-*`, `T2-*` y `T3-*` estén en estado `lista para integrar`. En ese punto, la matriz debe mostrar:
+
+```text
+DEV1: listo para integrar
+DEV2: listo para integrar
+DEV3: listo para integrar
+INT-01: pendiente
+```
+
+Después de validar la aplicación completa, `INT-01` pasa a `integrada` y la matriz debe registrar las pruebas, el despliegue y el estado de la demo.
 
 ---
 
@@ -413,11 +476,11 @@ Cada frente tiene **6 tareas de 6 h nominales** con la misma mezcla: una base, d
 
 | ID | Tarea | Complejidad | Horas | Entregable | Criterio de aceptación |
 |---|---|---|---:|---|---|
-| T1-01 | Shell full-screen, mapa base y coropletas desde el mock | Alta | 6 | `src/app/page.tsx` y `src/components/map/MapShell.tsx` | El mapa ocupa la pantalla, muestra los 15 polígonos del mock y paneles translúcidos sin desbordes en escritorio y móvil. |
+| T1-01 | Shell full-screen, mapa base, coropletas, semáforo y mapa de calor LST desde el mock | Alta | 6 | `src/app/page.tsx` y `src/components/map/MapShell.tsx` | El mapa ocupa la pantalla, muestra los 15 polígonos del mock, permite alternar ICVSA numérico/semaforizado y muestra el mapa de calor LST con leyenda en °C, sin desbordes en escritorio y móvil. |
 | T1-02 | Proxy WMS seguro y cliente tipado | Alta | 6 | `src/app/api/gamc/wms/route.ts` y `src/services/wms/` | Valida `service_id`, operación, `BBOX`, `WIDTH`, `HEIGHT` y `FORMAT`; cachea; devuelve errores del contrato; la clave nunca llega al cliente. |
 | T1-03 | Gestor de capas WMS, leyendas y degradación | Alta | 6 | `src/components/map/LayerControl.tsx` | Activa/desactiva capas, ajusta opacidad, muestra leyenda y estado de carga/error; si el WMS falla, el mapa base y el mock siguen funcionando. |
 | T1-04 | Rutas de transporte y paradas propuestas | Alta | 6 | `src/components/map/TransportLayer.tsx` | Dibuja rutas y paradas del mock, agrupa puntos, filtra por distrito/ruta y distingue `boarding_recommended` con texto e icono; rotula que son propuestas ilustrativas, no paradas oficiales ni seguras. |
-| T1-05 | Estado de mapa en URL y eventos de selección | Alta | 6 | `src/components/map/useMapUrlState.ts` | Lee y escribe `?district=&year=&variable=&layers=`; un enlace restaura la vista; emite `geoqocha:district-selected` sin importar componentes de DEV3. |
+| T1-05 | Estado de mapa, comparación y eventos de selección | Alta | 6 | `src/components/map/useMapUrlState.ts` y controles de selección | Lee y escribe `?district=&districts=&year=&variable=&view=&layers=`; permite seleccionar dos distritos para comparación; un enlace restaura la vista; emite `geoqocha:district-selected` sin importar componentes de DEV3. |
 | T1-06 | Rendimiento, accesibilidad, pruebas y README del mapa | Alta | 6 | Pruebas y documentación en `src/components/map/` | Carga diferida del mapa, foco visible, contraste, `prefers-reduced-motion`, pruebas de validación WMS y README con variables de entorno. |
 
 ### 6.2 DEV2 — Datos NASA, pipeline y backend de IA
@@ -426,7 +489,7 @@ Cada frente tiene **6 tareas de 6 h nominales** con la misma mezcla: una base, d
 |---|---|---|---:|---|---|
 | T2-01 | Esqueleto del pipeline y contrato de datos reales | Alta | 6 | `scripts/run.py`, `scripts/config.py`, `scripts/validate_output.py` | Lee el GeoJSON distrital, define rutas de entrada/salida y genera un `distritos_data.json` con la misma forma que el mock; falla si faltan 15 distritos o años. |
 | T2-02 | Procesamiento NDVI y LST 2015–2025 | Alta | 6 | `scripts/nasa/` | Procesa MOD13Q1 y MOD11A2 colección 6.1, aplica QA, convierte LST a °C, usa ventana estacional fija y calcula media, conteo y fracción válida por distrito-año. |
-| T2-03 | Integración territorial, índice y hotspots | Alta | 6 | `scripts/indicators/` y `data/metadata/sources.json` | Une población, equipamiento y movilidad con `territorial_reference_year`; calcula ICVSA, `index_without_territorial`, tendencias y hotspots; no interpola ni usa cero para faltantes. |
+| T2-03 | Integración territorial, índice, brechas, correlaciones y hotspots | Alta | 6 | `scripts/indicators/`, `data/processed/`, `src/backend/data/`, `src/app/api/` y `data/metadata/sources.json` | Une población, equipamiento y movilidad con `territorial_reference_year`; calcula ICVSA, `index_without_territorial`, tendencias, brechas frente al promedio municipal, correlaciones exploratorias y hotspots con reglas explicables; expone los datos procesados mediante los route handlers del contrato; no interpola ni usa cero para faltantes. |
 | T2-04 | RAG ligero sobre `distritos_data.json` | Alta | 6 | `src/backend/ai/retrieval.ts` y `src/backend/ai/context.ts` | Indexa fragmentos por distrito, año y métrica; recupera contexto acotado; arma citas y respeta un presupuesto de tokens; no usa base vectorial externa. |
 | T2-05 | Endpoint `/api/ai-analyst` | Alta | 6 | `src/app/api/ai-analyst/route.ts` y `src/backend/ai/provider.ts` | Acepta `chat` y `diagnosis`; cubre demografía, déficit de equipamiento y deforestación; usa Gemini u OpenAI solo en servidor; aplica timeout, reintento y rate limit; devuelve `AIResponse` o `fallback_used: true`. |
 | T2-06 | Guardrails, pruebas y README de IA | Alta | 6 | `src/backend/ai/guardrails.ts`, pruebas y README | Verifica consistencia numérica contra el contexto, exige citas, resiste inyección de prompt, documenta costos, límites y variables de entorno sin secretos. |
@@ -435,12 +498,12 @@ Cada frente tiene **6 tareas de 6 h nominales** con la misma mezcla: una base, d
 
 | ID | Tarea | Complejidad | Horas | Entregable | Criterio de aceptación |
 |---|---|---|---:|---|---|
-| T3-01 | Panel derecho deslizable y ficha distrital | Alta | 6 | `src/components/analytics/DistrictPanel.tsx` | Abre/cierra con teclado, atrapa el foco, lee `district` de la URL, muestra carga/vacío/error y no desborda en móvil. |
-| T3-02 | Fichas demográficas y series con Recharts | Alta | 6 | `src/components/analytics/` | Muestra población, brechas de salud/educación, NDVI/LST/ICVSA 2015–2025, calidad del dato y «no disponible» para `null`; tooltips accesibles. |
+| T3-01 | Panel derecho, ficha distrital y comparador | Alta | 6 | `src/components/analytics/DistrictPanel.tsx` y `src/components/analytics/ComparisonPanel.tsx` | Abre/cierra con teclado, atrapa el foco, lee `district` y `districts` de la URL, permite comparar dos distritos lado a lado, muestra carga/vacío/error y no desborda en móvil. |
+| T3-02 | Fichas demográficas, brechas y series con Recharts | Alta | 6 | `src/components/analytics/` | Muestra población, brechas frente al promedio municipal, brechas de salud/educación, NDVI/LST/ICVSA 2015–2025, calidad del dato y «no disponible» para `null`; tooltips accesibles. |
 | T3-03 | Deforestación y concientización ambiental | Alta | 6 | `src/components/awareness/` | Presenta estrategias basadas en datos, mensajes ciudadanos y citas de fuente; no afirma causalidad ni inventa cifras; distingue datos ilustrativos. |
 | T3-04 | Widget flotante de chat IA | Alta | 6 | `src/components/ai/ChatWidget.tsx` | Envía mensajes al endpoint, muestra historial, carga, error, reintento, citas y advertencia; usa un fixture local si la API no está disponible. |
 | T3-05 | Tarjetas de diagnóstico automático | Alta | 6 | `src/components/ai/DiagnosisCards.tsx` | Consume `mode: "diagnosis"`, renderiza `insights`, severidad, evidencia y citas; permite reintentar; no se rompe si la API falla. |
-| T3-06 | Calidad de UI, pruebas y README de analítica | Alta | 6 | Pruebas y documentación en `src/components/` | Responsive, contraste, foco, `prefers-reduced-motion`, pruebas de estados vacíos/error y README de componentes y fixtures. |
+| T3-06 | Hotspots, metodología, fuentes, calidad y pruebas de analítica | Alta | 6 | `src/components/analytics/HotspotsPanel.tsx`, `src/components/analytics/MethodologyPanel.tsx`, `src/components/analytics/SourcesPanel.tsx` y pruebas | Renderiza hotspots con reglas activadas y contribuciones, publica fórmula/pesos/`t_ref`/faltantes, muestra el catálogo de fuentes y mantiene responsive, contraste, foco, `prefers-reduced-motion`, estados vacíos/error y README de componentes y fixtures. |
 
 ### 6.4 Verificación de equidad
 

@@ -203,6 +203,9 @@ Detalle completo en `docs/05-FUENTES-DATOS.md` §7.
 | 2026-11-13 | Stack del MVP migra a Next.js App Router con route handlers; Vite y Express quedan como legado. |
 | 2026-11-13 | Plan reescrito con contrato compartido, mock y tres frentes independientes de igual complejidad. |
 | 2026-11-13 | Se declara que las paradas «seguras» son propuestas ilustrativas hasta validación oficial. |
+| 2026-11-13 | Se ajusta `06-PLAN-DESARROLLO.md` para cubrir explícitamente todos los elementos esenciales de `02`: comparador, semáforo, mapa de calor LST, brechas, correlaciones y vistas de hotspots, metodología y fuentes; DEV2 queda como dueño de los route handlers de datos. |
+| 2026-11-13 | Se agrega en `06-PLAN-DESARROLLO.md` una matriz central de seguimiento para T-00, T1-01…T3-06 e INT-01, con estados, evidencia, criterio de integración y regla de actualización por PR. |
+| 2026-11-13 | Se crea `MAESTRO.md` en la raíz como resumen autónomo y compartible del proyecto; no sustituye las fuentes de verdad internas y puede retirarse después de compartirlo. |
 
 ---
 
