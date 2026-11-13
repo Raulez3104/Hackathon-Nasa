@@ -1,0 +1,3002 @@
+{
+  "contract_version": "0.1.0",
+  "data_status": "illustrative",
+  "generated_at": "2026-11-13T21:01:22.887Z",
+  "districts": [
+    {
+      "district_id": 1,
+      "name": "Distrito 1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.24,
+              -17.49
+            ],
+            [
+              -66.222,
+              -17.49
+            ],
+            [
+              -66.222,
+              -17.471999999999998
+            ],
+            [
+              -66.24,
+              -17.471999999999998
+            ],
+            [
+              -66.24,
+              -17.49
+            ]
+          ]
+        ]
+      },
+      "area_km2": 9.2,
+      "population": 32500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 56,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.288,
+          "lst_mean_celsius": 31.38,
+          "environmental_index": 43,
+          "socioenvironmental_index": 48,
+          "index_without_territorial": 43,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.29,
+          "lst_mean_celsius": 31.3,
+          "environmental_index": 44,
+          "socioenvironmental_index": 49,
+          "index_without_territorial": 44,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.292,
+          "lst_mean_celsius": 31.22,
+          "environmental_index": 45,
+          "socioenvironmental_index": 50,
+          "index_without_territorial": 45,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.294,
+          "lst_mean_celsius": 31.14,
+          "environmental_index": 45,
+          "socioenvironmental_index": 50,
+          "index_without_territorial": 45,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.296,
+          "lst_mean_celsius": 31.06,
+          "environmental_index": 46,
+          "socioenvironmental_index": 51,
+          "index_without_territorial": 46,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.298,
+          "lst_mean_celsius": 30.98,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.3,
+          "lst_mean_celsius": 30.9,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.302,
+          "lst_mean_celsius": 30.82,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.304,
+          "lst_mean_celsius": 30.74,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.306,
+          "lst_mean_celsius": 30.66,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.308,
+          "lst_mean_celsius": 30.58,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 1,
+        "territorial_reference_year": 2024,
+        "population": 32500,
+        "green_area_m2_per_capita": 3.2,
+        "schools_per_1000": 0.83,
+        "health_centers_per_1000": 0.21,
+        "transport_coverage_fraction": 0.47,
+        "equipment_access_index": 46,
+        "mobility_access_index": 51,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-001",
+          "name": "Punto propuesto 1",
+          "district_id": 1,
+          "latitude": -17.481,
+          "longitude": -66.231,
+          "routes": [
+            "R2"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 2,
+      "name": "Distrito 2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.21499999999999,
+              -17.49
+            ],
+            [
+              -66.19699999999999,
+              -17.49
+            ],
+            [
+              -66.19699999999999,
+              -17.471999999999998
+            ],
+            [
+              -66.21499999999999,
+              -17.471999999999998
+            ],
+            [
+              -66.21499999999999,
+              -17.49
+            ]
+          ]
+        ]
+      },
+      "area_km2": 9.9,
+      "population": 35000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 57,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.296,
+          "lst_mean_celsius": 31.26,
+          "environmental_index": 44,
+          "socioenvironmental_index": 49,
+          "index_without_territorial": 44,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.298,
+          "lst_mean_celsius": 31.18,
+          "environmental_index": 45,
+          "socioenvironmental_index": 50,
+          "index_without_territorial": 45,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.3,
+          "lst_mean_celsius": 31.1,
+          "environmental_index": 46,
+          "socioenvironmental_index": 51,
+          "index_without_territorial": 46,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.302,
+          "lst_mean_celsius": 31.02,
+          "environmental_index": 46,
+          "socioenvironmental_index": 51,
+          "index_without_territorial": 46,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.304,
+          "lst_mean_celsius": 30.94,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.306,
+          "lst_mean_celsius": 30.86,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.308,
+          "lst_mean_celsius": 30.78,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.31,
+          "lst_mean_celsius": 30.7,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.312,
+          "lst_mean_celsius": 30.62,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.314,
+          "lst_mean_celsius": 30.54,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.316,
+          "lst_mean_celsius": 30.46,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 2,
+        "territorial_reference_year": 2024,
+        "population": 35000,
+        "green_area_m2_per_capita": 3.4,
+        "schools_per_1000": 0.86,
+        "health_centers_per_1000": 0.22,
+        "transport_coverage_fraction": 0.49,
+        "equipment_access_index": 47,
+        "mobility_access_index": 52,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-002",
+          "name": "Punto propuesto 2",
+          "district_id": 2,
+          "latitude": -17.481,
+          "longitude": -66.206,
+          "routes": [
+            "R3"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 3,
+      "name": "Distrito 3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.19,
+              -17.49
+            ],
+            [
+              -66.172,
+              -17.49
+            ],
+            [
+              -66.172,
+              -17.471999999999998
+            ],
+            [
+              -66.19,
+              -17.471999999999998
+            ],
+            [
+              -66.19,
+              -17.49
+            ]
+          ]
+        ]
+      },
+      "area_km2": 10.6,
+      "population": 37500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 58,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.304,
+          "lst_mean_celsius": 31.14,
+          "environmental_index": 45,
+          "socioenvironmental_index": 50,
+          "index_without_territorial": 45,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.306,
+          "lst_mean_celsius": 31.06,
+          "environmental_index": 46,
+          "socioenvironmental_index": 51,
+          "index_without_territorial": 46,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.308,
+          "lst_mean_celsius": 30.98,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.31,
+          "lst_mean_celsius": 30.9,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.312,
+          "lst_mean_celsius": 30.82,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.314,
+          "lst_mean_celsius": 30.74,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.316,
+          "lst_mean_celsius": 30.66,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.318,
+          "lst_mean_celsius": 30.58,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.32,
+          "lst_mean_celsius": 30.5,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.322,
+          "lst_mean_celsius": 30.42,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.324,
+          "lst_mean_celsius": 30.34,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 3,
+        "territorial_reference_year": 2024,
+        "population": 37500,
+        "green_area_m2_per_capita": 3.6,
+        "schools_per_1000": 0.89,
+        "health_centers_per_1000": 0.23,
+        "transport_coverage_fraction": 0.51,
+        "equipment_access_index": 48,
+        "mobility_access_index": 53,
+        "deficit_flags": [
+          "GREEN_AREA_LOW"
+        ]
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-003",
+          "name": "Punto propuesto 3",
+          "district_id": 3,
+          "latitude": -17.481,
+          "longitude": -66.181,
+          "routes": [
+            "R4"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 4,
+      "name": "Distrito 4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.16499999999999,
+              -17.49
+            ],
+            [
+              -66.14699999999999,
+              -17.49
+            ],
+            [
+              -66.14699999999999,
+              -17.471999999999998
+            ],
+            [
+              -66.16499999999999,
+              -17.471999999999998
+            ],
+            [
+              -66.16499999999999,
+              -17.49
+            ]
+          ]
+        ]
+      },
+      "area_km2": 11.3,
+      "population": 40000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 59,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.312,
+          "lst_mean_celsius": 31.02,
+          "environmental_index": 46,
+          "socioenvironmental_index": 51,
+          "index_without_territorial": 46,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.314,
+          "lst_mean_celsius": 30.94,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.316,
+          "lst_mean_celsius": 30.86,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.318,
+          "lst_mean_celsius": 30.78,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.32,
+          "lst_mean_celsius": 30.7,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.322,
+          "lst_mean_celsius": 30.62,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.324,
+          "lst_mean_celsius": 30.54,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.326,
+          "lst_mean_celsius": 30.46,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.328,
+          "lst_mean_celsius": 30.38,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.33,
+          "lst_mean_celsius": 30.3,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.332,
+          "lst_mean_celsius": 30.22,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 4,
+        "territorial_reference_year": 2024,
+        "population": 40000,
+        "green_area_m2_per_capita": 3.8,
+        "schools_per_1000": 0.92,
+        "health_centers_per_1000": 0.24,
+        "transport_coverage_fraction": 0.53,
+        "equipment_access_index": 49,
+        "mobility_access_index": 54,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-004",
+          "name": "Punto propuesto 4",
+          "district_id": 4,
+          "latitude": -17.481,
+          "longitude": -66.156,
+          "routes": [
+            "R1"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 5,
+      "name": "Distrito 5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.14,
+              -17.49
+            ],
+            [
+              -66.122,
+              -17.49
+            ],
+            [
+              -66.122,
+              -17.471999999999998
+            ],
+            [
+              -66.14,
+              -17.471999999999998
+            ],
+            [
+              -66.14,
+              -17.49
+            ]
+          ]
+        ]
+      },
+      "area_km2": 12,
+      "population": 42500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 60,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.32,
+          "lst_mean_celsius": 30.9,
+          "environmental_index": 47,
+          "socioenvironmental_index": 52,
+          "index_without_territorial": 47,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.322,
+          "lst_mean_celsius": 30.82,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.324,
+          "lst_mean_celsius": 30.74,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.326,
+          "lst_mean_celsius": 30.66,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.328,
+          "lst_mean_celsius": 30.58,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.33,
+          "lst_mean_celsius": 30.5,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.332,
+          "lst_mean_celsius": 30.42,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.334,
+          "lst_mean_celsius": 30.34,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.336,
+          "lst_mean_celsius": 30.26,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.338,
+          "lst_mean_celsius": 30.18,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.34,
+          "lst_mean_celsius": 30.1,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 5,
+        "territorial_reference_year": 2024,
+        "population": 42500,
+        "green_area_m2_per_capita": 4,
+        "schools_per_1000": 0.95,
+        "health_centers_per_1000": 0.25,
+        "transport_coverage_fraction": 0.55,
+        "equipment_access_index": 50,
+        "mobility_access_index": 55,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-005",
+          "name": "Punto propuesto 5",
+          "district_id": 5,
+          "latitude": -17.481,
+          "longitude": -66.131,
+          "routes": [
+            "R2"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 6,
+      "name": "Distrito 6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.24,
+              -17.455
+            ],
+            [
+              -66.222,
+              -17.455
+            ],
+            [
+              -66.222,
+              -17.436999999999998
+            ],
+            [
+              -66.24,
+              -17.436999999999998
+            ],
+            [
+              -66.24,
+              -17.455
+            ]
+          ]
+        ]
+      },
+      "area_km2": 12.7,
+      "population": 45000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 61,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.328,
+          "lst_mean_celsius": 30.78,
+          "environmental_index": 48,
+          "socioenvironmental_index": 53,
+          "index_without_territorial": 48,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.33,
+          "lst_mean_celsius": 30.7,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.332,
+          "lst_mean_celsius": 30.62,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.334,
+          "lst_mean_celsius": 30.54,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.336,
+          "lst_mean_celsius": 30.46,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.338,
+          "lst_mean_celsius": 30.38,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.34,
+          "lst_mean_celsius": 30.3,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.342,
+          "lst_mean_celsius": 30.22,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.344,
+          "lst_mean_celsius": 30.14,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.346,
+          "lst_mean_celsius": 30.06,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.348,
+          "lst_mean_celsius": 29.98,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 6,
+        "territorial_reference_year": 2024,
+        "population": 45000,
+        "green_area_m2_per_capita": 4.2,
+        "schools_per_1000": 0.98,
+        "health_centers_per_1000": 0.26,
+        "transport_coverage_fraction": 0.57,
+        "equipment_access_index": 51,
+        "mobility_access_index": 56,
+        "deficit_flags": [
+          "GREEN_AREA_LOW"
+        ]
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-006",
+          "name": "Punto propuesto 6",
+          "district_id": 6,
+          "latitude": -17.446,
+          "longitude": -66.231,
+          "routes": [
+            "R3"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 7,
+      "name": "Distrito 7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.21499999999999,
+              -17.455
+            ],
+            [
+              -66.19699999999999,
+              -17.455
+            ],
+            [
+              -66.19699999999999,
+              -17.436999999999998
+            ],
+            [
+              -66.21499999999999,
+              -17.436999999999998
+            ],
+            [
+              -66.21499999999999,
+              -17.455
+            ]
+          ]
+        ]
+      },
+      "area_km2": 13.4,
+      "population": 47500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 62,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.336,
+          "lst_mean_celsius": 30.66,
+          "environmental_index": 49,
+          "socioenvironmental_index": 54,
+          "index_without_territorial": 49,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.338,
+          "lst_mean_celsius": 30.58,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.34,
+          "lst_mean_celsius": 30.5,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.342,
+          "lst_mean_celsius": 30.42,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.344,
+          "lst_mean_celsius": 30.34,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.346,
+          "lst_mean_celsius": 30.26,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.348,
+          "lst_mean_celsius": 30.18,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.35,
+          "lst_mean_celsius": 30.1,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.352,
+          "lst_mean_celsius": 30.02,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.354,
+          "lst_mean_celsius": 29.94,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.356,
+          "lst_mean_celsius": 29.86,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 7,
+        "territorial_reference_year": 2024,
+        "population": 47500,
+        "green_area_m2_per_capita": 4.4,
+        "schools_per_1000": 1.01,
+        "health_centers_per_1000": 0.27,
+        "transport_coverage_fraction": 0.59,
+        "equipment_access_index": 52,
+        "mobility_access_index": 57,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-007",
+          "name": "Punto propuesto 7",
+          "district_id": 7,
+          "latitude": -17.446,
+          "longitude": -66.206,
+          "routes": [
+            "R4"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 8,
+      "name": "Distrito 8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.19,
+              -17.455
+            ],
+            [
+              -66.172,
+              -17.455
+            ],
+            [
+              -66.172,
+              -17.436999999999998
+            ],
+            [
+              -66.19,
+              -17.436999999999998
+            ],
+            [
+              -66.19,
+              -17.455
+            ]
+          ]
+        ]
+      },
+      "area_km2": 14.1,
+      "population": 50000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 63,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.344,
+          "lst_mean_celsius": 30.54,
+          "environmental_index": 50,
+          "socioenvironmental_index": 55,
+          "index_without_territorial": 50,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.346,
+          "lst_mean_celsius": 30.46,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.348,
+          "lst_mean_celsius": 30.38,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.35,
+          "lst_mean_celsius": 30.3,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.352,
+          "lst_mean_celsius": 30.22,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.354,
+          "lst_mean_celsius": 30.14,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.356,
+          "lst_mean_celsius": 30.06,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.358,
+          "lst_mean_celsius": 29.98,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.36,
+          "lst_mean_celsius": 29.9,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.362,
+          "lst_mean_celsius": 29.82,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.364,
+          "lst_mean_celsius": 29.74,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 8,
+        "territorial_reference_year": 2024,
+        "population": 50000,
+        "green_area_m2_per_capita": 4.6,
+        "schools_per_1000": 1.04,
+        "health_centers_per_1000": 0.28,
+        "transport_coverage_fraction": 0.61,
+        "equipment_access_index": 53,
+        "mobility_access_index": 58,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-008",
+          "name": "Punto propuesto 8",
+          "district_id": 8,
+          "latitude": -17.446,
+          "longitude": -66.181,
+          "routes": [
+            "R1"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 9,
+      "name": "Distrito 9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.16499999999999,
+              -17.455
+            ],
+            [
+              -66.14699999999999,
+              -17.455
+            ],
+            [
+              -66.14699999999999,
+              -17.436999999999998
+            ],
+            [
+              -66.16499999999999,
+              -17.436999999999998
+            ],
+            [
+              -66.16499999999999,
+              -17.455
+            ]
+          ]
+        ]
+      },
+      "area_km2": 14.8,
+      "population": 52500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 64,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.352,
+          "lst_mean_celsius": 30.42,
+          "environmental_index": 51,
+          "socioenvironmental_index": 56,
+          "index_without_territorial": 51,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.354,
+          "lst_mean_celsius": 30.34,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.356,
+          "lst_mean_celsius": 30.26,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.358,
+          "lst_mean_celsius": 30.18,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.36,
+          "lst_mean_celsius": 30.1,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.362,
+          "lst_mean_celsius": 30.02,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.364,
+          "lst_mean_celsius": 29.94,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.366,
+          "lst_mean_celsius": 29.86,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.368,
+          "lst_mean_celsius": 29.78,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.37,
+          "lst_mean_celsius": 29.7,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.372,
+          "lst_mean_celsius": 29.62,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 9,
+        "territorial_reference_year": 2024,
+        "population": 52500,
+        "green_area_m2_per_capita": 4.8,
+        "schools_per_1000": 1.07,
+        "health_centers_per_1000": 0.29,
+        "transport_coverage_fraction": 0.63,
+        "equipment_access_index": 54,
+        "mobility_access_index": 59,
+        "deficit_flags": [
+          "GREEN_AREA_LOW"
+        ]
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-009",
+          "name": "Punto propuesto 9",
+          "district_id": 9,
+          "latitude": -17.446,
+          "longitude": -66.156,
+          "routes": [
+            "R2"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 10,
+      "name": "Distrito 10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.14,
+              -17.455
+            ],
+            [
+              -66.122,
+              -17.455
+            ],
+            [
+              -66.122,
+              -17.436999999999998
+            ],
+            [
+              -66.14,
+              -17.436999999999998
+            ],
+            [
+              -66.14,
+              -17.455
+            ]
+          ]
+        ]
+      },
+      "area_km2": 15.5,
+      "population": 55000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 65,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.36,
+          "lst_mean_celsius": 30.3,
+          "environmental_index": 52,
+          "socioenvironmental_index": 57,
+          "index_without_territorial": 52,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.362,
+          "lst_mean_celsius": 30.22,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.364,
+          "lst_mean_celsius": 30.14,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.366,
+          "lst_mean_celsius": 30.06,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.368,
+          "lst_mean_celsius": 29.98,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.37,
+          "lst_mean_celsius": 29.9,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.372,
+          "lst_mean_celsius": 29.82,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.374,
+          "lst_mean_celsius": 29.74,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.376,
+          "lst_mean_celsius": 29.66,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.378,
+          "lst_mean_celsius": 29.58,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.38,
+          "lst_mean_celsius": 29.5,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 10,
+        "territorial_reference_year": 2024,
+        "population": 55000,
+        "green_area_m2_per_capita": 5,
+        "schools_per_1000": 1.1,
+        "health_centers_per_1000": 0.3,
+        "transport_coverage_fraction": 0.65,
+        "equipment_access_index": 55,
+        "mobility_access_index": 60,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-010",
+          "name": "Punto propuesto 10",
+          "district_id": 10,
+          "latitude": -17.446,
+          "longitude": -66.131,
+          "routes": [
+            "R3"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 11,
+      "name": "Distrito 11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.24,
+              -17.419999999999998
+            ],
+            [
+              -66.222,
+              -17.419999999999998
+            ],
+            [
+              -66.222,
+              -17.401999999999997
+            ],
+            [
+              -66.24,
+              -17.401999999999997
+            ],
+            [
+              -66.24,
+              -17.419999999999998
+            ]
+          ]
+        ]
+      },
+      "area_km2": 16.2,
+      "population": 57500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 66,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.368,
+          "lst_mean_celsius": 30.18,
+          "environmental_index": 53,
+          "socioenvironmental_index": 58,
+          "index_without_territorial": 53,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.37,
+          "lst_mean_celsius": 30.1,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.372,
+          "lst_mean_celsius": 30.02,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.374,
+          "lst_mean_celsius": 29.94,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.376,
+          "lst_mean_celsius": 29.86,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.378,
+          "lst_mean_celsius": 29.78,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.38,
+          "lst_mean_celsius": 29.7,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.382,
+          "lst_mean_celsius": 29.62,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.384,
+          "lst_mean_celsius": 29.54,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.386,
+          "lst_mean_celsius": 29.46,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.388,
+          "lst_mean_celsius": 29.38,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 11,
+        "territorial_reference_year": 2024,
+        "population": 57500,
+        "green_area_m2_per_capita": 5.2,
+        "schools_per_1000": 1.13,
+        "health_centers_per_1000": 0.31,
+        "transport_coverage_fraction": 0.67,
+        "equipment_access_index": 56,
+        "mobility_access_index": 61,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-011",
+          "name": "Punto propuesto 11",
+          "district_id": 11,
+          "latitude": -17.411,
+          "longitude": -66.231,
+          "routes": [
+            "R4"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 12,
+      "name": "Distrito 12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.21499999999999,
+              -17.419999999999998
+            ],
+            [
+              -66.19699999999999,
+              -17.419999999999998
+            ],
+            [
+              -66.19699999999999,
+              -17.401999999999997
+            ],
+            [
+              -66.21499999999999,
+              -17.401999999999997
+            ],
+            [
+              -66.21499999999999,
+              -17.419999999999998
+            ]
+          ]
+        ]
+      },
+      "area_km2": 16.9,
+      "population": 60000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 67,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.376,
+          "lst_mean_celsius": 30.06,
+          "environmental_index": 54,
+          "socioenvironmental_index": 59,
+          "index_without_territorial": 54,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.378,
+          "lst_mean_celsius": 29.98,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.38,
+          "lst_mean_celsius": 29.9,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.382,
+          "lst_mean_celsius": 29.82,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.384,
+          "lst_mean_celsius": 29.74,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.386,
+          "lst_mean_celsius": 29.66,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.388,
+          "lst_mean_celsius": 29.58,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.39,
+          "lst_mean_celsius": 29.5,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.392,
+          "lst_mean_celsius": 29.42,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.394,
+          "lst_mean_celsius": 29.34,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.396,
+          "lst_mean_celsius": 29.26,
+          "environmental_index": 62,
+          "socioenvironmental_index": 67,
+          "index_without_territorial": 62,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 12,
+        "territorial_reference_year": 2024,
+        "population": 60000,
+        "green_area_m2_per_capita": 5.4,
+        "schools_per_1000": 1.16,
+        "health_centers_per_1000": 0.32,
+        "transport_coverage_fraction": 0.69,
+        "equipment_access_index": 57,
+        "mobility_access_index": 62,
+        "deficit_flags": [
+          "GREEN_AREA_LOW"
+        ]
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-012",
+          "name": "Punto propuesto 12",
+          "district_id": 12,
+          "latitude": -17.411,
+          "longitude": -66.206,
+          "routes": [
+            "R1"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 13,
+      "name": "Distrito 13",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.19,
+              -17.419999999999998
+            ],
+            [
+              -66.172,
+              -17.419999999999998
+            ],
+            [
+              -66.172,
+              -17.401999999999997
+            ],
+            [
+              -66.19,
+              -17.401999999999997
+            ],
+            [
+              -66.19,
+              -17.419999999999998
+            ]
+          ]
+        ]
+      },
+      "area_km2": 17.6,
+      "population": 62500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 68,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.384,
+          "lst_mean_celsius": 29.94,
+          "environmental_index": 55,
+          "socioenvironmental_index": 60,
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.386,
+          "lst_mean_celsius": 29.86,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.388,
+          "lst_mean_celsius": 29.78,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.39,
+          "lst_mean_celsius": 29.7,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.392,
+          "lst_mean_celsius": 29.62,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.394,
+          "lst_mean_celsius": 29.54,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.396,
+          "lst_mean_celsius": 29.46,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.398,
+          "lst_mean_celsius": 29.38,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.4,
+          "lst_mean_celsius": 29.3,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.402,
+          "lst_mean_celsius": 29.22,
+          "environmental_index": 62,
+          "socioenvironmental_index": 67,
+          "index_without_territorial": 62,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.404,
+          "lst_mean_celsius": 29.14,
+          "environmental_index": 63,
+          "socioenvironmental_index": 68,
+          "index_without_territorial": 63,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 13,
+        "territorial_reference_year": 2024,
+        "population": 62500,
+        "green_area_m2_per_capita": 5.6,
+        "schools_per_1000": 1.19,
+        "health_centers_per_1000": 0.33,
+        "transport_coverage_fraction": 0.71,
+        "equipment_access_index": 58,
+        "mobility_access_index": 63,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-013",
+          "name": "Punto propuesto 13",
+          "district_id": 13,
+          "latitude": -17.411,
+          "longitude": -66.181,
+          "routes": [
+            "R2"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 14,
+      "name": "Distrito 14",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.16499999999999,
+              -17.419999999999998
+            ],
+            [
+              -66.14699999999999,
+              -17.419999999999998
+            ],
+            [
+              -66.14699999999999,
+              -17.401999999999997
+            ],
+            [
+              -66.16499999999999,
+              -17.401999999999997
+            ],
+            [
+              -66.16499999999999,
+              -17.419999999999998
+            ]
+          ]
+        ]
+      },
+      "area_km2": 18.3,
+      "population": 65000,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 69,
+      "risk_level": "medium",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.392,
+          "lst_mean_celsius": 29.82,
+          "environmental_index": 56,
+          "socioenvironmental_index": 61,
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.394,
+          "lst_mean_celsius": 29.74,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.396,
+          "lst_mean_celsius": 29.66,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.398,
+          "lst_mean_celsius": 29.58,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.4,
+          "lst_mean_celsius": 29.5,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.402,
+          "lst_mean_celsius": 29.42,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.404,
+          "lst_mean_celsius": 29.34,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.406,
+          "lst_mean_celsius": 29.26,
+          "environmental_index": 62,
+          "socioenvironmental_index": 67,
+          "index_without_territorial": 62,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.408,
+          "lst_mean_celsius": 29.18,
+          "environmental_index": 62,
+          "socioenvironmental_index": 67,
+          "index_without_territorial": 62,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.41,
+          "lst_mean_celsius": 29.1,
+          "environmental_index": 63,
+          "socioenvironmental_index": 68,
+          "index_without_territorial": 63,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.412,
+          "lst_mean_celsius": 29.02,
+          "environmental_index": 64,
+          "socioenvironmental_index": 69,
+          "index_without_territorial": 64,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 14,
+        "territorial_reference_year": 2024,
+        "population": 65000,
+        "green_area_m2_per_capita": 5.8,
+        "schools_per_1000": 1.22,
+        "health_centers_per_1000": 0.34,
+        "transport_coverage_fraction": 0.73,
+        "equipment_access_index": 59,
+        "mobility_access_index": 64,
+        "deficit_flags": []
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-014",
+          "name": "Punto propuesto 14",
+          "district_id": 14,
+          "latitude": -17.411,
+          "longitude": -66.156,
+          "routes": [
+            "R3"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    },
+    {
+      "district_id": 15,
+      "name": "Distrito 15",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.14,
+              -17.419999999999998
+            ],
+            [
+              -66.122,
+              -17.419999999999998
+            ],
+            [
+              -66.122,
+              -17.401999999999997
+            ],
+            [
+              -66.14,
+              -17.401999999999997
+            ],
+            [
+              -66.14,
+              -17.419999999999998
+            ]
+          ]
+        ]
+      },
+      "area_km2": 19,
+      "population": 67500,
+      "population_year": 2024,
+      "territorial_reference_year": 2024,
+      "latest_year": 2025,
+      "latest_socioenvironmental_index": 70,
+      "risk_level": "low",
+      "series": [
+        {
+          "year": 2015,
+          "ndvi_mean": 0.4,
+          "lst_mean_celsius": 29.7,
+          "environmental_index": 57,
+          "socioenvironmental_index": 62,
+          "index_without_territorial": 57,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2016,
+          "ndvi_mean": 0.402,
+          "lst_mean_celsius": 29.62,
+          "environmental_index": 58,
+          "socioenvironmental_index": 63,
+          "index_without_territorial": 58,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2017,
+          "ndvi_mean": 0.404,
+          "lst_mean_celsius": 29.54,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2018,
+          "ndvi_mean": 0.406,
+          "lst_mean_celsius": 29.46,
+          "environmental_index": 59,
+          "socioenvironmental_index": 64,
+          "index_without_territorial": 59,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2019,
+          "ndvi_mean": 0.408,
+          "lst_mean_celsius": 29.38,
+          "environmental_index": 60,
+          "socioenvironmental_index": 65,
+          "index_without_territorial": 60,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2020,
+          "ndvi_mean": 0.41,
+          "lst_mean_celsius": 29.3,
+          "environmental_index": 61,
+          "socioenvironmental_index": 66,
+          "index_without_territorial": 61,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2021,
+          "ndvi_mean": 0.412,
+          "lst_mean_celsius": 29.22,
+          "environmental_index": 62,
+          "socioenvironmental_index": 67,
+          "index_without_territorial": 62,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2022,
+          "ndvi_mean": 0.414,
+          "lst_mean_celsius": 29.14,
+          "environmental_index": 63,
+          "socioenvironmental_index": 68,
+          "index_without_territorial": 63,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2023,
+          "ndvi_mean": 0.416,
+          "lst_mean_celsius": 29.06,
+          "environmental_index": 63,
+          "socioenvironmental_index": 68,
+          "index_without_territorial": 63,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2024,
+          "ndvi_mean": 0.418,
+          "lst_mean_celsius": 28.98,
+          "environmental_index": 64,
+          "socioenvironmental_index": 69,
+          "index_without_territorial": 64,
+          "data_quality_flag": "ok"
+        },
+        {
+          "year": 2025,
+          "ndvi_mean": 0.42,
+          "lst_mean_celsius": 28.9,
+          "environmental_index": 65,
+          "socioenvironmental_index": 70,
+          "index_without_territorial": 65,
+          "data_quality_flag": "ok"
+        }
+      ],
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "Datos ilustrativos generados para desarrollo",
+          "is_significant": null,
+          "acceleration": null,
+          "accelerated": false,
+          "notes": [
+            "Ejemplo ilustrativo; no representa mediciones reales."
+          ]
+        }
+      ],
+      "equipment": {
+        "district_id": 15,
+        "territorial_reference_year": 2024,
+        "population": 67500,
+        "green_area_m2_per_capita": 6,
+        "schools_per_1000": 1.25,
+        "health_centers_per_1000": 0.35,
+        "transport_coverage_fraction": 0.75,
+        "equipment_access_index": 60,
+        "mobility_access_index": 65,
+        "deficit_flags": [
+          "GREEN_AREA_LOW"
+        ]
+      },
+      "transport_stops": [
+        {
+          "stop_id": "stop-015",
+          "name": "Punto propuesto 15",
+          "district_id": 15,
+          "latitude": -17.411,
+          "longitude": -66.131,
+          "routes": [
+            "R4"
+          ],
+          "boarding_recommended": true,
+          "safety_score": null,
+          "notes": "Punto ilustrativo; no es una parada oficial ni una calificación de seguridad.",
+          "data_status": "illustrative"
+        }
+      ],
+      "data_status": "illustrative",
+      "source_refs": [
+        "mock"
+      ]
+    }
+  ]
+}

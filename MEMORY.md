@@ -19,18 +19,18 @@ Registro vivo de decisiones, estado y pendientes de **GeoQocha**. Sirve para que
 |---|---|
 | Documentación | Seis documentos en `docs/`, índice `docs/README.md`, README raíz y LICENSE |
 | Marca y alcance | GeoQocha reemplaza a Cochabamba Verde; se incorpora copiloto IA y concientización |
-| Stack objetivo | Next.js + TypeScript + Tailwind + Leaflet + Recharts; route handlers para API |
-| Código de aplicación | Legado Vite/Express en `frontend/` y `backend/`; migración a Next.js pendiente |
-| Contrato compartido | Definido en `docs/06` y `docs/04`; archivos `src/types/geoqocha.ts` y mock pendientes de crear |
+| Stack objetivo | React + Vite en frontend; Node.js + Express en backend; TypeScript + Tailwind + Leaflet + Recharts |
+| Código de aplicación | Frontend React/Vite y backend Express en `frontend/` y `backend/`; contrato compartido en `shared/` |
+| Contrato compartido | `shared/types/geoqocha.ts` y mock creados; T-00 sigue en progreso hasta completar instalación y verificación conjunta |
 | Pipeline de datos | No iniciado |
 | Datos procesados | No generados; el mock será ilustrativo |
-| Repositorio Git | Inicializado en `main`; ramas `dev` y `feat/*` pendientes |
+| Repositorio Git | Inicializado en `main`; ramas de desarrolladores pendientes de crear después de cerrar T-00 |
 | Despliegue | No configurado |
 | IA | Arquitectura y contrato definidos; proveedor y clave pendientes |
 | Validación de fuentes | Pendiente |
 | Equipo de desarrollo | 3 personas de sistemas con frentes independientes |
 
-**Conclusión:** la documentación ya refleja el alcance GeoQocha y el plan de tres frentes. El siguiente paso es el Día 0: crear el contrato, el mock y el andamiaje Next.js. Nada de lo descrito como dato medido existe todavía.
+**Conclusión:** el Día 0 está en progreso: contrato, mock y configuración base React + Vite + Express creados. Falta instalar dependencias del backend, completar la verificación conjunta y crear las ramas de desarrollo. Nada de lo descrito como dato medido existe todavía.
 
 ---
 
@@ -56,10 +56,11 @@ Registro vivo de decisiones, estado y pendientes de **GeoQocha**. Sirve para que
 | D-16 | Licencia MIT para código y CC BY 4.0 para documentación | Cumple el requisito de código abierto | `05` §6, `06` §7 |
 | D-17 | IA generativa acotada: solo narra hechos precalculados, con citas y fallback | Copiloto útil sin ceder validez metodológica a una caja negra | `03` AD-05, `02` RN-24…RN-27 |
 | D-18 | GeoQocha reemplaza a Cochabamba Verde | Nuevo nombre y alcance del producto | `01`, `02`, `03`, `04`, `06` |
-| D-19 | Next.js App Router reemplaza Vite + Express en el MVP | Un solo despliegue, tipos compartidos y route handlers | `03` AD-09, `06` §3 |
+| D-19 | ~~Next.js App Router reemplaza Vite + Express en el MVP~~ **Reemplazada por D-23** | La arquitectura desacoplada permite escalar frontend y backend de forma independiente | `03` AD-09 |
 | D-20 | Contrato y mock congelados antes de abrir ramas | Garantiza independencia total de los tres frentes | `06` §3, `03` AD-10 |
-| D-21 | Ramas independientes con carpetas exclusivas y merge a `dev` | Evita conflictos y dependencias cruzadas | `06` §5 y §9 |
+| D-21 | Ramas independientes con carpetas exclusivas y PR directo a `main` | Simplifica el flujo Git y evita una rama de integración adicional | `06` §5 y §9 |
 | D-22 | Paradas «seguras» se presentan como propuestas ilustrativas hasta validación | No existe fuente oficial de seguridad de paradas | `03` AD-11, `02` RN-28 |
+| D-23 | React + Vite para frontend y Node.js + Express para backend | Permite desacoplar y escalar las dos aplicaciones sin migrar desde un framework full-stack | `03` AD-09 |
 
 ---
 
@@ -108,9 +109,9 @@ ICVSA(d,t) = 0.35 * S_NDVI(d,t) + 0.35 * S_LST(d,t)
 
 | Persona | Frente | Dueño de |
 |---|---|---|
-| DEV1 | Mapas, WMS y movilidad urbana | `src/components/map/`, `src/services/wms/`, `src/app/api/gamc/`, `src/backend/gamc/` |
-| DEV2 | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `src/backend/data/`, `src/backend/ai/`, `src/app/api/ai-analyst/` |
-| DEV3 | Analítica, concientización y chat UI | `src/components/analytics/`, `src/components/awareness/`, `src/components/ai/` |
+| DEV1 | Mapas, WMS y movilidad urbana | `frontend/src/components/map/`, `frontend/src/services/wms/`, `backend/src/gamc/` |
+| DEV2 | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `backend/src/data/`, `backend/src/ai/` |
+| DEV3 | Analítica, concientización y chat UI | `frontend/src/components/analytics/`, `frontend/src/components/awareness/`, `frontend/src/components/ai/` |
 
 | Métrica | Valor |
 |---|---|
@@ -149,7 +150,7 @@ ICVSA(d,t) = 0.35 * S_NDVI(d,t) + 0.35 * S_LST(d,t)
 
 ## 6. Contrato congelado
 
-**Archivo compartido:** `src/types/geoqocha.ts` con `CONTRACT_VERSION = "0.1.0"`.
+**Archivo compartido:** `shared/types/geoqocha.ts` con `CONTRACT_VERSION = "0.1.0"`.
 
 **Tipos:** `DistrictData`, `DistrictGeometry`, `DistrictSeriesPoint`, `DistrictTrend`, `EquipmentMetrics`, `StopPoint`, `AIRequest`, `AIResponse`, `AIInsight`, `AIEvidence`, `AICitation`, `DataStatus`, `RiskLevel`.
 
@@ -200,19 +201,21 @@ Detalle completo en `docs/05-FUENTES-DATOS.md` §7.
 | 2026-11-13 | `06-PLAN-DESARROLLO.md` reescrito para 3 desarrolladores de sistemas. |
 | 2026-11-13 | Creados `AGENTS.md` y `MEMORY.md`. |
 | 2026-11-13 | GeoQocha reemplaza a Cochabamba Verde; se agrega copiloto IA con RAG, citas y fallback. |
-| 2026-11-13 | Stack del MVP migra a Next.js App Router con route handlers; Vite y Express quedan como legado. |
+| 2026-11-13 | Stack del MVP se redefine como React + Vite en frontend y Node.js + Express en backend; se conserva el historial de la decisión anterior como reemplazada. |
 | 2026-11-13 | Plan reescrito con contrato compartido, mock y tres frentes independientes de igual complejidad. |
 | 2026-11-13 | Se declara que las paradas «seguras» son propuestas ilustrativas hasta validación oficial. |
-| 2026-11-13 | Se ajusta `06-PLAN-DESARROLLO.md` para cubrir explícitamente todos los elementos esenciales de `02`: comparador, semáforo, mapa de calor LST, brechas, correlaciones y vistas de hotspots, metodología y fuentes; DEV2 queda como dueño de los route handlers de datos. |
+| 2026-11-13 | Se reemplaza la decisión D-19: el MVP usa React + Vite para frontend y Node.js + Express para backend, dentro de un monorepo con contrato compartido. |
+| 2026-11-13 | Se ajusta `06-PLAN-DESARROLLO.md` para cubrir explícitamente todos los elementos esenciales de `02`: comparador, semáforo, mapa de calor LST, brechas, correlaciones y vistas de hotspots, metodología y fuentes; DEV2 queda como dueño de la API REST de datos. |
 | 2026-11-13 | Se agrega en `06-PLAN-DESARROLLO.md` una matriz central de seguimiento para T-00, T1-01…T3-06 e INT-01, con estados, evidencia, criterio de integración y regla de actualización por PR. |
 | 2026-11-13 | Se crea `MAESTRO.md` en la raíz como resumen autónomo y compartible del proyecto; no sustituye las fuentes de verdad internas y puede retirarse después de compartirlo. |
+| 2026-11-13 | DEV1 queda definido como único responsable de actualizar la matriz de avance después de revisar y fusionar los PR; DEV2 y DEV3 entregan evidencia en sus propios PR sin editar la matriz. |
 
 ---
 
 ## 9. Próximos pasos
 
-1. Crear el andamiaje Next.js, Tailwind y route handlers según `03` §2 y AD-09.
-2. Crear `src/types/geoqocha.ts`, `src/lib/data-source.ts` y `public/data/mock_distritos.json`.
+1. Crear el andamiaje React + Vite, Express, Tailwind y contrato compartido según `03` §2 y AD-09.
+2. Crear `shared/types/geoqocha.ts`, `frontend/src/lib/data-source.ts` y `frontend/public/data/mock_distritos.json`.
 3. Crear la rama `dev`, mergear `chore/contract-v0.1.0` y etiquetar `contract-v0.1.0`.
 4. Abrir las ramas `feat/dev1-map-transport`, `feat/dev2-data-ai` y `feat/dev3-analytics-chat`.
 5. Implementar el proxy WMS y el endpoint `/api/ai-analyst` con fallback.

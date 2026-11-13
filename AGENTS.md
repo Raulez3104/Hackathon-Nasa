@@ -2,7 +2,7 @@
 
 Instrucciones de trabajo para cualquier agente que colabore en **GeoQocha**. Este archivo describe el contexto, las reglas no negociables y la forma correcta de cambiar el proyecto.
 
-> **Vigencia 2026-11-13:** GeoQocha reemplaza a Cochabamba Verde. El MVP usa Next.js App Router con route handlers, un contrato compartido en `src/types/geoqocha.ts` y un copiloto de IA acotado. Las carpetas `frontend/` y `backend/` actuales son legado congelado hasta completar la migración.
+> **Vigencia 2026-11-13:** GeoQocha reemplaza a Cochabamba Verde. El MVP usa React + Vite en `frontend/` y Node.js + Express en `backend/`, con un contrato compartido en `shared/types/geoqocha.ts` y un copiloto de IA acotado.
 
 ---
 
@@ -59,9 +59,9 @@ El plan está dimensionado para **3 desarrolladores de sistemas**. No asignes ta
 
 | Persona | Frente | Dueño de |
 |---|---|---|
-| **DEV1** | Mapas, WMS y movilidad urbana | `src/components/map/`, `src/services/wms/`, `src/app/api/gamc/`, `src/backend/gamc/` |
-| **DEV2** | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `src/backend/data/`, `src/backend/ai/`, `src/app/api/ai-analyst/` |
-| **DEV3** | Analítica, concientización y chat UI | `src/components/analytics/`, `src/components/awareness/`, `src/components/ai/` |
+| **DEV1** | Mapas, WMS y movilidad urbana | `frontend/src/components/map/`, `frontend/src/services/wms/`, `backend/src/gamc/`, `backend/src/routes/gamc.ts` |
+| **DEV2** | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `backend/src/data/`, `backend/src/ai/`, `backend/src/routes/ai-analyst.ts` |
+| **DEV3** | Analítica, concientización y chat UI | `frontend/src/components/analytics/`, `frontend/src/components/awareness/`, `frontend/src/components/ai/` |
 
 **Alcance cerrado:**
 
@@ -91,6 +91,7 @@ Estas reglas protegen la validez del producto. Violarlas invalida el trabajo aun
 11. **Distingue datos reales de ejemplos.** Todo dato ficticio debe estar etiquetado como tal.
 12. **Respeta licencias y atribución.** Código MIT; documentación CC BY 4.0; datos municipales solo si sus términos lo permiten.
 13. **No inventes paradas oficiales ni calificaciones de seguridad.** Las paradas propuestas son ilustrativas hasta que exista una fuente municipal verificada.
+14. **Solicita fuentes reales solo cuando la tarea las requiera.** Primero revisa el repositorio y avanza con contrato, mock o fixtures. Si falta una fuente GAMC/NASA necesaria para validar una tarea, pide el archivo, URL, acceso, CRS, campos, fecha y licencia exactos; nunca inventes datos ni solicites credenciales por el chat.
 
 ---
 
@@ -98,14 +99,14 @@ Estas reglas protegen la validez del producto. Violarlas invalida el trabajo aun
 
 ```text
 NASA MODIS ──> pipeline Python/GEE ──> data/processed/*.json
-GAMC vectores/WMS ──> route handler /api/gamc/wms ──> Next.js + Leaflet + Recharts
+GAMC vectores/WMS ──> Express /api/gamc/wms ──> React + Vite + Leaflet + Recharts
 Dataset procesado ──> RAG ligero ──> /api/ai-analyst ──> chat y diagnóstico
 ```
 
 | Capa | Tecnología | Persistencia |
 |---|---|---|
-| Frontend | Next.js App Router, React, TypeScript, Tailwind, Leaflet, Recharts | — |
-| Backend | Next.js Route Handlers (Node.js) y TypeScript | Archivos JSON/GeoJSON en el MVP |
+| Frontend | React, Vite, TypeScript, Tailwind, Leaflet, Recharts | — |
+| Backend | Node.js, Express y TypeScript | Archivos JSON/GeoJSON en el MVP |
 | IA | Gemini u OpenAI con RAG ligero sobre JSON | Sin persistencia de conversaciones |
 | Datos | Python y/o Google Earth Engine | `data/geojson`, `data/processed`, `data/metadata` |
 | Futuro | PostgreSQL + PostGIS | Solo fuera del MVP |
@@ -113,12 +114,11 @@ Dataset procesado ──> RAG ligero ──> /api/ai-analyst ──> chat y diag
 **Estructura objetivo del repositorio:**
 
 ```text
-src/app/
-src/components/{map,analytics,awareness,ai}/
-src/services/wms/
-src/backend/{gamc,data,ai}/
-src/types/
-public/data/
+frontend/src/components/{map,analytics,awareness,ai}/
+frontend/src/services/wms/
+backend/src/{routes,controllers,services,gamc,data,ai}/
+shared/types/
+frontend/public/data/
 scripts/
 data/{geojson,processed,metadata}/
 docs/
@@ -169,7 +169,7 @@ El contrato es **contract-first**: primero se define en `docs/04-CONTRATOS-API.m
 | Control | Implementación |
 |---|---|
 | Secreto GAMC | `GAMC_API_KEY` en `.env`, nunca versionado |
-| Secreto IA | `AI_API_KEY` solo en el servidor; nunca `NEXT_PUBLIC_*` |
+| Secreto IA | `AI_API_KEY` solo en el servidor; nunca `VITE_*` |
 | Lista blanca | `GAMC_ALLOWED_SERVICE_IDS` |
 | Validación | `REQUEST`, `BBOX`, `WIDTH`, `HEIGHT`, `FORMAT` con rangos estrictos |
 | Operaciones | Solo `GetMap`, `GetLegendGraphic`, `GetFeatureInfo` |
@@ -184,6 +184,8 @@ Variables de entorno previstas:
 GAMC_WMS_URL=https://serviciosgamc.cochabamba.bo/api/gs/wms
 GAMC_API_KEY=
 GAMC_ALLOWED_SERVICE_IDS=
+CORS_ORIGIN=http://localhost:5173
+PORT=3001
 
 AI_PROVIDER=gemini
 AI_API_KEY=
@@ -191,8 +193,8 @@ AI_MODEL=
 AI_TIMEOUT_MS=20000
 AI_MAX_OUTPUT_TOKENS=800
 
-NEXT_PUBLIC_DATA_MODE=mock
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+VITE_DATA_MODE=mock
+VITE_API_BASE_URL=http://localhost:3001
 ```
 
 ---
@@ -210,7 +212,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 9. Genera hotspots, brechas, correlación y celdas de mapa de calor.
 10. Publica todo en `data/processed/` con metadatos en `data/metadata/sources.json`.
 
-**Productos esperados:** `distritos_data.json`, `districts.geojson`, `transport.geojson`, `equipment.geojson`, `district_year.json`, `district_month.json`, `trends.json`, `equipment_metrics.json`, `hotspots.json`, `correlations.json`, `heatmap_lst.json`, `index.json`, `sources.json`. El mock de desarrollo vive en `public/data/mock_distritos.json`.
+**Productos esperados:** `distritos_data.json`, `districts.geojson`, `transport.geojson`, `equipment.geojson`, `district_year.json`, `district_month.json`, `trends.json`, `equipment_metrics.json`, `hotspots.json`, `correlations.json`, `heatmap_lst.json`, `index.json`, `sources.json`. El mock de desarrollo vive en `frontend/public/data/mock_distritos.json`.
 
 ---
 
@@ -242,11 +244,17 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 Cuando exista el andamiaje del proyecto, los comandos de referencia serán:
 
 ```bash
-# Aplicación Next.js
+# Frontend React + Vite
+cd frontend
 npm install
 npm run dev
 
-# Verificación
+# Backend Node.js + Express, en otra terminal
+cd backend
+npm install
+npm run dev
+
+# Verificación del frontend y backend
 npm run lint
 npm run typecheck
 npm test
@@ -256,7 +264,7 @@ npm run validate:mock
 python scripts/run.py --from 2015 --to 2025
 ```
 
-Hoy el `package.json` de la raíz y el entorno Python todavía no existen. No ejecutes estos comandos como si existieran; primero crea el andamiaje si la tarea lo pide.
+Hoy el andamiaje definitivo de `frontend/`, `backend/`, `shared/` y el entorno Python todavía no está completo. No ejecutes estos comandos como si existieran; primero crea el andamiaje si la tarea lo pide.
 
 ---
 

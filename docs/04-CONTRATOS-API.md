@@ -1,6 +1,6 @@
 # 04 — Contratos de API
 
-Contratos de la **API propia** de GeoQocha (propuesta, no endpoints existentes del GAMC), del **proxy WMS** hacia el municipio y del **endpoint de IA**. La fuente de verdad de los tipos compartidos es `src/types/geoqocha.ts`; este documento define su forma y significado.
+Contratos de la **API propia** de GeoQocha (propuesta, no endpoints existentes del GAMC), del **proxy WMS** hacia el municipio y del **endpoint de IA**. La fuente de verdad de los tipos compartidos es `shared/types/geoqocha.ts`; este documento define su forma y significado.
 
 > Los valores numéricos de los ejemplos son **ficticios**: sirven para definir interfaces, no representan distritos reales. El mock de desarrollo se marca siempre con `data_status: "illustrative"`.
 
@@ -10,7 +10,7 @@ Contratos de la **API propia** de GeoQocha (propuesta, no endpoints existentes d
 
 | Aspecto | Definición |
 |---|---|
-| Base URL (local) | `http://localhost:3000/api` |
+| Base URL (local) | `http://localhost:3001/api` |
 | Formato | JSON UTF-8 (`Content-Type: application/json`) |
 | Versionado | Prefijo de ruta o cabecera; el MVP usa `/api` estable |
 | Fechas | `YYYY-MM-DD` (ISO 8601) |
@@ -196,7 +196,7 @@ interface SourceMetadata {
 
 ### 3.2 Tipos del cliente, mapa y IA
 
-Estos tipos viven en `src/types/geoqocha.ts`. `DistrictData` es la vista agregada que consumen el mapa y el panel; `DistrictYearRecord` sigue siendo la fila canónica del pipeline.
+Estos tipos viven en `shared/types/geoqocha.ts`. `DistrictData` es la vista agregada que consumen el mapa y el panel; `DistrictYearRecord` sigue siendo la fila canónica del pipeline.
 
 ```ts
 export const CONTRACT_VERSION = "0.1.0" as const;
@@ -888,7 +888,7 @@ Si no hay `AI_API_KEY`, el proveedor no responde o se supera el timeout, la resp
 
 **Reglas de seguridad y validez**
 
-1. La clave del proveedor vive solo en el servidor (`AI_API_KEY`); nunca en el cliente ni en `NEXT_PUBLIC_*`.
+1. La clave del proveedor vive solo en el servidor (`AI_API_KEY`); nunca en el cliente ni en variables `VITE_*`.
 2. El contexto se limita al distrito, año y métricas recuperadas; no se envía el dataset completo.
 3. La IA no puede inventar cifras: todo número citado debe existir en el contexto.
 4. La respuesta siempre incluye `citations` y `disclaimer`.
@@ -995,30 +995,30 @@ Nunca incluir la `key` en cabeceras, logs ni mensajes de error.
 
 ```bash
 # Catálogo de distritos con geometría
-curl "http://localhost:3000/api/districts?include_geometry=true"
+  curl "http://localhost:3001/api/districts?include_geometry=true"
 
 # Serie histórica de un distrito
-curl "http://localhost:3000/api/districts/3/indicators?from=2015&to=2025"
+  curl "http://localhost:3001/api/districts/3/indicators?from=2015&to=2025"
 
 # Comparación de dos distritos
-curl "http://localhost:3000/api/comparison?districts=3,9&year=2025"
+  curl "http://localhost:3001/api/comparison?districts=3,9&year=2025"
 
 # Hotspots
-curl "http://localhost:3000/api/hotspots?year=2025&min_priority=medium"
+  curl "http://localhost:3001/api/hotspots?year=2025&min_priority=medium"
 
 # Mapa de calor de LST
-curl "http://localhost:3000/api/heatmap?variable=lst&year=2025&format=cells"
+  curl "http://localhost:3001/api/heatmap?variable=lst&year=2025&format=cells"
 
 # Correlación exploratoria
-curl "http://localhost:3000/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index"
+  curl "http://localhost:3001/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index"
 
 # Diagnóstico automático con IA
-curl -X POST "http://localhost:3000/api/ai-analyst" \
+  curl -X POST "http://localhost:3001/api/ai-analyst" \
   -H "Content-Type: application/json" \
   -d "{\"mode\":\"diagnosis\",\"district_id\":9,\"year\":2025,\"locale\":\"es\"}"
 
 # Proxy WMS (mapa)
-curl "http://localhost:3000/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-7370000,-1930000,-7365000,-1925000&WIDTH=256&HEIGHT=256" -o map.png
+  curl "http://localhost:3001/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-7370000,-1930000,-7365000,-1925000&WIDTH=256&HEIGHT=256" -o map.png
 ```
 
 ---

@@ -165,7 +165,7 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | RD-08 | Capas **vectoriales** del GAMC (distritos, áreas verdes, equipamiento, educación, salud) como fuente primaria para conteos y accesibilidad. | M |
 | RD-09 | Serie mensual o anual estable de NDVI y LST, sin huecos estacionales que distorsionen la tendencia. | S |
 | RD-10 | Valores de equipamiento y movilidad con año de referencia (`territorial_reference_year`) documentado. | M |
-| RD-11 | Mock `public/data/mock_distritos.json` con 15 distritos, series 2015–2025, equipamiento y paradas propuestas, etiquetado como ilustrativo. | M |
+| RD-11 | Mock `frontend/public/data/mock_distritos.json` con 15 distritos, series 2015–2025, equipamiento y paradas propuestas, etiquetado como ilustrativo. | M |
 | RD-12 | Dataset `distritos_data.json` con la misma forma que el mock y metadatos suficientes para RAG y citas. | M |
 
 ### Diccionario mínimo de campos (distrito-año)

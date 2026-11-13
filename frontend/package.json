@@ -1,5 +1,5 @@
 {
-  "name": "cochabamba-verde-frontend",
+  "name": "geoqocha-frontend",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -7,16 +7,24 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "validate:mock": "node ../scripts/validate-mock.mjs"
   },
   "dependencies": {
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "leaflet": "latest",
+    "react-leaflet": "latest",
+    "recharts": "latest"
   },
   "devDependencies": {
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "@types/leaflet": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest"
   }

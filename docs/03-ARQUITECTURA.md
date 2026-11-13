@@ -21,12 +21,12 @@ Diseño técnico del MVP de **GeoQocha**. Prioriza la entrega rápida en hackath
                     │                       │
                     └───────────┬───────────┘
                                 ▼
-                    Next.js Route Handlers
-             /api/gamc/wms  ·  /api/ai-analyst  ·  /api/districts
+                     Node.js + Express API
+              /api/gamc/wms  ·  /api/ai-analyst  ·  /api/districts
                                 │
                                 ▼
-              Next.js App Router + React + TypeScript
-             Leaflet · Recharts · Tailwind CSS · RAG ligero
+               React + Vite + TypeScript
+              Leaflet · Recharts · Tailwind CSS
                                 │
                                 ▼
         Mapa full-screen, panel distrital, concientización,
@@ -53,24 +53,19 @@ Diseño técnico del MVP de **GeoQocha**. Prioriza la entrega rápida en hackath
 
 | Aspecto | Definición |
 |---|---|
-| Tecnología | Next.js (App Router) + React + TypeScript |
+| Tecnología | React + Vite + TypeScript |
 | Estilos | Tailwind CSS |
 | Mapas | Leaflet + React Leaflet |
 | Gráficos | Recharts |
 | Estado | URL + estado local; sin estado global complejo |
-| Datos | `public/data/mock_distritos.json` en desarrollo; `distritos_data.json` en producción |
+| Datos | `frontend/public/data/mock_distritos.json` en desarrollo; `distritos_data.json` en producción |
 | Responsabilidad | Mapa full-screen, capas WMS, movilidad, panel distrital, concientización y chat IA |
 
 **Estructura interna**
 
 ```text
-src/
-├── app/
-│   ├── layout.tsx           # shell global, metadatos y tokens
-│   ├── page.tsx             # composición full-screen del mapa
-│   └── api/
-│       ├── gamc/wms/        # proxy WMS (DEV1)
-│       └── ai-analyst/      # chat y diagnóstico (DEV2)
+frontend/src/
+├── App.tsx                  # composición y shell de la aplicación
 ├── components/
 │   ├── map/                 # DEV1: mapa, capas, leyendas, transporte
 │   ├── analytics/           # DEV3: panel, fichas y gráficos
@@ -78,30 +73,24 @@ src/
 │   └── ai/                  # DEV3: chat y tarjetas de diagnóstico
 ├── services/
 │   └── wms/                 # DEV1: cliente WMS tipado
-├── backend/
-│   ├── gamc/                # DEV1: validación y caché del proxy
-│   ├── data/                # DEV2: lectura y normalización
-│   └── ai/                  # DEV2: RAG, prompts, proveedor, guardrails
-├── lib/
-│   └── data-source.ts       # selector mock/real (compartido)
-└── types/
-    └── geoqocha.ts          # contrato compartido congelado
+└── lib/
+    └── data-source.ts       # selector mock/real
 ```
 
 ### 2.2 Backend
 
 | Aspecto | Definición |
 |---|---|
-| Tecnología | Next.js Route Handlers (runtime Node.js) + TypeScript |
-| Responsabilidad | Proxy WMS, endpoint de IA, lectura de datos, validación y caché |
-| Persistencia MVP | Archivos JSON/GeoJSON en `data/processed/` y `public/data/` |
+| Tecnología | Node.js + Express + TypeScript |
+| Responsabilidad | API REST, proxy WMS, endpoint de IA, lectura de datos, validación, caché y CORS restringido |
+| Persistencia MVP | Archivos JSON/GeoJSON en `data/processed/` y `frontend/public/data/` |
 | Persistencia futura | PostgreSQL + PostGIS |
 | Autenticación | No existe en el MVP; no se recogen datos personales |
 
 **Estructura interna**
 
 ```text
-src/backend/
+backend/src/
 ├── gamc/                    # lista blanca, validación WMS, caché
 ├── data/                    # lectura de distritos_data.json
 └── ai/
@@ -112,7 +101,21 @@ src/backend/
     └── prompts.ts           # prompt de sistema versionado
 ```
 
-**Regla de servidor:** ningún módulo de `src/backend/` se importa desde componentes de cliente. Las claves solo se leen con `process.env` en el servidor.
+Las rutas Express se organizan por dominio y delegan la lógica en servicios:
+
+```text
+backend/src/
+├── index.ts                 # arranque, CORS, JSON y healthcheck
+├── routes/                  # rutas HTTP y validación de entrada
+├── controllers/             # traducción request/response
+├── services/                # lógica de aplicación
+├── gamc/                    # proxy, lista blanca y caché WMS
+├── data/                    # lectura y normalización de JSON
+├── ai/                      # RAG, proveedor y guardrails
+└── types/                   # tipos de servidor
+```
+
+**Regla de servidor:** ningún módulo de `backend/` se importa desde el frontend. Las claves solo se leen con `process.env` en Express.
 
 ### 2.3 Procesamiento de datos
 
@@ -148,13 +151,13 @@ scripts/
 - `data/processed/correlations.json`
 - `data/processed/heatmap_lst.json`
 - `data/metadata/sources.json`
-- `public/data/distritos_data.json` (copia servida al frontend)
+- `frontend/public/data/distritos_data.json` (copia servida al frontend)
 
 ### 2.4 Capa de datos
 
 | Carpeta | Contenido |
 |---|---|
-| `public/data/` | Datos servidos al frontend: mock y dataset real. |
+| `frontend/public/data/` | Datos estáticos servidos al frontend: mock y dataset real. |
 | `data/geojson/` | Geometrías validadas (distritos, transporte, equipamiento). |
 | `data/processed/` | Series distrito-año, tendencias, hotspots, índice. |
 | `data/metadata/` | Fuente, fecha, licencia, transformaciones, limitaciones. |
@@ -165,7 +168,7 @@ scripts/
 Pregunta del usuario
         │
         ▼
-POST /api/ai-analyst
+Frontend React → Express POST /api/ai-analyst
         │
         ├── valida AIRequest y limita tasa
         ├── recupera fragmentos de distritos_data.json
@@ -192,12 +195,12 @@ AIResponse con answer, insights, citations, disclaimer y fallback_used
 
 | Componente | Tecnología | Por qué |
 |---|---|---|
-| Frontend | Next.js, React, TypeScript | App Router, route handlers y despliegue simple en un solo proyecto |
+| Frontend | React, Vite, TypeScript | Desarrollo rápido, bundle independiente y despliegue estático |
 | Estilos | Tailwind CSS | Diseño full-screen y paneles translúcidos consistentes |
 | Mapas | Leaflet, React Leaflet | WMS + GeoJSON + interacción |
 | Mapas de calor | Leaflet.heat, capa raster o celdas precalculadas | Islas de calor sin recalcular en el cliente |
 | Gráficos | Recharts | Series históricas y comparaciones |
-| Backend | Next.js Route Handlers | Proxy WMS y endpoint de IA en el mismo despliegue |
+| Backend | Node.js, Express, TypeScript | API REST, proxy WMS y endpoint de IA desacoplados |
 | IA | Gemini u OpenAI + RAG ligero sobre JSON | Explicación en lenguaje natural con contexto acotado |
 | Procesamiento satelital | Python y/o Google Earth Engine | Extracción zonal, control de calidad y agregación |
 | Datos MVP | JSON/GeoJSON procesados | Simplifica entrega rápida |
@@ -207,28 +210,30 @@ AIResponse con answer, insights, citations, disclaimer y fallback_used
 
 ## 4. Estructura del repositorio
 
-El MVP se construye en una **aplicación Next.js en la raíz**. Las carpetas `frontend/` y `backend/` existentes quedan como legado congelado hasta que la migración esté completa; no se editan durante el hackathon.
+El MVP se construye como un **monorepo con dos aplicaciones**: `frontend/` para React + Vite y `backend/` para Node.js + Express. Ambas consumen el contrato compartido y pueden desplegarse de manera independiente.
 
 ```text
 geoqocha/
-├── src/
-│   ├── app/
-│   ├── components/
-│   │   ├── map/
-│   │   ├── analytics/
-│   │   ├── awareness/
-│   │   └── ai/
-│   ├── services/wms/
-│   ├── backend/
+├── frontend/
+│   ├── src/
+│   │   ├── components/{map,analytics,awareness,ai}/
+│   │   ├── services/wms/
+│   │   ├── lib/
+│   │   └── types/
+│   └── public/data/
+│       ├── mock_distritos.json
+│       └── distritos_data.json
+├── backend/
+│   ├── src/
+│   │   ├── routes/
+│   │   ├── controllers/
+│   │   ├── services/
 │   │   ├── gamc/
 │   │   ├── data/
 │   │   └── ai/
-│   ├── lib/
-│   └── types/
-├── public/
-│   └── data/
-│       ├── mock_distritos.json
-│       └── distritos_data.json
+│   └── tests/
+├── shared/
+│   └── types/geoqocha.ts
 ├── scripts/
 ├── data/
 │   ├── geojson/
@@ -247,25 +252,27 @@ geoqocha/
 ### 5.1 Carga del mapa y del panel
 
 ```text
-Usuario abre /
+Usuario abre el frontend Vite
         ↓
-Next.js renderiza el shell full-screen
+React renderiza el shell full-screen
         ↓
-src/lib/data-source.ts elige mock o real
+frontend/src/lib/data-source.ts elige mock o real
         ↓
 Mapa dibuja los 15 distritos y el panel lee ?district=&year=
         ↓
 Leaflet dibuja coropletas, capas WMS y paradas propuestas
         ↓
 Recharts dibuja NDVI, LST e ICVSA del distrito
+        ↓
+Las consultas dinámicas se realizan contra la API Express
 ```
 
 ### 5.2 Proxy WMS
 
 ```text
-Frontend → GET /api/gamc/wms?service_id=...&REQUEST=GetMap&...
-                  ↓
-        route handler valida service_id (lista blanca),
+Frontend → GET http://localhost:3001/api/gamc/wms?service_id=...&REQUEST=GetMap&...
+                   ↓
+        Express valida service_id (lista blanca),
         valida REQUEST, BBOX, WIDTH, HEIGHT, FORMAT
                   ↓
         añade key desde process.env.GAMC_API_KEY
@@ -280,7 +287,7 @@ Frontend → GET /api/gamc/wms?service_id=...&REQUEST=GetMap&...
 ```text
 Usuario escribe una pregunta o abre un diagnóstico
         ↓
-POST /api/ai-analyst con AIRequest
+Frontend → POST http://localhost:3001/api/ai-analyst con AIRequest
         ↓
 validación + rate limit + recuperación de contexto
         ↓
@@ -308,20 +315,20 @@ ICVSA: ambiente anual + territorio fijo en t_ref
         ↓
 tendencias, brechas y hotspots
         ↓
-distritos_data.json + metadatos → public/data/
+distritos_data.json + metadatos → frontend/public/data/
 ```
 
 ---
 
 ## 6. Decisiones de arquitectura
 
-### AD-01 — Proxy backend para GAMC
+### AD-01 — Proxy backend Express para GAMC
 
 **Decisión:** no consumir el WMS del GAMC directamente desde el navegador.
 
 **Motivo:** la `key` quedaría expuesta; además se necesita lista blanca y control de uso.
 
-**Consecuencia:** el servidor Next.js es obligatorio incluso para una demo que solo muestra capas.
+**Consecuencia:** el backend Express es obligatorio incluso para una demo que solo muestra capas.
 
 ### AD-02 — Datos procesados en archivos para el MVP
 
@@ -379,17 +386,17 @@ distritos_data.json + metadatos → public/data/
 
 **Consecuencia:** la UI muestra `n`, el coeficiente y una advertencia explícita.
 
-### AD-09 — Una sola aplicación Next.js
+### AD-09 — Frontend y backend desacoplados
 
-**Decisión:** unificar frontend y API en una app Next.js con route handlers, en lugar de Vite + Express separados.
+**Decisión:** utilizar React + Vite para el frontend y Node.js + Express para la API, dentro del mismo repositorio pero como aplicaciones separadas.
 
-**Motivo:** simplifica despliegue, comparte tipos, evita CORS entre proyectos y permite que los tres frentes trabajen en un solo repositorio con carpetas independientes.
+**Motivo:** separa responsabilidades, permite escalar o desplegar frontend y backend de forma independiente y evita una migración futura si la API municipal, la IA o la persistencia crecen. El monorepo mantiene el contrato y los datos compartidos.
 
-**Consecuencia:** las carpetas `frontend/` y `backend/` actuales quedan como legado congelado. El nuevo código vive en la raíz.
+**Consecuencia:** se reutiliza la estructura `frontend/` y `backend/`, que dejan de considerarse legado. Deben definirse scripts de desarrollo conjunto, CORS restringido y variables de entorno separadas.
 
 ### AD-10 — Contrato y mock congelados antes de las ramas
 
-**Decisión:** crear `src/types/geoqocha.ts` y `public/data/mock_distritos.json` en el Día 0, etiquetarlos y no modificarlos durante el desarrollo.
+**Decisión:** crear `shared/types/geoqocha.ts` y `frontend/public/data/mock_distritos.json` en el Día 0, etiquetarlos y no modificarlos durante el desarrollo.
 
 **Motivo:** garantiza que los tres frentes avancen sin bloqueos ni conflictos.
 
@@ -410,13 +417,13 @@ distritos_data.json + metadatos → public/data/
 | Control | Implementación |
 |---|---|
 | Secreto de GAMC | `GAMC_API_KEY` en `.env`, nunca en repo ni bundle. |
-| Secreto de IA | `AI_API_KEY` solo en el servidor; nunca con prefijo `NEXT_PUBLIC_`. |
+| Secreto de IA | `AI_API_KEY` solo en el servidor; nunca con prefijo `VITE_`. |
 | Lista blanca | `service_id` permitidos en configuración del servidor. |
 | Validación WMS | Esquema estricto de parámetros; rechazar valores fuera de rango. |
 | Operaciones | Permitir solo `GetMap`, `GetLegendGraphic` y `GetFeatureInfo`. |
 | Caché | Cachear tiles/consultas y diagnósticos para reducir llamadas. |
 | Límites | Rate limit por IP, timeout y tamaño máximo de respuesta. |
-| CORS | Mismo origen en Next.js; no se abre a dominios innecesarios. |
+| CORS | Express restringe el origen mediante `CORS_ORIGIN`; no se permite acceso abierto. |
 | Logs | Sin registrar claves, prompts con datos sensibles ni parámetros secretos. |
 | IA | Contexto acotado, citas obligatorias, validación numérica y antiinyección. |
 | Privacidad | Sin cuentas, sin datos personales y sin entrenamiento con consultas de usuarios. |
@@ -427,6 +434,8 @@ distritos_data.json + metadatos → public/data/
 GAMC_WMS_URL=https://serviciosgamc.cochabamba.bo/api/gs/wms
 GAMC_API_KEY=
 GAMC_ALLOWED_SERVICE_IDS=
+CORS_ORIGIN=http://localhost:5173
+PORT=3001
 
 AI_PROVIDER=gemini
 AI_API_KEY=
@@ -434,8 +443,8 @@ AI_MODEL=
 AI_TIMEOUT_MS=20000
 AI_MAX_OUTPUT_TOKENS=800
 
-NEXT_PUBLIC_DATA_MODE=mock
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+VITE_DATA_MODE=mock
+VITE_API_BASE_URL=http://localhost:3001
 ```
 
 ---
@@ -446,14 +455,16 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 | Entorno | Aplicación | Datos | IA |
 |---|---|---|---|
-| Local | `next dev` | Mock por defecto | Fallback por reglas si no hay clave |
-| Demo | Vercel o Node | `distritos_data.json` si está validado; si no, mock etiquetado | Gemini/OpenAI con fallback |
+| Local | `npm run dev` en frontend y backend | Mock por defecto | Fallback por reglas si no hay clave |
+| Demo | Frontend estático + servicio Node/Express | `distritos_data.json` si está validado; si no, mock etiquetado | Gemini/OpenAI con fallback |
 | Futuro | CDN + contenedor | PostgreSQL + PostGIS | RAG con índice persistente |
 
 ### Consideraciones
 
 - Las variables de GAMC y de IA se configuran en el panel del proveedor de despliegue, nunca en el repositorio.
-- `/api/ai-analyst` y `/api/gamc/wms` usan runtime Node.js.
+- `/api/ai-analyst` y `/api/gamc/wms` se sirven desde Express en runtime Node.js.
+- El frontend Vite usa `VITE_API_BASE_URL` para localizar la API.
+- El backend puede desplegarse como servicio independiente del frontend.
 - Healthcheck: `/api/health`.
 - Si el WMS no responde en la demo, las capas municipales se desactivan y se muestra aviso.
 - Si la IA no responde, el chat y el diagnóstico usan el fallback por reglas.
@@ -468,7 +479,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 | GeoJSON no corresponde a distritos o es inválido | Bloquea estadísticas por distrito | Validar propiedades, CRS, cantidad de polígonos y topología al inicio |
 | WMS solo devuelve mapas, no vectores completos | Limita cálculos de áreas/cobertura | Solicitar capas vectoriales; WMS para visualización y `GetFeatureInfo` |
 | Clave API expuesta | Acceso no autorizado | Proxy, variables de entorno, rotación y control de uso |
-| Clave de IA expuesta | Costo y abuso | Solo servidor; nunca `NEXT_PUBLIC_`; rate limit y límite de tokens |
+| Clave de IA expuesta | Costo y abuso | Solo servidor; nunca `VITE_`; rate limit y límite de tokens |
 | Alucinación del modelo | Cifras o conclusiones falsas | Contexto cerrado, citas, validación numérica y advertencia |
 | Proveedor de IA caído o caro | Chat no disponible | Timeout, caché, fallback por reglas y límite de uso |
 | Cobertura satelital desigual | Comparaciones poco fiables | QA, indicadores de cobertura y advertencias |

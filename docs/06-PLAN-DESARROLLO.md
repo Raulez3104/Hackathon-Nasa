@@ -32,7 +32,7 @@ Plan de ejecución del MVP de **GeoQocha** para un hackathon de **48 horas con 3
 | Día 0 compartido | 6 h por persona (18 h) |
 | Trabajo autónomo | 6 tareas × 6 h = 36 h por persona |
 | Integración y demo | 6 h por persona (18 h) |
-| Stack | Next.js + TypeScript + Tailwind + Leaflet + Recharts |
+| Stack | React + Vite + TypeScript + Tailwind + Leaflet + Recharts + Node.js + Express |
 | Datos | Mock compartido; pipeline NASA y GAMC reemplaza el mock al final |
 | IA | RAG ligero con Gemini u OpenAI; la IA solo narra hechos del dataset |
 | Alcance | MVP de la sección 6; toda función nueva exige quitar otra del mismo frente |
@@ -43,29 +43,33 @@ Plan de ejecución del MVP de **GeoQocha** para un hackathon de **48 horas con 3
 
 ## 3. Día 0 — Contrato base compartido (T-00)
 
-**Duración:** 6 h. **Participan:** DEV1, DEV2 y DEV3. **Rama:** `chore/contract-v0.1.0`. **Destino:** `dev`.
+**Duración:** 6 h. **Participan:** DEV1, DEV2 y DEV3. **Rama:** `chore/contract-v0.1.0`. **Destino:** `main`.
 
 Antes de abrir las ramas de trabajo se crean y congelan estos archivos:
 
 | Archivo | Contenido | Dueño del cambio |
 |---|---|---|
-| `src/types/geoqocha.ts` | Tipos compartidos del contrato | Los tres, por consenso |
-| `src/lib/data-source.ts` | Selector mock/real por variable de entorno | Los tres, por consenso |
-| `public/data/mock_distritos.json` | 15 distritos simulados con series y paradas | Los tres, por consenso |
-| `package.json`, `tsconfig.json`, `next.config.ts`, `tailwind.config.ts`, `postcss.config.mjs` | Andamiaje técnico con `next`, `react`, `leaflet`, `react-leaflet`, `recharts`, `tailwindcss`, `typescript` y tipos | Los tres, por consenso |
-| `src/app/layout.tsx`, `src/app/globals.css` | Shell global y tokens visuales | Los tres, por consenso |
-| `.env.example` | Variables del GAMC y de IA sin valores reales | Los tres, por consenso |
+| `shared/types/geoqocha.ts` | Tipos compartidos del contrato | Los tres, por consenso |
+| `frontend/src/lib/data-source.ts` | Selector mock/real por variable de entorno | Los tres, por consenso |
+| `frontend/public/data/mock_distritos.json` | 15 distritos simulados con series y paradas | Los tres, por consenso |
+| `frontend/package.json`, `frontend/tsconfig.json`, `frontend/vite.config.ts`, `frontend/tailwind.config.ts` | Andamiaje React + Vite con Leaflet, React Leaflet, Recharts, Tailwind y TypeScript | Los tres, por consenso |
+| `backend/package.json`, `backend/tsconfig.json` | Andamiaje Node.js + Express con TypeScript, CORS, validación y pruebas | Los tres, por consenso |
+| `shared/` y scripts raíz de desarrollo | Contrato compartido y ejecución coordinada de frontend/backend | Los tres, por consenso |
+| `frontend/src/App.tsx`, `frontend/src/styles/` | Shell global y tokens visuales | Los tres, por consenso |
+| `backend/.env.example`, `frontend/.env.example` | Variables del servidor y configuración pública del frontend, sin secretos | Los tres, por consenso |
+
+**Regla de fuentes durante el desarrollo:** el agente debe trabajar primero con el contrato, el mock y fixtures. Solo solicitará al equipo un GeoJSON, URL, `service_id`, metadato o acceso real cuando la tarea en curso requiera validación real. La solicitud debe especificar formato, CRS, campos, fecha, licencia y tarea afectada. Las credenciales nunca se comparten por el chat; se configuran localmente en `backend/.env`.
 
 ### 3.1 Reglas del contrato congelado
 
-1. `CONTRACT_VERSION` se declara en `src/types/geoqocha.ts` con el valor `"0.1.0"`.
+1. `CONTRACT_VERSION` se declara en `shared/types/geoqocha.ts` con el valor `"0.1.0"`.
 2. Después del tag `contract-v0.1.0`, los archivos compartidos son **solo lectura**.
 3. Un cambio de contrato exige una rama `contract/*`, un PR separado y aprobación de los tres desarrolladores.
 4. Nadie modifica el mock o los tipos para «desbloquearse»; si falta un campo, se abre un PR de contrato.
 5. El mock lleva `data_status: "illustrative"` a nivel de archivo y de distrito.
 6. Los tipos usan campos en inglés y unidades en el nombre, según `04-CONTRATOS-API.md`.
 
-### 3.2 Interfaces exactas de `src/types/geoqocha.ts`
+### 3.2 Interfaces exactas de `shared/types/geoqocha.ts`
 
 ```ts
 export const CONTRACT_VERSION = "0.1.0" as const;
@@ -208,7 +212,7 @@ export interface AIResponse {
 }
 ```
 
-### 3.3 Estructura de `public/data/mock_distritos.json`
+### 3.3 Estructura de `frontend/public/data/mock_distritos.json`
 
 ```json
 {
@@ -306,14 +310,14 @@ export interface AIResponse {
 - Entre 3 y 6 `transport_stops` por distrito, con `data_status: "illustrative"`.
 - `safety_score` puede ser `null`; no se inventa una calificación oficial de seguridad.
 - El archivo se sirve desde `/data/mock_distritos.json`.
-- `src/lib/data-source.ts` devuelve el mock por defecto y el archivo real cuando `NEXT_PUBLIC_DATA_MODE=real`.
+- `frontend/src/lib/data-source.ts` devuelve el mock por defecto y el archivo real cuando `VITE_DATA_MODE=real`.
 
 ### 3.4 Criterio de salida del Día 0
 
 - [ ] `npm run typecheck` pasa con los tipos compartidos.
 - [ ] El JSON tiene 15 distritos y 11 puntos por serie.
 - [ ] Los tres desarrolladores pueden importar los tipos y leer el mock.
-- [ ] El tag `contract-v0.1.0` existe en `dev`.
+- [ ] El tag `contract-v0.1.0` existe en `main`.
 - [ ] Las tres ramas de trabajo se crean desde ese tag.
 - [ ] Nadie necesita esperar a otra persona para empezar.
 
@@ -323,28 +327,27 @@ export interface AIResponse {
 
 | Ruta | Dueño | Uso | Regla |
 |---|---|---|---|
-| `src/types/geoqocha.ts` | Compartido | Contrato de tipos | Solo lectura tras el Día 0 |
-| `src/lib/data-source.ts` | Compartido | Selector mock/real | Solo lectura tras el Día 0 |
-| `public/data/mock_distritos.json` | Compartido | Datos simulados | Solo lectura tras el Día 0 |
-| `src/app/layout.tsx`, `src/app/globals.css` | Compartido | Shell y tokens | Solo lectura tras el Día 0 |
-| `src/components/map/` | DEV1 | Mapa, capas, leyendas y movilidad | Exclusivo |
-| `src/services/wms/` | DEV1 | Cliente y configuración WMS | Exclusivo |
-| `src/app/api/gamc/` | DEV1 | Proxy WMS server-side | Exclusivo |
-| `src/backend/gamc/` | DEV1 | Validación y caché del proxy | Exclusivo |
-| `src/app/page.tsx` | DEV1 | Composición del shell full-screen | Exclusivo, sin importar componentes de DEV3 |
+| `shared/types/geoqocha.ts` | Compartido | Contrato de tipos | Solo lectura tras el Día 0 |
+| `frontend/src/lib/data-source.ts` | Compartido | Selector mock/real | Solo lectura tras el Día 0 |
+| `frontend/public/data/mock_distritos.json` | Compartido | Datos simulados | Solo lectura tras el Día 0 |
+| `frontend/src/App.tsx`, `frontend/src/styles/` | Compartido | Shell y tokens | Solo lectura tras el Día 0 |
+| `frontend/src/components/map/` | DEV1 | Mapa, capas, leyendas y movilidad | Exclusivo |
+| `frontend/src/services/wms/` | DEV1 | Cliente WMS tipado | Exclusivo |
+| `backend/src/gamc/`, `backend/src/routes/gamc.ts` | DEV1 | Proxy WMS server-side | Exclusivo |
+| `frontend/src/App.tsx` | DEV1 | Composición del shell full-screen | Exclusivo, sin importar componentes de DEV3 |
 | `scripts/` | DEV2 | Pipeline Python NASA/GAMC | Exclusivo |
 | `data/` | DEV2 | Datos procesados y metadatos | Exclusivo |
-| `src/backend/data/` | DEV2 | Lectura y normalización del dataset | Exclusivo |
-| `src/backend/ai/` | DEV2 | RAG, prompts, proveedor y guardrails | Exclusivo |
-| `src/app/api/ai-analyst/` | DEV2 | Endpoint de chat y diagnóstico | Exclusivo |
-| `src/app/api/districts/`, `src/app/api/comparison/`, `src/app/api/hotspots/`, `src/app/api/heatmap/`, `src/app/api/analysis/`, `src/app/api/methodology/`, `src/app/api/sources/`, `src/app/api/health/` | DEV2 | Route handlers de datos procesados y estado del servicio | Exclusivo |
-| `src/components/analytics/` | DEV3 | Panel, fichas y gráficos | Exclusivo |
-| `src/components/awareness/` | DEV3 | Deforestación y concientización | Exclusivo |
-| `src/components/ai/` | DEV3 | Chat UI y tarjetas de diagnóstico | Exclusivo |
-| `public/data/distritos_data.json` | DEV2 | Dataset real de producción | Generado por el pipeline |
+| `backend/src/data/` | DEV2 | Lectura y normalización del dataset | Exclusivo |
+| `backend/src/ai/` | DEV2 | RAG, prompts, proveedor y guardrails | Exclusivo |
+| `backend/src/routes/ai-analyst.ts` | DEV2 | Endpoint de chat y diagnóstico | Exclusivo |
+| `backend/src/routes/{districts,comparison,hotspots,heatmap,analysis,methodology,sources,health}.ts` | DEV2 | API REST de datos procesados y estado | Exclusivo |
+| `frontend/src/components/analytics/` | DEV3 | Panel, fichas y gráficos | Exclusivo |
+| `frontend/src/components/awareness/` | DEV3 | Deforestación y concientización | Exclusivo |
+| `frontend/src/components/ai/` | DEV3 | Chat UI y tarjetas de diagnóstico | Exclusivo |
+| `frontend/public/data/distritos_data.json` | DEV2 | Dataset real de producción | Generado por el pipeline |
 | `package.json`, lockfile | Compartido | Dependencias | Solo PR `chore/deps/*` |
 
-> **Ajuste de independencia:** la configuración inicial de Next.js, Tailwind y TypeScript se ejecuta en el Día 0 compartido, no como tarea exclusiva de DEV1. Así DEV2 y DEV3 no esperan a que DEV1 termine el andamiaje. DEV1 conserva el diseño full-screen, el mapa y la composición visual. Además, DEV1 recibe `src/app/api/gamc/` y `src/backend/gamc/` para implementar el proxy WMS sin depender de DEV2; DEV2 conserva `src/backend/data/` y `src/backend/ai/`.
+> **Ajuste de independencia:** la configuración inicial de React + Vite, Express, Tailwind y TypeScript se ejecuta en el Día 0 compartido, no como tarea exclusiva de DEV1. Así DEV2 y DEV3 no esperan a que DEV1 termine el andamiaje. DEV1 conserva el diseño full-screen, el mapa y la composición visual, además del módulo WMS del backend. DEV2 conserva los servicios de datos, IA y las rutas REST.
 
 **Reglas de propiedad:**
 
@@ -352,7 +355,7 @@ export interface AIResponse {
 2. No se mueven carpetas ni se renombran archivos compartidos.
 3. Los estilos globales solo se tocan en T-00; cada frente usa tokens y clases Tailwind.
 4. Las dependencias nuevas se agregan en un PR `chore/deps/*` y luego se hace rebase.
-5. Los imports entre `src/components/map`, `src/components/analytics` y `src/components/ai` están prohibidos durante el desarrollo; la composición se hace en la integración.
+5. Los imports entre `frontend/src/components/map`, `frontend/src/components/analytics` y `frontend/src/components/ai` están prohibidos durante el desarrollo; la composición se hace en la integración.
 
 ---
 
@@ -362,7 +365,7 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 
 | ID | Responsable | Entregable resumido | Estado | Evidencia / actualización | Lista para integrar |
 |---|---|---|---|---|---|
-| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `pendiente` | — | No |
+| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `en progreso` | Contrato, mock y configuraciones base creados; frontend y backend pasan typecheck/build y el mock valida; faltan tag y ramas del Día 0 | No |
 | T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `pendiente` | — | No |
 | T1-02 | DEV1 | Proxy WMS seguro | `pendiente` | — | No |
 | T1-03 | DEV1 | Capas WMS, leyendas y degradación | `pendiente` | — | No |
@@ -396,12 +399,14 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 
 ### Regla de actualización
 
-1. Cada desarrollador actualiza la fila de su tarea junto con el commit o PR de esa tarea.
-2. `completada` exige cumplir la definición de terminado de la sección 10.
-3. `lista para integrar` requiere revisión cruzada y pruebas verdes en la rama del frente.
-4. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`.
-5. La matriz se actualiza mediante PR; no se hacen ediciones simultáneas directas en `dev`.
-6. `MEMORY.md` se actualiza solo si el avance cambia una decisión, contrato, alcance, riesgo o hito general.
+1. Cada desarrollador informa en su PR la tarea realizada, el criterio de aceptación, los archivos modificados y las pruebas ejecutadas.
+2. **DEV1 es el único responsable de actualizar esta matriz.** DEV2 y DEV3 no editan directamente la matriz.
+3. DEV1 actualiza la fila correspondiente después de revisar y fusionar el PR en `main`.
+4. `completada` exige cumplir la definición de terminado de la sección 10.
+5. `lista para integrar` requiere revisión cruzada y pruebas verdes en la rama del frente.
+6. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`.
+7. Si DEV1 trabaja en su propia tarea, la matriz se actualiza mediante un commit separado o después de validar su propio PR.
+8. `MEMORY.md` se actualiza solo si el avance cambia una decisión, contrato, alcance, riesgo o hito general.
 
 ### Criterio para iniciar la integración
 
@@ -422,28 +427,27 @@ Después de validar la aplicación completa, `INT-01` pasa a `integrada` y la ma
 
 | Desarrollador | Frente | Rama | PR destino |
 |---|---|---|---|
-| DEV1 | Mapas, WMS y movilidad urbana | `feat/dev1-map-transport` | `dev` |
-| DEV2 | Datos NASA, pipeline y backend de IA | `feat/dev2-data-ai` | `dev` |
-| DEV3 | Analítica, concientización y chat UI | `feat/dev3-analytics-chat` | `dev` |
-| Compartido | Contrato y andamiaje | `chore/contract-v0.1.0` | `dev` |
+| DEV1 | Mapas, WMS y movilidad urbana | `feat/dev1-map-transport` | `main` |
+| DEV2 | Datos NASA, pipeline y backend de IA | `feat/dev2-data-ai` | `main` |
+| DEV3 | Analítica, concientización y chat UI | `feat/dev3-analytics-chat` | `main` |
+| Compartido | Contrato y andamiaje | `chore/contract-v0.1.0` | `main` |
 
 ### 5.1 Flujo de ramas
 
 ```text
 main
-  └── dev
-        ├── chore/contract-v0.1.0   (Día 0, se mergea y se etiqueta)
-        ├── feat/dev1-map-transport
-        ├── feat/dev2-data-ai
-        └── feat/dev3-analytics-chat
+  ├── chore/contract-v0.1.0   (Día 0, PR y merge)
+  ├── feat/dev1-map-transport
+  ├── feat/dev2-data-ai
+  └── feat/dev3-analytics-chat
 ```
 
-1. El Día 0 se mergea `chore/contract-v0.1.0` a `dev` y se crea el tag `contract-v0.1.0`.
-2. Cada desarrollador crea su rama desde `dev` después del tag.
+1. El Día 0 se mergea `chore/contract-v0.1.0` a `main` y se crea el tag `contract-v0.1.0`.
+2. Cada desarrollador crea su rama desde `main` después del tag.
 3. Cada tarea se entrega en un PR pequeño, con CI verde.
-4. Antes del PR: `git fetch origin && git rebase origin/dev`.
-5. El merge a `dev` se hace con squash merge.
-6. Al final, `dev` pasa a `main` con un PR de release y el tag `v0.1.0-mvp`.
+4. Antes del PR: `git fetch origin && git rebase origin/main`.
+5. El merge a `main` se hace con squash merge.
+6. Al final, `main` recibe el tag `v0.1.0-mvp` después de la integración validada.
 
 ### 5.2 Reglas para evitar conflictos
 
@@ -459,7 +463,7 @@ main
 
 ### 5.3 Protecciones y revisión
 
-- `main` y `dev` protegidas: sin pushes directos ni force-push.
+- `main` protegida: sin pushes directos ni force-push.
 - CI obligatorio: `lint`, `typecheck`, `test`, `validate:mock`.
 - Un PR requiere al menos **una aprobación de otro desarrollador** y CI verde.
 - Un cambio de contrato requiere **las tres aprobaciones**.
@@ -476,12 +480,12 @@ Cada frente tiene **6 tareas de 6 h nominales** con la misma mezcla: una base, d
 
 | ID | Tarea | Complejidad | Horas | Entregable | Criterio de aceptación |
 |---|---|---|---:|---|---|
-| T1-01 | Shell full-screen, mapa base, coropletas, semáforo y mapa de calor LST desde el mock | Alta | 6 | `src/app/page.tsx` y `src/components/map/MapShell.tsx` | El mapa ocupa la pantalla, muestra los 15 polígonos del mock, permite alternar ICVSA numérico/semaforizado y muestra el mapa de calor LST con leyenda en °C, sin desbordes en escritorio y móvil. |
-| T1-02 | Proxy WMS seguro y cliente tipado | Alta | 6 | `src/app/api/gamc/wms/route.ts` y `src/services/wms/` | Valida `service_id`, operación, `BBOX`, `WIDTH`, `HEIGHT` y `FORMAT`; cachea; devuelve errores del contrato; la clave nunca llega al cliente. |
-| T1-03 | Gestor de capas WMS, leyendas y degradación | Alta | 6 | `src/components/map/LayerControl.tsx` | Activa/desactiva capas, ajusta opacidad, muestra leyenda y estado de carga/error; si el WMS falla, el mapa base y el mock siguen funcionando. |
-| T1-04 | Rutas de transporte y paradas propuestas | Alta | 6 | `src/components/map/TransportLayer.tsx` | Dibuja rutas y paradas del mock, agrupa puntos, filtra por distrito/ruta y distingue `boarding_recommended` con texto e icono; rotula que son propuestas ilustrativas, no paradas oficiales ni seguras. |
-| T1-05 | Estado de mapa, comparación y eventos de selección | Alta | 6 | `src/components/map/useMapUrlState.ts` y controles de selección | Lee y escribe `?district=&districts=&year=&variable=&view=&layers=`; permite seleccionar dos distritos para comparación; un enlace restaura la vista; emite `geoqocha:district-selected` sin importar componentes de DEV3. |
-| T1-06 | Rendimiento, accesibilidad, pruebas y README del mapa | Alta | 6 | Pruebas y documentación en `src/components/map/` | Carga diferida del mapa, foco visible, contraste, `prefers-reduced-motion`, pruebas de validación WMS y README con variables de entorno. |
+| T1-01 | Shell full-screen, mapa base, coropletas, semáforo y mapa de calor LST desde el mock | Alta | 6 | `frontend/src/App.tsx` y `frontend/src/components/map/MapShell.tsx` | El mapa ocupa la pantalla, muestra los 15 polígonos del mock, permite alternar ICVSA numérico/semaforizado y muestra el mapa de calor LST con leyenda en °C, sin desbordes en escritorio y móvil. |
+| T1-02 | Proxy WMS seguro y cliente tipado | Alta | 6 | `backend/src/routes/gamc.ts` y `frontend/src/services/wms/` | Valida `service_id`, operación, `BBOX`, `WIDTH`, `HEIGHT` y `FORMAT`; cachea; devuelve errores del contrato; la clave nunca llega al cliente. |
+| T1-03 | Gestor de capas WMS, leyendas y degradación | Alta | 6 | `frontend/src/components/map/LayerControl.tsx` | Activa/desactiva capas, ajusta opacidad, muestra leyenda y estado de carga/error; si el WMS falla, el mapa base y el mock siguen funcionando. |
+| T1-04 | Rutas de transporte y paradas propuestas | Alta | 6 | `frontend/src/components/map/TransportLayer.tsx` | Dibuja rutas y paradas del mock, agrupa puntos, filtra por distrito/ruta y distingue `boarding_recommended` con texto e icono; rotula que son propuestas ilustrativas, no paradas oficiales ni seguras. |
+| T1-05 | Estado de mapa, comparación y eventos de selección | Alta | 6 | `frontend/src/components/map/useMapUrlState.ts` y controles de selección | Lee y escribe `?district=&districts=&year=&variable=&view=&layers=`; permite seleccionar dos distritos para comparación; un enlace restaura la vista; emite `geoqocha:district-selected` sin importar componentes de DEV3. |
+| T1-06 | Rendimiento, accesibilidad, pruebas y README del mapa | Alta | 6 | Pruebas y documentación en `frontend/src/components/map/` | Carga diferida del mapa, foco visible, contraste, `prefers-reduced-motion`, pruebas de validación WMS y README con variables de entorno. |
 
 ### 6.2 DEV2 — Datos NASA, pipeline y backend de IA
 
@@ -489,21 +493,21 @@ Cada frente tiene **6 tareas de 6 h nominales** con la misma mezcla: una base, d
 |---|---|---|---:|---|---|
 | T2-01 | Esqueleto del pipeline y contrato de datos reales | Alta | 6 | `scripts/run.py`, `scripts/config.py`, `scripts/validate_output.py` | Lee el GeoJSON distrital, define rutas de entrada/salida y genera un `distritos_data.json` con la misma forma que el mock; falla si faltan 15 distritos o años. |
 | T2-02 | Procesamiento NDVI y LST 2015–2025 | Alta | 6 | `scripts/nasa/` | Procesa MOD13Q1 y MOD11A2 colección 6.1, aplica QA, convierte LST a °C, usa ventana estacional fija y calcula media, conteo y fracción válida por distrito-año. |
-| T2-03 | Integración territorial, índice, brechas, correlaciones y hotspots | Alta | 6 | `scripts/indicators/`, `data/processed/`, `src/backend/data/`, `src/app/api/` y `data/metadata/sources.json` | Une población, equipamiento y movilidad con `territorial_reference_year`; calcula ICVSA, `index_without_territorial`, tendencias, brechas frente al promedio municipal, correlaciones exploratorias y hotspots con reglas explicables; expone los datos procesados mediante los route handlers del contrato; no interpola ni usa cero para faltantes. |
-| T2-04 | RAG ligero sobre `distritos_data.json` | Alta | 6 | `src/backend/ai/retrieval.ts` y `src/backend/ai/context.ts` | Indexa fragmentos por distrito, año y métrica; recupera contexto acotado; arma citas y respeta un presupuesto de tokens; no usa base vectorial externa. |
-| T2-05 | Endpoint `/api/ai-analyst` | Alta | 6 | `src/app/api/ai-analyst/route.ts` y `src/backend/ai/provider.ts` | Acepta `chat` y `diagnosis`; cubre demografía, déficit de equipamiento y deforestación; usa Gemini u OpenAI solo en servidor; aplica timeout, reintento y rate limit; devuelve `AIResponse` o `fallback_used: true`. |
-| T2-06 | Guardrails, pruebas y README de IA | Alta | 6 | `src/backend/ai/guardrails.ts`, pruebas y README | Verifica consistencia numérica contra el contexto, exige citas, resiste inyección de prompt, documenta costos, límites y variables de entorno sin secretos. |
+| T2-03 | Integración territorial, índice, brechas, correlaciones y hotspots | Alta | 6 | `scripts/indicators/`, `data/processed/`, `backend/src/data/`, `backend/src/routes/` y `data/metadata/sources.json` | Une población, equipamiento y movilidad con `territorial_reference_year`; calcula ICVSA, `index_without_territorial`, tendencias, brechas frente al promedio municipal, correlaciones exploratorias y hotspots con reglas explicables; expone los datos procesados mediante la API Express; no interpola ni usa cero para faltantes. |
+| T2-04 | RAG ligero sobre `distritos_data.json` | Alta | 6 | `backend/src/ai/retrieval.ts` y `backend/src/ai/context.ts` | Indexa fragmentos por distrito, año y métrica; recupera contexto acotado; arma citas y respeta un presupuesto de tokens; no usa base vectorial externa. |
+| T2-05 | Endpoint `/api/ai-analyst` | Alta | 6 | `backend/src/routes/ai-analyst.ts` y `backend/src/ai/provider.ts` | Acepta `chat` y `diagnosis`; cubre demografía, déficit de equipamiento y deforestación; usa Gemini u OpenAI solo en servidor; aplica timeout, reintento y rate limit; devuelve `AIResponse` o `fallback_used: true`. |
+| T2-06 | Guardrails, pruebas y README de IA | Alta | 6 | `backend/src/ai/guardrails.ts`, pruebas y README | Verifica consistencia numérica contra el contexto, exige citas, resiste inyección de prompt, documenta costos, límites y variables de entorno sin secretos. |
 
 ### 6.3 DEV3 — Analítica, concientización y chat UI
 
 | ID | Tarea | Complejidad | Horas | Entregable | Criterio de aceptación |
 |---|---|---|---:|---|---|
-| T3-01 | Panel derecho, ficha distrital y comparador | Alta | 6 | `src/components/analytics/DistrictPanel.tsx` y `src/components/analytics/ComparisonPanel.tsx` | Abre/cierra con teclado, atrapa el foco, lee `district` y `districts` de la URL, permite comparar dos distritos lado a lado, muestra carga/vacío/error y no desborda en móvil. |
-| T3-02 | Fichas demográficas, brechas y series con Recharts | Alta | 6 | `src/components/analytics/` | Muestra población, brechas frente al promedio municipal, brechas de salud/educación, NDVI/LST/ICVSA 2015–2025, calidad del dato y «no disponible» para `null`; tooltips accesibles. |
-| T3-03 | Deforestación y concientización ambiental | Alta | 6 | `src/components/awareness/` | Presenta estrategias basadas en datos, mensajes ciudadanos y citas de fuente; no afirma causalidad ni inventa cifras; distingue datos ilustrativos. |
-| T3-04 | Widget flotante de chat IA | Alta | 6 | `src/components/ai/ChatWidget.tsx` | Envía mensajes al endpoint, muestra historial, carga, error, reintento, citas y advertencia; usa un fixture local si la API no está disponible. |
-| T3-05 | Tarjetas de diagnóstico automático | Alta | 6 | `src/components/ai/DiagnosisCards.tsx` | Consume `mode: "diagnosis"`, renderiza `insights`, severidad, evidencia y citas; permite reintentar; no se rompe si la API falla. |
-| T3-06 | Hotspots, metodología, fuentes, calidad y pruebas de analítica | Alta | 6 | `src/components/analytics/HotspotsPanel.tsx`, `src/components/analytics/MethodologyPanel.tsx`, `src/components/analytics/SourcesPanel.tsx` y pruebas | Renderiza hotspots con reglas activadas y contribuciones, publica fórmula/pesos/`t_ref`/faltantes, muestra el catálogo de fuentes y mantiene responsive, contraste, foco, `prefers-reduced-motion`, estados vacíos/error y README de componentes y fixtures. |
+| T3-01 | Panel derecho, ficha distrital y comparador | Alta | 6 | `frontend/src/components/analytics/DistrictPanel.tsx` y `frontend/src/components/analytics/ComparisonPanel.tsx` | Abre/cierra con teclado, atrapa el foco, lee `district` y `districts` de la URL, permite comparar dos distritos lado a lado, muestra carga/vacío/error y no desborda en móvil. |
+| T3-02 | Fichas demográficas, brechas y series con Recharts | Alta | 6 | `frontend/src/components/analytics/` | Muestra población, brechas frente al promedio municipal, brechas de salud/educación, NDVI/LST/ICVSA 2015–2025, calidad del dato y «no disponible» para `null`; tooltips accesibles. |
+| T3-03 | Deforestación y concientización ambiental | Alta | 6 | `frontend/src/components/awareness/` | Presenta estrategias basadas en datos, mensajes ciudadanos y citas de fuente; no afirma causalidad ni inventa cifras; distingue datos ilustrativos. |
+| T3-04 | Widget flotante de chat IA | Alta | 6 | `frontend/src/components/ai/ChatWidget.tsx` | Envía mensajes al endpoint, muestra historial, carga, error, reintento, citas y advertencia; usa un fixture local si la API no está disponible. |
+| T3-05 | Tarjetas de diagnóstico automático | Alta | 6 | `frontend/src/components/ai/DiagnosisCards.tsx` | Consume `mode: "diagnosis"`, renderiza `insights`, severidad, evidencia y citas; permite reintentar; no se rompe si la API falla. |
+| T3-06 | Hotspots, metodología, fuentes, calidad y pruebas de analítica | Alta | 6 | `frontend/src/components/analytics/HotspotsPanel.tsx`, `frontend/src/components/analytics/MethodologyPanel.tsx`, `frontend/src/components/analytics/SourcesPanel.tsx` y pruebas | Renderiza hotspots con reglas activadas y contribuciones, publica fórmula/pesos/`t_ref`/faltantes, muestra el catálogo de fuentes y mantiene responsive, contraste, foco, `prefers-reduced-motion`, estados vacíos/error y README de componentes y fixtures. |
 
 ### 6.4 Verificación de equidad
 
@@ -575,7 +579,7 @@ Los eventos son opcionales: la URL es la fuente de verdad. Si un evento falla, l
 ### 8.3 Carga de datos
 
 - Durante el desarrollo, todos leen `/data/mock_distritos.json`.
-- En producción, `src/lib/data-source.ts` devuelve `/data/distritos_data.json` cuando `NEXT_PUBLIC_DATA_MODE=real`.
+- En producción, `frontend/src/lib/data-source.ts` devuelve `/data/distritos_data.json` cuando `VITE_DATA_MODE=real`.
 - Ambos archivos tienen la misma forma `DistrictData[]`.
 - DEV2 valida que el archivo real cumpla el contrato antes de publicarlo.
 - Si el archivo real no existe, la app vuelve al mock y muestra una etiqueta de «datos ilustrativos».
@@ -596,21 +600,21 @@ Los eventos son opcionales: la URL es la fuente de verdad. Si un evento falla, l
 
 ```bash
 # Día 0, una sola persona del equipo
-git checkout dev
+git checkout main
 git checkout -b chore/contract-v0.1.0
 # crear contrato, mock y andamiaje
 git push -u origin chore/contract-v0.1.0
-# PR a dev, revisión de los tres, merge y tag
-git checkout dev && git pull
+# PR a main, revisión de los tres, merge y tag
+git checkout main && git pull
 git tag contract-v0.1.0 && git push origin contract-v0.1.0
 
 # Cada desarrollador
-git checkout dev && git pull
+git checkout main && git pull
 git checkout -b feat/dev1-map-transport
 # commits pequeños y frecuentes
-git fetch origin && git rebase origin/dev
+git fetch origin && git rebase origin/main
 git push -u origin feat/dev1-map-transport
-# PR a dev
+# PR a main
 ```
 
 ### 9.2 Orden de merge
@@ -621,7 +625,7 @@ git push -u origin feat/dev1-map-transport
 | 2 | `feat/dev1-map-transport` | CI verde y una aprobación |
 | 3 | `feat/dev2-data-ai` | CI verde y una aprobación |
 | 4 | `feat/dev3-analytics-chat` | CI verde y una aprobación |
-| 5 | `dev` → `main` | Integración validada y demo ensayada |
+| 5 | `main` | Integración validada y demo ensayada |
 
 El orden 2–4 es intercambiable. Si dos PR tocan un archivo compartido, se rechazan y se resuelve primero el PR de contrato.
 
@@ -631,7 +635,7 @@ El orden 2–4 es intercambiable. Si dos PR tocan un archivo compartido, se rech
 2. Identificar si el conflicto es de carpeta exclusiva o de archivo compartido.
 3. Si es de carpeta exclusiva, resolver en la rama del dueño.
 4. Si es de archivo compartido, abrir `contract/*` y aprobar entre los tres.
-5. No usar `--force` ni reescribir la historia de `dev`.
+5. No usar `--force` ni reescribir la historia de `main`.
 
 ---
 

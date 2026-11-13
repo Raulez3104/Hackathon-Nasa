@@ -213,7 +213,7 @@ La delimitación detallada está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS
 
 | Requisito del reto | Respuesta del proyecto | Documento |
 |---|---|---|
-| Tablero web interactivo open source | Dashboard Next.js + route handlers + licencia abierta | `03`, `06` |
+| Tablero web interactivo open source | Dashboard React + Vite, API Express y licencia abierta | `03`, `06` |
 | 15 distritos municipales | Geometría validada y `district_id` único | `05` |
 | Mínimo 2 variables NASA en un periodo | NDVI (MOD13Q1) y LST (MOD11A2), 2015–2025 | `05` |
 | Índice socioambiental **histórico** 1–100 o semáforo | ICVSA anual con `t_ref` territorial y toggle semáforo | `02` §7.1 |

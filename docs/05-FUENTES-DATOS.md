@@ -183,8 +183,8 @@ La IA no es una fuente de datos. Es un servicio de redacción y explicación que
 | `districts.geojson` | Geometrías validadas de los 15 distritos | `data/geojson/` |
 | `transport.geojson` | Rutas de transporte validadas | `data/geojson/` |
 | `equipment.geojson` | Parques, escuelas, salud y equipamiento municipal | `data/geojson/` |
-| `distritos_data.json` | Dataset principal del MVP, con la forma de `DistrictData` | `data/processed/` y `public/data/` |
-| `mock_distritos.json` | Datos ilustrativos para desarrollo y demo sin bloqueos | `public/data/` |
+| `distritos_data.json` | Dataset principal del MVP, con la forma de `DistrictData` | `data/processed/` y `frontend/public/data/` |
+| `mock_distritos.json` | Datos ilustrativos para desarrollo y demo sin bloqueos | `frontend/public/data/` |
 | `transport_stops` | Paradas propuestas derivadas de rutas y reglas; no oficiales | Incluidas en `distritos_data.json` |
 | `district_year.json` | NDVI, LST, ICVSA, calidad y cobertura por distrito-año | `data/processed/` |
 | `district_month.json` | Serie mensual opcional | `data/processed/` |
@@ -282,6 +282,18 @@ Se generan además:
 
 ## 7. Verificación pendiente antes de implementar
 
+### Regla operativa para solicitar fuentes
+
+Durante el desarrollo, el agente debe revisar primero el repositorio, el contrato y el mock. No debe bloquear una tarea que pueda desarrollarse con datos simulados o fixtures. Cuando una tarea requiera validar datos reales, debe solicitar exactamente la fuente faltante e indicar:
+
+- archivo o URL requerido;
+- formato, CRS y campos mínimos;
+- periodo y fecha de referencia;
+- licencia o permiso de uso;
+- tarea que queda bloqueada sin esa fuente.
+
+Las claves del GAMC y de proveedores de IA nunca se solicitan por el chat ni se escriben en documentación; se configuran localmente en el `.env` del backend. Si una fuente no está disponible, el resultado se marca `insufficient_data` y se continúa con mock cuando sea posible.
+
 1. **GeoJSON de distritos:** confirmar nombre, origen, capa contenida, sistema de coordenadas, atributos de identificación distrital y licencia.
 2. **Capas vectoriales del GAMC:** confirmar entrega de distritos, áreas verdes, equipamiento, educación, salud y población; formato (shp/geojson/gpkg), atributos, fecha y licencia.
 3. **Transporte:** obtener el archivo descargable y revisar rutas, campos, cobertura y fecha.
@@ -331,7 +343,9 @@ Se generan además:
 
 **Tecnologías**
 
-- Next.js: https://nextjs.org/
+- React: https://react.dev/
+- Vite: https://vite.dev/
+- Express: https://expressjs.com/
 - Leaflet: https://leafletjs.com/
 - React Leaflet: https://react-leaflet.js.org/
 - Recharts: https://recharts.org/

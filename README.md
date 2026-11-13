@@ -4,7 +4,7 @@
 
 GeoQocha es una plataforma web de código abierto para explorar y comparar las condiciones socioambientales de los 15 distritos municipales de Cochabamba. Integra observaciones satelitales de NASA, datos geoespaciales del Gobierno Autónomo Municipal de Cochabamba (GAMC) y un copiloto de IA que explica los datos con citas.
 
-> Estado actual: documentación actualizada al plan GeoQocha. El código se migra a una app Next.js; el mock compartido y el contrato de tipos se crean en el Día 0. El pipeline de datos reales todavía está pendiente.
+> Estado actual: documentación actualizada al plan GeoQocha. El MVP usa un monorepo con frontend React + Vite y backend Node.js + Express; el mock compartido y el contrato de tipos se crean en el Día 0. El pipeline de datos reales todavía está pendiente.
 
 ## Qué busca resolver
 
@@ -18,11 +18,11 @@ GeoQocha es una plataforma web de código abierto para explorar y comparar las c
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | Next.js, React, TypeScript |
+| Frontend | React, Vite, TypeScript |
 | Estilos | Tailwind CSS |
 | Mapas | Leaflet y React Leaflet |
 | Gráficos | Recharts |
-| Backend | Next.js Route Handlers y TypeScript |
+| Backend | Node.js, Express y TypeScript |
 | IA | Gemini u OpenAI con RAG ligero sobre JSON |
 | Datos | Python y/o Google Earth Engine |
 | Persistencia MVP | JSON y GeoJSON |
@@ -31,13 +31,13 @@ GeoQocha es una plataforma web de código abierto para explorar y comparar las c
 ## Estructura
 
 ```text
-src/            # App Next.js: componentes, servicios, backend y tipos
-public/data/    # Mock compartido y dataset real servido al frontend
+frontend/       # Aplicación React + Vite
+backend/        # API Node.js + Express
+shared/         # Tipos compartidos entre frontend y backend
+frontend/public/data/ # Mock y dataset real servidos al frontend
 scripts/        # Pipeline NASA/GIS en Python
 data/           # Geometrías, datos procesados y metadatos
 docs/           # Especificación funcional y técnica
-frontend/       # Legado Vite congelado durante la migración
-backend/        # Legado Express congelado durante la migración
 AGENTS.md       # Guía de trabajo para agentes y colaboradores
 MEMORY.md       # Decisiones y estado del proyecto
 ```
@@ -45,20 +45,20 @@ MEMORY.md       # Decisiones y estado del proyecto
 ## Ejecutar la aplicación
 
 ```bash
-npm install
-copy .env.example .env   # Windows
-# cp .env.example .env   # macOS/Linux
+cd frontend && npm install
+cd ../backend && npm install
+# Ejecutar frontend y backend en terminales separadas
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:3000`. El endpoint de salud estará en `http://localhost:3000/api/health`.
+El frontend estará disponible en `http://localhost:5173`. La API Express y su endpoint de salud estarán en `http://localhost:3001/api/health`.
 
 Las credenciales del GAMC y del proveedor de IA deben permanecer únicamente en el `.env` del servidor. Nunca deben incluirse en el cliente, en Git ni en la documentación.
 
 ## Modo de datos
 
-- `NEXT_PUBLIC_DATA_MODE=mock` usa `public/data/mock_distritos.json`, etiquetado como ilustrativo.
-- `NEXT_PUBLIC_DATA_MODE=real` usa `public/data/distritos_data.json`, generado por el pipeline.
+- `VITE_DATA_MODE=mock` usa el mock, etiquetado como ilustrativo.
+- `VITE_DATA_MODE=real` usa `distritos_data.json`, generado por el pipeline.
 - Si el archivo real no existe, la aplicación vuelve al mock con una etiqueta visible.
 
 ## Documentación

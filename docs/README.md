@@ -21,10 +21,10 @@ Esta carpeta contiene la especificación funcional, técnica y metodológica vig
 - Proxy backend obligatorio para no exponer credenciales.
 - Contratos API definidos antes de implementar endpoints.
 - Plan ajustado a tres desarrolladores de sistemas con frentes independientes.
-- Stack objetivo: Next.js + TypeScript + Tailwind, con route handlers para WMS e IA.
+- Stack objetivo: React + Vite en frontend y Node.js + Express en backend, con TypeScript y Tailwind.
 - Copiloto IA acotado: RAG sobre datos precalculados, citas y fallback por reglas.
 - Contrato compartido y mock definidos para el Día 0.
-- Código inicial legado: landing page React + Vite y backend Express con `/api/health`; se migra a Next.js.
+- Código inicial: frontend React + Vite y backend Express con `/api/health`; se evoluciona dentro de la arquitectura separada del MVP.
 - Resultados distritales reales: todavía no generados.
 
 ## Reglas de mantenimiento
