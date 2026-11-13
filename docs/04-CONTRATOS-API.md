@@ -1,8 +1,8 @@
 # 04 — Contratos de API
 
-Contratos de la **API propia** de Cochabamba Verde (propuesta, no endpoints existentes del GAMC) y del **proxy WMS** hacia el municipio.
+Contratos de la **API propia** de GeoQocha (propuesta, no endpoints existentes del GAMC), del **proxy WMS** hacia el municipio y del **endpoint de IA**. La fuente de verdad de los tipos compartidos es `src/types/geoqocha.ts`; este documento define su forma y significado.
 
-> Los valores numéricos de los ejemplos son **ficticios**: sirven para definir interfaces, no representan distritos reales.
+> Los valores numéricos de los ejemplos son **ficticios**: sirven para definir interfaces, no representan distritos reales. El mock de desarrollo se marca siempre con `data_status: "illustrative"`.
 
 ---
 
@@ -35,11 +35,14 @@ Contratos de la **API propia** de Cochabamba Verde (propuesta, no endpoints exis
 | Código HTTP | `code` | Cuándo |
 |---|---|---|
 | 400 | `INVALID_PARAMETER` | Parámetro ausente, mal tipado o fuera de rango. |
+| 400 | `INVALID_AI_REQUEST` | Cuerpo de IA inválido, modo desconocido o pregunta vacía. |
 | 404 | `DISTRICT_NOT_FOUND` | Distrito inexistente. |
 | 404 | `NO_DATA` | Consulta válida sin datos para el filtro. |
+| 404 | `CONTEXT_NOT_FOUND` | No hay contexto suficiente para responder con trazabilidad. |
 | 429 | `RATE_LIMITED` | Se superó el límite de consultas. |
-| 502 | `UPSTREAM_ERROR` | El WMS del GAMC falló o devolvió algo inválido. |
-| 504 | `UPSTREAM_TIMEOUT` | Timeout al contactar el servicio municipal. |
+| 502 | `UPSTREAM_ERROR` | El WMS del GAMC o el proveedor de IA falló. |
+| 503 | `AI_NOT_CONFIGURED` | No hay proveedor de IA configurado; se debe usar el fallback. |
+| 504 | `UPSTREAM_TIMEOUT` | Timeout al contactar el servicio municipal o el proveedor de IA. |
 | 500 | `INTERNAL_ERROR` | Error no controlado. |
 
 ---
@@ -73,6 +76,8 @@ type GamcOperation = "GetMap" | "GetLegendGraphic" | "GetFeatureInfo";
 
 ## 3. Tipos compartidos
 
+### 3.1 Registros de datos
+
 ```ts
 /** Registro anual de un distrito. */
 interface DistrictYearRecord {
@@ -100,7 +105,7 @@ interface DistrictYearRecord {
 /** Métricas de equipamiento y movilidad por distrito. */
 interface EquipmentMetrics {
   district_id: number;
-  territorial_reference_year: number;
+  territorial_reference_year: number | null;
   population: number | null;
   green_area_m2_per_capita: number | null;
   schools_per_1000: number | null;
@@ -188,6 +193,138 @@ interface SourceMetadata {
 ```
 
 > El contrato completo de una fila distrito-año está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS.md#diccionario-mínimo-de-campos-distrito-año).
+
+### 3.2 Tipos del cliente, mapa y IA
+
+Estos tipos viven en `src/types/geoqocha.ts`. `DistrictData` es la vista agregada que consumen el mapa y el panel; `DistrictYearRecord` sigue siendo la fila canónica del pipeline.
+
+```ts
+export const CONTRACT_VERSION = "0.1.0" as const;
+
+export type DataStatus = "real" | "illustrative" | "insufficient";
+export type RiskLevel = "low" | "medium" | "high" | "insufficient_data";
+
+export interface DistrictSeriesPoint {
+  year: number;
+  ndvi_mean: number | null;
+  lst_mean_celsius: number | null;
+  environmental_index: number | null;
+  socioenvironmental_index: number | null;
+  index_without_territorial: number | null;
+  data_quality_flag: DataQualityFlag;
+}
+
+export interface DistrictTrend {
+  variable: "ndvi" | "lst" | "environmental_index" | "socioenvironmental_index";
+  direction: TrendDirection;
+  slope_per_year: number | null;
+  unit: string;
+  years_used: number[];
+  method: string;
+  is_significant: boolean | null;
+  acceleration: number | null;
+  accelerated: boolean;
+  notes: string[];
+}
+
+/** Punto propuesto de ascenso/descenso; no es una parada oficial ni una calificación de seguridad. */
+export interface StopPoint {
+  stop_id: string;
+  name: string;
+  district_id: number;
+  latitude: number;
+  longitude: number;
+  routes: string[];
+  boarding_recommended: boolean;
+  safety_score: number | null;
+  notes: string | null;
+  data_status: DataStatus;
+}
+
+export interface DistrictGeometry {
+  type: "Polygon";
+  coordinates: number[][][];
+}
+
+export interface DistrictData {
+  district_id: number;
+  name: string;
+  geometry: DistrictGeometry | null;
+  area_km2: number | null;
+  population: number | null;
+  population_year: number | null;
+  territorial_reference_year: number | null;
+  latest_year: number | null;
+  latest_socioenvironmental_index: number | null;
+  risk_level: RiskLevel;
+  series: DistrictSeriesPoint[];
+  trends: DistrictTrend[];
+  equipment: EquipmentMetrics;
+  transport_stops: StopPoint[];
+  data_status: DataStatus;
+  source_refs: string[];
+}
+
+export interface AIRequest {
+  mode: "chat" | "diagnosis";
+  district_id?: number;
+  year?: number;
+  question?: string;
+  locale?: "es";
+}
+
+export interface AIEvidence {
+  field: string;
+  year: number | null;
+  value: number | string | null;
+  unit: string | null;
+  source_ref: string;
+}
+
+export interface AIInsight {
+  id: string;
+  kind: "observation" | "risk" | "recommendation" | "caveat";
+  title: string;
+  body: string;
+  severity: "info" | "warning" | "critical";
+  evidence: AIEvidence[];
+}
+
+export interface AICitation {
+  source_ref: string;
+  label: string;
+  field?: string;
+  year?: number;
+}
+
+export interface AIResponse {
+  request_id: string;
+  mode: "chat" | "diagnosis";
+  district_id: number | null;
+  year: number | null;
+  answer: string;
+  insights: AIInsight[];
+  citations: AICitation[];
+  disclaimer: string;
+  data_status: DataStatus;
+  model: {
+    provider: string;
+    name: string;
+    prompt_version: string;
+  } | null;
+  generated_at: string;
+  fallback_used: boolean;
+}
+```
+
+**Reglas de los tipos:**
+
+- `DistrictData.equipment` reutiliza `EquipmentMetrics` de la sección 3.1.
+- `DistrictTrend` es la proyección que expone `/api/districts`; conserva los campos de `Trend` de la sección 3.1, incluida la aceleración.
+- `null` significa «no disponible»; nunca se usa `0` para representar ausencia.
+- `data_status` distingue dato real, ilustrativo e insuficiente.
+- `StopPoint.safety_score` solo se publica si existe una fuente verificable; en el mock es `null`.
+- `AIResponse` siempre incluye `citations`, `disclaimer` y `fallback_used`.
 
 ---
 
@@ -551,8 +688,8 @@ Catálogo de fuentes y metadatos.
 {
   "status": "ok",
   "uptime_seconds": 3600,
-  "data": { "last_processed_year": 2025, "methodology_version": "0.1.0" },
-  "dependencies": { "gamc_wms": "reachable" }
+  "data": { "last_processed_year": 2025, "methodology_version": "0.1.0", "data_mode": "mock" },
+  "dependencies": { "gamc_wms": "reachable", "ai_provider": "configured" }
 }
 ```
 
@@ -636,6 +773,141 @@ Relación exploratoria entre tendencia ambiental y acceso territorial.
 ```
 
 **Errores:** `404 NO_DATA` si `n < 8`; en ese caso la vista muestra solo la tabla de distritos.
+
+---
+
+### 4.11 `POST /api/ai-analyst`
+
+Copiloto de IA y diagnóstico automático. La IA **no calcula** índices, hotspots ni cifras: recibe hechos precalculados del dataset, los explica y cita. Si no hay proveedor configurado o el proveedor falla, responde con el fallback por reglas y `fallback_used: true`.
+
+**Cuerpo de la solicitud (`AIRequest`)**
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `mode` | `chat` \| `diagnosis` | Sí | Chat libre o diagnóstico automático. |
+| `district_id` | entero | Condicional | Requerido en `diagnosis`; opcional en `chat`. |
+| `year` | entero | No | Año de análisis; por defecto, el último año con datos. |
+| `question` | string | Condicional | Requerido en `chat`; máximo 500 caracteres. |
+| `locale` | `"es"` | No | Idioma de la respuesta; el MVP solo soporta español. |
+
+**Solicitud de chat**
+
+```json
+{
+  "mode": "chat",
+  "district_id": 3,
+  "year": 2025,
+  "question": "¿Por qué el índice de este distrito es intermedio?",
+  "locale": "es"
+}
+```
+
+**Solicitud de diagnóstico**
+
+```json
+{
+  "mode": "diagnosis",
+  "district_id": 9,
+  "year": 2025,
+  "locale": "es"
+}
+```
+
+**Respuesta 200 (`AIResponse`)**
+
+```json
+{
+  "request_id": "req_01JEXAMPLE",
+  "mode": "chat",
+  "district_id": 3,
+  "year": 2025,
+  "answer": "El Distrito 3 presenta una condición intermedia. Su NDVI es estable y su temperatura superficial aumentó ligeramente; el componente territorial usa datos de 2024. La lectura es descriptiva y no implica causalidad.",
+  "insights": [
+    {
+      "id": "insight_01",
+      "kind": "observation",
+      "title": "Vegetación estable",
+      "body": "La pendiente de NDVI es cercana a cero en la serie disponible.",
+      "severity": "info",
+      "evidence": [
+        {
+          "field": "ndvi_mean",
+          "year": 2025,
+          "value": 0.42,
+          "unit": "índice",
+          "source_ref": "nasa_mod13q1"
+        }
+      ]
+    },
+    {
+      "id": "insight_02",
+      "kind": "caveat",
+      "title": "Datos territoriales fijos",
+      "body": "Equipamiento y movilidad corresponden al año de referencia 2024; no se interpolan.",
+      "severity": "warning",
+      "evidence": [
+        {
+          "field": "territorial_reference_year",
+          "year": 2024,
+          "value": 2024,
+          "unit": "año",
+          "source_ref": "gamc_equipment"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "source_ref": "nasa_mod13q1",
+      "label": "NASA MODIS MOD13Q1 (NDVI), colección 6.1",
+      "field": "ndvi_mean",
+      "year": 2025
+    },
+    {
+      "source_ref": "gamc_equipment",
+      "label": "GAMC, equipamiento y movilidad",
+      "field": "territorial_reference_year",
+      "year": 2024
+    }
+  ],
+  "disclaimer": "Respuesta generada a partir de datos precalculados. No es una evaluación oficial del GAMC ni una priorización de inversión. No implica causalidad.",
+  "data_status": "illustrative",
+  "model": {
+    "provider": "gemini",
+    "name": "modelo-configurado",
+    "prompt_version": "0.1.0"
+  },
+  "generated_at": "2026-11-13T12:00:00Z",
+  "fallback_used": false
+}
+```
+
+**Respuesta con fallback**
+
+Si no hay `AI_API_KEY`, el proveedor no responde o se supera el timeout, la respuesta mantiene la misma forma, usa reglas y devuelve `model: null` y `fallback_used: true`. El frontend debe mostrar una etiqueta de «respuesta por reglas».
+
+**Reglas de seguridad y validez**
+
+1. La clave del proveedor vive solo en el servidor (`AI_API_KEY`); nunca en el cliente ni en `NEXT_PUBLIC_*`.
+2. El contexto se limita al distrito, año y métricas recuperadas; no se envía el dataset completo.
+3. La IA no puede inventar cifras: todo número citado debe existir en el contexto.
+4. La respuesta siempre incluye `citations` y `disclaimer`.
+5. No se aceptan instrucciones del usuario que intenten cambiar el rol del sistema, revelar claves o ignorar las reglas.
+6. No se almacenan conversaciones ni datos personales.
+7. El endpoint aplica rate limit, timeout y límite de tokens de salida.
+
+**Errores específicos**
+
+| HTTP | `code` | Cuándo |
+|---|---|---|
+| 400 | `INVALID_AI_REQUEST` | Modo inválido, pregunta vacía o `district_id` fuera de rango. |
+| 404 | `CONTEXT_NOT_FOUND` | No hay datos suficientes para responder con citas. |
+| 429 | `RATE_LIMITED` | Se superó el límite de consultas. |
+| 503 | `AI_NOT_CONFIGURED` | No hay proveedor configurado; el cliente debe usar el fallback local. |
+| 502 | `UPSTREAM_ERROR` | El proveedor devolvió un error no recuperable. |
+| 504 | `UPSTREAM_TIMEOUT` | El proveedor no respondió en el tiempo máximo. |
+
+> El endpoint puede devolver `200` con `fallback_used: true` cuando el fallback por reglas pudo construir una respuesta válida. Los errores anteriores se reservan para casos en los que ni siquiera el fallback puede responder.
 
 ---
 
@@ -740,6 +1012,11 @@ curl "http://localhost:3000/api/heatmap?variable=lst&year=2025&format=cells"
 # Correlación exploratoria
 curl "http://localhost:3000/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index"
 
+# Diagnóstico automático con IA
+curl -X POST "http://localhost:3000/api/ai-analyst" \
+  -H "Content-Type: application/json" \
+  -d "{\"mode\":\"diagnosis\",\"district_id\":9,\"year\":2025,\"locale\":\"es\"}"
+
 # Proxy WMS (mapa)
 curl "http://localhost:3000/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-7370000,-1930000,-7365000,-1925000&WIDTH=256&HEIGHT=256" -o map.png
 ```
@@ -771,3 +1048,8 @@ curl "http://localhost:3000/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1
 - [ ] La `key` no aparece en respuestas ni logs.
 - [ ] `features: []` se trata como «sin elementos», no como fallo.
 - [ ] Todo dato ilustrativo está etiquetado.
+- [ ] `/api/ai-analyst` acepta `chat` y `diagnosis` con `AIRequest`.
+- [ ] Toda `AIResponse` incluye `citations`, `disclaimer` y `fallback_used`.
+- [ ] La IA no calcula índices ni hotspots; solo explica hechos del contexto.
+- [ ] El fallback por reglas funciona sin `AI_API_KEY`.
+- [ ] La clave de IA no aparece en el cliente, el repositorio ni los logs.

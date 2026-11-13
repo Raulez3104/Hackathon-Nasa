@@ -1,6 +1,6 @@
 # MEMORY.md — Memoria del proyecto
 
-Registro vivo de decisiones, estado y pendientes de **Cochabamba Verde**. Sirve para que cualquier persona o agente retome el trabajo sin reconstruir el contexto.
+Registro vivo de decisiones, estado y pendientes de **GeoQocha**. Sirve para que cualquier persona o agente retome el trabajo sin reconstruir el contexto.
 
 **Cómo mantenerlo**
 
@@ -18,15 +18,19 @@ Registro vivo de decisiones, estado y pendientes de **Cochabamba Verde**. Sirve 
 | Aspecto | Estado |
 |---|---|
 | Documentación | Seis documentos en `docs/`, índice `docs/README.md`, README raíz y LICENSE |
-| Código de aplicación | Landing page inicial creada en `frontend/`; backend mantiene `/api/health` |
+| Marca y alcance | GeoQocha reemplaza a Cochabamba Verde; se incorpora copiloto IA y concientización |
+| Stack objetivo | Next.js + TypeScript + Tailwind + Leaflet + Recharts; route handlers para API |
+| Código de aplicación | Legado Vite/Express en `frontend/` y `backend/`; migración a Next.js pendiente |
+| Contrato compartido | Definido en `docs/06` y `docs/04`; archivos `src/types/geoqocha.ts` y mock pendientes de crear |
 | Pipeline de datos | No iniciado |
-| Datos procesados | No generados |
-| Repositorio Git | No inicializado |
+| Datos procesados | No generados; el mock será ilustrativo |
+| Repositorio Git | Inicializado en `main`; ramas `dev` y `feat/*` pendientes |
 | Despliegue | No configurado |
+| IA | Arquitectura y contrato definidos; proveedor y clave pendientes |
 | Validación de fuentes | Pendiente |
-| Equipo de desarrollo | 3 personas de sistemas |
+| Equipo de desarrollo | 3 personas de sistemas con frentes independientes |
 
-**Conclusión:** el proyecto está listo para iniciar el andamiaje técnico. Nada de lo descrito como dato medido existe todavía.
+**Conclusión:** la documentación ya refleja el alcance GeoQocha y el plan de tres frentes. El siguiente paso es el Día 0: crear el contrato, el mock y el andamiaje Next.js. Nada de lo descrito como dato medido existe todavía.
 
 ---
 
@@ -44,12 +48,18 @@ Registro vivo de decisiones, estado y pendientes de **Cochabamba Verde**. Sirve 
 | D-08 | Archivos JSON/CSV como persistencia del MVP | 15 distritos × 11 años es un volumen pequeño; acelera la entrega | `03` AD-02 |
 | D-09 | Seis reglas de hotspot, incluidas déficit de equipamiento y brecha territorial | El reto pide señales ambientales y de equipamiento | `02` RN-11 |
 | D-10 | Correlación **exploratoria**, con `n`, sin causalidad; no se calcula si `n < 8` | 15 distritos no permiten inferencia causal robusta | `02` RN-14, RN-20 |
-| D-11 | Plan dimensionado solo para **3 desarrolladores de sistemas** (S1, S2, S3) | Los perfiles comercial y de diseño colaboran fuera de este entorno | `06` §1, §3 |
-| D-12 | Alcance P0 cerrado; P1 solo con holgura; P2 posterior | Capacidad ~144 h y P0 ~138 h no dejan margen | `06` §4 |
-| D-13 | Sin IA generativa | Transparencia y reproducibilidad en 48 horas | `03` AD-05 |
+| D-11 | Plan dimensionado solo para **3 desarrolladores de sistemas** (DEV1, DEV2, DEV3) | Los perfiles comercial y de diseño colaboran fuera de este entorno | `06` §1, §5 |
+| D-12 | Alcance P0 cerrado; P1 solo con holgura; P2 posterior | Capacidad 144 h y P0 completo consumen las 48 h por persona; no hay margen | `06` §2, §6.4 |
+| D-13 | ~~Sin IA generativa~~ **Reemplazada por D-17** | El producto ahora incluye copiloto IA acotado | `03` AD-05 |
 | D-14 | Mapas de calor precalculados en el pipeline | Evita recalcular estadísticas en el navegador | `03` AD-07 |
 | D-15 | `null` = no disponible; nunca cero; no se interpola | Evita conclusiones falsas por datos imputados | `02` RN-07, RN-23 |
 | D-16 | Licencia MIT para código y CC BY 4.0 para documentación | Cumple el requisito de código abierto | `05` §6, `06` §7 |
+| D-17 | IA generativa acotada: solo narra hechos precalculados, con citas y fallback | Copiloto útil sin ceder validez metodológica a una caja negra | `03` AD-05, `02` RN-24…RN-27 |
+| D-18 | GeoQocha reemplaza a Cochabamba Verde | Nuevo nombre y alcance del producto | `01`, `02`, `03`, `04`, `06` |
+| D-19 | Next.js App Router reemplaza Vite + Express en el MVP | Un solo despliegue, tipos compartidos y route handlers | `03` AD-09, `06` §3 |
+| D-20 | Contrato y mock congelados antes de abrir ramas | Garantiza independencia total de los tres frentes | `06` §3, `03` AD-10 |
+| D-21 | Ramas independientes con carpetas exclusivas y merge a `dev` | Evita conflictos y dependencias cruzadas | `06` §5 y §9 |
+| D-22 | Paradas «seguras» se presentan como propuestas ilustrativas hasta validación | No existe fuente oficial de seguridad de paradas | `03` AD-11, `02` RN-28 |
 
 ---
 
@@ -78,6 +88,7 @@ ICVSA(d,t) = 0.35 * S_NDVI(d,t) + 0.35 * S_LST(d,t)
 | NDVI | MOD13Q1, colección 6.1, 250 m, 16 días |
 | LST | MOD11A2, colección 6.1, 1 km, 8 días, convertida a °C |
 | GAMC | 7 servicios WMS 1.1.1 de solo lectura, más GeoJSON de transporte y capas vectoriales |
+| IA | Gemini u OpenAI; solo redacta y explica hechos precalculados con citas y fallback |
 | Documentación GAMC | https://recursosgamc.cochabamba.bo/api-doc |
 | Endpoint WMS | https://serviciosgamc.cochabamba.bo/api/gs/wms |
 | Distritos | 15, `district_id` entero 1–15 |
@@ -97,16 +108,17 @@ ICVSA(d,t) = 0.35 * S_NDVI(d,t) + 0.35 * S_LST(d,t)
 
 | Persona | Frente | Dueño de |
 |---|---|---|
-| S1 | Backend, API y despliegue / tech lead | `backend/`, contratos, integración, deploy |
-| S2 | Frontend, mapas y visualización | `frontend/` |
-| S3 | Datos, GIS y NASA | `data-processing/`, `data/` |
+| DEV1 | Mapas, WMS y movilidad urbana | `src/components/map/`, `src/services/wms/`, `src/app/api/gamc/`, `src/backend/gamc/` |
+| DEV2 | Datos NASA, pipeline y backend de IA | `scripts/`, `data/`, `src/backend/data/`, `src/backend/ai/`, `src/app/api/ai-analyst/` |
+| DEV3 | Analítica, concientización y chat UI | `src/components/analytics/`, `src/components/awareness/`, `src/components/ai/` |
 
 | Métrica | Valor |
 |---|---|
 | Capacidad total | ~144 horas-persona (3 × 48 h) |
-| P0 estimado | ~138 h |
-| Margen | ~6 h |
-| Implicación | P1 cerrado; cualquier función nueva exige quitar otra |
+| Día 0 compartido | 6 h por persona |
+| Trabajo autónomo | 6 tareas × 6 h = 36 h por persona |
+| Integración y demo | 6 h por persona |
+| Implicación | Los tres frentes tienen el mismo peso; cualquier función nueva exige quitar otra del mismo frente |
 
 ---
 
@@ -114,29 +126,34 @@ ICVSA(d,t) = 0.35 * S_NDVI(d,t) + 0.35 * S_LST(d,t)
 
 ### P0 — imprescindible
 
-T-01…T-17, T-21, T-27…T-32.
+- T-00: contrato, mock, andamiaje y tag `contract-v0.1.0`.
+- DEV1: T1-01…T1-06 (mapa, WMS, capas, transporte, URL y calidad).
+- DEV2: T2-01…T2-06 (pipeline, NASA, índice, RAG, endpoint y guardrails).
+- DEV3: T3-01…T3-06 (panel, fichas, concientización, chat, diagnóstico y calidad).
 
-Incluye: validación de fuentes, proxy, NDVI/LST, `district_year.json`, ICVSA histórico, equipamiento y movilidad, API, mapa, ficha, comparador, brechas, hotspots, mapa de calor de LST, correlación mínima, metodología, responsive y despliegue.
+### P1 — solo si sobra tiempo dentro del mismo frente
 
-### P1 — solo si sobra tiempo
-
-T-18…T-20, T-33…T-37.
-
-Incluye: transporte, cobertura y confianza, CSV, capas adicionales, mapa de calor de severidad, serie mensual, enlaces compartibles y correlación ampliada.
+- Capas municipales adicionales y leyendas ampliadas.
+- Serie mensual y mapa de calor de severidad.
+- Exportación CSV y enlaces compartibles.
+- Tarjetas educativas compartibles y más combinaciones de correlación.
 
 ### P2 — posterior
 
-T-22…T-26, T-38.
-
-Incluye: validación con especialistas, sensibilidad de pesos, población y tasas, automatización, PostgreSQL/PostGIS y detección de aceleración.
+- Validación con especialistas, sensibilidad de pesos y población verificada.
+- Automatización del pipeline y PostgreSQL/PostGIS.
+- Índice RAG persistente y evaluación formal de respuestas.
+- Validación oficial de paradas con el GAMC.
 
 ---
 
 ## 6. Contrato congelado
 
-**Tipos:** `DistrictYearRecord`, `EquipmentMetrics`, `Trend`, `CorrelationResult`, `Hotspot`.
+**Archivo compartido:** `src/types/geoqocha.ts` con `CONTRACT_VERSION = "0.1.0"`.
 
-**Endpoints:** `/districts`, `/districts/:id`, `/districts/:id/indicators`, `/comparison`, `/hotspots`, `/heatmap`, `/analysis/correlation`, `/methodology`, `/sources`, `/health`, `/gamc/wms`.
+**Tipos:** `DistrictData`, `DistrictGeometry`, `DistrictSeriesPoint`, `DistrictTrend`, `EquipmentMetrics`, `StopPoint`, `AIRequest`, `AIResponse`, `AIInsight`, `AIEvidence`, `AICitation`, `DataStatus`, `RiskLevel`.
+
+**Endpoints:** `/districts`, `/districts/:id`, `/districts/:id/indicators`, `/comparison`, `/hotspots`, `/heatmap`, `/analysis/correlation`, `/methodology`, `/sources`, `/health`, `/gamc/wms`, `/ai-analyst`.
 
 **Reglas:**
 
@@ -145,7 +162,10 @@ Incluye: validación con especialistas, sensibilidad de pesos, población y tasa
 - `null` explícito, nunca `0`.
 - `territorial_reference_year` e `index_without_territorial` presentes en la serie.
 - `data_quality_flag`: `ok`, `partial`, `insufficient`.
-- Sin cambios de contrato sin actualizar `docs/04-CONTRATOS-API.md`.
+- `data_status`: `real`, `illustrative`, `insufficient`.
+- `AIResponse` siempre incluye `citations`, `disclaimer` y `fallback_used`.
+- La IA no calcula índices ni hotspots; solo explica hechos del contexto.
+- Sin cambios de contrato sin actualizar `docs/04-CONTRATOS-API.md` y aprobación de los tres.
 
 ---
 
@@ -162,6 +182,9 @@ Nada de esta lista está confirmado todavía. No lo presentes como hecho.
 - [ ] El año de referencia (`t_ref`) de cada fuente municipal está definido.
 - [ ] Los términos de uso y licencias del GAMC permiten publicar los datos derivados.
 - [ ] El pipeline reproduce los resultados en una máquina limpia.
+- [ ] El proveedor de IA está configurado solo en el servidor y el fallback funciona sin clave.
+- [ ] Las respuestas de IA citan fuente, campo y año, y no inventan cifras.
+- [ ] Las paradas propuestas están etiquetadas como ilustrativas y no como oficiales.
 
 Detalle completo en `docs/05-FUENTES-DATOS.md` §7.
 
@@ -176,27 +199,31 @@ Detalle completo en `docs/05-FUENTES-DATOS.md` §7.
 | 2026-11-13 | Prioridades alineadas al reto: `GetFeatureInfo`, severidad, aceleración, serie mensual y enlaces compartibles reclasificados. |
 | 2026-11-13 | `06-PLAN-DESARROLLO.md` reescrito para 3 desarrolladores de sistemas. |
 | 2026-11-13 | Creados `AGENTS.md` y `MEMORY.md`. |
+| 2026-11-13 | GeoQocha reemplaza a Cochabamba Verde; se agrega copiloto IA con RAG, citas y fallback. |
+| 2026-11-13 | Stack del MVP migra a Next.js App Router con route handlers; Vite y Express quedan como legado. |
+| 2026-11-13 | Plan reescrito con contrato compartido, mock y tres frentes independientes de igual complejidad. |
+| 2026-11-13 | Se declara que las paradas «seguras» son propuestas ilustrativas hasta validación oficial. |
 
 ---
 
 ## 9. Próximos pasos
 
-1. Inicializar el repositorio Git y el `.gitignore` (incluir `.env`, `node_modules`, datos crudos).
-2. Crear el andamiaje `frontend/`, `backend/` y `data-processing/` según `03` §4.
-3. Validar el GeoJSON y los vectores del GAMC; registrar `t_ref` por fuente.
-4. Congelar el contrato de `04` antes del bloque 6–18 h.
-5. Implementar el proxy y el endpoint `/api/health`.
-6. Generar la primera tabla `district_year.json` con NDVI y LST.
-7. Construir el mapa y la ficha con datos reales.
-8. Calcular el ICVSA y verificar `index_without_territorial`.
-9. Añadir hotspots, brechas, mapa de calor de LST y correlación mínima.
+1. Crear el andamiaje Next.js, Tailwind y route handlers según `03` §2 y AD-09.
+2. Crear `src/types/geoqocha.ts`, `src/lib/data-source.ts` y `public/data/mock_distritos.json`.
+3. Crear la rama `dev`, mergear `chore/contract-v0.1.0` y etiquetar `contract-v0.1.0`.
+4. Abrir las ramas `feat/dev1-map-transport`, `feat/dev2-data-ai` y `feat/dev3-analytics-chat`.
+5. Implementar el proxy WMS y el endpoint `/api/ai-analyst` con fallback.
+6. Generar el primer `distritos_data.json` con NDVI, LST, índice y metadatos.
+7. Integrar mapa, panel, concientización y chat en la composición full-screen.
+8. Verificar citas, `fallback_used`, etiquetas de datos ilustrativos y ausencia de secretos.
+9. Ejecutar lint, typecheck, tests y validación del mock.
 10. Desplegar, documentar y ensayar la demo.
 
 ---
 
 ## 10. Convenciones de memoria
 
-- Una decisión nueva se agrega como `D-17`, `D-18`, etc.
+- Una decisión nueva se agrega como `D-23`, `D-24`, etc.
 - Una decisión reemplazada se marca como «reemplazada por D-xx», sin borrar el historial.
 - Las tareas se citan con su identificador `T-xx` del plan.
 - Los requerimientos se citan como `RF-xx`, `RNF-xx` o `RN-xx`.

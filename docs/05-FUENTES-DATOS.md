@@ -14,6 +14,8 @@ Inventario de fuentes, estado de verificación, operaciones disponibles y precau
 | GeoJSON de distritos (equipo) | Por confirmar | GeoJSON | Geometrías de los 15 distritos | Disponible; estructura por verificar |
 | MOD13Q1 (NDVI) | NASA | Raster MODIS | Serie de vegetación 2015–2025 | Propuesto |
 | MOD11A2 (LST) | NASA | Raster MODIS | Serie de temperatura superficial 2015–2025 | Propuesto |
+| Proveedor de IA generativa (Gemini u OpenAI) | Tercero | API de lenguaje | Redactar explicaciones y diagnósticos a partir de hechos del dataset | Por configurar |
+| `mock_distritos.json` | Equipo | JSON estático | Datos ilustrativos para desarrollo independiente | Disponible en el Día 0 |
 
 ---
 
@@ -154,6 +156,24 @@ Se trabaja con dos variables mínimas exigidas por el desafío.
 | Conteo de observaciones | Exponer `*_valid_observation_count` y `*_valid_pixel_fraction`. |
 | Marca de calidad | `ok`, `partial`, `insufficient` por registro. |
 
+### 3.5 IA generativa
+
+La IA no es una fuente de datos. Es un servicio de redacción y explicación que recibe un contexto cerrado construido con el dataset procesado.
+
+| Aspecto | Regla |
+|---|---|
+| Proveedor | Gemini u OpenAI; se elige por variable de entorno. |
+| Clave | Solo en el servidor (`AI_API_KEY`); nunca en el cliente ni en Git. |
+| Contexto | Fragmentos de `distritos_data.json` por distrito, año y métrica. |
+| Cálculos | La IA no calcula índice, hotspots, tendencias ni cifras. |
+| Citas | Toda respuesta incluye `source_ref`, campo y año. |
+| Fallback | Si no hay proveedor o falla, responde un motor de reglas. |
+| Privacidad | No se almacenan conversaciones ni se entrena con consultas de usuarios. |
+| Costo | Límite de tokens, timeout, rate limit y caché de diagnósticos. |
+| Salida | `AIResponse` validado; se rechazan números que no existen en el contexto. |
+
+> El modelo puede equivocarse. Por eso la interfaz muestra una advertencia, las citas y la etiqueta de fallback cuando corresponde. La IA nunca reemplaza la metodología del ICVSA ni las reglas de hotspots.
+
 ---
 
 ## 4. Datos derivados del proyecto
@@ -163,6 +183,9 @@ Se trabaja con dos variables mínimas exigidas por el desafío.
 | `districts.geojson` | Geometrías validadas de los 15 distritos | `data/geojson/` |
 | `transport.geojson` | Rutas de transporte validadas | `data/geojson/` |
 | `equipment.geojson` | Parques, escuelas, salud y equipamiento municipal | `data/geojson/` |
+| `distritos_data.json` | Dataset principal del MVP, con la forma de `DistrictData` | `data/processed/` y `public/data/` |
+| `mock_distritos.json` | Datos ilustrativos para desarrollo y demo sin bloqueos | `public/data/` |
+| `transport_stops` | Paradas propuestas derivadas de rutas y reglas; no oficiales | Incluidas en `distritos_data.json` |
 | `district_year.json` | NDVI, LST, ICVSA, calidad y cobertura por distrito-año | `data/processed/` |
 | `district_month.json` | Serie mensual opcional | `data/processed/` |
 | `trends.json` | Pendientes, aceleración e interpretación | `data/processed/` |
@@ -201,7 +224,23 @@ Se generan además:
 | `mobility_access_index` | número | 0–100 | Sí | Cobertura/proximidad de transporte. |
 | `data_quality_flag` | enum | — | No | `ok` \| `partial` \| `insufficient`. |
 
-### 5.2 Atributos municipales (a confirmar)
+### 5.2 Puntos de transporte propuestos
+
+| Campo | Tipo | Nulo permitido | Notas |
+|---|---|---|---|
+| `stop_id` | string | No | Identificador estable del punto. |
+| `name` | string | No | Nombre de referencia; no implica parada oficial. |
+| `district_id` | entero | No | Distrito al que se asocia. |
+| `latitude` / `longitude` | número | No | Coordenadas WGS84. |
+| `routes` | string[] | No | Rutas asociadas; puede ser vacío. |
+| `boarding_recommended` | boolean | No | Regla de recomendación de ascenso/descenso. |
+| `safety_score` | número \| null | Sí | Solo si existe fuente verificable; en el mock es `null`. |
+| `notes` | string \| null | Sí | Debe aclarar que es una propuesta ilustrativa. |
+| `data_status` | enum | No | `real`, `illustrative` o `insufficient`. |
+
+**Regla:** una parada propuesta no es una parada oficial ni una afirmación de seguridad. La UI debe usar «parada propuesta» y evitar la palabra «segura» hasta que el GAMC valide la fuente.
+
+### 5.3 Atributos municipales (a confirmar)
 
 | Campo | Fuente | Estado |
 |---|---|---|
@@ -226,6 +265,7 @@ Se generan además:
 | NASA MODIS | «Datos: NASA MODIS MOD13Q1 / MOD11A2, colección 6.1» | Verificar términos NASA Earthdata |
 | GAMC WMS | «Fuente: Gobierno Autónomo Municipal de Cochabamba» | Verificar condiciones de uso |
 | GeoJSON municipal | Según origen del archivo | Por confirmar |
+| Proveedor de IA (Gemini u OpenAI) | «Respuesta asistida por IA a partir de datos del proyecto» | Sujetas a los términos del proveedor |
 | OpenStreetMap (si se usa mapa base) | «© OpenStreetMap contributors» | ODbL |
 
 **Licencias del proyecto**
@@ -251,6 +291,8 @@ Se generan además:
 7. **NASA:** confirmar resultados, máscaras QA y calidad de ambas series en los 15 distritos.
 8. **Metodología del ICVSA:** acordar normalización, pesos, `t_ref`, tratamiento de vacíos e interpretación.
 9. **Términos de uso:** revisar permisos de reproducción de datos del GAMC y atribución NASA.
+10. **IA:** confirmar proveedor, modelo, límites de costo, política de privacidad y funcionamiento del fallback sin clave.
+11. **Paradas propuestas:** confirmar si el GAMC entrega una fuente oficial de paradas o si el producto debe mantenerlas como ilustrativas.
 
 ### Checklist operativo
 
@@ -264,6 +306,9 @@ Se generan además:
 - [ ] Las series NASA cubren 2015–2025 con cobertura aceptable.
 - [ ] La serie mensual, si existe, se construye con observaciones válidas.
 - [ ] Cada registro conserva fuente, fecha y `territorial_reference_year`.
+- [ ] Las paradas propuestas están etiquetadas como ilustrativas y no como oficiales.
+- [ ] El proveedor de IA está configurado solo en el servidor y el fallback funciona sin clave.
+- [ ] Las respuestas de IA citan fuente, campo y año, y no inventan cifras.
 - [ ] Licencias revisadas antes de publicar.
 - [ ] `LICENSE` y atribución visibles en el repositorio y la app.
 
@@ -286,7 +331,13 @@ Se generan además:
 
 **Tecnologías**
 
+- Next.js: https://nextjs.org/
 - Leaflet: https://leafletjs.com/
 - React Leaflet: https://react-leaflet.js.org/
 - Recharts: https://recharts.org/
 - PostGIS: https://postgis.net/
+
+**Proveedores de IA**
+
+- Google AI (Gemini): https://ai.google.dev/
+- OpenAI Platform: https://platform.openai.com/docs

@@ -1,6 +1,6 @@
 # 02 — Requerimientos
 
-Especificación de requerimientos del MVP **Cochabamba Verde**.
+Especificación de requerimientos del MVP **GeoQocha**.
 
 **Convenciones de identificadores**
 
@@ -47,6 +47,7 @@ Especificación de requerimientos del MVP **Cochabamba Verde**.
 | RF-18 | Visualizar las rutas de transporte desde GeoJSON. | S | Si el GeoJSON es válido, se dibujan las líneas y se muestra su identificador. |
 | RF-19 | Calcular indicadores de proximidad/cobertura de transporte. | C | Solo se publican si existen geometrías y una metodología validada. |
 | RF-20 | Mostrar leyendas de las capas WMS. | S | Cada capa activa puede mostrar su leyenda oficial. |
+| RF-57 | Visualizar **paradas propuestas** de ascenso/descenso derivadas de rutas y reglas. | M | Los puntos se marcan como propuestas ilustrativas; no se presentan como paradas oficiales ni se afirma que sean seguras sin fuente verificable. |
 
 ### 1.4 Módulo 4 — Comparación entre distritos
 
@@ -78,9 +79,9 @@ Especificación de requerimientos del MVP **Cochabamba Verde**.
 | RF-34 | Mostrar la fecha de última actualización de los datos. | S | Visible en el pie de página y en las fichas. |
 | RF-35 | Ofrecer una vista de estado del sistema. | C | Endpoint `/api/health` y mensaje de disponibilidad en la UI. |
 
-### 1.7 Módulo 7 — Requisitos explícitos del reto
+### 1.7 Requisitos transversales del reto
 
-Estos requerimientos amplían los módulos anteriores para cubrir literalmente el enunciado del desafío.
+Estos requerimientos amplían los módulos anteriores para cubrir literalmente el enunciado del desafío; no constituyen un módulo de producto independiente.
 
 | ID | Requerimiento | Prioridad | Criterio de aceptación |
 |---|---|---:|---|
@@ -96,6 +97,25 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | RF-45 | Mostrar un **resumen en lenguaje llano** por distrito. | M | Un párrafo generado por reglas explica el estado y la tendencia sin jerga. |
 | RF-46 | Ofrecer serie **mensual** además de la anual cuando la calidad lo permita. | C | La vista mensual suaviza estacionalidad y se etiqueta como complementaria. |
 | RF-47 | Publicar el proyecto con **licencia de código abierto** explícita. | M | Existe `LICENSE` y la licencia se muestra en README y pie de la app. |
+
+### 1.8 Módulo 7 — Copiloto IA y diagnóstico asistido
+
+| ID | Requerimiento | Prioridad | Criterio de aceptación |
+|---|---|---:|---|
+| RF-48 | Ofrecer chat libre sobre un distrito y año con contexto acotado. | M | El usuario pregunta en lenguaje natural y recibe una respuesta con cifras del dataset y citas. |
+| RF-49 | Ofrecer diagnóstico automático por distrito con hallazgos, severidad y evidencia. | M | La respuesta incluye `insights` con `kind`, `severity` y `evidence`; no se muestra vacío si hay datos. |
+| RF-50 | Exigir citas, advertencia de no causalidad y estado del dato en toda respuesta de IA. | M | Toda `AIResponse` incluye `citations`, `disclaimer` y `data_status`. |
+| RF-51 | Funcionar con un fallback por reglas si no hay proveedor de IA o si falla. | M | Sin `AI_API_KEY` o ante timeout, el chat responde y `fallback_used` es `true`. |
+| RF-52 | Impedir que la IA calcule el índice, hotspots o cifras no presentes en el contexto. | M | Los guardrails rechazan números no citados y el prompt prohíbe cálculos o conclusiones causales. |
+
+### 1.9 Módulo 8 — Deforestación y concientización ambiental
+
+| ID | Requerimiento | Prioridad | Criterio de aceptación |
+|---|---|---:|---|
+| RF-53 | Visualizar la pérdida o ganancia de cobertura verde por distrito y periodo. | M | La vista usa NDVI y tendencias del dataset; los años sin dato se muestran como «no disponible». |
+| RF-54 | Presentar estrategias basadas en datos y mensajes ciudadanos sobre deforestación. | M | Cada estrategia se vincula a un indicador y a una fuente; no se inventan cifras. |
+| RF-55 | Distinguir datos reales de ilustrativos y evitar afirmaciones causales. | M | La sección muestra la etiqueta de estado del dato y una advertencia metodológica. |
+| RF-56 | Permitir compartir tarjetas educativas con fuente y año. | S | La tarjeta generada incluye distrito, indicador, año, fuente y enlace. |
 
 ---
 
@@ -123,6 +143,11 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | RNF-18 | Compartibilidad | Las vistas principales deben tener URL propia y metadatos para previsualización. | C |
 | RNF-19 | Licencia abierta | Código con licencia OSI (p. ej. MIT); documentación y datos propios con licencia abierta explícita. | M |
 | RNF-20 | Desempeño de mapas de calor | El mapa de calor debe renderizar en menos de 2 s con datos anuales precalculados. | S |
+| RNF-21 | Seguridad de IA | La clave del proveedor de IA vive solo en el servidor; nunca en el cliente, el repositorio o los logs. | M |
+| RNF-22 | Latencia de IA | La respuesta de chat o diagnóstico debe llegar en menos de 8 s o degradar al fallback por reglas. | S |
+| RNF-23 | Privacidad de IA | No se almacenan conversaciones, prompts ni datos personales; no se entrena con consultas de usuarios. | M |
+| RNF-24 | Trazabilidad de IA | Toda respuesta incluye citas y una validación de que las cifras existen en el contexto. | M |
+| RNF-25 | Costo y abuso de IA | El endpoint aplica rate limit, timeout y límite de tokens de salida. | M |
 
 ---
 
@@ -140,6 +165,8 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | RD-08 | Capas **vectoriales** del GAMC (distritos, áreas verdes, equipamiento, educación, salud) como fuente primaria para conteos y accesibilidad. | M |
 | RD-09 | Serie mensual o anual estable de NDVI y LST, sin huecos estacionales que distorsionen la tendencia. | S |
 | RD-10 | Valores de equipamiento y movilidad con año de referencia (`territorial_reference_year`) documentado. | M |
+| RD-11 | Mock `public/data/mock_distritos.json` con 15 distritos, series 2015–2025, equipamiento y paradas propuestas, etiquetado como ilustrativo. | M |
+| RD-12 | Dataset `distritos_data.json` con la misma forma que el mock y metadatos suficientes para RAG y citas. | M |
 
 ### Diccionario mínimo de campos (distrito-año)
 
@@ -176,6 +203,7 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | RI-05 | Permitir actualizar los datos procesados sin cambiar el frontend. | M |
 | RI-06 | Exponer una API propia estable y documentada. | M |
 | RI-07 | Soportar `GetFeatureInfo` (JSON) para consulta puntual de atributos. | S |
+| RI-08 | Exponer `POST /api/ai-analyst` con proveedor Gemini/OpenAI, RAG ligero y fallback por reglas. | M |
 
 ---
 
@@ -188,7 +216,10 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | Comparación | Dos o más selectores, tabla comparativa, gráfico superpuesto, brechas vs promedio y alertas explicadas. |
 | Hotspots | Lista/ranking, reglas activadas (ambiente y equipamiento), contribución por variable, advertencia metodológica. |
 | Análisis de relación | Dispersión tendencia ambiental vs acceso, coeficiente, n y lectura sin causalidad. |
-| Metodología | Fórmula, pesos, `t_ref`, normalización, datos faltantes, limitaciones, enlaces a fuentes. |
+| Copiloto IA | Chat flotante, preguntas sugeridas, citas, advertencia, estado de carga/error y fallback. |
+| Diagnóstico automático | Tarjetas por distrito con hallazgos, severidad, evidencia y citas. |
+| Concientización | Pérdida verde, estrategias basadas en datos, mensajes ciudadanos y fuentes. |
+| Metodología | Fórmula, pesos, `t_ref`, normalización, datos faltantes, límites de IA, enlaces a fuentes. |
 
 ---
 
@@ -296,6 +327,18 @@ Rangos ilustrativos, sujetos a validación.
 
 **RN-23.** **Dimensión faltante:** si falta por completo equipamiento o movilidad, no se renormalizan los pesos silenciosamente. Se publica `index_without_territorial` y el ICVSA completo se marca `insufficient_data`.
 
+### 7.6 Reglas del copiloto IA
+
+**RN-24.** La IA **solo narra hechos precalculados** del dataset. No calcula el ICVSA, no detecta hotspots, no imputa valores y no modifica cifras.
+
+**RN-25.** Toda respuesta debe incluir `citations` con `source_ref`, campo y año, y una advertencia de no causalidad.
+
+**RN-26.** Si no hay proveedor configurado, timeout o error, se usa un fallback por reglas; la respuesta mantiene el contrato y declara `fallback_used: true`.
+
+**RN-27.** La IA no emite recomendaciones vinculantes de inversión ni afirmaciones causales. Puede proponer estudios o acciones de concientización, siempre con evidencia y lenguaje prudente.
+
+**RN-28.** Las **paradas propuestas** de transporte se derivan de geometrías y reglas documentadas. No se presentan como paradas oficiales ni se les asigna una calificación de seguridad sin fuente verificable.
+
 ---
 
 ## 8. Alcance del MVP
@@ -312,6 +355,9 @@ Rangos ilustrativos, sujetos a validación.
 - Reglas explicables para hotspots ambientales y de déficit de equipamiento.
 - Análisis exploratorio de relación entre tendencia ambiental y acceso a equipamiento/transporte.
 - Comparación de brechas frente al promedio municipal.
+- Copiloto IA con chat y diagnóstico, citas y fallback por reglas.
+- Sección de deforestación y concientización ambiental basada en datos.
+- Rutas y paradas propuestas de transporte, marcadas como ilustrativas hasta validación.
 - Licencia de código abierto, código fuente, documentación y referencia de datos.
 
 ### Deseable
@@ -329,9 +375,10 @@ Rangos ilustrativos, sujetos a validación.
 
 - Autenticación y gestión de cuentas.
 - Edición de los datos oficiales del GAMC.
-- Predicciones complejas con IA.
-- Chatbot conversacional.
+- IA que calcule el índice, los hotspots o cifras no presentes en el dataset.
+- Predicciones complejas o modelos causales.
 - Cálculo de rutas óptimas o tráfico en tiempo real.
+- Calificación oficial de seguridad de paradas sin fuente municipal verificada.
 - Recomendaciones automáticas vinculantes de inversión pública.
 
 ---
@@ -352,6 +399,11 @@ Rangos ilustrativos, sujetos a validación.
 - [ ] Los hotspots explican qué indicadores activaron cada alerta, incluido déficit de equipamiento.
 - [ ] La comparación muestra la brecha de cada distrito frente al promedio municipal.
 - [ ] El análisis de relación se presenta como exploratorio y sin afirmar causalidad.
+- [ ] El chat y el diagnóstico responden con citas, advertencia y `fallback_used` cuando corresponde.
+- [ ] La IA no calcula índices ni hotspots y no inventa cifras fuera del contexto.
+- [ ] El fallback por reglas funciona sin proveedor de IA configurado.
+- [ ] La sección de deforestación y concientización usa datos, fuentes y etiquetas de estado.
+- [ ] Las paradas de transporte se presentan como propuestas ilustrativas, no como paradas oficiales ni seguras.
 - [ ] El repositorio incluye licencia de código abierto y atribución de fuentes.
 - [ ] La interfaz diferencia claramente observaciones reales y ejemplos ilustrativos.
 - [ ] El repositorio contiene instrucciones de despliegue y reproduce resultados principales.
@@ -369,5 +421,8 @@ Rangos ilustrativos, sujetos a validación.
 | Mapa web con filtros y mapas de calor | RF-01…RF-05, RF-38 (P0), RF-39 (opcional) |
 | Gráficos, fichas y comparación | RF-09…RF-15, RF-21…RF-25, RF-42 |
 | Hotspots explicables (ambiente y equipamiento) | RF-26…RF-30, RF-43, RN-11…RN-14 |
+| Movilidad y paradas propuestas | RF-18, RF-57, RN-28 |
 | Relación ambiente ↔ equipamiento/transporte | RF-41, RN-14, RN-20 |
+| Copiloto IA y diagnóstico trazable | RF-48…RF-52, RN-24…RN-27, RNF-21…RNF-25 |
+| Deforestación y concientización | RF-53…RF-56, RN-24…RN-27 |
 | Publicar código, fuentes y límites | RF-31, RF-32, RF-33, RF-47, RNF-13, RNF-14, RNF-19 |
