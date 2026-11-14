@@ -113,6 +113,42 @@ button:focus-visible, a:focus-visible, select:focus-visible {
   background: var(--color-brand-700);
 }
 
+.dashboard-header-actions {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dashboard-view-switch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+}
+
+.dashboard-view-switch button {
+  min-height: 32px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  background: transparent;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+.dashboard-view-switch button[aria-pressed="true"] {
+  color: var(--color-brand-950);
+  background: var(--color-surface-raised);
+  box-shadow: 0 1px 4px rgb(23 63 54 / 13%);
+  font-weight: 700;
+}
+
 .dashboard-controls {
   display: flex;
   flex: 1;
@@ -317,6 +353,11 @@ button:focus-visible, a:focus-visible, select:focus-visible {
   .dashboard-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .dashboard-header-actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .dashboard-controls {
