@@ -91,7 +91,7 @@ export function findGamcLayer(layerId: string): GamcLayerDefinition | undefined 
 }
 
 export function buildGamcVisibility(
-  initial: readonly string[] = [],
+  initial: readonly string[] = ["97a589fe-595e-45dd-91d4-38524877f1ed"],
 ): Record<string, boolean> {
   const visible = new Set(initial);
   return Object.fromEntries(GAMC_LAYERS.map((layer) => [layer.id, visible.has(layer.id)]));

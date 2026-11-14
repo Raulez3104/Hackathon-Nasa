@@ -10,7 +10,7 @@ Inventario de fuentes, estado de verificación, operaciones disponibles y precau
 |---|---|---|---|---|
 | Catálogo WMS (7 servicios) | GAMC | OGC WMS 1.1.1 | Visualización de capas municipales y consulta puntual | Documentado |
 | Capas vectoriales municipales (distritos, parques, equipamiento, educación, salud) | GAMC | Vector (shp/geojson/gpkg) | Conteos, áreas y accesibilidad por distrito | **Fuente primaria** según el reto; entrega por confirmar |
-| GeoJSON de líneas de transporte | GAMC | GeoJSON | Dibujo de rutas y análisis de proximidad | Mencionado; por verificar |
+| GeoJSON de líneas de transporte | GAMC / recurso incorporado por el equipo | GeoJSON | Dibujo de rutas y análisis de proximidad | Validado estructuralmente en `data/lineas/` y normalizado en `frontend/public/data/transport.geojson`; CRS `EPSG:4326`; licencia del archivo recibido no documentada |
 | GeoJSON de distritos (equipo) | Por confirmar | GeoJSON | Geometrías de los 15 distritos | Disponible; estructura por verificar |
 | MOD13Q1 (NDVI) | NASA | Raster MODIS | Serie de vegetación 2015–2025 | Propuesto |
 | MOD11A2 (LST) | NASA | Raster MODIS | Serie de temperatura superficial 2015–2025 | Propuesto |

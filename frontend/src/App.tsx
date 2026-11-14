@@ -4,9 +4,11 @@ import { loadDistricts } from "./lib/data-source";
 import { formatValue, getValue } from "./components/map/color-scales";
 import { MapControls } from "./components/map/MapControls";
 import { MapLegend } from "./components/map/MapLegend";
-import { MapShell } from "./components/map/MapShell";
 import { LayerControl } from "./components/map/LayerControl";
+import { TransportControl } from "./components/map/TransportControl";
+import { MapComparisonControl } from "./components/map/MapComparisonControl";
 import type { IndexView, WmsLayerStatus } from "./components/map/map.types";
+import { useMapUrlState } from "./components/map/useMapUrlState";
 import type { DatasetStatus } from "./components/analytics/types";
 import { buildGamcVisibility, GAMC_LAYERS } from "./services/wms/catalog";
 
@@ -14,18 +16,30 @@ import { buildGamcVisibility, GAMC_LAYERS } from "./services/wms/catalog";
 const AnalyticsWorkspace = lazy(() =>
   import("./components/analytics/AnalyticsWorkspace").then((module) => ({ default: module.AnalyticsWorkspace })),
 );
+const MapShell = lazy(() =>
+  import("./components/map/MapShell").then((module) => ({ default: module.MapShell })),
+);
 
 type AppView = "map" | "analytics";
 
 function App() {
   const [activeView, setActiveView] = useState<AppView>("map");
+  const mapUrl = useMapUrlState();
   const [districts, setDistricts] = useState<DistrictData[]>([]);
-  const [year, setYear] = useState(2025);
-  const [variable, setVariable] = useState<Variable>("icvsa");
-  const [indexView, setIndexView] = useState<IndexView>("numeric");
-  const [selectedDistrictId, setSelectedDistrictId] = useState<number | null>(null);
-  const [showLstHeatmap, setShowLstHeatmap] = useState(true);
-  const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(() => buildGamcVisibility());
+  const { state: mapState } = mapUrl;
+  const year = mapState.year;
+  const variable = mapState.variable;
+  const indexView = mapState.view;
+  const selectedDistrictId = mapState.districtId;
+  const showLstHeatmap = mapState.layers.length === 0 || mapState.layers.includes("lst");
+  const showTransport = mapState.layers.includes("transport");
+  const showTransportStops = mapState.layers.includes("transport_stops");
+  const [transportRoute, setTransportRoute] = useState("");
+  const [transportRoutes, setTransportRoutes] = useState<string[]>([]);
+  const [transportStatus, setTransportStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
+  const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(
+    () => buildGamcVisibility(mapState.layers.filter((layer) => GAMC_LAYERS.some((definition) => definition.id === layer))),
+  );
   const [gamcOpacity, setGamcOpacity] = useState(0.82);
   const [gamcReloadToken, setGamcReloadToken] = useState(0);
   const [gamcStatuses, setGamcStatuses] = useState<Record<string, WmsLayerStatus>>({});
@@ -55,6 +69,16 @@ function App() {
   const handleGamcStatusChange = useCallback((layerId: string, status: WmsLayerStatus) => {
     setGamcStatuses((current) => (current[layerId] === status ? current : { ...current, [layerId]: status }));
   }, []);
+
+  useEffect(() => {
+    const layers = [
+      ...GAMC_LAYERS.filter((layer) => gamcVisibility[layer.id]).map((layer) => layer.id),
+      ...(showLstHeatmap ? ["lst"] : []),
+      ...(showTransport ? ["transport"] : []),
+      ...(showTransportStops ? ["transport_stops"] : []),
+    ];
+    if (layers.join(",") !== mapState.layers.join(",")) mapUrl.setLayers(layers);
+  }, [gamcVisibility, mapState.layers, mapUrl.setLayers, showLstHeatmap, showTransport]);
 
   if (error) {
     return (
@@ -87,10 +111,13 @@ function App() {
               variable={variable}
               indexView={indexView}
               showLstHeatmap={showLstHeatmap}
-              onYearChange={setYear}
-              onVariableChange={setVariable}
-              onIndexViewChange={setIndexView}
-              onHeatmapChange={setShowLstHeatmap}
+              onYearChange={mapUrl.setYear}
+              onVariableChange={mapUrl.setVariable}
+              onIndexViewChange={mapUrl.setView}
+              onHeatmapChange={(visible) => {
+                const layers = mapState.layers.filter((layer) => layer !== "lst");
+                mapUrl.setLayers(visible ? [...layers, "lst"] : layers);
+              }}
             />
           )}
         </div>
@@ -109,21 +136,52 @@ function App() {
       ) : (
         <main className="dashboard-main">
           {districts.length > 0 && (
-            <MapShell
-              districts={districts}
-              year={year}
-              variable={variable}
-              indexView={indexView}
-              selectedDistrictId={selectedDistrictId}
-              showLstHeatmap={showLstHeatmap}
-              gamcLayers={activeGamcLayers}
-              gamcOpacity={gamcOpacity}
-              gamcReloadToken={gamcReloadToken}
-              onGamcStatusChange={handleGamcStatusChange}
-              onDistrictSelect={setSelectedDistrictId}
-            />
+            <Suspense fallback={<div className="dashboard-map-loading" role="status">Cargando mapa…</div>}>
+              <MapShell
+                districts={districts}
+                year={year}
+                variable={variable}
+                indexView={indexView}
+                selectedDistrictId={selectedDistrictId}
+                showLstHeatmap={showLstHeatmap}
+              showTransport={showTransport}
+              showTransportStops={showTransportStops}
+                transportRoute={transportRoute}
+                selectedDistrictGeometry={selectedDistrict?.geometry ?? null}
+                onTransportRoutesLoaded={setTransportRoutes}
+                onTransportStatusChange={setTransportStatus}
+                gamcLayers={activeGamcLayers}
+                gamcOpacity={gamcOpacity}
+                gamcReloadToken={gamcReloadToken}
+                onGamcStatusChange={handleGamcStatusChange}
+                onDistrictSelect={mapUrl.selectDistrict}
+              />
+            </Suspense>
           )}
           <aside className="dashboard-side-panel">
+            <TransportControl
+              enabled={showTransport}
+              showStops={showTransportStops}
+              status={transportStatus}
+              routeId={transportRoute}
+              routes={transportRoutes}
+              onEnabledChange={(enabled) => {
+                const layers = mapState.layers.filter((layer) => layer !== "transport");
+                mapUrl.setLayers(enabled ? [...layers, "transport"] : layers);
+              }}
+              onStopsChange={(visible) => {
+                const layers = mapState.layers.filter((layer) => layer !== "transport_stops");
+                mapUrl.setLayers(visible ? [...layers, "transport_stops"] : layers);
+              }}
+              onRouteChange={setTransportRoute}
+            />
+            <MapComparisonControl
+              districts={districts}
+              ids={mapState.compareIds}
+              year={year}
+              variable={variable}
+              onChange={mapUrl.setComparison}
+            />
             <LayerControl
               layers={GAMC_LAYERS}
               visibility={gamcVisibility}
