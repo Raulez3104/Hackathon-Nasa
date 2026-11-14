@@ -1,4 +1,4 @@
-import type { DistrictData, DistrictSeriesPoint, DistrictTrend } from "../../../../shared/types/geoqocha";
+import type { DistrictData, DistrictSeriesPoint, DistrictTrend, EquipmentMetrics } from "../../../../shared/types/geoqocha";
 import type { MetricKey } from "./types";
 
 export interface AverageResult {
@@ -136,4 +136,118 @@ export function latestYear(districts: DistrictData[]): number | null {
 export function districtById(districts: DistrictData[], id: number | null | undefined): DistrictData | null {
   if (id == null) return null;
   return districts.find((district) => district.district_id === id) ?? null;
+}
+
+export type EquipmentMetricKey =
+  | "green_area_m2_per_capita"
+  | "schools_per_1000"
+  | "health_centers_per_1000"
+  | "transport_coverage_fraction"
+  | "equipment_access_index"
+  | "mobility_access_index";
+
+export function equipmentValue(district: DistrictData, key: EquipmentMetricKey): number | null {
+  const value = district.equipment[key];
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+/** Promedio municipal de una métrica territorial; ignora null. */
+export function municipalEquipmentAverage(
+  districts: DistrictData[],
+  key: EquipmentMetricKey,
+): AverageResult {
+  const values = districts
+    .map((district) => equipmentValue(district, key))
+    .filter((value): value is number => value != null);
+  if (values.length === 0) return { average: null, n: 0 };
+  return {
+    average: values.reduce((sum, value) => sum + value, 0) / values.length,
+    n: values.length,
+  };
+}
+
+export function equipmentGap(
+  district: DistrictData,
+  districts: DistrictData[],
+  key: EquipmentMetricKey,
+): { value: number | null; average: AverageResult; gap: GapResult | null } {
+  const value = equipmentValue(district, key);
+  const average = municipalEquipmentAverage(districts, key);
+  return { value, average, gap: computeGap(value, average.average) };
+}
+
+export function equipmentMetricsList(district: DistrictData): Array<{ key: EquipmentMetricKey; value: number | null }> {
+  const keys: EquipmentMetricKey[] = [
+    "green_area_m2_per_capita",
+    "schools_per_1000",
+    "health_centers_per_1000",
+    "transport_coverage_fraction",
+    "equipment_access_index",
+    "mobility_access_index",
+  ];
+  return keys.map((key) => ({ key, value: equipmentValue(district, key) }));
+}
+
+export const DEFICIT_LABELS: Record<string, string> = {
+  GREEN_AREA_LOW: "Área verde por debajo del umbral",
+  SCHOOLS_LOW: "Escuelas por debajo del umbral",
+  HEALTH_LOW: "Centros de salud por debajo del umbral",
+  TRANSPORT_LOW: "Cobertura de transporte por debajo del umbral",
+  EQUIPMENT_LOW: "Acceso a equipamiento por debajo del umbral",
+  MOBILITY_LOW: "Acceso a movilidad por debajo del umbral",
+};
+
+export function deficitLabel(flag: string): string {
+  return DEFICIT_LABELS[flag] ?? flag.replaceAll("_", " ").toLowerCase();
+}
+
+export interface MunicipalGapRow {
+  key: string;
+  label: string;
+  value: number | null;
+  average: number | null;
+  n: number;
+  gap: GapResult | null;
+}
+
+/** Brechas ambientales y de equipamiento frente al promedio municipal. */
+export function municipalGapRows(
+  district: DistrictData,
+  districts: DistrictData[],
+  year: number | null,
+): MunicipalGapRow[] {
+  const seriesRows: Array<{ key: MetricKey; label: string }> = [
+    { key: "socioenvironmental_index", label: "ICVSA" },
+    { key: "environmental_index", label: "Índice ambiental" },
+    { key: "ndvi_mean", label: "NDVI medio" },
+    { key: "lst_mean_celsius", label: "LST media" },
+  ];
+
+  const rows: MunicipalGapRow[] = seriesRows.map(({ key, label }) => {
+    const value = districtMetricValue(district, key, year);
+    const average = municipalAverage(districts, key, year);
+    return {
+      key,
+      label,
+      value,
+      average: average.average,
+      n: average.n,
+      gap: computeGap(value, average.average),
+    };
+  });
+
+  const equipmentRows: Array<{ key: EquipmentMetricKey; label: string }> = [
+    { key: "equipment_access_index", label: "Acceso a equipamiento" },
+    { key: "mobility_access_index", label: "Acceso a movilidad" },
+    { key: "green_area_m2_per_capita", label: "Área verde por habitante" },
+    { key: "schools_per_1000", label: "Escuelas por 1.000 hab." },
+    { key: "health_centers_per_1000", label: "Centros de salud por 1.000 hab." },
+  ];
+
+  for (const { key, label } of equipmentRows) {
+    const { value, average, gap } = equipmentGap(district, districts, key);
+    rows.push({ key, label, value, average: average.average, n: average.n, gap });
+  }
+
+  return rows;
 }

@@ -1,16 +1,16 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { DistrictData } from "../../../../shared/types/geoqocha";
 import { ComparisonPanel } from "./ComparisonPanel";
+import { DistrictProfile } from "./DistrictProfile";
+import { SeriesChart } from "./SeriesChart";
 import {
   formatArea,
   formatIndex,
   formatPopulation,
-  qualityLabel,
   riskLabel,
   semaphoreForScore,
-  trendDirectionLabel,
 } from "./format";
-import { districtById, latestSeriesPoint, trendFor } from "./stats";
+import { districtById, latestSeriesPoint } from "./stats";
 import type { DatasetStatus } from "./types";
 import { useFocusTrap } from "./use-focus-trap";
 import { requestDiagnosis, useCrossFrontEvents, useUrlState } from "./use-url-state";
@@ -50,8 +50,6 @@ export function DistrictPanel({
   const icvsa = latest?.socioenvironmental_index ?? selected?.latest_socioenvironmental_index ?? null;
   const semaphore = semaphoreForScore(icvsa);
   const risk = riskLabel(selected?.risk_level);
-  const ndviTrend = selected ? trendFor(selected, "ndvi") : null;
-  const icvsaTrend = selected ? trendFor(selected, "socioenvironmental_index") : null;
 
   useEffect(() => {
     if (variant !== "drawer" || state.panel != null || state.districtId == null) return;
@@ -204,30 +202,15 @@ export function DistrictPanel({
               <p className="gq-caveat">
                 Indicador sintético de apoyo al análisis; no es una evaluación oficial del GAMC.
               </p>
+              <p>
+                <span className={`gq-badge gq-tone--${risk.key}`}>
+                  <span aria-hidden="true">{risk.icon}</span> {risk.label}
+                </span>
+              </p>
             </section>
 
-            <dl className="gq-summary-grid">
-              <div>
-                <dt>Calidad del dato</dt>
-                <dd>{qualityLabel(latest?.data_quality_flag)}</dd>
-              </div>
-              <div>
-                <dt>Clasificación indicativa</dt>
-                <dd>
-                  <span className={`gq-badge gq-tone--${risk.key}`}>
-                    <span aria-hidden="true">{risk.icon}</span> {risk.label}
-                  </span>
-                </dd>
-              </div>
-              <div>
-                <dt>Tendencia NDVI</dt>
-                <dd>{ndviTrend ? trendDirectionLabel(ndviTrend.direction) : "No disponible"}</dd>
-              </div>
-              <div>
-                <dt>Tendencia ICVSA</dt>
-                <dd>{icvsaTrend ? trendDirectionLabel(icvsaTrend.direction) : "No disponible"}</dd>
-              </div>
-            </dl>
+            <DistrictProfile district={selected} districts={districts} year={latest?.year ?? year ?? selected.latest_year} />
+            <SeriesChart primary={selected} year={latest?.year ?? year ?? null} />
 
             <div className="gq-panel-actions">
               <button

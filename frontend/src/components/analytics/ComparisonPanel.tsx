@@ -10,8 +10,9 @@ import {
   formatSignedPercent,
   qualityLabel,
 } from "./format";
-import { districtById, seriesPointForYear } from "./stats";
+import { districtById, gapVsMunicipal, seriesPointForYear } from "./stats";
 import type { MetricKey } from "./types";
+import { SeriesChart } from "./SeriesChart";
 import "./analytics.css";
 
 interface ComparisonRow {
@@ -146,6 +147,8 @@ export function ComparisonPanel({
   const effectiveYear = year ?? left?.latest_year ?? right?.latest_year ?? null;
   const leftPoint = left ? seriesPointForYear(left, effectiveYear) : null;
   const rightPoint = right ? seriesPointForYear(right, effectiveYear) : null;
+  const leftGap = left ? gapVsMunicipal(left, districts, "socioenvironmental_index", effectiveYear) : null;
+  const rightGap = right ? gapVsMunicipal(right, districts, "socioenvironmental_index", effectiveYear) : null;
 
   const update = (side: "left" | "right", value: string) => {
     const id = Number(value);
@@ -268,6 +271,26 @@ export function ComparisonPanel({
             {right.territorial_reference_year ?? "no disponible"}. Los valores no disponibles se muestran como
             «No disponible» y nunca como cero.
           </p>
+
+          <div className="gq-gap-callout" aria-label="Brecha de ICVSA frente al promedio municipal">
+            <p>
+              <strong>Brecha de ICVSA vs. promedio municipal:</strong>{" "}
+              {left.name}{" "}
+              {leftGap?.gap
+                ? `${formatSigned(leftGap.gap.absolute, formatIndex)} (${formatSignedPercent(leftGap.gap.relativePercent)})`
+                : "No disponible"}{" "}
+              · {right.name}{" "}
+              {rightGap?.gap
+                ? `${formatSigned(rightGap.gap.absolute, formatIndex)} (${formatSignedPercent(rightGap.gap.relativePercent)})`
+                : "No disponible"}
+            </p>
+            <p className="gq-caveat">
+              Promedio calculado con n = {leftGap?.average.n ?? 0} distritos con dato. Una brecha negativa indica
+              desventaja relativa; no implica causalidad.
+            </p>
+          </div>
+
+          <SeriesChart primary={left} secondary={right} year={effectiveYear} />
 
           {warnings.length > 0 ? (
             <ul className="gq-warning-list" aria-label="Advertencias de calidad del dato">

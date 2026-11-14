@@ -27,8 +27,8 @@ describe("DistrictPanel", () => {
 
     const dialog = screen.getByRole("dialog", { name: /distrito 1/i });
     expect(dialog).toBeInTheDocument();
-    expect(within(dialog).getByText(/condición intermedia/i)).toBeInTheDocument();
-    expect(within(dialog).getByText(/48\.210 hab\./)).toBeInTheDocument();
+    expect(within(dialog).getAllByText(/condición intermedia/i).length).toBeGreaterThan(0);
+    expect(within(dialog).getAllByText(/48\.210 hab\./).length).toBeGreaterThan(0);
 
     await waitFor(() => {
       expect(screen.getByRole("button", { name: /cerrar panel distrital/i })).toHaveFocus();
@@ -79,7 +79,8 @@ describe("DistrictPanel", () => {
     expect(screen.getByRole("combobox", { name: /distrito a/i })).toHaveValue("1");
     expect(screen.getByRole("combobox", { name: /distrito b/i })).toHaveValue("2");
 
-    const table = screen.getByRole("table");
+    const tables = screen.getAllByRole("table");
+    const table = tables[0];
     expect(within(table).getByText("ICVSA")).toBeInTheDocument();
     expect(within(table).getByText("64")).toBeInTheDocument();
     expect(within(table).getByText("38")).toBeInTheDocument();
