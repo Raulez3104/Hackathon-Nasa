@@ -1,0 +1,36 @@
+{
+  "contract_version": "0.1.0",
+  "generated_at": "2026-11-14T02:43:28Z",
+  "sources": [
+    {
+      "id": "mock",
+      "name": "Mock de desarrollo GeoQocha",
+      "organization": "Equipo GeoQocha",
+      "url": "https://github.com/Raulez3104/Hackathon-Nasa",
+      "reference_date": "2026-11-13",
+      "license": "CC BY 4.0 para datos ilustrativos",
+      "transformations": [
+        "Datos sintéticos generados para desarrollo"
+      ],
+      "limitations": [
+        "No representa mediciones reales ni datos oficiales"
+      ]
+    },
+    {
+      "id": "geoqocha_methodology",
+      "name": "Metodología ICVSA GeoQocha",
+      "organization": "Equipo GeoQocha",
+      "url": "https://github.com/Raulez3104/Hackathon-Nasa",
+      "reference_date": "v0.1.0",
+      "license": "CC BY 4.0",
+      "transformations": [
+        "Normalización min-max",
+        "Ponderación ICVSA",
+        "Reglas de hotspot"
+      ],
+      "limitations": [
+        "Indicador sintético de apoyo; no mide bienestar de forma definitiva"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1220 @@
+{
+  "methodology_version": "0.1.0",
+  "generated_at": "2026-11-14T02:43:28Z",
+  "disclaimer": "Análisis exploratorio. No establecer causalidad ni priorizar inversión con este resultado.",
+  "min_n": 8,
+  "results": [
+    {
+      "x_variable": "ndvi_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": null,
+      "method": "pearson",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 0.002,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 0.002,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 0.002,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 0.002,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 0.002,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 0.002,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 0.002,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 0.002,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 0.002,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 0.002,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 0.002,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 0.002,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 0.002,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 0.002,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 0.002,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "ndvi_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": null,
+      "method": "spearman",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 0.002,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 0.002,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 0.002,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 0.002,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 0.002,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 0.002,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 0.002,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 0.002,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 0.002,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 0.002,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 0.002,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 0.002,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 0.002,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 0.002,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 0.002,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "ndvi_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": null,
+      "method": "pearson",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 0.002,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 0.002,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 0.002,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 0.002,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 0.002,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 0.002,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 0.002,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 0.002,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 0.002,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 0.002,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 0.002,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 0.002,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 0.002,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 0.002,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 0.002,
+          "y": 65
+        }
+      ]
+    },
+    {
+      "x_variable": "ndvi_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": null,
+      "method": "spearman",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 0.002,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 0.002,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 0.002,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 0.002,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 0.002,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 0.002,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 0.002,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 0.002,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 0.002,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 0.002,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 0.002,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 0.002,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 0.002,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 0.002,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 0.002,
+          "y": 65
+        }
+      ]
+    },
+    {
+      "x_variable": "lst_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": null,
+      "method": "pearson",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": -0.08,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": -0.08,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": -0.08,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": -0.08,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": -0.08,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": -0.08,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": -0.08,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": -0.08,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": -0.08,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": -0.08,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": -0.08,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": -0.08,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": -0.08,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": -0.08,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": -0.08,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "lst_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": null,
+      "method": "spearman",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": -0.08,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": -0.08,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": -0.08,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": -0.08,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": -0.08,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": -0.08,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": -0.08,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": -0.08,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": -0.08,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": -0.08,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": -0.08,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": -0.08,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": -0.08,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": -0.08,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": -0.08,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "lst_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": null,
+      "method": "pearson",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": -0.08,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": -0.08,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": -0.08,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": -0.08,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": -0.08,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": -0.08,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": -0.08,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": -0.08,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": -0.08,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": -0.08,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": -0.08,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": -0.08,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": -0.08,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": -0.08,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": -0.08,
+          "y": 65
+        }
+      ]
+    },
+    {
+      "x_variable": "lst_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": null,
+      "method": "spearman",
+      "n": 15,
+      "p_value": null,
+      "interpretation": "Insuficientes distritos con datos completos (n=15); no se calcula un coeficiente concluyente ni se establece causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": -0.08,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": -0.08,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": -0.08,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": -0.08,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": -0.08,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": -0.08,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": -0.08,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": -0.08,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": -0.08,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": -0.08,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": -0.08,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": -0.08,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": -0.08,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": -0.08,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": -0.08,
+          "y": 65
+        }
+      ]
+    },
+    {
+      "x_variable": "environmental_index_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": 0.18,
+      "method": "pearson",
+      "n": 15,
+      "p_value": 0.52,
+      "interpretation": "Relación positiva muy débil entre la tendencia ambiental y el acceso a equipamiento con n=15; es exploratoria y no implica causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 2.34,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 2.3436,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 2.34,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 2.3409,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 2.3482,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 2.3518,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 2.35,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 2.3436,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 2.3545,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 2.3491,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 2.3445,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 2.3455,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 2.3382,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 2.34,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 2.3518,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "environmental_index_trend",
+      "y_variable": "equipment_access_index",
+      "coefficient": 0.181,
+      "method": "spearman",
+      "n": 15,
+      "p_value": 0.5178,
+      "interpretation": "Relación positiva muy débil entre la tendencia ambiental y el acceso a equipamiento con n=15; es exploratoria y no implica causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 2.34,
+          "y": 46
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 2.3436,
+          "y": 47
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 2.34,
+          "y": 48
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 2.3409,
+          "y": 49
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 2.3482,
+          "y": 50
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 2.3518,
+          "y": 51
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 2.35,
+          "y": 52
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 2.3436,
+          "y": 53
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 2.3545,
+          "y": 54
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 2.3491,
+          "y": 55
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 2.3445,
+          "y": 56
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 2.3455,
+          "y": 57
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 2.3382,
+          "y": 58
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 2.34,
+          "y": 59
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 2.3518,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "x_variable": "environmental_index_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": 0.18,
+      "method": "pearson",
+      "n": 15,
+      "p_value": 0.52,
+      "interpretation": "Relación positiva muy débil entre la tendencia ambiental y el acceso a movilidad con n=15; es exploratoria y no implica causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 2.34,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 2.3436,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 2.34,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 2.3409,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 2.3482,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 2.3518,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 2.35,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 2.3436,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 2.3545,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 2.3491,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 2.3445,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 2.3455,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 2.3382,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 2.34,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 2.3518,
+          "y": 65
+        }
+      ]
+    },
+    {
+      "x_variable": "environmental_index_trend",
+      "y_variable": "mobility_access_index",
+      "coefficient": 0.181,
+      "method": "spearman",
+      "n": 15,
+      "p_value": 0.5178,
+      "interpretation": "Relación positiva muy débil entre la tendencia ambiental y el acceso a movilidad con n=15; es exploratoria y no implica causalidad.",
+      "districts": [
+        {
+          "district_id": 1,
+          "district_name": "Distrito 1",
+          "x": 2.34,
+          "y": 51
+        },
+        {
+          "district_id": 2,
+          "district_name": "Distrito 2",
+          "x": 2.3436,
+          "y": 52
+        },
+        {
+          "district_id": 3,
+          "district_name": "Distrito 3",
+          "x": 2.34,
+          "y": 53
+        },
+        {
+          "district_id": 4,
+          "district_name": "Distrito 4",
+          "x": 2.3409,
+          "y": 54
+        },
+        {
+          "district_id": 5,
+          "district_name": "Distrito 5",
+          "x": 2.3482,
+          "y": 55
+        },
+        {
+          "district_id": 6,
+          "district_name": "Distrito 6",
+          "x": 2.3518,
+          "y": 56
+        },
+        {
+          "district_id": 7,
+          "district_name": "Distrito 7",
+          "x": 2.35,
+          "y": 57
+        },
+        {
+          "district_id": 8,
+          "district_name": "Distrito 8",
+          "x": 2.3436,
+          "y": 58
+        },
+        {
+          "district_id": 9,
+          "district_name": "Distrito 9",
+          "x": 2.3545,
+          "y": 59
+        },
+        {
+          "district_id": 10,
+          "district_name": "Distrito 10",
+          "x": 2.3491,
+          "y": 60
+        },
+        {
+          "district_id": 11,
+          "district_name": "Distrito 11",
+          "x": 2.3445,
+          "y": 61
+        },
+        {
+          "district_id": 12,
+          "district_name": "Distrito 12",
+          "x": 2.3455,
+          "y": 62
+        },
+        {
+          "district_id": 13,
+          "district_name": "Distrito 13",
+          "x": 2.3382,
+          "y": 63
+        },
+        {
+          "district_id": 14,
+          "district_name": "Distrito 14",
+          "x": 2.34,
+          "y": 64
+        },
+        {
+          "district_id": 15,
+          "district_name": "Distrito 15",
+          "x": 2.3518,
+          "y": 65
+        }
+      ]
+    }
+  ]
+}
