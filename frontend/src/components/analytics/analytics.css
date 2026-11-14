@@ -633,6 +633,29 @@
   margin: 0 auto;
 }
 
+.gq-workspace-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 1120px;
+  margin: 0 auto 14px;
+  padding: 6px;
+  border: 1px solid var(--gq-line);
+  border-radius: 999px;
+  background: var(--gq-paper);
+}
+
+.gq-workspace-nav .gq-chip[aria-pressed="true"] {
+  color: #fff;
+  background: var(--gq-green-dark);
+  border-color: var(--gq-green-dark);
+}
+
+.gq-workspace-nav .gq-chip:focus-visible {
+  outline: 3px solid var(--gq-focus);
+  outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
   .gq-workspace {
     padding: 12px 12px 48px;
