@@ -270,7 +270,7 @@ Las consultas dinámicas se realizan contra la API Express
 ### 5.2 Proxy WMS
 
 ```text
-Frontend → GET http://localhost:3001/api/gamc/wms?service_id=...&REQUEST=GetMap&...
+Frontend → GET http://localhost:3000/api/gamc/wms?service_id=...&REQUEST=GetMap&...
                    ↓
         Express valida service_id (lista blanca),
         valida REQUEST, BBOX, WIDTH, HEIGHT, FORMAT
@@ -287,7 +287,7 @@ Frontend → GET http://localhost:3001/api/gamc/wms?service_id=...&REQUEST=GetMa
 ```text
 Usuario escribe una pregunta o abre un diagnóstico
         ↓
-Frontend → POST http://localhost:3001/api/ai-analyst con AIRequest
+Frontend → POST http://localhost:3000/api/ai-analyst con AIRequest
         ↓
 validación + rate limit + recuperación de contexto
         ↓
@@ -435,7 +435,7 @@ GAMC_WMS_URL=https://serviciosgamc.cochabamba.bo/api/gs/wms
 GAMC_API_KEY=
 GAMC_ALLOWED_SERVICE_IDS=
 CORS_ORIGIN=http://localhost:5173
-PORT=3001
+PORT=3000
 
 AI_PROVIDER=gemini
 AI_API_KEY=
@@ -444,7 +444,7 @@ AI_TIMEOUT_MS=20000
 AI_MAX_OUTPUT_TOKENS=800
 
 VITE_DATA_MODE=mock
-VITE_API_BASE_URL=http://localhost:3001
+VITE_API_BASE_URL=http://localhost:3000
 ```
 
 ---

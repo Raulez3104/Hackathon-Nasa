@@ -48,6 +48,26 @@ La documentación compartida confirma un catálogo con **siete servicios WMS de 
 | **Límite Urbano** | Contextualizar el área urbana según delimitación municipal | WMS o vector de contexto |
 | **Líneas de Transporte** | Dibujar rutas y calcular cobertura/proximidad | **GeoJSON descargable**; validar URL, campos y fecha |
 
+### 2.2.1 Catálogo confirmado en el portal (2026-11-13)
+
+El portal del GAMC publica los `service_id` del proyecto **«5 Be An Earth System Trend Detective!»**, que corresponde a este reto. Son identificadores públicos, no secretos, y se habilitan en `GAMC_ALLOWED_SERVICE_IDS`.
+
+| Capa | Tipo | `service_id` | Extensión WGS84 (minLon, minLat, maxLon, maxLat) |
+|---|---|---|---|
+| **Límite Distritos** | Simple | `7eb13092-bf0e-493b-aae6-03c43eedda2c` | -66.280703, -17.53119, -66.06952, -17.257306 |
+| **Límite Urbano** | Simple | `fd77d463-9729-4c66-b686-23dccbb4ab8f` | -66.251426, -17.50846, -66.084188, -17.332785 |
+| **Áreas Verdes** | Simple | `47360ddc-e35f-4ece-a995-59e90eb79cc6` | -66.2493, -17.502865, -66.085546, -17.335849 |
+| **Población por Manzanas** | Simple | `194a02a0-a73a-48c1-a260-82847c5c905d` | -66.280703, -17.53119, -66.06952, -17.257306 |
+| **Áreas de Equipamiento** | Simple | `97a589fe-595e-45dd-91d4-38524877f1ed` | -66.252843, -17.505306, -66.084417, -17.271602 |
+| **Unidades Educativas** | Simple | `7655ba3d-5d9e-44ff-bf65-26f81f83d7ec` | -66.280703, -17.53119, -66.06952, -17.257306 |
+| **Centros de Salud** | Simple | `e40fa280-f649-4614-9526-1b3dcce596b3` | -66.280703, -17.53119, -66.06952, -17.257306 |
+
+- La capa de **Áreas de Equipamiento** (`97a589fe-595e-45dd-91d4-38524877f1ed`) es la que consume el frontend mediante `VITE_GAMC_EQUIPMENT_SERVICE_ID`.
+- El portal expone además capas de otros proyectos (Cota 2750, cuencas, drenaje, emergencias, periurbanos) que **no** forman parte de este MVP y no deben habilitarse en la lista blanca.
+- Recursos descargables del proyecto, anunciados en el mismo portal:
+  - Líneas de transporte: `https://recursosgamc.cochabamba.bo/assets/geo/lineas_de_transporte.rar`
+  - Red MÓNICA (2 estaciones terrestres): `https://recursosgamc.cochabamba.bo/assets/geo/red_monica.zip`
+
 ### 2.3 Operaciones disponibles
 
 | Operación | Formato de salida | Uso |
@@ -64,6 +84,7 @@ La documentación compartida confirma un catálogo con **siete servicios WMS de 
 - Para mapas web se muestra `SRS=EPSG:3857`; el servicio utiliza `BBOX`, `WIDTH`, `HEIGHT` y coordenadas de píxel para consultas.
 - La capa de **Áreas Verdes** declara cobertura aproximada en WGS84: longitud **-66.2493 a -66.085546**, latitud **-17.502865 a -17.335849**. Esta extensión pertenece a esa capa, no necesariamente a todos los servicios.
 - El ejemplo de `GetFeatureInfo` muestra una respuesta tipo `FeatureCollection`; `features: []` significa que no se identificaron elementos para esa consulta.
+- El catálogo del proyecto del reto está confirmado: siete servicios WMS de solo lectura, listados en 2.2.1. El endpoint es el mismo para todos y el proxy resuelve la capa con `service_id`.
 
 ### 2.5 Restricción importante
 
@@ -296,10 +317,10 @@ Las claves del GAMC y de proveedores de IA nunca se solicitan por el chat ni se 
 
 1. **GeoJSON de distritos:** confirmar nombre, origen, capa contenida, sistema de coordenadas, atributos de identificación distrital y licencia.
 2. **Capas vectoriales del GAMC:** confirmar entrega de distritos, áreas verdes, equipamiento, educación, salud y población; formato (shp/geojson/gpkg), atributos, fecha y licencia.
-3. **Transporte:** obtener el archivo descargable y revisar rutas, campos, cobertura y fecha.
+3. **Transporte:** descargar `lineas_de_transporte.rar` desde el portal y revisar formato real, rutas, campos, cobertura y fecha.
 4. **Población por manzanas:** confirmar si se pueden acceder a valores y geometrías agregables, y año censal o administrativo.
 5. **Equipamientos:** comprobar si existen archivos vectoriales o tablas completas, además de WMS/`GetFeatureInfo`.
-6. **Servicio WMS:** verificar `service_id` de cada capa, códigos de respuesta, capas y compatibilidad real del proxy con `GetFeatureInfo`.
+6. **Servicio WMS:** los `service_id` del proyecto ya están confirmados (2.2.1); falta validar códigos de respuesta, `GetMap`, `GetLegendGraphic` y compatibilidad real del proxy con `GetFeatureInfo`.
 7. **NASA:** confirmar resultados, máscaras QA y calidad de ambas series en los 15 distritos.
 8. **Metodología del ICVSA:** acordar normalización, pesos, `t_ref`, tratamiento de vacíos e interpretación.
 9. **Términos de uso:** revisar permisos de reproducción de datos del GAMC y atribución NASA.
@@ -332,6 +353,8 @@ Las claves del GAMC y de proveedores de IA nunca se solicitan por el chat ni se 
 
 - Portal de documentación: https://recursosgamc.cochabamba.bo/api-doc
 - Servicio WMS base: https://serviciosgamc.cochabamba.bo/api/gs/wms
+- Líneas de transporte: https://recursosgamc.cochabamba.bo/assets/geo/lineas_de_transporte.rar
+- Red MÓNICA: https://recursosgamc.cochabamba.bo/assets/geo/red_monica.zip
 
 **NASA / geoespacial**
 

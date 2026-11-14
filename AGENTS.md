@@ -185,7 +185,7 @@ GAMC_WMS_URL=https://serviciosgamc.cochabamba.bo/api/gs/wms
 GAMC_API_KEY=
 GAMC_ALLOWED_SERVICE_IDS=
 CORS_ORIGIN=http://localhost:5173
-PORT=3001
+PORT=3000
 
 AI_PROVIDER=gemini
 AI_API_KEY=
@@ -194,7 +194,7 @@ AI_TIMEOUT_MS=20000
 AI_MAX_OUTPUT_TOKENS=800
 
 VITE_DATA_MODE=mock
-VITE_API_BASE_URL=http://localhost:3001
+VITE_API_BASE_URL=http://localhost:3000
 ```
 
 ---

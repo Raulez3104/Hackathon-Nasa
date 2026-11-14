@@ -10,7 +10,7 @@ Contratos de la **API propia** de GeoQocha (propuesta, no endpoints existentes d
 
 | Aspecto | Definición |
 |---|---|
-| Base URL (local) | `http://localhost:3001/api` |
+| Base URL (local) | `http://localhost:3000/api` |
 | Formato | JSON UTF-8 (`Content-Type: application/json`) |
 | Versionado | Prefijo de ruta o cabecera; el MVP usa `/api` estable |
 | Fechas | `YYYY-MM-DD` (ISO 8601) |
@@ -934,8 +934,9 @@ El cliente **nunca** envía ni conoce la `key`. El backend la añade y valida to
 | `BBOX` | Condicional | Cuatro números finitos, orden y rango válidos. |
 | `WIDTH` / `HEIGHT` | Condicional | Enteros, `1 <= n <= 2048`. |
 | `X` / `Y` | Condicional | Enteros dentro de `WIDTH`/`HEIGHT` (para `GetFeatureInfo`). |
-| `QUERY_LAYERS` | Condicional | Requerido para `GetFeatureInfo` según servicio. |
+| `QUERY_LAYERS` | No | Se omite o se envía vacío; el proxy municipal resuelve la capa mediante `service_id`. |
 | `INFO_FORMAT` | No | `application/json` cuando esté soportado. |
+| `FEATURE_COUNT` | No | Entero entre 1 y 20 para limitar resultados de `GetFeatureInfo`. |
 
 **Ejemplo de llamada del frontend**
 
@@ -995,30 +996,30 @@ Nunca incluir la `key` en cabeceras, logs ni mensajes de error.
 
 ```bash
 # Catálogo de distritos con geometría
-  curl "http://localhost:3001/api/districts?include_geometry=true"
+  curl "http://localhost:3000/api/districts?include_geometry=true"
 
 # Serie histórica de un distrito
-  curl "http://localhost:3001/api/districts/3/indicators?from=2015&to=2025"
+  curl "http://localhost:3000/api/districts/3/indicators?from=2015&to=2025"
 
 # Comparación de dos distritos
-  curl "http://localhost:3001/api/comparison?districts=3,9&year=2025"
+  curl "http://localhost:3000/api/comparison?districts=3,9&year=2025"
 
 # Hotspots
-  curl "http://localhost:3001/api/hotspots?year=2025&min_priority=medium"
+  curl "http://localhost:3000/api/hotspots?year=2025&min_priority=medium"
 
 # Mapa de calor de LST
-  curl "http://localhost:3001/api/heatmap?variable=lst&year=2025&format=cells"
+  curl "http://localhost:3000/api/heatmap?variable=lst&year=2025&format=cells"
 
 # Correlación exploratoria
-  curl "http://localhost:3001/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index"
+  curl "http://localhost:3000/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index"
 
 # Diagnóstico automático con IA
-  curl -X POST "http://localhost:3001/api/ai-analyst" \
+  curl -X POST "http://localhost:3000/api/ai-analyst" \
   -H "Content-Type: application/json" \
   -d "{\"mode\":\"diagnosis\",\"district_id\":9,\"year\":2025,\"locale\":\"es\"}"
 
 # Proxy WMS (mapa)
-  curl "http://localhost:3001/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-7370000,-1930000,-7365000,-1925000&WIDTH=256&HEIGHT=256" -o map.png
+  curl "http://localhost:3000/api/gamc/wms?service_id=<UUID>&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=&FORMAT=image/png&TRANSPARENT=true&SRS=EPSG:3857&BBOX=-7370000,-1930000,-7365000,-1925000&WIDTH=256&HEIGHT=256" -o map.png
 ```
 
 ---

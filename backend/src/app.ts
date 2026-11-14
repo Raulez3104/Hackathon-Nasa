@@ -6,6 +6,7 @@ import { aiAnalystRouter } from "./routes/ai-analyst.js";
 import { analysisRouter } from "./routes/analysis.js";
 import { comparisonRouter } from "./routes/comparison.js";
 import { districtsRouter } from "./routes/districts.js";
+import { gamcRouter } from "./routes/gamc.js";
 import { healthRouter } from "./routes/health.js";
 import { heatmapRouter } from "./routes/heatmap.js";
 import { hotspotsRouter } from "./routes/hotspots.js";
@@ -32,6 +33,7 @@ export function createApp(): Express {
   app.use("/api/analysis", analysisRouter);
   app.use("/api/methodology", methodologyRouter);
   app.use("/api/sources", sourcesRouter);
+  app.use("/api/gamc", gamcRouter);
   app.use("/api/health", healthRouter);
   app.use("/api/ai-analyst", aiAnalystRouter);
 

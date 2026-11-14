@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import type { LatLngBoundsExpression } from "leaflet";
+import { MapContainer, TileLayer, useMap, useMapEvents, WMSTileLayer } from "react-leaflet";
+import { CRS, type LatLngBoundsExpression, type WMSParams } from "leaflet";
 import type { DistrictData, Variable } from "../../../../shared/types/geoqocha";
 import { DistrictLayer } from "./DistrictLayer";
 import { LstHeatmapLayer } from "./LstHeatmapLayer";
-import type { IndexView } from "./map.types";
+import type { IndexView, WmsLayerStatus } from "./map.types";
+import { requestWms } from "../../services/wms/client";
 
 interface MapShellProps {
   districts: DistrictData[];
@@ -13,7 +14,11 @@ interface MapShellProps {
   indexView: IndexView;
   selectedDistrictId: number | null;
   showLstHeatmap: boolean;
+  showGamcEquipment: boolean;
+  gamcEquipmentOpacity: number;
+  gamcReloadToken: number;
   onDistrictSelect: (districtId: number) => void;
+  onGamcStatusChange: (status: WmsLayerStatus) => void;
 }
 
 const COCHABAMBA_BOUNDS: LatLngBoundsExpression = [
@@ -40,8 +45,95 @@ export function MapShell(props: MapShellProps) {
         <MapBounds />
         <DistrictLayer {...props} />
         {props.showLstHeatmap && <LstHeatmapLayer districts={props.districts} year={props.year} />}
+        {props.showGamcEquipment && (
+          <>
+            <GamcEquipmentLayer
+              opacity={props.gamcEquipmentOpacity}
+              reloadToken={props.gamcReloadToken}
+              onStatusChange={props.onGamcStatusChange}
+            />
+            <GamcFeatureInfo />
+          </>
+        )}
       </MapContainer>
     </div>
+  );
+}
+
+function GamcFeatureInfo() {
+  const serviceId = import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID;
+  const map = useMapEvents({
+    click: async (event) => {
+      if (!serviceId) return;
+      const bounds = map.getBounds();
+      const crs = map.options.crs ?? CRS.EPSG3857;
+      const southWest = crs.project(bounds.getSouthWest());
+      const northEast = crs.project(bounds.getNorthEast());
+      const size = map.getSize();
+      const features = await requestWms({
+        serviceId,
+        operation: "GetFeatureInfo",
+        version: "1.1.1",
+        srs: "EPSG:3857",
+        bbox: [southWest.x, southWest.y, northEast.x, northEast.y],
+        width: size.x,
+        height: size.y,
+        x: Math.max(0, Math.min(size.x - 1, Math.round(event.containerPoint.x))),
+        y: Math.max(0, Math.min(size.y - 1, Math.round(event.containerPoint.y))),
+        infoFormat: "application/json",
+        featureCount: 5,
+      })
+        .then((response) => response.json() as Promise<{ features?: Array<{ properties?: Record<string, unknown> }> }>)
+        .catch(() => null);
+
+      if (!features?.features?.length) {
+        map.openPopup("No se encontraron elementos municipales en este punto.", event.latlng);
+        return;
+      }
+
+      const properties = features.features[0].properties ?? {};
+      const content = Object.entries(properties)
+        .map(([key, value]) => `${key}: ${String(value ?? "no disponible")}`)
+        .join("<br>");
+      map.openPopup(content, event.latlng);
+    },
+  });
+  return null;
+}
+
+interface GamcEquipmentLayerProps {
+  opacity: number;
+  reloadToken: number;
+  onStatusChange: (status: WmsLayerStatus) => void;
+}
+
+function GamcEquipmentLayer({ opacity, reloadToken, onStatusChange }: GamcEquipmentLayerProps) {
+  const serviceId = import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID;
+  useEffect(() => {
+    onStatusChange(serviceId ? "idle" : "unavailable");
+  }, [onStatusChange, serviceId]);
+
+  if (!serviceId) return null;
+  return (
+    <WMSTileLayer
+      key={reloadToken}
+      url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
+      layers=""
+      params={{ service_id: serviceId } as unknown as WMSParams}
+      format="image/png"
+      transparent
+      version="1.1.1"
+      minZoom={12}
+      maxZoom={19}
+      opacity={opacity}
+      uppercase={false}
+      attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
+      eventHandlers={{
+        loading: () => onStatusChange("loading"),
+        load: () => onStatusChange("ready"),
+        tileerror: () => onStatusChange("error"),
+      }}
+    />
   );
 }
 
