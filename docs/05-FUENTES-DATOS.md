@@ -10,7 +10,7 @@ Inventario de fuentes, estado de verificación, operaciones disponibles y precau
 |---|---|---|---|---|
 | Catálogo WMS (7 servicios) | GAMC | OGC WMS 1.1.1 | Visualización de capas municipales y consulta puntual | Documentado |
 | Capas vectoriales municipales (distritos, parques, equipamiento, educación, salud) | GAMC | Vector (shp/geojson/gpkg) | Conteos, áreas y accesibilidad por distrito | **Fuente primaria** según el reto; entrega por confirmar |
-| GeoJSON de líneas de transporte | GAMC | GeoJSON | Dibujo de rutas y análisis de proximidad | Mencionado; por verificar |
+| GeoJSON de líneas de transporte | GAMC / recurso incorporado por el equipo | GeoJSON | Dibujo de rutas y análisis de proximidad | Validado estructuralmente en `data/lineas/` y normalizado en `frontend/public/data/transport.geojson`; CRS `EPSG:4326`; licencia del archivo recibido no documentada |
 | GeoJSON de distritos (equipo) | Por confirmar | GeoJSON | Geometrías de los 15 distritos | Disponible; estructura por verificar |
 | MOD13Q1 (NDVI) | NASA | Raster MODIS | Serie de vegetación 2015–2025 | Propuesto |
 | MOD11A2 (LST) | NASA | Raster MODIS | Serie de temperatura superficial 2015–2025 | Propuesto |
@@ -62,7 +62,7 @@ El portal del GAMC publica los `service_id` del proyecto **«5 Be An Earth Syste
 | **Unidades Educativas** | Simple | `7655ba3d-5d9e-44ff-bf65-26f81f83d7ec` | -66.280703, -17.53119, -66.06952, -17.257306 |
 | **Centros de Salud** | Simple | `e40fa280-f649-4614-9526-1b3dcce596b3` | -66.280703, -17.53119, -66.06952, -17.257306 |
 
-- La capa de **Áreas de Equipamiento** (`97a589fe-595e-45dd-91d4-38524877f1ed`) es la que consume el frontend mediante `VITE_GAMC_EQUIPMENT_SERVICE_ID`.
+- El frontend consume el catálogo completo de las 7 capas desde `frontend/src/services/wms/catalog.ts`; la lista de `GAMC_ALLOWED_SERVICE_IDS` del backend sigue siendo la que autoriza cada `service_id`.
 - El portal expone además capas de otros proyectos (Cota 2750, cuencas, drenaje, emergencias, periurbanos) que **no** forman parte de este MVP y no deben habilitarse en la lista blanca.
 - Recursos descargables del proyecto, anunciados en el mismo portal:
   - Líneas de transporte: `https://recursosgamc.cochabamba.bo/assets/geo/lineas_de_transporte.rar`

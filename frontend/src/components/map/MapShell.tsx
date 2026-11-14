@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents, WMSTileLayer } from "react-leaflet";
-import { CRS, type LatLngBoundsExpression, type WMSParams } from "leaflet";
+import { CRS, type LatLngBoundsExpression, type Map as LeafletMap, type WMSParams } from "leaflet";
 import type { DistrictData, Variable } from "../../../../shared/types/geoqocha";
 import { DistrictLayer } from "./DistrictLayer";
 import { LstHeatmapLayer } from "./LstHeatmapLayer";
-import type { IndexView } from "./map.types";
+import { TransportLayer } from "./TransportLayer";
+import type { IndexView, WmsLayerStatus } from "./map.types";
 import { requestWms } from "../../services/wms/client";
+import type { GamcLayerDefinition } from "../../services/wms/catalog";
 
 interface MapShellProps {
   districts: DistrictData[];
@@ -14,13 +16,33 @@ interface MapShellProps {
   indexView: IndexView;
   selectedDistrictId: number | null;
   showLstHeatmap: boolean;
-  showGamcEquipment: boolean;
+  showTransport: boolean;
+  showTransportStops: boolean;
+  transportRoute: string;
+  selectedDistrictGeometry: DistrictData["geometry"];
+  onTransportRoutesLoaded: (routes: string[]) => void;
+  onTransportStatusChange: (status: "loading" | "ready" | "error") => void;
+  gamcLayers: readonly GamcLayerDefinition[];
+  gamcOpacity: number;
+  gamcReloadToken: number;
   onDistrictSelect: (districtId: number) => void;
+  onGamcStatusChange: (layerId: string, status: WmsLayerStatus) => void;
+}
+
+interface FeatureCollection {
+  features?: Array<{ properties?: Record<string, unknown> }>;
 }
 
 const COCHABAMBA_BOUNDS: LatLngBoundsExpression = [
   [-17.52, -66.27],
   [-17.31, -66.05],
+];
+
+// El recurso de transporte incluye recorridos que salen del encuadre distrital.
+// Se permite navegar hasta su extensión sin cambiar el encuadre inicial.
+const TRANSPORT_BOUNDS: LatLngBoundsExpression = [
+  [-17.61, -66.42],
+  [-17.27, -65.80],
 ];
 
 export function MapShell(props: MapShellProps) {
@@ -31,87 +53,155 @@ export function MapShell(props: MapShellProps) {
         zoom={12}
         minZoom={10}
         maxZoom={17}
-        maxBounds={COCHABAMBA_BOUNDS}
+        maxBounds={TRANSPORT_BOUNDS}
         preferCanvas
+        zoomAnimation
+        zoomAnimationThreshold={4}
+        fadeAnimation={false}
+        markerZoomAnimation={false}
+        wheelDebounceTime={80}
+        wheelPxPerZoomLevel={120}
         className="map-canvas"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          updateWhenZooming={false}
+          updateWhenIdle
+          keepBuffer={2}
         />
         <MapBounds />
+        <MapLayoutSync />
         <DistrictLayer {...props} />
         {props.showLstHeatmap && <LstHeatmapLayer districts={props.districts} year={props.year} />}
-        {props.showGamcEquipment && (
-          <>
-            <GamcEquipmentLayer />
-            <GamcFeatureInfo />
-          </>
+        {props.showTransport && (
+          <TransportLayer
+            routeId={props.transportRoute}
+            showStops={props.showTransportStops}
+            districtGeometry={props.selectedDistrictGeometry}
+            onRoutesLoaded={props.onTransportRoutesLoaded}
+            onStatusChange={props.onTransportStatusChange}
+          />
         )}
+        {props.gamcLayers.map((layer) => (
+          <GamcWmsLayer
+            key={`${layer.id}-${props.gamcReloadToken}`}
+            layer={layer}
+            opacity={props.gamcOpacity * layer.defaultOpacity}
+            onStatusChange={props.onGamcStatusChange}
+          />
+        ))}
+        <GamcFeatureInfo layers={props.gamcLayers.filter((layer) => layer.supportsFeatureInfo)} />
       </MapContainer>
     </div>
   );
 }
 
-function GamcFeatureInfo() {
-  const serviceId = import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID;
-  const map = useMapEvents({
-    click: async (event) => {
-      if (!serviceId) return;
-      const bounds = map.getBounds();
-      const crs = map.options.crs ?? CRS.EPSG3857;
-      const southWest = crs.project(bounds.getSouthWest());
-      const northEast = crs.project(bounds.getNorthEast());
-      const size = map.getSize();
-      const features = await requestWms({
-        serviceId,
-        operation: "GetFeatureInfo",
-        version: "1.1.1",
-        srs: "EPSG:3857",
-        bbox: [southWest.x, southWest.y, northEast.x, northEast.y],
-        width: size.x,
-        height: size.y,
-        x: Math.max(0, Math.min(size.x - 1, Math.round(event.containerPoint.x))),
-        y: Math.max(0, Math.min(size.y - 1, Math.round(event.containerPoint.y))),
-        infoFormat: "application/json",
-        featureCount: 5,
-      })
-        .then((response) => response.json() as Promise<{ features?: Array<{ properties?: Record<string, unknown> }> }>)
-        .catch(() => null);
+interface GamcWmsLayerProps {
+  layer: GamcLayerDefinition;
+  opacity: number;
+  onStatusChange: (layerId: string, status: WmsLayerStatus) => void;
+}
 
-      if (!features?.features?.length) {
+function GamcWmsLayer({ layer, opacity, onStatusChange }: GamcWmsLayerProps) {
+  return (
+    <WMSTileLayer
+      url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
+      layers=""
+      params={{ service_id: layer.id } as unknown as WMSParams}
+      format="image/png"
+      transparent
+      version="1.1.1"
+      minZoom={layer.minZoom}
+      maxZoom={19}
+      updateWhenZooming={false}
+      updateWhenIdle
+      keepBuffer={2}
+      opacity={opacity}
+      uppercase={false}
+      attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
+      eventHandlers={{
+        loading: () => onStatusChange(layer.id, "loading"),
+        load: () => onStatusChange(layer.id, "ready"),
+        tileerror: () => onStatusChange(layer.id, "error"),
+      }}
+    />
+  );
+}
+
+function GamcFeatureInfo({ layers }: { layers: readonly GamcLayerDefinition[] }) {
+  const map = useMap();
+  useMapEvents({
+    click: async (event) => {
+      if (layers.length === 0) return;
+      const results = await Promise.all(layers.map(async (layer) => ({
+        layer,
+        features: await queryFeatures(map, layer.id, event.containerPoint.x, event.containerPoint.y).catch(() => null),
+      })));
+
+      const sections = results
+        .filter((result) => result.features && result.features.length > 0)
+        .map((result) => {
+          const properties = result.features?.[0]?.properties ?? {};
+          const rows = Object.entries(properties)
+            .slice(0, 8)
+            .map(([key, value]) => `<div><strong>${escapeHtml(key)}:</strong> ${escapeHtml(formatValue(value))}</div>`)
+            .join("");
+          return `<div class="gamc-popup-section"><strong>${escapeHtml(result.layer.name)}</strong>${rows}</div>`;
+        });
+
+      if (sections.length === 0) {
         map.openPopup("No se encontraron elementos municipales en este punto.", event.latlng);
         return;
       }
 
-      const properties = features.features[0].properties ?? {};
-      const content = Object.entries(properties)
-        .map(([key, value]) => `${key}: ${String(value ?? "no disponible")}`)
-        .join("<br>");
-      map.openPopup(content, event.latlng);
+      map.openPopup(sections.join(""), event.latlng, { maxWidth: 320 });
     },
   });
   return null;
 }
 
-function GamcEquipmentLayer() {
-  const serviceId = import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID;
-  if (!serviceId) return null;
-  return (
-    <WMSTileLayer
-      url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
-      layers=""
-      params={{ service_id: serviceId } as unknown as WMSParams}
-      format="image/png"
-      transparent
-      version="1.1.1"
-      minZoom={12}
-      maxZoom={19}
-      opacity={0.82}
-      uppercase={false}
-      attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
-    />
-  );
+async function queryFeatures(
+  map: LeafletMap,
+  serviceId: string,
+  containerX: number,
+  containerY: number,
+): Promise<FeatureCollection["features"] | null> {
+  const bounds = map.getBounds();
+  const crs = map.options.crs ?? CRS.EPSG3857;
+  const southWest = crs.project(bounds.getSouthWest());
+  const northEast = crs.project(bounds.getNorthEast());
+  const size = map.getSize();
+
+  const response = await requestWms({
+    serviceId,
+    operation: "GetFeatureInfo",
+    version: "1.1.1",
+    srs: "EPSG:3857",
+    bbox: [southWest.x, southWest.y, northEast.x, northEast.y],
+    width: size.x,
+    height: size.y,
+    x: Math.max(0, Math.min(size.x - 1, Math.round(containerX))),
+    y: Math.max(0, Math.min(size.y - 1, Math.round(containerY))),
+    infoFormat: "application/json",
+    featureCount: 5,
+  });
+  const payload = (await response.json()) as FeatureCollection;
+  return payload.features ?? null;
+}
+
+function formatValue(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "no disponible";
+  return String(value);
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function MapBounds() {
@@ -119,5 +209,24 @@ function MapBounds() {
   useEffect(() => {
     map.fitBounds(COCHABAMBA_BOUNDS, { padding: [16, 16] });
   }, [map]);
+  return null;
+}
+
+function MapLayoutSync() {
+  const map = useMap();
+
+  useEffect(() => {
+    const container = map.getContainer();
+    const invalidate = () => map.invalidateSize({ pan: false, debounceMoveend: true });
+    const frame = requestAnimationFrame(invalidate);
+    const observer = new ResizeObserver(invalidate);
+
+    observer.observe(container);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [map]);
+
   return null;
 }
