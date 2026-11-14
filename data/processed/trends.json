@@ -1,0 +1,1551 @@
+{
+  "methodology_version": "0.1.0",
+  "generated_at": "2026-11-14T02:43:28Z",
+  "districts": [
+    {
+      "district_id": 1,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.34,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0286,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6427,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0086,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 2,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3436,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0143,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6418,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 3,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.34,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.64,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 4,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3409,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0114,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6445,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0143,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 5,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3482,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0086,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6391,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 6,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3518,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0143,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6427,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0086,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 7,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.35,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0029,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6464,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0171,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 8,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3436,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6445,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0143,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 9,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3545,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0114,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.65,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0086,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 10,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3491,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0171,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6427,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0086,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 11,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3445,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6391,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 12,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3455,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0114,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6445,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0143,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 13,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3382,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0086,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6373,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0029,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 14,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.34,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0286,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6391,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0171,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    },
+    {
+      "district_id": 15,
+      "trends": [
+        {
+          "variable": "ndvi",
+          "direction": "improving",
+          "slope_per_year": 0.002,
+          "unit": "NDVI/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "lst",
+          "direction": "improving",
+          "slope_per_year": -0.08,
+          "unit": "°C/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": -0.0,
+          "accelerated": false,
+          "notes": [
+            "LST es temperatura superficial, no temperatura del aire."
+          ]
+        },
+        {
+          "variable": "environmental_index",
+          "direction": "improving",
+          "slope_per_year": 2.3518,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0229,
+          "accelerated": false,
+          "notes": []
+        },
+        {
+          "variable": "socioenvironmental_index",
+          "direction": "improving",
+          "slope_per_year": 1.6427,
+          "unit": "índice/año",
+          "years_used": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "method": "OLS sobre medias anuales",
+          "is_significant": true,
+          "acceleration": 0.0086,
+          "accelerated": false,
+          "notes": []
+        }
+      ]
+    }
+  ]
+}

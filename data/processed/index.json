@@ -1,0 +1,1260 @@
+{
+  "methodology_version": "0.1.0",
+  "generated_at": "2026-11-14T02:43:28Z",
+  "weights": {
+    "vegetation": 0.35,
+    "surface_temperature": 0.35,
+    "urban_equipment": 0.2,
+    "mobility": 0.1
+  },
+  "normalization": {
+    "ndvi_min": 0.288,
+    "ndvi_max": 0.42,
+    "lst_min_celsius": 28.9,
+    "lst_max_celsius": 31.38,
+    "reference_period": "2015-2025",
+    "description": "Min-max fijo sobre todas las observaciones distrito-año del periodo."
+  },
+  "temporal_policy": {
+    "environmental": "annual",
+    "territorial": "fixed_at_reference_year",
+    "territorial_reference_year": 2024,
+    "interpolation_allowed": false
+  },
+  "sensitivity": {
+    "field": "index_without_territorial",
+    "description": "ICVSA calculado solo con NDVI y LST."
+  },
+  "districts": [
+    {
+      "district_id": 1,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 1.0,
+          "socioenvironmental_index": 15.0,
+          "index_without_territorial": 1.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 3.4,
+          "socioenvironmental_index": 16.6,
+          "index_without_territorial": 3.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 5.7,
+          "socioenvironmental_index": 18.3,
+          "index_without_territorial": 5.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 8.1,
+          "socioenvironmental_index": 19.9,
+          "index_without_territorial": 8.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 10.4,
+          "socioenvironmental_index": 21.6,
+          "index_without_territorial": 10.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 12.8,
+          "socioenvironmental_index": 23.2,
+          "index_without_territorial": 12.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 15.1,
+          "socioenvironmental_index": 24.9,
+          "index_without_territorial": 15.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 17.4,
+          "socioenvironmental_index": 26.5,
+          "index_without_territorial": 17.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 19.8,
+          "socioenvironmental_index": 28.1,
+          "index_without_territorial": 19.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 22.1,
+          "socioenvironmental_index": 29.8,
+          "index_without_territorial": 22.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 24.4,
+          "socioenvironmental_index": 31.4,
+          "index_without_territorial": 24.4,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 2,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 6.4,
+          "socioenvironmental_index": 19.1,
+          "index_without_territorial": 6.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 8.8,
+          "socioenvironmental_index": 20.7,
+          "index_without_territorial": 8.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 11.1,
+          "socioenvironmental_index": 22.4,
+          "index_without_territorial": 11.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 13.4,
+          "socioenvironmental_index": 24.0,
+          "index_without_territorial": 13.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 15.8,
+          "socioenvironmental_index": 25.7,
+          "index_without_territorial": 15.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 18.1,
+          "socioenvironmental_index": 27.3,
+          "index_without_territorial": 18.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 20.5,
+          "socioenvironmental_index": 28.9,
+          "index_without_territorial": 20.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 22.8,
+          "socioenvironmental_index": 30.6,
+          "index_without_territorial": 22.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 25.1,
+          "socioenvironmental_index": 32.2,
+          "index_without_territorial": 25.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 27.5,
+          "socioenvironmental_index": 33.9,
+          "index_without_territorial": 27.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 29.9,
+          "socioenvironmental_index": 35.5,
+          "index_without_territorial": 29.9,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 3,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 11.8,
+          "socioenvironmental_index": 23.2,
+          "index_without_territorial": 11.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 14.2,
+          "socioenvironmental_index": 24.8,
+          "index_without_territorial": 14.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 16.5,
+          "socioenvironmental_index": 26.4,
+          "index_without_territorial": 16.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 18.9,
+          "socioenvironmental_index": 28.1,
+          "index_without_territorial": 18.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 21.2,
+          "socioenvironmental_index": 29.7,
+          "index_without_territorial": 21.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 23.5,
+          "socioenvironmental_index": 31.4,
+          "index_without_territorial": 23.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 25.9,
+          "socioenvironmental_index": 33.0,
+          "index_without_territorial": 25.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 28.2,
+          "socioenvironmental_index": 34.6,
+          "index_without_territorial": 28.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 30.6,
+          "socioenvironmental_index": 36.3,
+          "index_without_territorial": 30.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 32.9,
+          "socioenvironmental_index": 37.9,
+          "index_without_territorial": 32.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 35.2,
+          "socioenvironmental_index": 39.6,
+          "index_without_territorial": 35.2,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 4,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 17.2,
+          "socioenvironmental_index": 27.2,
+          "index_without_territorial": 17.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 19.6,
+          "socioenvironmental_index": 28.9,
+          "index_without_territorial": 19.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 21.9,
+          "socioenvironmental_index": 30.5,
+          "index_without_territorial": 21.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 24.2,
+          "socioenvironmental_index": 32.2,
+          "index_without_territorial": 24.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 26.6,
+          "socioenvironmental_index": 33.8,
+          "index_without_territorial": 26.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 28.9,
+          "socioenvironmental_index": 35.4,
+          "index_without_territorial": 28.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 31.2,
+          "socioenvironmental_index": 37.1,
+          "index_without_territorial": 31.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 33.6,
+          "socioenvironmental_index": 38.7,
+          "index_without_territorial": 33.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 36.0,
+          "socioenvironmental_index": 40.4,
+          "index_without_territorial": 36.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 38.3,
+          "socioenvironmental_index": 42.0,
+          "index_without_territorial": 38.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 40.6,
+          "socioenvironmental_index": 43.7,
+          "index_without_territorial": 40.6,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 5,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 22.6,
+          "socioenvironmental_index": 31.3,
+          "index_without_territorial": 22.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 24.9,
+          "socioenvironmental_index": 33.0,
+          "index_without_territorial": 24.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 27.2,
+          "socioenvironmental_index": 34.6,
+          "index_without_territorial": 27.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 29.6,
+          "socioenvironmental_index": 36.2,
+          "index_without_territorial": 29.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 31.9,
+          "socioenvironmental_index": 37.9,
+          "index_without_territorial": 31.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 34.3,
+          "socioenvironmental_index": 39.5,
+          "index_without_territorial": 34.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 36.6,
+          "socioenvironmental_index": 41.2,
+          "index_without_territorial": 36.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 39.0,
+          "socioenvironmental_index": 42.8,
+          "index_without_territorial": 39.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 41.4,
+          "socioenvironmental_index": 44.4,
+          "index_without_territorial": 41.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 43.7,
+          "socioenvironmental_index": 46.1,
+          "index_without_territorial": 43.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 46.0,
+          "socioenvironmental_index": 47.7,
+          "index_without_territorial": 46.0,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 6,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 28.0,
+          "socioenvironmental_index": 35.4,
+          "index_without_territorial": 28.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 30.3,
+          "socioenvironmental_index": 37.0,
+          "index_without_territorial": 30.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 32.6,
+          "socioenvironmental_index": 38.7,
+          "index_without_territorial": 32.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 35.0,
+          "socioenvironmental_index": 40.3,
+          "index_without_territorial": 35.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 37.4,
+          "socioenvironmental_index": 41.9,
+          "index_without_territorial": 37.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 39.7,
+          "socioenvironmental_index": 43.6,
+          "index_without_territorial": 39.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 42.0,
+          "socioenvironmental_index": 45.2,
+          "index_without_territorial": 42.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 44.4,
+          "socioenvironmental_index": 46.9,
+          "index_without_territorial": 44.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 46.8,
+          "socioenvironmental_index": 48.5,
+          "index_without_territorial": 46.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 49.1,
+          "socioenvironmental_index": 50.2,
+          "index_without_territorial": 49.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 51.5,
+          "socioenvironmental_index": 51.8,
+          "index_without_territorial": 51.5,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 7,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 33.4,
+          "socioenvironmental_index": 39.4,
+          "index_without_territorial": 33.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 35.7,
+          "socioenvironmental_index": 41.1,
+          "index_without_territorial": 35.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 38.0,
+          "socioenvironmental_index": 42.7,
+          "index_without_territorial": 38.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 40.4,
+          "socioenvironmental_index": 44.4,
+          "index_without_territorial": 40.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 42.8,
+          "socioenvironmental_index": 46.0,
+          "index_without_territorial": 42.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 45.1,
+          "socioenvironmental_index": 47.7,
+          "index_without_territorial": 45.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 47.5,
+          "socioenvironmental_index": 49.3,
+          "index_without_territorial": 47.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 49.8,
+          "socioenvironmental_index": 51.0,
+          "index_without_territorial": 49.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 52.1,
+          "socioenvironmental_index": 52.6,
+          "index_without_territorial": 52.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 54.5,
+          "socioenvironmental_index": 54.2,
+          "index_without_territorial": 54.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 56.9,
+          "socioenvironmental_index": 55.9,
+          "index_without_territorial": 56.9,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 8,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 38.8,
+          "socioenvironmental_index": 43.5,
+          "index_without_territorial": 38.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 41.1,
+          "socioenvironmental_index": 45.2,
+          "index_without_territorial": 41.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 43.5,
+          "socioenvironmental_index": 46.8,
+          "index_without_territorial": 43.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 45.8,
+          "socioenvironmental_index": 48.5,
+          "index_without_territorial": 45.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 48.1,
+          "socioenvironmental_index": 50.1,
+          "index_without_territorial": 48.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 50.5,
+          "socioenvironmental_index": 51.8,
+          "index_without_territorial": 50.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 52.9,
+          "socioenvironmental_index": 53.4,
+          "index_without_territorial": 52.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 55.2,
+          "socioenvironmental_index": 55.0,
+          "index_without_territorial": 55.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 57.5,
+          "socioenvironmental_index": 56.7,
+          "index_without_territorial": 57.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 59.9,
+          "socioenvironmental_index": 58.3,
+          "index_without_territorial": 59.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 62.2,
+          "socioenvironmental_index": 60.0,
+          "index_without_territorial": 62.2,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 9,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 44.1,
+          "socioenvironmental_index": 47.6,
+          "index_without_territorial": 44.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 46.5,
+          "socioenvironmental_index": 49.2,
+          "index_without_territorial": 46.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 48.9,
+          "socioenvironmental_index": 50.9,
+          "index_without_territorial": 48.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 51.2,
+          "socioenvironmental_index": 52.5,
+          "index_without_territorial": 51.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 53.5,
+          "socioenvironmental_index": 54.2,
+          "index_without_territorial": 53.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 55.9,
+          "socioenvironmental_index": 55.8,
+          "index_without_territorial": 55.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 58.2,
+          "socioenvironmental_index": 57.5,
+          "index_without_territorial": 58.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 60.6,
+          "socioenvironmental_index": 59.1,
+          "index_without_territorial": 60.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 63.0,
+          "socioenvironmental_index": 60.8,
+          "index_without_territorial": 63.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 65.3,
+          "socioenvironmental_index": 62.4,
+          "index_without_territorial": 65.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 67.7,
+          "socioenvironmental_index": 64.1,
+          "index_without_territorial": 67.7,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 10,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 49.5,
+          "socioenvironmental_index": 51.7,
+          "index_without_territorial": 49.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 51.9,
+          "socioenvironmental_index": 53.3,
+          "index_without_territorial": 51.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 54.2,
+          "socioenvironmental_index": 55.0,
+          "index_without_territorial": 54.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 56.6,
+          "socioenvironmental_index": 56.6,
+          "index_without_territorial": 56.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 59.0,
+          "socioenvironmental_index": 58.3,
+          "index_without_territorial": 59.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 61.3,
+          "socioenvironmental_index": 59.9,
+          "index_without_territorial": 61.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 63.6,
+          "socioenvironmental_index": 61.6,
+          "index_without_territorial": 63.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 66.0,
+          "socioenvironmental_index": 63.2,
+          "index_without_territorial": 66.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 68.3,
+          "socioenvironmental_index": 64.8,
+          "index_without_territorial": 68.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 70.7,
+          "socioenvironmental_index": 66.5,
+          "index_without_territorial": 70.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 73.0,
+          "socioenvironmental_index": 68.1,
+          "index_without_territorial": 73.0,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 11,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 55.0,
+          "socioenvironmental_index": 55.8,
+          "index_without_territorial": 55.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 57.3,
+          "socioenvironmental_index": 57.4,
+          "index_without_territorial": 57.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 59.6,
+          "socioenvironmental_index": 59.1,
+          "index_without_territorial": 59.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 62.0,
+          "socioenvironmental_index": 60.7,
+          "index_without_territorial": 62.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 64.3,
+          "socioenvironmental_index": 62.3,
+          "index_without_territorial": 64.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 66.7,
+          "socioenvironmental_index": 64.0,
+          "index_without_territorial": 66.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 69.0,
+          "socioenvironmental_index": 65.6,
+          "index_without_territorial": 69.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 71.4,
+          "socioenvironmental_index": 67.3,
+          "index_without_territorial": 71.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 73.8,
+          "socioenvironmental_index": 68.9,
+          "index_without_territorial": 73.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 76.0,
+          "socioenvironmental_index": 70.5,
+          "index_without_territorial": 76.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 78.4,
+          "socioenvironmental_index": 72.2,
+          "index_without_territorial": 78.4,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 12,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 60.4,
+          "socioenvironmental_index": 59.8,
+          "index_without_territorial": 60.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 62.7,
+          "socioenvironmental_index": 61.5,
+          "index_without_territorial": 62.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 65.0,
+          "socioenvironmental_index": 63.1,
+          "index_without_territorial": 65.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 67.4,
+          "socioenvironmental_index": 64.8,
+          "index_without_territorial": 67.4,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 69.8,
+          "socioenvironmental_index": 66.4,
+          "index_without_territorial": 69.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 72.1,
+          "socioenvironmental_index": 68.1,
+          "index_without_territorial": 72.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 74.5,
+          "socioenvironmental_index": 69.7,
+          "index_without_territorial": 74.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 76.8,
+          "socioenvironmental_index": 71.3,
+          "index_without_territorial": 76.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 79.1,
+          "socioenvironmental_index": 73.0,
+          "index_without_territorial": 79.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 81.5,
+          "socioenvironmental_index": 74.6,
+          "index_without_territorial": 81.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 83.8,
+          "socioenvironmental_index": 76.3,
+          "index_without_territorial": 83.8,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 13,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 65.8,
+          "socioenvironmental_index": 63.9,
+          "index_without_territorial": 65.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 68.1,
+          "socioenvironmental_index": 65.6,
+          "index_without_territorial": 68.1,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 70.5,
+          "socioenvironmental_index": 67.2,
+          "index_without_territorial": 70.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 72.8,
+          "socioenvironmental_index": 68.9,
+          "index_without_territorial": 72.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 75.2,
+          "socioenvironmental_index": 70.5,
+          "index_without_territorial": 75.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 77.5,
+          "socioenvironmental_index": 72.1,
+          "index_without_territorial": 77.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 79.8,
+          "socioenvironmental_index": 73.8,
+          "index_without_territorial": 79.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 82.2,
+          "socioenvironmental_index": 75.4,
+          "index_without_territorial": 82.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 84.5,
+          "socioenvironmental_index": 77.0,
+          "index_without_territorial": 84.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 86.8,
+          "socioenvironmental_index": 78.7,
+          "index_without_territorial": 86.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 89.2,
+          "socioenvironmental_index": 80.3,
+          "index_without_territorial": 89.2,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 14,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 71.2,
+          "socioenvironmental_index": 68.0,
+          "index_without_territorial": 71.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 73.5,
+          "socioenvironmental_index": 69.7,
+          "index_without_territorial": 73.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 75.8,
+          "socioenvironmental_index": 71.3,
+          "index_without_territorial": 75.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 78.2,
+          "socioenvironmental_index": 72.9,
+          "index_without_territorial": 78.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 80.5,
+          "socioenvironmental_index": 74.5,
+          "index_without_territorial": 80.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 82.8,
+          "socioenvironmental_index": 76.2,
+          "index_without_territorial": 82.8,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 85.2,
+          "socioenvironmental_index": 77.8,
+          "index_without_territorial": 85.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 87.5,
+          "socioenvironmental_index": 79.5,
+          "index_without_territorial": 87.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 89.9,
+          "socioenvironmental_index": 81.1,
+          "index_without_territorial": 89.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 92.2,
+          "socioenvironmental_index": 82.8,
+          "index_without_territorial": 92.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 94.6,
+          "socioenvironmental_index": 84.4,
+          "index_without_territorial": 94.6,
+          "territorial_reference_year": 2024
+        }
+      ]
+    },
+    {
+      "district_id": 15,
+      "series": [
+        {
+          "year": 2015,
+          "environmental_index": 76.5,
+          "socioenvironmental_index": 72.1,
+          "index_without_territorial": 76.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2016,
+          "environmental_index": 78.9,
+          "socioenvironmental_index": 73.7,
+          "index_without_territorial": 78.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2017,
+          "environmental_index": 81.2,
+          "socioenvironmental_index": 75.4,
+          "index_without_territorial": 81.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2018,
+          "environmental_index": 83.5,
+          "socioenvironmental_index": 77.0,
+          "index_without_territorial": 83.5,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2019,
+          "environmental_index": 85.9,
+          "socioenvironmental_index": 78.6,
+          "index_without_territorial": 85.9,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2020,
+          "environmental_index": 88.2,
+          "socioenvironmental_index": 80.3,
+          "index_without_territorial": 88.2,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2021,
+          "environmental_index": 90.6,
+          "socioenvironmental_index": 81.9,
+          "index_without_territorial": 90.6,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2022,
+          "environmental_index": 93.0,
+          "socioenvironmental_index": 83.6,
+          "index_without_territorial": 93.0,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2023,
+          "environmental_index": 95.3,
+          "socioenvironmental_index": 85.2,
+          "index_without_territorial": 95.3,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2024,
+          "environmental_index": 97.7,
+          "socioenvironmental_index": 86.9,
+          "index_without_territorial": 97.7,
+          "territorial_reference_year": 2024
+        },
+        {
+          "year": 2025,
+          "environmental_index": 100.0,
+          "socioenvironmental_index": 88.5,
+          "index_without_territorial": 100.0,
+          "territorial_reference_year": 2024
+        }
+      ]
+    }
+  ]
+}
