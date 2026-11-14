@@ -1,4 +1,5 @@
 import type { DistrictData } from "../../../../shared/types/geoqocha";
+import { ChatWidget } from "../ai/ChatWidget";
 import { AwarenessPanel } from "../awareness/AwarenessPanel";
 import { DistrictPanel } from "./DistrictPanel";
 import { formatDate } from "./format";
@@ -75,6 +76,7 @@ export function AnalyticsWorkspace({
           <AwarenessPanel districts={districts} status={status} error={error} year={year} onRetry={loaded.reload} />
         ) : null}
       </main>
+      <ChatWidget districts={districts} year={year} />
     </div>
   );
 }
