@@ -1,4 +1,5 @@
 import type { DistrictData } from "../../../../shared/types/geoqocha";
+import { AwarenessPanel } from "../awareness/AwarenessPanel";
 import { DistrictPanel } from "./DistrictPanel";
 import { formatDate } from "./format";
 import { useDistrictDataset } from "./load-dataset";
@@ -69,6 +70,9 @@ export function AnalyticsWorkspace({
             variant="inline"
             onRetry={loaded.reload}
           />
+        ) : null}
+        {view === "awareness" ? (
+          <AwarenessPanel districts={districts} status={status} error={error} year={year} onRetry={loaded.reload} />
         ) : null}
       </main>
     </div>
