@@ -253,6 +253,50 @@ button:focus-visible, a:focus-visible, select:focus-visible {
   content: "";
 }
 
+.dashboard-map-status {
+  position: absolute;
+  z-index: 11;
+  bottom: 18px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 360px);
+  padding: 9px 12px;
+  border: 1px solid rgb(217 228 218 / 90%);
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 6px 18px rgb(23 63 54 / 10%);
+  backdrop-filter: blur(8px);
+}
+
+.dashboard-selection {
+  color: var(--color-text);
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.dashboard-state {
+  display: grid;
+  min-height: 100dvh;
+  padding: 32px;
+  place-content: center;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.dashboard-state h1 {
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.dashboard-state p {
+  max-width: 480px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
 @media (max-width: 720px) {
   .dashboard-header {
     align-items: flex-start;
@@ -280,6 +324,13 @@ button:focus-visible, a:focus-visible, select:focus-visible {
     left: 12px;
     width: auto;
     max-height: 42dvh;
+  }
+
+  .dashboard-map-status {
+    right: 12px;
+    bottom: calc(42dvh + 24px);
+    left: 12px;
+    max-width: none;
   }
 }
 
