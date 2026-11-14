@@ -14,6 +14,7 @@ function App() {
   const [indexView, setIndexView] = useState<IndexView>("numeric");
   const [selectedDistrictId, setSelectedDistrictId] = useState<number | null>(null);
   const [showLstHeatmap, setShowLstHeatmap] = useState(true);
+  const [showGamcEquipment, setShowGamcEquipment] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -49,10 +50,12 @@ function App() {
           variable={variable}
           indexView={indexView}
           showLstHeatmap={showLstHeatmap}
+          showGamcEquipment={showGamcEquipment}
           onYearChange={setYear}
           onVariableChange={setVariable}
           onIndexViewChange={setIndexView}
           onHeatmapChange={setShowLstHeatmap}
+          onGamcEquipmentChange={setShowGamcEquipment}
         />
       </header>
 
@@ -65,6 +68,7 @@ function App() {
             indexView={indexView}
             selectedDistrictId={selectedDistrictId}
             showLstHeatmap={showLstHeatmap}
+            showGamcEquipment={showGamcEquipment}
             onDistrictSelect={setSelectedDistrictId}
           />
         )}
@@ -73,6 +77,7 @@ function App() {
           indexView={indexView}
           activeValue={selectedValue}
           showLstHeatmap={showLstHeatmap}
+          showGamcEquipment={showGamcEquipment}
         />
         <div className="dashboard-map-status">
           <span className="dashboard-status">15 distritos · {year}</span>
