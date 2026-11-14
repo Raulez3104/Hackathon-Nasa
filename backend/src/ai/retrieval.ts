@@ -369,7 +369,8 @@ export function buildAIContext(input: {
     }
   }
 
-  const allowedNumbers = buildAllowedNumbers(facts, trends);
+  const contextHotspot = district ? buildHotspot(district, currentYear) : null;
+  const allowedNumbers = buildAllowedNumbers(facts, trends, contextHotspot);
   const sources = [...new Set(facts.map((fact) => fact.source_ref))].map((id) => ({
     id,
     label: sourceLabel(id),
@@ -397,7 +398,7 @@ export function buildAIContext(input: {
       : null,
     facts,
     trends,
-    hotspot: district ? buildHotspot(district, currentYear) : null,
+    hotspot: contextHotspot,
     municipal_average: Object.fromEntries(
       facts
         .filter((fact) => fact.field.startsWith("municipal_average_"))
@@ -420,7 +421,11 @@ export function buildAIContext(input: {
   return context;
 }
 
-function buildAllowedNumbers(facts: AIFact[], trends: AIContextTrend[]): Set<string> {
+function buildAllowedNumbers(
+  facts: AIFact[],
+  trends: AIContextTrend[],
+  hotspot: ReturnType<typeof buildHotspot> | null,
+): Set<string> {
   const values = new Set<string>();
   const add = (value: number): void => {
     values.add(String(value));
@@ -436,6 +441,13 @@ function buildAllowedNumbers(facts: AIFact[], trends: AIContextTrend[]): Set<str
   for (const trend of trends) {
     if (trend.slope_per_year !== null) add(trend.slope_per_year);
     for (const year of trend.years_used) values.add(String(year));
+  }
+  if (hotspot) {
+    if (typeof hotspot.score === "number") add(hotspot.score);
+    for (const rule of hotspot.rules) {
+      if (typeof rule.observed_value === "number") add(rule.observed_value);
+      if (typeof rule.threshold === "number") add(rule.threshold);
+    }
   }
   for (const number of [1, 8, 15, 20, 35, 100, 1000, 2015, 2025]) values.add(String(number));
   for (const weight of [0.35, 0.2, 0.1]) {

@@ -25,7 +25,7 @@ function normalizeNumber(token: string): string | null {
 
 function validateNumbers(context: AIContext, text: string): void {
   const allowed = new Set(context.allowed_numbers);
-  const matches = text.match(/-?\d+(?:[.,]\d+)?/g) ?? [];
+  const matches = text.match(/(?<![\d.,])-?\d+(?:[.,]\d+)?/g) ?? [];
   for (const match of matches) {
     const normalized = normalizeNumber(match);
     if (normalized === null) continue;
@@ -80,7 +80,7 @@ export function validateDraft(
           if (!fact) return [];
           return [{ field: fact.field, year: fact.year, source_ref: fact.source_ref }];
         });
-      if (evidence.length === 0) throw new GuardrailError(`El insight "${insight.title}" no tiene evidencia válida.`);
+      if (evidence.length === 0) return null;
       return {
         kind: insight.kind,
         title: insight.title.slice(0, 120),
@@ -88,7 +88,8 @@ export function validateDraft(
         severity: insight.severity,
         evidence,
       };
-    });
+    })
+    .filter((insight): insight is NonNullable<typeof insight> => insight !== null);
 
   if (insights.length === 0) throw new GuardrailError("El proveedor no devolvió insights válidos.");
 
