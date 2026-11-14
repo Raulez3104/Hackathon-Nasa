@@ -4,6 +4,7 @@ import { CRS, type LatLngBoundsExpression, type Map as LeafletMap, type WMSParam
 import type { DistrictData, Variable } from "../../../../shared/types/geoqocha";
 import { DistrictLayer } from "./DistrictLayer";
 import { LstHeatmapLayer } from "./LstHeatmapLayer";
+import { TransportLayer } from "./TransportLayer";
 import type { IndexView, WmsLayerStatus } from "./map.types";
 import { requestWms } from "../../services/wms/client";
 import type { GamcLayerDefinition } from "../../services/wms/catalog";
@@ -15,6 +16,12 @@ interface MapShellProps {
   indexView: IndexView;
   selectedDistrictId: number | null;
   showLstHeatmap: boolean;
+  showTransport: boolean;
+  showTransportStops: boolean;
+  transportRoute: string;
+  selectedDistrictGeometry: DistrictData["geometry"];
+  onTransportRoutesLoaded: (routes: string[]) => void;
+  onTransportStatusChange: (status: "loading" | "ready" | "error") => void;
   gamcLayers: readonly GamcLayerDefinition[];
   gamcOpacity: number;
   gamcReloadToken: number;
@@ -31,6 +38,13 @@ const COCHABAMBA_BOUNDS: LatLngBoundsExpression = [
   [-17.31, -66.05],
 ];
 
+// El recurso de transporte incluye recorridos que salen del encuadre distrital.
+// Se permite navegar hasta su extensión sin cambiar el encuadre inicial.
+const TRANSPORT_BOUNDS: LatLngBoundsExpression = [
+  [-17.61, -66.42],
+  [-17.27, -65.80],
+];
+
 export function MapShell(props: MapShellProps) {
   return (
     <div className="dashboard-map" aria-label="Mapa interactivo de los 15 distritos municipales de Cochabamba">
@@ -39,17 +53,36 @@ export function MapShell(props: MapShellProps) {
         zoom={12}
         minZoom={10}
         maxZoom={17}
-        maxBounds={COCHABAMBA_BOUNDS}
+        maxBounds={TRANSPORT_BOUNDS}
         preferCanvas
+        zoomAnimation
+        zoomAnimationThreshold={4}
+        fadeAnimation={false}
+        markerZoomAnimation={false}
+        wheelDebounceTime={80}
+        wheelPxPerZoomLevel={120}
         className="map-canvas"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          updateWhenZooming={false}
+          updateWhenIdle
+          keepBuffer={2}
         />
         <MapBounds />
+        <MapLayoutSync />
         <DistrictLayer {...props} />
         {props.showLstHeatmap && <LstHeatmapLayer districts={props.districts} year={props.year} />}
+        {props.showTransport && (
+          <TransportLayer
+            routeId={props.transportRoute}
+            showStops={props.showTransportStops}
+            districtGeometry={props.selectedDistrictGeometry}
+            onRoutesLoaded={props.onTransportRoutesLoaded}
+            onStatusChange={props.onTransportStatusChange}
+          />
+        )}
         {props.gamcLayers.map((layer) => (
           <GamcWmsLayer
             key={`${layer.id}-${props.gamcReloadToken}`}
@@ -71,10 +104,6 @@ interface GamcWmsLayerProps {
 }
 
 function GamcWmsLayer({ layer, opacity, onStatusChange }: GamcWmsLayerProps) {
-  useEffect(() => {
-    onStatusChange(layer.id, "idle");
-  }, [layer.id, onStatusChange]);
-
   return (
     <WMSTileLayer
       url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
@@ -85,6 +114,9 @@ function GamcWmsLayer({ layer, opacity, onStatusChange }: GamcWmsLayerProps) {
       version="1.1.1"
       minZoom={layer.minZoom}
       maxZoom={19}
+      updateWhenZooming={false}
+      updateWhenIdle
+      keepBuffer={2}
       opacity={opacity}
       uppercase={false}
       attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
@@ -177,5 +209,24 @@ function MapBounds() {
   useEffect(() => {
     map.fitBounds(COCHABAMBA_BOUNDS, { padding: [16, 16] });
   }, [map]);
+  return null;
+}
+
+function MapLayoutSync() {
+  const map = useMap();
+
+  useEffect(() => {
+    const container = map.getContainer();
+    const invalidate = () => map.invalidateSize({ pan: false, debounceMoveend: true });
+    const frame = requestAnimationFrame(invalidate);
+    const observer = new ResizeObserver(invalidate);
+
+    observer.observe(container);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [map]);
+
   return null;
 }
