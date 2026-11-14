@@ -1,11 +1,12 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import type { DistrictData, Variable } from "../../shared/types/geoqocha";
 import { loadDistricts } from "./lib/data-source";
-import { districtColor, formatValue, getValue } from "./components/map/color-scales";
+import { formatValue, getValue } from "./components/map/color-scales";
 import { MapControls } from "./components/map/MapControls";
 import { MapLegend } from "./components/map/MapLegend";
 import { MapShell } from "./components/map/MapShell";
-import type { IndexView } from "./components/map/map.types";
+import { LayerControl } from "./components/map/LayerControl";
+import type { IndexView, WmsLayerStatus } from "./components/map/map.types";
 import type { DatasetStatus } from "./components/analytics/types";
 
 // La analítica se carga aparte para que el mapa siga siendo ligero.
@@ -24,6 +25,11 @@ function App() {
   const [selectedDistrictId, setSelectedDistrictId] = useState<number | null>(null);
   const [showLstHeatmap, setShowLstHeatmap] = useState(true);
   const [showGamcEquipment, setShowGamcEquipment] = useState(false);
+  const [gamcEquipmentOpacity, setGamcEquipmentOpacity] = useState(0.82);
+  const [gamcReloadToken, setGamcReloadToken] = useState(0);
+  const [gamcStatus, setGamcStatus] = useState<WmsLayerStatus>(
+    import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID ? "idle" : "unavailable",
+  );
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -102,24 +108,41 @@ function App() {
               selectedDistrictId={selectedDistrictId}
               showLstHeatmap={showLstHeatmap}
               showGamcEquipment={showGamcEquipment}
+              gamcEquipmentOpacity={gamcEquipmentOpacity}
+              gamcReloadToken={gamcReloadToken}
+              onGamcStatusChange={setGamcStatus}
               onDistrictSelect={setSelectedDistrictId}
             />
           )}
-          <MapLegend
-            variable={variable}
-            indexView={indexView}
-            activeValue={selectedValue}
-            showLstHeatmap={showLstHeatmap}
-            showGamcEquipment={showGamcEquipment}
-          />
-          <div className="dashboard-map-status">
-            <span className="dashboard-status">15 distritos · {year}</span>
-            {selectedDistrict && (
-              <span className="dashboard-selection">
-                {selectedDistrict.name}: {formatValue(selectedValue, variable)}
-              </span>
-            )}
-          </div>
+          <aside className="dashboard-side-panel">
+            <LayerControl
+              enabled={showGamcEquipment}
+              configured={Boolean(import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID)}
+              opacity={gamcEquipmentOpacity}
+              status={gamcStatus}
+              onEnabledChange={setShowGamcEquipment}
+              onOpacityChange={setGamcEquipmentOpacity}
+              onRetry={() => {
+                setGamcStatus("idle");
+                setGamcReloadToken((token) => token + 1);
+              }}
+            />
+            <MapLegend
+              variable={variable}
+              indexView={indexView}
+              activeValue={selectedValue}
+              showLstHeatmap={showLstHeatmap}
+              showGamcEquipment={showGamcEquipment}
+            />
+            <div className="dashboard-map-status">
+              <span className="dashboard-status">15 distritos · {year}</span>
+              {selectedDistrict && (
+                <span className="dashboard-selection">
+                  {selectedDistrict.name}: {formatValue(selectedValue, variable)}
+                </span>
+              )}
+            </div>
+          </aside>
         </main>
       )}
     </div>

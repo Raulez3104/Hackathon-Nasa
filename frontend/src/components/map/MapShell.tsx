@@ -4,7 +4,7 @@ import { CRS, type LatLngBoundsExpression, type WMSParams } from "leaflet";
 import type { DistrictData, Variable } from "../../../../shared/types/geoqocha";
 import { DistrictLayer } from "./DistrictLayer";
 import { LstHeatmapLayer } from "./LstHeatmapLayer";
-import type { IndexView } from "./map.types";
+import type { IndexView, WmsLayerStatus } from "./map.types";
 import { requestWms } from "../../services/wms/client";
 
 interface MapShellProps {
@@ -15,7 +15,10 @@ interface MapShellProps {
   selectedDistrictId: number | null;
   showLstHeatmap: boolean;
   showGamcEquipment: boolean;
+  gamcEquipmentOpacity: number;
+  gamcReloadToken: number;
   onDistrictSelect: (districtId: number) => void;
+  onGamcStatusChange: (status: WmsLayerStatus) => void;
 }
 
 const COCHABAMBA_BOUNDS: LatLngBoundsExpression = [
@@ -44,7 +47,11 @@ export function MapShell(props: MapShellProps) {
         {props.showLstHeatmap && <LstHeatmapLayer districts={props.districts} year={props.year} />}
         {props.showGamcEquipment && (
           <>
-            <GamcEquipmentLayer />
+            <GamcEquipmentLayer
+              opacity={props.gamcEquipmentOpacity}
+              reloadToken={props.gamcReloadToken}
+              onStatusChange={props.onGamcStatusChange}
+            />
             <GamcFeatureInfo />
           </>
         )}
@@ -94,11 +101,22 @@ function GamcFeatureInfo() {
   return null;
 }
 
-function GamcEquipmentLayer() {
+interface GamcEquipmentLayerProps {
+  opacity: number;
+  reloadToken: number;
+  onStatusChange: (status: WmsLayerStatus) => void;
+}
+
+function GamcEquipmentLayer({ opacity, reloadToken, onStatusChange }: GamcEquipmentLayerProps) {
   const serviceId = import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID;
+  useEffect(() => {
+    onStatusChange(serviceId ? "idle" : "unavailable");
+  }, [onStatusChange, serviceId]);
+
   if (!serviceId) return null;
   return (
     <WMSTileLayer
+      key={reloadToken}
       url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
       layers=""
       params={{ service_id: serviceId } as unknown as WMSParams}
@@ -107,9 +125,14 @@ function GamcEquipmentLayer() {
       version="1.1.1"
       minZoom={12}
       maxZoom={19}
-      opacity={0.82}
+      opacity={opacity}
       uppercase={false}
       attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
+      eventHandlers={{
+        loading: () => onStatusChange("loading"),
+        load: () => onStatusChange("ready"),
+        tileerror: () => onStatusChange("error"),
+      }}
     />
   );
 }
