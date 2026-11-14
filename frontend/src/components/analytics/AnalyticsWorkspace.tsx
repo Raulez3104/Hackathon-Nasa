@@ -1,5 +1,6 @@
 import type { DistrictData } from "../../../../shared/types/geoqocha";
 import { ChatWidget } from "../ai/ChatWidget";
+import { DiagnosisCards } from "../ai/DiagnosisCards";
 import { AwarenessPanel } from "../awareness/AwarenessPanel";
 import { DistrictPanel } from "./DistrictPanel";
 import { formatDate } from "./format";
@@ -8,7 +9,7 @@ import { latestYear } from "./stats";
 import type { DatasetStatus } from "./types";
 import "./analytics.css";
 
-type WorkspaceView = "district" | "hotspots" | "methodology" | "sources" | "awareness";
+type WorkspaceView = "district" | "hotspots" | "methodology" | "sources" | "awareness" | "diagnosis";
 
 export interface AnalyticsWorkspaceProps {
   /** Permite inyectar datos en pruebas y en la composición final. */
@@ -63,18 +64,22 @@ export function AnalyticsWorkspace({
 
       <main className="gq-workspace-main">
         {view === "district" ? (
-          <DistrictPanel
-            districts={districts}
-            status={status}
-            error={error}
-            year={year}
-            variant="inline"
-            onRetry={loaded.reload}
-          />
+          <>
+            <DistrictPanel
+              districts={districts}
+              status={status}
+              error={error}
+              year={year}
+              variant="inline"
+              onRetry={loaded.reload}
+            />
+            <DiagnosisCards districts={districts} year={year} />
+          </>
         ) : null}
         {view === "awareness" ? (
           <AwarenessPanel districts={districts} status={status} error={error} year={year} onRetry={loaded.reload} />
         ) : null}
+        {view === "diagnosis" ? <DiagnosisCards districts={districts} year={year} /> : null}
       </main>
       <ChatWidget districts={districts} year={year} />
     </div>

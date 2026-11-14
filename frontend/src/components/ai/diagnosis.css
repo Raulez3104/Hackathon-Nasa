@@ -1,0 +1,223 @@
+.gq-diagnosis {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--gq-line);
+  border-radius: 14px;
+  background: var(--gq-paper);
+}
+
+.gq-diagnosis > .gq-section-heading h2 {
+  margin: 0;
+  color: var(--gq-ink);
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.gq-diagnosis-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gq-line);
+}
+
+.gq-diagnosis-bar .gq-field {
+  max-width: 260px;
+}
+
+.gq-diagnosis-result {
+  display: grid;
+  gap: 14px;
+}
+
+.gq-diagnosis-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.gq-diagnosis-meta p {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.gq-diagnosis-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.gq-diagnosis-answer {
+  margin: 0;
+  padding: 13px 15px;
+  border: 1px solid var(--gq-line);
+  border-left: 4px solid var(--gq-green);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--gq-ink);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.gq-diagnosis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gq-diagnosis-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px 15px;
+  border: 1px solid var(--gq-line);
+  border-top: 4px solid var(--gq-lime);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.gq-diagnosis-card.gq-severity--warning {
+  border-top-color: #c29522;
+}
+
+.gq-diagnosis-card.gq-severity--critical {
+  border-top-color: #b9482c;
+}
+
+.gq-diagnosis-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.gq-severity-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #224a34;
+  background: #e8f1df;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.gq-severity--warning .gq-severity-chip {
+  color: #654c09;
+  background: #f7edcb;
+}
+
+.gq-severity--critical .gq-severity-chip {
+  color: #6f2817;
+  background: #f8ded4;
+}
+
+.gq-diagnosis-card h3 {
+  margin: 0;
+  color: var(--gq-ink);
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.gq-diagnosis-card > p {
+  margin: 0;
+  color: var(--gq-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.gq-diagnosis-evidence {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--gq-line);
+}
+
+.gq-diagnosis-evidence > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.gq-diagnosis-evidence dt {
+  color: #6f7d76;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+}
+
+.gq-diagnosis-evidence dd {
+  margin: 0;
+  color: var(--gq-ink);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.gq-diagnosis-citations {
+  padding: 12px 14px;
+  border: 1px dashed var(--gq-line);
+  border-radius: 10px;
+  background: #fbfdf9;
+}
+
+.gq-diagnosis-citations h3 {
+  margin: 0 0 8px;
+  color: var(--gq-green-dark);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gq-diagnosis-citations ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--gq-ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.gq-diagnosis-citations li::before {
+  content: "› ";
+  color: var(--gq-green);
+}
+
+.gq-diagnosis :focus-visible {
+  outline: 3px solid var(--gq-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .gq-diagnosis {
+    padding: 16px;
+  }
+
+  .gq-diagnosis-bar .gq-field {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gq-diagnosis {
+    transition: none;
+    animation: none;
+  }
+}
