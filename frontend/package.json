@@ -11,17 +11,18 @@
     "validate:mock": "node ../scripts/validate-mock.mjs"
   },
   "dependencies": {
+    "leaflet": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "leaflet": "latest",
     "react-leaflet": "latest",
     "recharts": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/leaflet": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
-    "@types/leaflet": "latest",
     "autoprefixer": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
