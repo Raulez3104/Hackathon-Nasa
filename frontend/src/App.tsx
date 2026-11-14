@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import type { DistrictData, Variable } from "../../shared/types/geoqocha";
 import { loadDistricts } from "./lib/data-source";
 import { formatValue, getValue } from "./components/map/color-scales";
@@ -8,6 +8,7 @@ import { MapShell } from "./components/map/MapShell";
 import { LayerControl } from "./components/map/LayerControl";
 import type { IndexView, WmsLayerStatus } from "./components/map/map.types";
 import type { DatasetStatus } from "./components/analytics/types";
+import { buildGamcVisibility, GAMC_LAYERS } from "./services/wms/catalog";
 
 // La analítica se carga aparte para que el mapa siga siendo ligero.
 const AnalyticsWorkspace = lazy(() =>
@@ -24,12 +25,10 @@ function App() {
   const [indexView, setIndexView] = useState<IndexView>("numeric");
   const [selectedDistrictId, setSelectedDistrictId] = useState<number | null>(null);
   const [showLstHeatmap, setShowLstHeatmap] = useState(true);
-  const [showGamcEquipment, setShowGamcEquipment] = useState(false);
-  const [gamcEquipmentOpacity, setGamcEquipmentOpacity] = useState(0.82);
+  const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(() => buildGamcVisibility());
+  const [gamcOpacity, setGamcOpacity] = useState(0.82);
   const [gamcReloadToken, setGamcReloadToken] = useState(0);
-  const [gamcStatus, setGamcStatus] = useState<WmsLayerStatus>(
-    import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID ? "idle" : "unavailable",
-  );
+  const [gamcStatuses, setGamcStatuses] = useState<Record<string, WmsLayerStatus>>({});
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -42,8 +41,20 @@ function App() {
     () => districts.find((district) => district.district_id === selectedDistrictId) ?? null,
     [districts, selectedDistrictId],
   );
+  const activeGamcLayers = useMemo(
+    () => GAMC_LAYERS.filter((layer) => gamcVisibility[layer.id]),
+    [gamcVisibility],
+  );
   const selectedValue = selectedDistrict ? getValue(selectedDistrict, year, variable) : null;
   const datasetStatus: DatasetStatus = error ? "error" : districts.length > 0 ? "ready" : "loading";
+
+  const handleGamcToggle = useCallback((layerId: string, enabled: boolean) => {
+    setGamcVisibility((current) => ({ ...current, [layerId]: enabled }));
+  }, []);
+
+  const handleGamcStatusChange = useCallback((layerId: string, status: WmsLayerStatus) => {
+    setGamcStatuses((current) => (current[layerId] === status ? current : { ...current, [layerId]: status }));
+  }, []);
 
   if (error) {
     return (
@@ -76,12 +87,10 @@ function App() {
               variable={variable}
               indexView={indexView}
               showLstHeatmap={showLstHeatmap}
-              showGamcEquipment={showGamcEquipment}
               onYearChange={setYear}
               onVariableChange={setVariable}
               onIndexViewChange={setIndexView}
               onHeatmapChange={setShowLstHeatmap}
-              onGamcEquipmentChange={setShowGamcEquipment}
             />
           )}
         </div>
@@ -107,23 +116,23 @@ function App() {
               indexView={indexView}
               selectedDistrictId={selectedDistrictId}
               showLstHeatmap={showLstHeatmap}
-              showGamcEquipment={showGamcEquipment}
-              gamcEquipmentOpacity={gamcEquipmentOpacity}
+              gamcLayers={activeGamcLayers}
+              gamcOpacity={gamcOpacity}
               gamcReloadToken={gamcReloadToken}
-              onGamcStatusChange={setGamcStatus}
+              onGamcStatusChange={handleGamcStatusChange}
               onDistrictSelect={setSelectedDistrictId}
             />
           )}
           <aside className="dashboard-side-panel">
             <LayerControl
-              enabled={showGamcEquipment}
-              configured={Boolean(import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID)}
-              opacity={gamcEquipmentOpacity}
-              status={gamcStatus}
-              onEnabledChange={setShowGamcEquipment}
-              onOpacityChange={setGamcEquipmentOpacity}
+              layers={GAMC_LAYERS}
+              visibility={gamcVisibility}
+              statuses={gamcStatuses}
+              opacity={gamcOpacity}
+              onToggle={handleGamcToggle}
+              onOpacityChange={setGamcOpacity}
               onRetry={() => {
-                setGamcStatus("idle");
+                setGamcStatuses({});
                 setGamcReloadToken((token) => token + 1);
               }}
             />
@@ -132,7 +141,7 @@ function App() {
               indexView={indexView}
               activeValue={selectedValue}
               showLstHeatmap={showLstHeatmap}
-              showGamcEquipment={showGamcEquipment}
+              gamcLayers={activeGamcLayers}
             />
             <div className="dashboard-map-status">
               <span className="dashboard-status">15 distritos · {year}</span>

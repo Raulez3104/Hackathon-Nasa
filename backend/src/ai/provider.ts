@@ -60,19 +60,23 @@ function extractJson(text: string): AIDraft {
 
 async function callGemini(config: AIConfig, context: AIContext): Promise<{ text: string }> {
   if (!config.apiKey) throw new ProviderError("not_configured", "No hay proveedor configurado.");
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(config.model)}:generateContent?key=${encodeURIComponent(config.apiKey)}`;
   const response = await requestWithTimeout(
-    url,
+    "https://generativelanguage.googleapis.com/v1beta/interactions",
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": config.apiKey,
+      },
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents: [{ role: "user", parts: [{ text: buildUserPrompt(context) }] }],
-        generationConfig: {
+        model: config.model,
+        system_instruction: SYSTEM_PROMPT,
+        input: buildUserPrompt(context),
+        response_format: { type: "text", mime_type: "application/json" },
+        generation_config: {
           temperature: 0.2,
-          maxOutputTokens: config.maxOutputTokens,
-          responseMimeType: "application/json",
+          max_output_tokens: config.maxOutputTokens,
+          thinking_level: "low",
         },
       }),
     },
@@ -83,9 +87,18 @@ async function callGemini(config: AIConfig, context: AIContext): Promise<{ text:
     throw new ProviderError("upstream", `El proveedor Gemini respondió ${response.status}.`, response.status);
   }
   const data = (await response.json()) as {
-    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+    output_text?: string;
+    steps?: Array<{ type?: string; content?: Array<{ type?: string; text?: string }> }>;
   };
-  const text = data.candidates?.[0]?.content?.parts?.map((part) => part.text ?? "").join("") ?? "";
+  let text = typeof data.output_text === "string" ? data.output_text : "";
+  if (!text && Array.isArray(data.steps)) {
+    text = data.steps
+      .filter((step) => step.type === "model_output")
+      .flatMap((step) => step.content ?? [])
+      .filter((item) => item.type === "text" && typeof item.text === "string")
+      .map((item) => item.text ?? "")
+      .join("");
+  }
   if (!text) throw new ProviderError("invalid_response", "Gemini no devolvió contenido.");
   return { text };
 }

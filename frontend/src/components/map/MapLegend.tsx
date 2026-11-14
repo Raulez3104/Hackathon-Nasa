@@ -1,16 +1,18 @@
 import type { Variable } from "../../../../shared/types/geoqocha";
 import { getValue, semaphoreFor } from "./color-scales";
 import type { IndexView } from "./map.types";
+import { buildWmsUrl } from "../../services/wms/client";
+import type { GamcLayerDefinition } from "../../services/wms/catalog";
 
 interface MapLegendProps {
   variable: Variable;
   indexView: IndexView;
   activeValue: number | null;
   showLstHeatmap: boolean;
-  showGamcEquipment?: boolean;
+  gamcLayers?: readonly GamcLayerDefinition[];
 }
 
-export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, showGamcEquipment = false }: MapLegendProps) {
+export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, gamcLayers = [] }: MapLegendProps) {
   const semaphore = semaphoreFor(activeValue);
   const title = variable === "lst" ? "Temperatura superficial" : variable === "ndvi" ? "Vegetación NDVI" : "Índice visible";
 
@@ -44,14 +46,25 @@ export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, sh
         </div>
       )}
 
-      {showGamcEquipment && import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID && (
-        <div className="dashboard-heatmap-note">
-          <img
-            src={buildGamcLegendUrl(import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID)}
-            alt="Leyenda de Áreas de Equipamiento del GAMC"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
-          <span>Áreas de Equipamiento · fuente municipal real</span>
+      {gamcLayers.length > 0 && (
+        <div className="dashboard-gamc-legends">
+          <span className="dashboard-panel-label">Leyendas municipales</span>
+          {gamcLayers.map((layer) => (
+            <div className="dashboard-heatmap-note" key={layer.id}>
+              <img
+                src={buildWmsUrl({
+                  serviceId: layer.id,
+                  operation: "GetLegendGraphic",
+                  version: "1.0.0",
+                  format: "image/png",
+                })}
+                alt={`Leyenda de ${layer.name} del GAMC`}
+                loading="lazy"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+              <span>{layer.name} · fuente municipal real</span>
+            </div>
+          ))}
         </div>
       )}
 
@@ -66,16 +79,6 @@ export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, sh
       </p>
     </aside>
   );
-}
-
-function buildGamcLegendUrl(serviceId: string): string {
-  const params = new URLSearchParams({
-    service_id: serviceId,
-    REQUEST: "GetLegendGraphic",
-    VERSION: "1.0.0",
-    FORMAT: "image/png",
-  });
-  return `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms?${params.toString()}`;
 }
 
 function LegendRow({ color, label, icon }: { color: string; label: string; icon: string }) {

@@ -12,7 +12,7 @@ export interface AIConfig {
 }
 
 const DEFAULT_MODELS: Record<AIProviderName, string> = {
-  gemini: "gemini-2.0-flash",
+  gemini: "gemini-3.5-flash",
   openai: "gpt-4o-mini",
 };
 

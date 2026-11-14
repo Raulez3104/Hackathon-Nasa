@@ -8,7 +8,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node --import tsx --test src/tests/data-api.test.ts src/tests/ai.test.ts src/tests/ai-rate-limit.test.ts src/tests/guardrails.test.ts",
+    "test": "node --import tsx --test src/tests/data-api.test.ts src/tests/ai.test.ts src/tests/ai-rate-limit.test.ts src/tests/guardrails.test.ts src/tests/gamc.test.ts",
     "validate:mock": "node ../scripts/validate-mock.mjs"
   },
   "dependencies": {
