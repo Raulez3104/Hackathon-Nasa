@@ -9,6 +9,8 @@ coverage/
 .env
 .env.*
 !.env.example
+MEMORY.local.md
+MEMORY.*.local.md
 *.pem
 *.key
 

@@ -13,7 +13,7 @@ Plan de ejecución del MVP de **GeoQocha** para un hackathon de **48 horas con 3
 | Contrato primero | Tipos y mock se acuerdan en el día 0 y se versionan como `contract-v0.1.0`. |
 | Mock primero | Los tres frentes consumen el mismo JSON simulado desde la primera hora. |
 | Independencia por carpeta | Cada desarrollador es dueño exclusivo de sus carpetas y archivos. |
-| Independencia por rama | `feat/dev1-*`, `feat/dev2-*` y `feat/dev3-*` no se importan entre sí. |
+| Independencia por rama | Las ramas `dev1`, `dev2` y `dev3` no se importan entre sí. |
 | Equidad de complejidad | Cada frente tiene 6 tareas de peso equivalente (6 h nominales) y la misma mezcla de retos. |
 | Integración tardía | La composición visual y el cambio de mock a datos reales ocurren en las últimas 6 h. |
 | Honestidad de datos | Todo dato simulado se marca como ilustrativo; `null` significa «no disponible». |
@@ -43,7 +43,7 @@ Plan de ejecución del MVP de **GeoQocha** para un hackathon de **48 horas con 3
 
 ## 3. Día 0 — Contrato base compartido (T-00)
 
-**Duración:** 6 h. **Participan:** DEV1, DEV2 y DEV3. **Rama:** `chore/contract-v0.1.0`. **Destino:** `main`.
+**Duración:** 6 h. **Participan:** DEV1, DEV2 y DEV3. **Integración:** directa en `main` (commit del Día 0) y tag `contract-v0.1.0`. **Destino:** `main`.
 
 Antes de abrir las ramas de trabajo se crean y congelan estos archivos:
 
@@ -52,10 +52,10 @@ Antes de abrir las ramas de trabajo se crean y congelan estos archivos:
 | `shared/types/geoqocha.ts` | Tipos compartidos del contrato | Los tres, por consenso |
 | `frontend/src/lib/data-source.ts` | Selector mock/real por variable de entorno | Los tres, por consenso |
 | `frontend/public/data/mock_distritos.json` | 15 distritos simulados con series y paradas | Los tres, por consenso |
-| `frontend/package.json`, `frontend/tsconfig.json`, `frontend/vite.config.ts`, `frontend/tailwind.config.ts` | Andamiaje React + Vite con Leaflet, React Leaflet, Recharts, Tailwind y TypeScript | Los tres, por consenso |
+| `frontend/package.json`, `frontend/tsconfig.json`, `frontend/vite.config.ts` y configuración de Tailwind (pendiente) | Andamiaje React + Vite con Leaflet, React Leaflet, Recharts, Tailwind y TypeScript | Los tres, por consenso |
 | `backend/package.json`, `backend/tsconfig.json` | Andamiaje Node.js + Express con TypeScript, CORS, validación y pruebas | Los tres, por consenso |
 | `shared/` y scripts raíz de desarrollo | Contrato compartido y ejecución coordinada de frontend/backend | Los tres, por consenso |
-| `frontend/src/App.tsx`, `frontend/src/styles/` | Shell global y tokens visuales | Los tres, por consenso |
+| `frontend/src/App.tsx`, `frontend/src/styles.css` | Shell global y tokens visuales | Los tres, por consenso |
 | `backend/.env.example`, `frontend/.env.example` | Variables del servidor y configuración pública del frontend, sin secretos | Los tres, por consenso |
 
 **Regla de fuentes durante el desarrollo:** el agente debe trabajar primero con el contrato, el mock y fixtures. Solo solicitará al equipo un GeoJSON, URL, `service_id`, metadato o acceso real cuando la tarea en curso requiera validación real. La solicitud debe especificar formato, CRS, campos, fecha, licencia y tarea afectada. Las credenciales nunca se comparten por el chat; se configuran localmente en `backend/.env`.
@@ -64,8 +64,8 @@ Antes de abrir las ramas de trabajo se crean y congelan estos archivos:
 
 1. `CONTRACT_VERSION` se declara en `shared/types/geoqocha.ts` con el valor `"0.1.0"`.
 2. Después del tag `contract-v0.1.0`, los archivos compartidos son **solo lectura**.
-3. Un cambio de contrato exige una rama `contract/*`, un PR separado y aprobación de los tres desarrolladores.
-4. Nadie modifica el mock o los tipos para «desbloquearse»; si falta un campo, se abre un PR de contrato.
+3. Un cambio de contrato se realiza desde la rama del frente correspondiente, en un PR separado y con aprobación de los tres desarrolladores.
+4. Nadie modifica el mock o los tipos para «desbloquearse»; si falta un campo, se abre un PR exclusivo para el contrato.
 5. El mock lleva `data_status: "illustrative"` a nivel de archivo y de distrito.
 6. Los tipos usan campos en inglés y unidades en el nombre, según `04-CONTRATOS-API.md`.
 
@@ -318,7 +318,7 @@ export interface AIResponse {
 - [ ] El JSON tiene 15 distritos y 11 puntos por serie.
 - [ ] Los tres desarrolladores pueden importar los tipos y leer el mock.
 - [ ] El tag `contract-v0.1.0` existe en `main`.
-- [ ] Las tres ramas de trabajo se crean desde ese tag.
+- [ ] Las ramas `dev1`, `dev2` y `dev3` se crean desde `main` en el commit etiquetado.
 - [ ] Nadie necesita esperar a otra persona para empezar.
 
 ---
@@ -330,7 +330,7 @@ export interface AIResponse {
 | `shared/types/geoqocha.ts` | Compartido | Contrato de tipos | Solo lectura tras el Día 0 |
 | `frontend/src/lib/data-source.ts` | Compartido | Selector mock/real | Solo lectura tras el Día 0 |
 | `frontend/public/data/mock_distritos.json` | Compartido | Datos simulados | Solo lectura tras el Día 0 |
-| `frontend/src/App.tsx`, `frontend/src/styles/` | Compartido | Shell y tokens | Solo lectura tras el Día 0 |
+| `frontend/src/styles.css` | Compartido | Tokens y estilos globales | Solo lectura tras el Día 0, salvo acuerdo de los tres |
 | `frontend/src/components/map/` | DEV1 | Mapa, capas, leyendas y movilidad | Exclusivo |
 | `frontend/src/services/wms/` | DEV1 | Cliente WMS tipado | Exclusivo |
 | `backend/src/gamc/`, `backend/src/routes/gamc.ts` | DEV1 | Proxy WMS server-side | Exclusivo |
@@ -345,7 +345,7 @@ export interface AIResponse {
 | `frontend/src/components/awareness/` | DEV3 | Deforestación y concientización | Exclusivo |
 | `frontend/src/components/ai/` | DEV3 | Chat UI y tarjetas de diagnóstico | Exclusivo |
 | `frontend/public/data/distritos_data.json` | DEV2 | Dataset real de producción | Generado por el pipeline |
-| `package.json`, lockfile | Compartido | Dependencias | Solo PR `chore/deps/*` |
+| `package.json`, lockfile | Compartido | Dependencias | Cualquier desarrollador puede modificarlos en su rama; actualizar ambos archivos y avisar al equipo |
 
 > **Ajuste de independencia:** la configuración inicial de React + Vite, Express, Tailwind y TypeScript se ejecuta en el Día 0 compartido, no como tarea exclusiva de DEV1. Así DEV2 y DEV3 no esperan a que DEV1 termine el andamiaje. DEV1 conserva el diseño full-screen, el mapa y la composición visual, además del módulo WMS del backend. DEV2 conserva los servicios de datos, IA y las rutas REST.
 
@@ -354,7 +354,7 @@ export interface AIResponse {
 1. Nadie edita archivos de otra persona sin un PR acordado.
 2. No se mueven carpetas ni se renombran archivos compartidos.
 3. Los estilos globales solo se tocan en T-00; cada frente usa tokens y clases Tailwind.
-4. Las dependencias nuevas se agregan en un PR `chore/deps/*` y luego se hace rebase.
+4. Cualquier desarrollador puede agregar dependencias en su rama; el PR incluye el `package.json` y lockfile correspondiente, y las otras ramas se sincronizan con `git merge origin/main`.
 5. Los imports entre `frontend/src/components/map`, `frontend/src/components/analytics` y `frontend/src/components/ai` están prohibidos durante el desarrollo; la composición se hace en la integración.
 
 ---
@@ -365,7 +365,7 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 
 | ID | Responsable | Entregable resumido | Estado | Evidencia / actualización | Lista para integrar |
 |---|---|---|---|---|---|
-| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `en progreso` | Contrato, mock y configuraciones base creados; frontend y backend pasan typecheck/build y el mock valida; faltan tag y ramas del Día 0 | No |
+| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `en progreso` | Contrato, mock y configuraciones base creados; frontend y backend pasan typecheck/build y el mock valida; tag `contract-v0.1.0` creado; Tailwind v4 cableado; pendientes ramas `dev1`/`dev2`/`dev3` y `frontend/src/lib/data-source.ts` | No |
 | T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `pendiente` | — | No |
 | T1-02 | DEV1 | Proxy WMS seguro | `pendiente` | — | No |
 | T1-03 | DEV1 | Capas WMS, leyendas y degradación | `pendiente` | — | No |
@@ -406,7 +406,7 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 5. `lista para integrar` requiere revisión cruzada y pruebas verdes en la rama del frente.
 6. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`.
 7. Si DEV1 trabaja en su propia tarea, la matriz se actualiza mediante un commit separado o después de validar su propio PR.
-8. `MEMORY.md` se actualiza solo si el avance cambia una decisión, contrato, alcance, riesgo o hito general.
+8. Solo DEV1 actualiza `MEMORY.md`, y únicamente si el avance cambia una decisión, contrato, alcance, riesgo o hito general. Los demás desarrolladores usan `MEMORY.local.md`, que no se versiona.
 
 ### Criterio para iniciar la integración
 
@@ -427,26 +427,26 @@ Después de validar la aplicación completa, `INT-01` pasa a `integrada` y la ma
 
 | Desarrollador | Frente | Rama | PR destino |
 |---|---|---|---|
-| DEV1 | Mapas, WMS y movilidad urbana | `feat/dev1-map-transport` | `main` |
-| DEV2 | Datos NASA, pipeline y backend de IA | `feat/dev2-data-ai` | `main` |
-| DEV3 | Analítica, concientización y chat UI | `feat/dev3-analytics-chat` | `main` |
-| Compartido | Contrato y andamiaje | `chore/contract-v0.1.0` | `main` |
+| DEV1 | Mapas, WMS y movilidad urbana | `dev1` | `main` |
+| DEV2 | Datos NASA, pipeline y backend de IA | `dev2` | `main` |
+| DEV3 | Analítica, concientización y chat UI | `dev3` | `main` |
+
+Las tres ramas de desarrollo son **permanentes** durante el hackathon: agrupan todas las tareas del frente y se integran a `main` por PR periódicos.
 
 ### 5.1 Flujo de ramas
 
 ```text
-main
-  ├── chore/contract-v0.1.0   (Día 0, PR y merge)
-  ├── feat/dev1-map-transport
-  ├── feat/dev2-data-ai
-  └── feat/dev3-analytics-chat
+main   (tag contract-v0.1.0)
+  ├── dev1
+  ├── dev2
+  └── dev3
 ```
 
-1. El Día 0 se mergea `chore/contract-v0.1.0` a `main` y se crea el tag `contract-v0.1.0`.
-2. Cada desarrollador crea su rama desde `main` después del tag.
-3. Cada tarea se entrega en un PR pequeño, con CI verde.
-4. Antes del PR: `git fetch origin && git rebase origin/main`.
-5. El merge a `main` se hace con squash merge.
+1. El Día 0 se integró directamente en `main` y se etiquetó `contract-v0.1.0`.
+2. Cada desarrollador crea su rama desde `main` en el commit etiquetado.
+3. Las ramas `dev1`, `dev2` y `dev3` son de larga duración; cada tarea se entrega en un PR pequeño de la rama del frente a `main`.
+4. Antes de cada PR: `git fetch origin && git merge origin/main` en la propia rama.
+5. El merge a `main` se hace con squash merge; la rama `devN` continúa viva.
 6. Al final, `main` recibe el tag `v0.1.0-mvp` después de la integración validada.
 
 ### 5.2 Reglas para evitar conflictos
@@ -455,20 +455,23 @@ main
 |---|---|
 | Una carpeta, un dueño | Evita ediciones simultáneas del mismo archivo. |
 | Archivos compartidos congelados | Elimina conflictos en tipos, mock, layout y configuración. |
-| Dependencias solo por PR `chore/deps/*` | Evita conflictos en `package.json` y lockfile. |
+| Dependencias coordinadas | Cualquier frente puede actualizar dependencias; debe incluir package y lockfile, avisar al equipo y sincronizar las otras ramas tras el merge. |
 | PR pequeños por tarea | Reduce el tamaño del conflicto y facilita la revisión. |
-| Rebase antes de cada PR | Mantiene lineal la historia de la rama. |
+| Merge de `origin/main` antes de cada PR | Sincroniza la rama permanente sin force-push y muestra conflictos antes del PR. |
 | Prohibido mover o renombrar archivos ajenos | Evita conflictos de ruta. |
-| Conflictos en archivo compartido: detenerse | Se resuelven en un PR de contrato, no dentro de una rama de feature. |
+| Conflictos en archivo compartido: detenerse | Se resuelven en un PR exclusivo para ese archivo desde la rama del frente correspondiente. |
 
 ### 5.3 Protecciones y revisión
 
 - `main` protegida: sin pushes directos ni force-push.
+- Toda integración de `dev1`, `dev2` o `dev3` a `main` entra por PR; el merge se hace con squash.
 - CI obligatorio: `lint`, `typecheck`, `test`, `validate:mock`.
 - Un PR requiere al menos **una aprobación de otro desarrollador** y CI verde.
-- Un cambio de contrato requiere **las tres aprobaciones**.
-- Un cambio de dependencias requiere **las tres aprobaciones**.
+- Un cambio de contrato requiere **las tres aprobaciones** y un PR exclusivo para el contrato.
+- Un cambio de dependencias sigue la aprobación mínima del PR; debe actualizar package y lockfile de forma coherente.
 - El PR debe declarar: alcance, carpetas tocadas, impacto en contrato, estado de datos y pruebas ejecutadas.
+
+> Mientras no exista `.github/workflows`, la verificación del punto «CI obligatorio» es manual y se declara en el PR: `npm run typecheck`, `npm run build` y `npm run validate:mock` en `frontend/`, y `npm run typecheck` en `backend/`.
 
 ---
 
@@ -601,40 +604,39 @@ Los eventos son opcionales: la URL es la fuente de verdad. Si un evento falla, l
 ```bash
 # Día 0, una sola persona del equipo
 git checkout main
-git checkout -b chore/contract-v0.1.0
-# crear contrato, mock y andamiaje
-git push -u origin chore/contract-v0.1.0
-# PR a main, revisión de los tres, merge y tag
-git checkout main && git pull
-git tag contract-v0.1.0 && git push origin contract-v0.1.0
+# crear contrato, mock y andamiaje; commit y push a main
+git tag -a contract-v0.1.0 -m "Contrato Día 0 congelado" && git push origin contract-v0.1.0
 
-# Cada desarrollador
+# Cada desarrollador, una sola vez
 git checkout main && git pull
-git checkout -b feat/dev1-map-transport
-# commits pequeños y frecuentes
-git fetch origin && git rebase origin/main
-git push -u origin feat/dev1-map-transport
-# PR a main
+git checkout -b dev1        # dev2 y dev3 igual
+git push -u origin dev1
+
+# Ciclo por tarea (ramas permanentes)
+git fetch origin && git merge origin/main
+git push -u origin dev1
+# PR de dev1 a main: una aprobación, verificación verde, squash merge
 ```
+
+> Las ramas `dev1`, `dev2` y `dev3` nunca se rebasean ni se fuerzan: se sincronizan con `git merge origin/main` para evitar `force-push` en ramas vivas.
 
 ### 9.2 Orden de merge
 
 | Orden | Rama | Condición |
 |---:|---|---|
-| 1 | `chore/contract-v0.1.0` | Aprobación de los tres y CI verde |
-| 2 | `feat/dev1-map-transport` | CI verde y una aprobación |
-| 3 | `feat/dev2-data-ai` | CI verde y una aprobación |
-| 4 | `feat/dev3-analytics-chat` | CI verde y una aprobación |
-| 5 | `main` | Integración validada y demo ensayada |
+| 1 | `dev1` | Verificación verde y una aprobación |
+| 2 | `dev2` | Verificación verde y una aprobación |
+| 3 | `dev3` | Verificación verde y una aprobación |
+| 4 | `main` | Integración validada y demo ensayada |
 
-El orden 2–4 es intercambiable. Si dos PR tocan un archivo compartido, se rechazan y se resuelve primero el PR de contrato.
+El orden 1–3 es intercambiable y se repite en cada ciclo de integración. Si dos PR tocan un archivo compartido, se detiene el merge y se abre desde una de las ramas del frente un PR exclusivo para resolver ese archivo.
 
 ### 9.3 Protocolo de conflicto
 
 1. Detener el merge.
 2. Identificar si el conflicto es de carpeta exclusiva o de archivo compartido.
 3. Si es de carpeta exclusiva, resolver en la rama del dueño.
-4. Si es de archivo compartido, abrir `contract/*` y aprobar entre los tres.
+4. Si es de archivo compartido, crear desde la rama del frente un PR exclusivo para resolverlo; si cambia el contrato, requiere aprobación de los tres.
 5. No usar `--force` ni reescribir la historia de `main`.
 
 ---
@@ -651,7 +653,7 @@ Una tarea está terminada cuando:
 - [ ] La IA incluye citas, advertencia y `fallback_used` cuando corresponde.
 - [ ] La interfaz es usable con teclado y en móvil.
 - [ ] Tiene revisión de al menos otra persona del equipo.
-- [ ] Actualiza `MEMORY.md` si cambió una decisión o un contrato.
+- [ ] DEV1 actualiza `MEMORY.md` si cambió una decisión o un contrato; DEV2 y DEV3 registran sus notas en `MEMORY.local.md`.
 
 ---
 
@@ -659,7 +661,7 @@ Una tarea está terminada cuando:
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
-| Deriva del contrato | Bloquea a los tres frentes | Congelar en el Día 0; cambios solo por PR `contract/*`. |
+| Deriva del contrato | Bloquea a los tres frentes | Congelar en el Día 0; cambios mediante PR exclusivo con aprobación de los tres. |
 | WMS del GAMC caído | Capas municipales no visibles | Caché, capas estáticas y modo degradado con aviso. |
 | Clave del GAMC ausente | No se puede probar el proxy | Mock de respuestas WMS y validación con `service_id` ficticio. |
 | Proveedor de IA sin clave o caído | Chat y diagnóstico no responden | Fallback basado en reglas y fixture local ilustrativo. |
