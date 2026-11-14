@@ -7,10 +7,12 @@ interface MapControlsProps {
   variable: Variable;
   indexView: IndexView;
   showLstHeatmap: boolean;
+  showGamcEquipment: boolean;
   onYearChange: (year: number) => void;
   onVariableChange: (variable: Variable) => void;
   onIndexViewChange: (view: IndexView) => void;
   onHeatmapChange: (visible: boolean) => void;
+  onGamcEquipmentChange: (visible: boolean) => void;
 }
 
 export function MapControls({
@@ -18,10 +20,12 @@ export function MapControls({
   variable,
   indexView,
   showLstHeatmap,
+  showGamcEquipment,
   onYearChange,
   onVariableChange,
   onIndexViewChange,
   onHeatmapChange,
+  onGamcEquipmentChange,
 }: MapControlsProps) {
   return (
     <div className="dashboard-controls" aria-label="Controles del mapa">
@@ -52,6 +56,15 @@ export function MapControls({
       <label className="dashboard-check">
         <input type="checkbox" checked={showLstHeatmap} onChange={(event) => onHeatmapChange(event.target.checked)} />
         <span>Calor LST</span>
+      </label>
+      <label className="dashboard-check">
+        <input
+          type="checkbox"
+          checked={showGamcEquipment}
+          onChange={(event) => onGamcEquipmentChange(event.target.checked)}
+          disabled={!import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID}
+        />
+        <span>Equipamiento GAMC</span>
       </label>
     </div>
   );

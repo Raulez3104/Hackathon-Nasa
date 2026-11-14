@@ -366,18 +366,18 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 | ID | Responsable | Entregable resumido | Estado | Evidencia / actualización | Lista para integrar |
 |---|---|---|---|---|---|
 | T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `en progreso` | Contrato, mock y configuraciones base creados; frontend y backend pasan typecheck/build y el mock valida; tag `contract-v0.1.0` creado; Tailwind v4 cableado; pendientes ramas `dev1`/`dev2`/`dev3` y `frontend/src/lib/data-source.ts` | No |
-| T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `pendiente` | — | No |
-| T1-02 | DEV1 | Proxy WMS seguro | `pendiente` | — | No |
-| T1-03 | DEV1 | Capas WMS, leyendas y degradación | `pendiente` | — | No |
-| T1-04 | DEV1 | Rutas y paradas propuestas | `pendiente` | — | No |
+| T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `completada` | Shell, mapa base, 15 polígonos del mock, coropletas, semáforo y calor LST implementados en `frontend/src/App.tsx` y `frontend/src/components/map/`; sigue pendiente sustituir el mock por geometría/indicadores oficiales. | No |
+| T1-02 | DEV1 | Proxy WMS seguro | `completada` | Proxy validado con `service_id`, operaciones permitidas, caché, límite, timeout, respuesta PNG/JSON y clave solo en backend; verificado con `npm run typecheck` y respuestas reales 200 del GAMC. | No |
+| T1-03 | DEV1 | Capas WMS, leyendas y degradación | `en progreso` | Capa real de Áreas de Equipamiento, leyenda `GetLegendGraphic` y `GetFeatureInfo` integrados; pendientes control de capas completo, indicador visual de error/carga y prueba de degradación en UI. | No |
+| T1-04 | DEV1 | Rutas y paradas propuestas | `pendiente` | Pendiente incorporar al repositorio el GeoJSON real de líneas de transporte, validar CRS/campos/licencia e integrar `TransportLayer`; no se inventan paradas oficiales. | No |
 | T1-05 | DEV1 | URL, comparación y eventos | `pendiente` | — | No |
-| T1-06 | DEV1 | Calidad, pruebas y documentación del mapa | `pendiente` | — | No |
-| T2-01 | DEV2 | Esqueleto y validación del pipeline | `pendiente` | — | No |
-| T2-02 | DEV2 | Procesamiento NASA NDVI/LST | `pendiente` | — | No |
-| T2-03 | DEV2 | Índice, brechas, correlaciones, hotspots y APIs de datos | `pendiente` | — | No |
-| T2-04 | DEV2 | RAG ligero y contexto con citas | `pendiente` | — | No |
-| T2-05 | DEV2 | Endpoint de IA | `pendiente` | — | No |
-| T2-06 | DEV2 | Guardrails, pruebas y documentación de IA | `pendiente` | — | No |
+| T1-06 | DEV1 | Calidad, pruebas y documentación del mapa | `en progreso` | Typecheck/build frontend y backend verificados; pendiente suite de pruebas, README específico del mapa, accesibilidad y revisión cruzada. | No |
+| T2-01 | DEV2 | Esqueleto y validación del pipeline | `pendiente` | No existen aún `scripts/run.py`, `scripts/config.py` ni `scripts/validate_output.py`; pendiente recibir/validar el GeoJSON oficial de distritos. | No |
+| T2-02 | DEV2 | Procesamiento NASA NDVI/LST | `pendiente` | No existen salidas MOD13Q1/MOD11A2 reales ni proceso QA/estadística zonal; pendiente acceso NASA/GEE y límites distritales oficiales. | No |
+| T2-03 | DEV2 | Índice, brechas, correlaciones, hotspots y APIs de datos | `pendiente` | No existen datos procesados ni rutas de datos; equipamiento/movilidad no pueden calcularse solo desde WMS. | No |
+| T2-04 | DEV2 | RAG ligero y contexto con citas | `pendiente` | No existe `backend/src/ai/retrieval.ts` ni `context.ts`; depende de `distritos_data.json` real. | No |
+| T2-05 | DEV2 | Endpoint de IA | `pendiente` | No existe `backend/src/routes/ai-analyst.ts` ni proveedor configurado para datos procesados. | No |
+| T2-06 | DEV2 | Guardrails, pruebas y documentación de IA | `pendiente` | No iniciada; depende de T2-04 y T2-05. | No |
 | T3-01 | DEV3 | Panel distrital y comparador | `pendiente` | — | No |
 | T3-02 | DEV3 | Fichas, brechas y series históricas | `pendiente` | — | No |
 | T3-03 | DEV3 | Deforestación y concientización | `pendiente` | — | No |

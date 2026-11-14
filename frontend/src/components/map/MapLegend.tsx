@@ -7,9 +7,10 @@ interface MapLegendProps {
   indexView: IndexView;
   activeValue: number | null;
   showLstHeatmap: boolean;
+  showGamcEquipment?: boolean;
 }
 
-export function MapLegend({ variable, indexView, activeValue, showLstHeatmap }: MapLegendProps) {
+export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, showGamcEquipment = false }: MapLegendProps) {
   const semaphore = semaphoreFor(activeValue);
   const title = variable === "lst" ? "Temperatura superficial" : variable === "ndvi" ? "Vegetación NDVI" : "Índice visible";
 
@@ -43,6 +44,17 @@ export function MapLegend({ variable, indexView, activeValue, showLstHeatmap }: 
         </div>
       )}
 
+      {showGamcEquipment && import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID && (
+        <div className="dashboard-heatmap-note">
+          <img
+            src={buildGamcLegendUrl(import.meta.env.VITE_GAMC_EQUIPMENT_SERVICE_ID)}
+            alt="Leyenda de Áreas de Equipamiento del GAMC"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+          <span>Áreas de Equipamiento · fuente municipal real</span>
+        </div>
+      )}
+
       {variable === "icvsa" && indexView === "semaphore" && (
         <div className="dashboard-status" style={{ color: semaphore.color }}>
           {semaphore.icon} {semaphore.label}
@@ -54,6 +66,16 @@ export function MapLegend({ variable, indexView, activeValue, showLstHeatmap }: 
       </p>
     </aside>
   );
+}
+
+function buildGamcLegendUrl(serviceId: string): string {
+  const params = new URLSearchParams({
+    service_id: serviceId,
+    REQUEST: "GetLegendGraphic",
+    VERSION: "1.0.0",
+    FORMAT: "image/png",
+  });
+  return `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms?${params.toString()}`;
 }
 
 function LegendRow({ color, label, icon }: { color: string; label: string; icon: string }) {

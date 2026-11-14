@@ -51,7 +51,7 @@ cd ../backend && npm install
 npm run dev
 ```
 
-El frontend estará disponible en `http://localhost:5173`. La API Express y su endpoint de salud estarán en `http://localhost:3001/api/health`.
+El frontend estará disponible en `http://localhost:5173`. La API Express y su endpoint de salud estarán en `http://localhost:3000/api/health`.
 
 Las credenciales del GAMC y del proveedor de IA deben permanecer únicamente en el `.env` del servidor. Nunca deben incluirse en el cliente, en Git ni en la documentación.
 
