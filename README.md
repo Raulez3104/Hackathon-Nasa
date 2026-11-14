@@ -4,7 +4,7 @@
 
 GeoQocha es una plataforma web de código abierto para explorar y comparar las condiciones socioambientales de los 15 distritos municipales de Cochabamba. Integra observaciones satelitales de NASA, datos geoespaciales del Gobierno Autónomo Municipal de Cochabamba (GAMC) y un copiloto de IA que explica los datos con citas.
 
-> Estado actual (2026-11-14): la implementación de los tres frentes está presente y pasa las verificaciones principales con datos mock. Se autoriza una integración técnica y demo únicamente con datos ilustrativos. La sustitución por datos oficiales NASA/GAMC queda pendiente y está documentada en `docs/05-FUENTES-DATOS.md` y `docs/06-PLAN-DESARROLLO.md`.
+> Estado actual (2026-11-14): la implementación de los tres frentes está integrada y la integración técnica/demo está cerrada con datos ilustrativos. La sustitución por datos oficiales NASA/GAMC queda pendiente y está documentada en `docs/05-FUENTES-DATOS.md` y `docs/06-PLAN-DESARROLLO.md`.
 
 ## Qué busca resolver
 
@@ -63,7 +63,7 @@ Las credenciales del GAMC y del proveedor de IA deben permanecer únicamente en 
 
 El archivo actualmente disponible en `data/processed/distritos_data.json` también está marcado como `illustrative`; cambiar `VITE_DATA_MODE=real` no convierte datos sintéticos en datos oficiales. Para conocer los insumos requeridos y su estado, consultar [`docs/05-FUENTES-DATOS.md`](./docs/05-FUENTES-DATOS.md).
 
-La integración actual corresponde a una demo técnica con datos ilustrativos. Antes de publicar resultados territoriales, deben incorporarse y validarse las fuentes oficiales NASA/GAMC.
+La integración cerrada corresponde únicamente a una demo técnica con datos ilustrativos. Antes de publicar resultados territoriales, deben incorporarse y validarse las fuentes oficiales NASA/GAMC.
 
 ## Documentación
 

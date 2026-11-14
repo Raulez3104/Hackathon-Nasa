@@ -384,7 +384,7 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. La sig
 | T3-04 | DEV3 | Chat IA | `completada` | Existe `ChatWidget` con historial, carga, error, reintento, citas y fallback local cuando la API no está disponible; hay pruebas frontend. | No |
 | T3-05 | DEV3 | Diagnóstico automático | `completada` | Existen `DiagnosisCards`, consumo del modo `diagnosis`, severidad, evidencia, citas y reintento; hay pruebas frontend. | No |
 | T3-06 | DEV3 | Hotspots, metodología, fuentes, calidad y pruebas de analítica | `completada` | Existen paneles de hotspots, metodología y fuentes; se muestran reglas, pesos, `t_ref`, faltantes, estados ilustrativos y accesibilidad. Frontend: 90 pruebas, typecheck y build correctos. | No |
-| INT-01 | DEV1 + DEV2 + DEV3 | Integración, QA, despliegue y demo | `en progreso` | Se autoriza una integración técnica y demo únicamente con los productos marcados como `illustrative`. La sustitución por datos oficiales NASA/GAMC queda pendiente y no se presenta como validación territorial real. | No aplica |
+| INT-01 | DEV1 + DEV2 + DEV3 | Integración, QA, despliegue y demo | `integrada-demo` | Integración técnica cerrada con datos ilustrativos. Frontend y backend levantaron conjuntamente; smoke test de salud, distritos, ficha, indicadores, comparación, hotspots, heatmap, correlación, metodología, fuentes, chat y diagnóstico completada. La sustitución por datos oficiales NASA/GAMC queda pendiente y no se presenta como validación territorial real. | No aplica |
 
 ### Estados permitidos
 
@@ -431,9 +431,9 @@ Después de validar la aplicación completa con mock, `INT-01` puede pasar a `in
 
 ### 4.2 Resultado de la auditoría de integración
 
-La auditoría confirma que el código de los tres frentes está presente y que frontend y backend pasan sus verificaciones principales. También se ejecutó una smoke test con ambos servidores: frontend HTTP 200, backend `health=ok`, 15 distritos y respuesta del chat con fallback y citas.
+La auditoría confirma que el código de los tres frentes está presente y que frontend y backend pasan sus verificaciones principales. La integración demo quedó validada con ambos servidores: frontend HTTP 200, backend `health=ok`, 15 distritos y respuesta del chat con fallback y citas.
 
-El proyecto **no queda todavía listo para cambiar INT-01 a `en progreso`** porque:
+La integración demo no equivale a una publicación con datos oficiales. Permanecen estas pendientes para una futura integración oficial:
 
 1. Las 18 tareas no tienen revisión cruzada registrada ni estado `lista para integrar`.
 2. T2-02 está bloqueada por la ausencia de insumos NASA y límites distritales oficiales verificados.
@@ -442,7 +442,7 @@ El proyecto **no queda todavía listo para cambiar INT-01 a `en progreso`** porq
 5. La suite Python no pudo ejecutarse en la auditoría porque el entorno no tiene instalado `pytest`.
 6. Las ramas observadas no coinciden completamente con la nomenclatura permanente prevista (`dev1`, `dev2`, `dev3`).
 
-La integración técnica con mock puede prepararse, pero cualquier demo que muestre resultados territoriales debe mantener visible la etiqueta de datos ilustrativos. La publicación con datos reales requiere completar la información de `docs/05-FUENTES-DATOS.md`.
+La integración demo queda cerrada. Cualquier demo que muestre resultados territoriales debe mantener visible la etiqueta de datos ilustrativos. La publicación con datos reales requiere completar la información de `docs/05-FUENTES-DATOS.md`.
 
 ### 4.3 Revisión de tareas por desarrollador — alcance demo
 
@@ -454,7 +454,29 @@ Revisión actualizada el **2026-11-14**, considerando como alcance aprobado la i
 | DEV2 | T2-01, T2-03 a T2-06 | **Completadas para demo**: pipeline con mock, productos derivados, API, RAG, endpoint IA, fallback, guardrails y pruebas. | T2-02 bloqueada: faltan salidas verificadas MOD13Q1/MOD11A2 y límites oficiales. La sustitución por datos reales exige reprocesar y validar todos los productos derivados. |
 | DEV3 | T3-01 a T3-06 | **Completadas técnicamente para demo**: paneles, fichas, brechas, series, concientización, chat, diagnóstico, hotspots, metodología, fuentes y pruebas frontend. | Revisión cruzada formal y validación de comportamiento con datos oficiales cuando estén disponibles. |
 
-Resultado: el sistema está autorizado para **integración/demo con mock**, no para declarar resultados oficiales. La matriz conserva `No` en “Lista para integrar” hasta completar la revisión cruzada exigida por el proceso.
+Resultado: el sistema queda **integrado-demo con mock**, no autorizado para declarar resultados oficiales. La matriz conserva `No` en “Lista para integrar” porque esa marca corresponde a la futura integración con fuentes oficiales y revisión cruzada formal.
+
+### 4.4 Cierre de INT-01 — integración demo
+
+**Fecha de cierre:** 2026-11-14
+**Alcance:** integración técnica y demo con datos ilustrativos.
+**Estado:** `integrada-demo`.
+
+Verificaciones realizadas:
+
+- Frontend: typecheck, build y 90 pruebas correctas.
+- Backend: typecheck, build y 34 pruebas correctas.
+- Mock: 15 distritos y 11 observaciones por serie validados.
+- Pipeline: contrato de datos válido con 15 distritos, 11 años y productos auxiliares.
+- Smoke test: frontend HTTP 200, proxy `/api/health`, backend `health=ok`, ficha distrital, indicadores 2015–2025, comparación para 2025, hotspots, heatmap, raster, correlación con `n=15`, metodología, fuentes, chat y diagnóstico.
+- IA: fallback operativo, citas visibles y diagnóstico con 4 insights.
+
+Limitaciones aceptadas para este cierre:
+
+- Los productos analíticos son `illustrative`.
+- T2-02 continúa bloqueada hasta recibir y validar datos NASA y límites oficiales.
+- `pytest` no se ejecutó porque no está instalado en el entorno.
+- La sustitución por datos oficiales requerirá una nueva validación antes de publicar.
 
 ---
 
