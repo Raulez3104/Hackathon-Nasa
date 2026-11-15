@@ -4,9 +4,10 @@ import "leaflet/dist/leaflet.css";
 import "./styles.css";
 import "./components/map/map.css";
 import { App } from "./App";
+import { LandingPage } from "./LandingPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    {window.location.pathname === "/" ? <LandingPage /> : <App />}
   </StrictMode>,
 );

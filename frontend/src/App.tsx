@@ -11,6 +11,7 @@ import type { IndexView, WmsLayerStatus } from "./components/map/map.types";
 import { useMapUrlState } from "./components/map/useMapUrlState";
 import type { DatasetStatus } from "./components/analytics/types";
 import { buildGamcVisibility, GAMC_LAYERS } from "./services/wms/catalog";
+import { GeoQochaNavbar } from "./components/navigation/GeoQochaNavbar";
 
 // La analítica se carga aparte para que el mapa siga siendo ligero.
 const AnalyticsWorkspace = lazy(() =>
@@ -91,21 +92,29 @@ function App() {
 
   return (
     <div className="dashboard-shell">
-      <header className="dashboard-header">
-        <a className="dashboard-brand" href="/" aria-label="GeoQocha, inicio">
-          <span className="dashboard-brand-mark" aria-hidden="true">G</span>
-          <span>GeoQocha</span>
-        </a>
-        <div className="dashboard-header-actions">
-          <nav className="dashboard-view-switch" aria-label="Vistas principales">
-            <button type="button" aria-pressed={activeView === "map"} onClick={() => setActiveView("map")}>
-              Mapa
-            </button>
-            <button type="button" aria-pressed={activeView === "analytics"} onClick={() => setActiveView("analytics")}>
-              Analítica
-            </button>
-          </nav>
-          {activeView === "map" && (
+      <GeoQochaNavbar
+        variant="dashboard"
+        activeView={activeView}
+        onViewChange={setActiveView}
+      />
+
+      {activeView === "analytics" ? (
+        <Suspense
+          fallback={
+            <main className="dashboard-state" aria-busy="true">
+              <p>Cargando analítica y concientización…</p>
+            </main>
+          }
+        >
+          <AnalyticsWorkspace districts={districts} status={datasetStatus} year={year} error={error} />
+        </Suspense>
+      ) : (
+        <>
+          <div className="dashboard-toolbar">
+            <div className="dashboard-toolbar-title">
+              <span className="dashboard-toolbar-kicker">EXPLORADOR TERRITORIAL</span>
+              <strong>Mapa de distritos</strong>
+            </div>
             <MapControls
               year={year}
               variable={variable}
@@ -119,98 +128,85 @@ function App() {
                 mapUrl.setLayers(visible ? [...layers, "lst"] : layers);
               }}
             />
-          )}
-        </div>
-      </header>
-
-      {activeView === "analytics" ? (
-        <Suspense
-          fallback={
-            <main className="dashboard-state" aria-busy="true">
-              <p>Cargando analítica y concientización…</p>
-            </main>
-          }
-        >
-          <AnalyticsWorkspace districts={districts} status={datasetStatus} year={year} error={error} />
-        </Suspense>
-      ) : (
-        <main className="dashboard-main">
-          {districts.length > 0 && (
-            <Suspense fallback={<div className="dashboard-map-loading" role="status">Cargando mapa…</div>}>
-              <MapShell
+          </div>
+          <main className="dashboard-main">
+            {districts.length > 0 && (
+              <Suspense fallback={<div className="dashboard-map-loading" role="status">Cargando mapa…</div>}>
+                <MapShell
+                  districts={districts}
+                  year={year}
+                  variable={variable}
+                  indexView={indexView}
+                  selectedDistrictId={selectedDistrictId}
+                  showLstHeatmap={showLstHeatmap}
+                  showTransport={showTransport}
+                  showTransportStops={showTransportStops}
+                  transportRoute={transportRoute}
+                  selectedDistrictGeometry={selectedDistrict?.geometry ?? null}
+                  onTransportRoutesLoaded={setTransportRoutes}
+                  onTransportStatusChange={setTransportStatus}
+                  gamcLayers={activeGamcLayers}
+                  gamcOpacity={gamcOpacity}
+                  gamcReloadToken={gamcReloadToken}
+                  onGamcStatusChange={handleGamcStatusChange}
+                  onDistrictSelect={mapUrl.selectDistrict}
+                />
+              </Suspense>
+            )}
+            <aside className="dashboard-side-panel">
+              <TransportControl
+                enabled={showTransport}
+                showStops={showTransportStops}
+                status={transportStatus}
+                routeId={transportRoute}
+                routes={transportRoutes}
+                onEnabledChange={(enabled) => {
+                  const layers = mapState.layers.filter((layer) => layer !== "transport");
+                  mapUrl.setLayers(enabled ? [...layers, "transport"] : layers);
+                }}
+                onStopsChange={(visible) => {
+                  const layers = mapState.layers.filter((layer) => layer !== "transport_stops");
+                  mapUrl.setLayers(visible ? [...layers, "transport_stops"] : layers);
+                }}
+                onRouteChange={setTransportRoute}
+              />
+              <MapComparisonControl
                 districts={districts}
+                ids={mapState.compareIds}
                 year={year}
                 variable={variable}
-                indexView={indexView}
-                selectedDistrictId={selectedDistrictId}
-                showLstHeatmap={showLstHeatmap}
-              showTransport={showTransport}
-              showTransportStops={showTransportStops}
-                transportRoute={transportRoute}
-                selectedDistrictGeometry={selectedDistrict?.geometry ?? null}
-                onTransportRoutesLoaded={setTransportRoutes}
-                onTransportStatusChange={setTransportStatus}
-                gamcLayers={activeGamcLayers}
-                gamcOpacity={gamcOpacity}
-                gamcReloadToken={gamcReloadToken}
-                onGamcStatusChange={handleGamcStatusChange}
-                onDistrictSelect={mapUrl.selectDistrict}
+                onChange={mapUrl.setComparison}
               />
-            </Suspense>
-          )}
-          <aside className="dashboard-side-panel">
-            <TransportControl
-              enabled={showTransport}
-              showStops={showTransportStops}
-              status={transportStatus}
-              routeId={transportRoute}
-              routes={transportRoutes}
-              onEnabledChange={(enabled) => {
-                const layers = mapState.layers.filter((layer) => layer !== "transport");
-                mapUrl.setLayers(enabled ? [...layers, "transport"] : layers);
-              }}
-              onStopsChange={(visible) => {
-                const layers = mapState.layers.filter((layer) => layer !== "transport_stops");
-                mapUrl.setLayers(visible ? [...layers, "transport_stops"] : layers);
-              }}
-              onRouteChange={setTransportRoute}
-            />
-            <MapComparisonControl
-              districts={districts}
-              ids={mapState.compareIds}
-              year={year}
-              variable={variable}
-              onChange={mapUrl.setComparison}
-            />
-            <LayerControl
-              layers={GAMC_LAYERS}
-              visibility={gamcVisibility}
-              statuses={gamcStatuses}
-              opacity={gamcOpacity}
-              onToggle={handleGamcToggle}
-              onOpacityChange={setGamcOpacity}
-              onRetry={() => {
-                setGamcStatuses({});
-                setGamcReloadToken((token) => token + 1);
-              }}
-            />
-            <MapLegend
-              variable={variable}
-              indexView={indexView}
-              activeValue={selectedValue}
-              showLstHeatmap={showLstHeatmap}
-              gamcLayers={activeGamcLayers}
-            />
-            <div className="dashboard-map-status">
-              <span className="dashboard-status">15 distritos · {year}</span>
-              {selectedDistrict && (
-                <span className="dashboard-selection">
-                  {selectedDistrict.name}: {formatValue(selectedValue, variable)}
-                </span>
-              )}
-            </div>
-          </aside>
-        </main>
+              <LayerControl
+                layers={GAMC_LAYERS}
+                visibility={gamcVisibility}
+                statuses={gamcStatuses}
+                opacity={gamcOpacity}
+                onToggle={handleGamcToggle}
+                onOpacityChange={setGamcOpacity}
+                onRetry={() => {
+                  setGamcStatuses({});
+                  setGamcReloadToken((token) => token + 1);
+                }}
+              />
+              <MapLegend
+                variable={variable}
+                indexView={indexView}
+                activeValue={selectedValue}
+                showLstHeatmap={showLstHeatmap}
+                gamcLayers={activeGamcLayers}
+              />
+              <div className="dashboard-map-status">
+                <span className="dashboard-status">15 distritos · {year}</span>
+                {selectedDistrict && (
+                  <span className="dashboard-selection">
+                    {selectedDistrict.name}: {formatValue(selectedValue, variable)}
+                  </span>
+                )}
+              </div>
+            </aside>
+          </main>
+        </>
       )}
     </div>
   );
