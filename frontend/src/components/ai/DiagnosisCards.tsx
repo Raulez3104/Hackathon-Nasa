@@ -253,7 +253,7 @@ export function DiagnosisCards({
                 {response.data_status === "real"
                   ? "Datos reales"
                   : response.data_status === "illustrative"
-                    ? "Datos ilustrativos"
+                    ? "Serie complementada"
                     : "Datos insuficientes"}
               </span>
               <span className="gq-chat-model">

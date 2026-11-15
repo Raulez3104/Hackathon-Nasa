@@ -133,8 +133,8 @@ function TransportStop({ feature }: { feature: Feature<Point, TransportPropertie
           event.target.bindPopup(
             `<strong>${escapeHtml(properties.name ?? "Parada propuesta")}</strong>` +
             `<br>Rutas: ${escapeHtml((properties.routes ?? []).join(", ") || "no disponible")}` +
-            `<br>Estado: × no recomendada; punto ilustrativo` +
-            `<br><em>Parada propuesta ilustrativa; no oficial ni calificada como segura.</em>`,
+            `<br>Estado: × no recomendada; punto propuesto` +
+            `<br><em>Parada propuesta; no oficial ni calificada como segura.</em>`,
           ).openPopup();
         },
       }}

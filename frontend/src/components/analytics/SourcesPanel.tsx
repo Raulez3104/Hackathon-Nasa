@@ -12,7 +12,7 @@ export interface SourcesPanelProps {
 }
 
 export function kindLabel(kind: SourceKind): string {
-  return kind === "real" ? "Dato real documentado" : "Dato ilustrativo";
+  return kind === "real" ? "Dato real documentado" : "Dato complementado";
 }
 
 export function SourcesPanel({
@@ -64,7 +64,7 @@ export function SourcesPanel({
           <h2 id="gq-sources-title">Catálogo de fuentes</h2>
           <p>
             Origen, licencia, transformaciones y limitaciones de cada insumo. Los datos reales se distinguen de los
-            ilustrativos en todo el tablero.
+             complementados en todo el tablero.
           </p>
         </div>
         <div className="gq-reference-badges">
@@ -72,7 +72,7 @@ export function SourcesPanel({
             <span aria-hidden="true">▲</span> {realCount} reales
           </span>
           <span className="gq-badge gq-tone--intermedia">
-            <span aria-hidden="true">■</span> {illustrativeCount} ilustrativas
+             <span aria-hidden="true">■</span> {illustrativeCount} complementadas
           </span>
         </div>
       </header>
@@ -83,7 +83,7 @@ export function SourcesPanel({
           <select value={filter} onChange={(event) => setFilter(event.target.value as "all" | SourceKind)}>
             <option value="all">Todas</option>
             <option value="real">Solo reales documentadas</option>
-            <option value="illustrative">Solo ilustrativas</option>
+            <option value="illustrative">Solo complementadas</option>
           </select>
         </label>
         <p className="gq-reference-meta">
@@ -158,7 +158,7 @@ export function SourcesPanel({
         <strong>Licencias y atribución</strong>
         <p>
           Código MIT y documentación CC BY 4.0. Los datos municipales se publican solo si sus términos lo permiten y
-          siempre con atribución. Las fuentes marcadas como ilustrativas no son evidencia oficial.
+           siempre con atribución. Las fuentes complementadas no sustituyen la evidencia oficial.
         </p>
       </aside>
     </section>

@@ -280,7 +280,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .dashboard-main {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
   gap: 16px;
   padding: 16px;
   min-height: calc(100dvh - 136px);
@@ -303,12 +303,78 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .dashboard-side-panel {
   position: relative;
   z-index: 2;
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 1;
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 12px;
+}
+
+.dashboard-map-column {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 12px;
+}
+
+.transport-line-info {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gq-glass, rgba(255, 255, 255, 0.92));
+  box-shadow: var(--shadow-panel);
+}
+
+.transport-line-info-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.transport-line-info h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.transport-line-color {
+  width: 18px;
+  height: 42px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgb(15 23 42 / 14%);
+}
+
+.transport-line-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.transport-line-details span {
+  display: grid;
+  gap: 3px;
+  color: var(--color-text-muted);
+  font-size: .75rem;
+}
+
+.transport-line-details strong {
+  color: var(--color-text-subtle);
+  font-size: .64rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.transport-line-info p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: .72rem;
+  line-height: 1.45;
 }
 
 .dashboard-panel {
@@ -490,6 +556,10 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   .dashboard-side-panel {
     grid-column: 1;
     grid-row: 2;
+  }
+
+  .transport-line-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .dashboard-panel {
@@ -745,6 +815,19 @@ h1 span, h2 span { color: #57945c; }
 .landing-map-toolbar span:last-child { color: var(--color-text-subtle); }
 .landing-map-canvas { position: relative; height: 375px; overflow: hidden; background: #111e2b; }
 .landing-map-canvas svg { display: block; width: 100%; height: 100%; opacity: .9; }
+.landing-district-map { transform: perspective(900px) rotateX(8deg) rotateZ(-1deg); transform-origin: center; }
+.landing-district { opacity: 0; transform-box: fill-box; transform-origin: center; animation: landing-district-enter .8s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--district-index) * 55ms); }
+.landing-district-extrusion { fill: #071827; stroke: #071827; stroke-width: 2; opacity: .82; }
+.landing-district-surface { fill-opacity: .72; stroke: rgb(186 230 253 / 72%); stroke-width: 1.5; vector-effect: non-scaling-stroke; transition: fill-opacity .25s ease, filter .25s ease; }
+.landing-district:hover .landing-district-surface { fill-opacity: 1; filter: brightness(1.16) saturate(1.12); }
+.landing-district-label { pointer-events: none; fill: #f8fafc; font-family: var(--lp-mono); font-size: 9px; font-weight: 700; paint-order: stroke; stroke: #0b2134; stroke-width: 3px; text-anchor: middle; }
+.landing-map-scan { stroke: #7dd3fc; stroke-dasharray: 18 480; stroke-linecap: round; stroke-width: 1; opacity: .8; animation: landing-map-scan 4.5s ease-in-out infinite; }
+.landing-map-node circle:first-child { fill: #fbbf24; stroke: #fff; stroke-width: 2; }
+.landing-map-node circle:last-child { fill: none; stroke: #fbbf24; stroke-width: 1; opacity: .6; animation: landing-node-pulse 2.4s ease-out infinite; }
+.landing-map-loading-label { fill: #bae6fd; font-family: var(--lp-mono); font-size: 10px; letter-spacing: .1em; }
+@keyframes landing-district-enter { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes landing-map-scan { 0%, 100% { stroke-dashoffset: 420; opacity: .18; } 50% { stroke-dashoffset: -250; opacity: .85; } }
+@keyframes landing-node-pulse { 0% { transform: scale(.65); opacity: .8; } 70%, 100% { transform: scale(1.35); opacity: 0; } }
 .map-zone { stroke-width: 1.5; }
 .map-zone-green { fill: #15803d; fill-opacity: .38; stroke: #4ade80; }
 .map-zone-yellow { fill: #eab308; fill-opacity: .34; stroke: #fde047; }

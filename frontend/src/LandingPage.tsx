@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import type { FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import { GeoQochaNavbar } from "./components/navigation/GeoQochaNavbar";
 
 type IconName =
@@ -25,40 +26,75 @@ function Icon({ name }: { name: IconName }) {
 }
 
 function MiniMap() {
+  const [districts, setDistricts] = useState<FeatureCollection<Polygon | MultiPolygon> | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/data/distritos.geojson")
+      .then((response) => {
+        if (!response.ok) throw new Error("No se pudo cargar el mapa distrital");
+        return response.json() as Promise<FeatureCollection<Polygon | MultiPolygon>>;
+      })
+      .then((data) => {
+        if (!cancelled) setDistricts(data);
+      })
+      .catch(() => {
+        if (!cancelled) setDistricts(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const districtPaths = useMemo(() => (districts ? projectDistricts(districts) : []), [districts]);
+
   return (
-    <div className="landing-map-card" aria-label="Vista previa ilustrativa del mapa de distritos">
+    <div className="landing-map-card" aria-label="Vista previa del mapa de distritos">
       <div className="landing-map-toolbar">
         <span><i className="status-dot" /> MALLA TERRITORIAL · VALLE DE COCHABAMBA</span>
         <span>EPSG:4326 · WGS84</span>
       </div>
       <div className="landing-map-canvas">
-        <svg viewBox="0 0 600 420" role="img" aria-label="Mapa ilustrativo de distritos de Cochabamba">
+        <svg viewBox="0 0 600 420" role="img" aria-label="Mapa 3D de los distritos de Cochabamba">
+          <defs>
+            <linearGradient id="landing-map-surface" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#163b55" />
+              <stop offset="1" stopColor="#0b2134" />
+            </linearGradient>
+            <filter id="landing-map-shadow" x="-20%" y="-20%" width="150%" height="170%">
+              <feDropShadow dx="0" dy="10" stdDeviation="8" floodColor="#020617" floodOpacity=".42" />
+            </filter>
+          </defs>
           <path d="M0 92Q100 24 190 76T370 42T600 88V0H0Z" fill="#213348" opacity=".72" />
           <path d="M0 142Q130 78 250 120T480 92L600 138V82H0Z" fill="#2c4960" opacity=".55" />
           <path d="M12 250Q125 220 252 254T430 236T592 276" fill="none" stroke="#38bdf8" strokeDasharray="5 4" strokeWidth="3" opacity=".9" />
-          <polygon className="map-zone map-zone-green" points="118,92 214,104 230,164 138,151" />
-          <polygon className="map-zone map-zone-green" points="46,136 132,145 120,201 36,190" />
-          <polygon className="map-zone map-zone-yellow" points="140,160 232,165 241,218 149,210" />
-          <polygon className="map-zone map-zone-green" points="238,141 332,132 350,187 246,193" />
-          <polygon className="map-zone map-zone-green" points="342,122 451,112 470,172 358,183" />
-          <polygon className="map-zone map-zone-red" points="248,202 329,196 334,253 252,258" />
-          <polygon className="map-zone map-zone-orange" points="337,198 424,187 432,247 340,253" />
-          <polygon className="map-zone map-zone-blue" points="359,260 451,254 482,313 379,321" />
-          <ellipse cx="410" cy="286" rx="36" ry="21" fill="#0369a1" stroke="#7dd3fc" />
-          <polygon className="map-zone map-zone-red" points="224,270 340,264 330,343 211,333" />
-          <polygon className="map-zone map-zone-orange" points="122,275 212,269 202,354 111,342" />
-          <polygon className="map-zone map-zone-red" points="340,332 461,328 451,397 330,392" />
-          <g className="map-labels">
-            <text x="161" y="132">D-1</text><text x="77" y="169">D-2</text>
-            <text x="180" y="193">D-3</text><text x="281" y="168">D-4</text>
-            <text x="400" y="151">D-12</text><text x="278" y="234">D-10</text>
-            <text x="374" y="228">D-11</text><text x="262" y="306">D-9</text>
-            <text x="146" y="315">D-8</text><text x="381" y="368">D-14</text>
+          <path d="M0 420L64 350L152 367L233 343L319 360L405 326L505 347L600 311V420Z" fill="url(#landing-map-surface)" opacity=".8" />
+          {districtPaths.length > 0 ? (
+            <g className="landing-district-map" filter="url(#landing-map-shadow)">
+              {districtPaths.map((district, index) => (
+                <g
+                  key={district.key}
+                  className="landing-district"
+                  style={{ "--district-index": index } as CSSProperties}
+                >
+                  <path className="landing-district-extrusion" d={district.path} transform="translate(0 8)" />
+                  <path className="landing-district-surface" d={district.path} style={{ fill: district.color }} />
+                  <text className="landing-district-label" x={district.labelX} y={district.labelY}>{district.label}</text>
+                </g>
+              ))}
+            </g>
+          ) : (
+            <text className="landing-map-loading-label" x="300" y="220" textAnchor="middle">CARGANDO DISTRITOS…</text>
+          )}
+          <path className="landing-map-scan" d="M20 300H580" />
+          <g className="landing-map-node">
+            <circle cx="302" cy="222" r="5" />
+            <circle cx="302" cy="222" r="15" />
           </g>
         </svg>
-        <div className="map-chip map-chip-top"><i className="chip-dot chip-dot-red" /><span><small>DISTRITO 10 · DEMO</small><b>ICVSA: ilustrativo</b></span></div>
-        <div className="map-chip map-chip-right"><i className="chip-dot chip-dot-green" /><span>D-12: NDVI ilustrativo</span></div>
-        <div className="map-chip map-chip-bottom"><i className="chip-dot chip-dot-yellow" /><span><small>DISTRITO 3 · DEMO</small><b>LST: valor ilustrativo</b></span></div>
+        <div className="map-chip map-chip-top"><i className="chip-dot chip-dot-red" /><span><small>DISTRITO 10 · DEMO</small><b>ICVSA: referencia</b></span></div>
+        <div className="map-chip map-chip-right"><i className="chip-dot chip-dot-green" /><span>D-12: NDVI de referencia</span></div>
+        <div className="map-chip map-chip-bottom"><i className="chip-dot chip-dot-yellow" /><span><small>DISTRITO 3 · DEMO</small><b>LST: valor de referencia</b></span></div>
         <div className="map-legend">
           <span><i className="legend-green" /> Vegetación</span>
           <span><i className="legend-yellow" /> Atención</span>
@@ -71,6 +107,49 @@ function MiniMap() {
       </div>
     </div>
   );
+}
+
+const DISTRICT_COLORS = ["#22c55e", "#38bdf8", "#f59e0b", "#fb7185", "#a78bfa", "#14b8a6"];
+
+function projectDistricts(collection: FeatureCollection<Polygon | MultiPolygon>) {
+  // El archivo puede contener puntos auxiliares además de los polígonos distritales.
+  const polygonFeatures = collection.features.filter(
+    (feature) => feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon",
+  );
+  if (polygonFeatures.length === 0) return [];
+  const coordinates = polygonFeatures.flatMap((feature) => ringsFor(feature.geometry));
+  const points = coordinates.flat();
+  const longitudes = points.map(([longitude]) => longitude);
+  const latitudes = points.map(([, latitude]) => latitude);
+  const minLongitude = Math.min(...longitudes);
+  const maxLongitude = Math.max(...longitudes);
+  const minLatitude = Math.min(...latitudes);
+  const maxLatitude = Math.max(...latitudes);
+  const scale = Math.min(540 / (maxLongitude - minLongitude), 350 / (maxLatitude - minLatitude));
+  const project = ([longitude, latitude]: number[]) => [
+    30 + (longitude - minLongitude) * scale,
+    35 + (maxLatitude - latitude) * scale,
+  ];
+
+  return polygonFeatures.map((feature, index) => {
+    const rings = ringsFor(feature.geometry);
+    const path = rings.map((ring) => `${ring.map((point, pointIndex) => `${pointIndex === 0 ? "M" : "L"}${project(point).join(",")}`).join(" ")} Z`).join(" ");
+    const center = project(rings[0][Math.floor(rings[0].length / 2)]);
+    const properties = feature.properties as Record<string, unknown> | null;
+    const label = String(properties?.ref ?? properties?.name ?? `D-${index + 1}`).replace(/^Distrito\s+/i, "D-");
+    return {
+      key: String(properties?.["@id"] ?? index),
+      path,
+      label,
+      labelX: center[0],
+      labelY: center[1],
+      color: DISTRICT_COLORS[index % DISTRICT_COLORS.length],
+    };
+  });
+}
+
+function ringsFor(geometry: Polygon | MultiPolygon): number[][][] {
+  return geometry.type === "Polygon" ? geometry.coordinates : geometry.coordinates.flat();
 }
 
 function FeatureCard({
@@ -207,7 +286,7 @@ export function LandingPage() {
             <span><strong>GeoQocha</strong><small>VALLE CENTRAL DE COCHABAMBA</small></span>
           </a>
           <span>NASA MODIS · GAMC · Código abierto</span>
-          <span>Datos ilustrativos en la demo · Licencia MIT</span>
+          <span>Serie complementada para la demo · Licencia MIT</span>
         </div>
       </footer>
     </div>

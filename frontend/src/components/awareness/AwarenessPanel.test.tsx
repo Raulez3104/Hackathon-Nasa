@@ -40,16 +40,16 @@ describe("AwarenessPanel", () => {
     expect(screen.getByRole("heading", { name: /^mensajes ciudadanos$/i })).toBeInTheDocument();
     expect(screen.getByText(/no mide directamente hectáreas deforestadas/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /fuentes citadas/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/Mock ilustrativo de desarrollo/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Serie complementada de desarrollo/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: /advertencia metodológica/i })).toBeInTheDocument();
     expect(screen.getByText(/no demuestran causas/i)).toBeInTheDocument();
     expect(screen.queryByText(/recomendación vinculante/i)).not.toBeInTheDocument();
   });
 
-  it("etiqueta los datos ilustrativos y declara el periodo", () => {
+  it("etiqueta los datos complementados y declara el periodo", () => {
     render(<AwarenessPanel districts={DISTRICTS} status="ready" year={2025} />);
 
-    expect(screen.getAllByText("Datos ilustrativos").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Serie complementada").length).toBeGreaterThan(0);
     expect(screen.getByText(/periodo evaluado: 2015–2025/i)).toBeInTheDocument();
     expect(screen.getByText(/año consultado: 2025/i)).toBeInTheDocument();
   });

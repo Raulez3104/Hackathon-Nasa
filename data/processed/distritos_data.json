@@ -1,7 +1,7 @@
 {
   "contract_version": "0.1.0",
   "data_status": "real",
-  "generated_at": "2026-11-15T15:10:20Z",
+  "generated_at": "2026-11-15T17:50:23.942Z",
   "districts": [
     {
       "district_id": 1,
@@ -531,39 +531,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3081,
+          "lst_mean_celsius": 30.1,
+          "environmental_index": 42.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 42.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3161,
+            "lst_mean_celsius": 29.78,
+            "environmental_index": 45.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 45.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3101,
+          "lst_mean_celsius": 30.02,
+          "environmental_index": 43.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 43.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3161,
+            "lst_mean_celsius": 29.78,
+            "environmental_index": 45.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 45.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3121,
+          "lst_mean_celsius": 29.94,
+          "environmental_index": 44.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 44.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3161,
+            "lst_mean_celsius": 29.78,
+            "environmental_index": 45.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 45.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3141,
+          "lst_mean_celsius": 29.86,
+          "environmental_index": 44.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 44.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3161,
+            "lst_mean_celsius": 29.78,
+            "environmental_index": 45.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 45.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -572,7 +616,8 @@
           "environmental_index": 45.4,
           "socioenvironmental_index": null,
           "index_without_territorial": 45.4,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -581,7 +626,8 @@
           "environmental_index": 54.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 54.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -590,7 +636,8 @@
           "environmental_index": 58.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 58.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -599,34 +646,68 @@
           "environmental_index": 73.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 73.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3555,
+          "lst_mean_celsius": 27.11,
+          "environmental_index": 73.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 73.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 27.19,
+            "environmental_index": 73.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 73.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3575,
+          "lst_mean_celsius": 27.03,
+          "environmental_index": 74.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 74.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 27.19,
+            "environmental_index": 73.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 73.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3595,
+          "lst_mean_celsius": 26.95,
+          "environmental_index": 75.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 75.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 27.19,
+            "environmental_index": 73.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 73.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -681,7 +762,7 @@
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 1.0,
+          "acceleration": 1,
           "accelerated": true,
           "notes": []
         },
@@ -718,7 +799,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -1505,48 +1587,93 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2823,
+          "lst_mean_celsius": 30.79,
+          "environmental_index": 33,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 33,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2903,
+            "lst_mean_celsius": 30.47,
+            "environmental_index": 36,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2843,
+          "lst_mean_celsius": 30.71,
+          "environmental_index": 34,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 34,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2903,
+            "lst_mean_celsius": 30.47,
+            "environmental_index": 36,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2863,
+          "lst_mean_celsius": 30.63,
+          "environmental_index": 35,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 35,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2903,
+            "lst_mean_celsius": 30.47,
+            "environmental_index": 36,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2883,
+          "lst_mean_celsius": 30.55,
+          "environmental_index": 35,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 35,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2903,
+            "lst_mean_celsius": 30.47,
+            "environmental_index": 36,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
           "ndvi_mean": 0.2903,
           "lst_mean_celsius": 30.47,
-          "environmental_index": 36.0,
+          "environmental_index": 36,
           "socioenvironmental_index": null,
-          "index_without_territorial": 36.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 36,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -1555,7 +1682,8 @@
           "environmental_index": 42.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 42.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -1564,7 +1692,8 @@
           "environmental_index": 48.7,
           "socioenvironmental_index": null,
           "index_without_territorial": 48.7,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -1573,34 +1702,68 @@
           "environmental_index": 60.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 60.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3215,
+          "lst_mean_celsius": 28.1,
+          "environmental_index": 60.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 60.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3195,
+            "lst_mean_celsius": 28.18,
+            "environmental_index": 60.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 60.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3235,
+          "lst_mean_celsius": 28.02,
+          "environmental_index": 61.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 61.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3195,
+            "lst_mean_celsius": 28.18,
+            "environmental_index": 60.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 60.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3255,
+          "lst_mean_celsius": 27.94,
+          "environmental_index": 62.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 62.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3195,
+            "lst_mean_celsius": 28.18,
+            "environmental_index": 60.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 60.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -1692,7 +1855,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -2267,39 +2431,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2092,
+          "lst_mean_celsius": 31.77,
+          "environmental_index": 15.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 15.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2172,
+            "lst_mean_celsius": 31.45,
+            "environmental_index": 18.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2112,
+          "lst_mean_celsius": 31.69,
+          "environmental_index": 16.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 16.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2172,
+            "lst_mean_celsius": 31.45,
+            "environmental_index": 18.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2132,
+          "lst_mean_celsius": 31.61,
+          "environmental_index": 17.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2172,
+            "lst_mean_celsius": 31.45,
+            "environmental_index": 18.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2152,
+          "lst_mean_celsius": 31.53,
+          "environmental_index": 17.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2172,
+            "lst_mean_celsius": 31.45,
+            "environmental_index": 18.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -2308,7 +2516,8 @@
           "environmental_index": 18.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 18.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -2317,52 +2526,88 @@
           "environmental_index": 25.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 25.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
           "ndvi_mean": 0.2305,
           "lst_mean_celsius": 30.31,
-          "environmental_index": 30.0,
+          "environmental_index": 30,
           "socioenvironmental_index": null,
-          "index_without_territorial": 30.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 30,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
           "ndvi_mean": 0.2361,
           "lst_mean_celsius": 29.18,
-          "environmental_index": 41.0,
+          "environmental_index": 41,
           "socioenvironmental_index": null,
-          "index_without_territorial": 41.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 41,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2381,
+          "lst_mean_celsius": 29.1,
+          "environmental_index": 41,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 41,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2361,
+            "lst_mean_celsius": 29.18,
+            "environmental_index": 41,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 41,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2401,
+          "lst_mean_celsius": 29.02,
+          "environmental_index": 42,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 42,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2361,
+            "lst_mean_celsius": 29.18,
+            "environmental_index": 41,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 41,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2421,
+          "lst_mean_celsius": 28.94,
+          "environmental_index": 43,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 43,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2361,
+            "lst_mean_celsius": 29.18,
+            "environmental_index": 41,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 41,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -2452,7 +2697,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -3215,39 +3461,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2016,
+          "lst_mean_celsius": 31.53,
+          "environmental_index": 16.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 16.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2096,
+            "lst_mean_celsius": 31.21,
+            "environmental_index": 19.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 19.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2036,
+          "lst_mean_celsius": 31.45,
+          "environmental_index": 17.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2096,
+            "lst_mean_celsius": 31.21,
+            "environmental_index": 19.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 19.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2056,
+          "lst_mean_celsius": 31.37,
+          "environmental_index": 18.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 18.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2096,
+            "lst_mean_celsius": 31.21,
+            "environmental_index": 19.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 19.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2076,
+          "lst_mean_celsius": 31.29,
+          "environmental_index": 18.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 18.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2096,
+            "lst_mean_celsius": 31.21,
+            "environmental_index": 19.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 19.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -3256,16 +3546,18 @@
           "environmental_index": 19.4,
           "socioenvironmental_index": null,
           "index_without_territorial": 19.4,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
           "ndvi_mean": 0.2224,
           "lst_mean_celsius": 30.42,
-          "environmental_index": 28.0,
+          "environmental_index": 28,
           "socioenvironmental_index": null,
-          "index_without_territorial": 28.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 28,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -3274,7 +3566,8 @@
           "environmental_index": 33.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 33.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -3283,34 +3576,68 @@
           "environmental_index": 37.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 37.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2224,
+          "lst_mean_celsius": 29.31,
+          "environmental_index": 37.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 37.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2204,
+            "lst_mean_celsius": 29.39,
+            "environmental_index": 37.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 37.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2244,
+          "lst_mean_celsius": 29.23,
+          "environmental_index": 38.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 38.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2204,
+            "lst_mean_celsius": 29.39,
+            "environmental_index": 37.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 37.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2264,
+          "lst_mean_celsius": 29.15,
+          "environmental_index": 39.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 39.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2204,
+            "lst_mean_celsius": 29.39,
+            "environmental_index": 37.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 37.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -3402,7 +3729,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -4341,39 +4669,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2218,
+          "lst_mean_celsius": 32.26,
+          "environmental_index": 12.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 12.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2298,
+            "lst_mean_celsius": 31.94,
+            "environmental_index": 15.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 15.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2238,
+          "lst_mean_celsius": 32.18,
+          "environmental_index": 13.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 13.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2298,
+            "lst_mean_celsius": 31.94,
+            "environmental_index": 15.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 15.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2258,
+          "lst_mean_celsius": 32.1,
+          "environmental_index": 14.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 14.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2298,
+            "lst_mean_celsius": 31.94,
+            "environmental_index": 15.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 15.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2278,
+          "lst_mean_celsius": 32.02,
+          "environmental_index": 14.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 14.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2298,
+            "lst_mean_celsius": 31.94,
+            "environmental_index": 15.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 15.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -4382,7 +4754,8 @@
           "environmental_index": 15.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 15.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -4391,7 +4764,8 @@
           "environmental_index": 28.4,
           "socioenvironmental_index": null,
           "index_without_territorial": 28.4,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -4400,7 +4774,8 @@
           "environmental_index": 28.7,
           "socioenvironmental_index": null,
           "index_without_territorial": 28.7,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -4409,34 +4784,68 @@
           "environmental_index": 33.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 33.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2443,
+          "lst_mean_celsius": 30.03,
+          "environmental_index": 33.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 33.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2423,
+            "lst_mean_celsius": 30.11,
+            "environmental_index": 33.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 33.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2463,
+          "lst_mean_celsius": 29.95,
+          "environmental_index": 34.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 34.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2423,
+            "lst_mean_celsius": 30.11,
+            "environmental_index": 33.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 33.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2483,
+          "lst_mean_celsius": 29.87,
+          "environmental_index": 35.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 35.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2423,
+            "lst_mean_celsius": 30.11,
+            "environmental_index": 33.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 33.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -4531,7 +4940,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -5554,48 +5964,93 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3455,
+          "lst_mean_celsius": 30.98,
+          "environmental_index": 39,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 39,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 30.66,
+            "environmental_index": 42,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 42,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3475,
+          "lst_mean_celsius": 30.9,
+          "environmental_index": 40,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 40,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 30.66,
+            "environmental_index": 42,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 42,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3495,
+          "lst_mean_celsius": 30.82,
+          "environmental_index": 41,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 41,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 30.66,
+            "environmental_index": 42,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 42,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3515,
+          "lst_mean_celsius": 30.74,
+          "environmental_index": 41,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 41,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3535,
+            "lst_mean_celsius": 30.66,
+            "environmental_index": 42,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 42,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
           "ndvi_mean": 0.3535,
           "lst_mean_celsius": 30.66,
-          "environmental_index": 42.0,
+          "environmental_index": 42,
           "socioenvironmental_index": null,
-          "index_without_territorial": 42.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 42,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -5604,7 +6059,8 @@
           "environmental_index": 57.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 57.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -5613,7 +6069,8 @@
           "environmental_index": 52.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 52.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -5622,34 +6079,68 @@
           "environmental_index": 61.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 61.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3521,
+          "lst_mean_celsius": 28.36,
+          "environmental_index": 61.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 61.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3501,
+            "lst_mean_celsius": 28.44,
+            "environmental_index": 61.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 61.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3541,
+          "lst_mean_celsius": 28.28,
+          "environmental_index": 62.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 62.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3501,
+            "lst_mean_celsius": 28.44,
+            "environmental_index": 61.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 61.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3561,
+          "lst_mean_celsius": 28.2,
+          "environmental_index": 63.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 63.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3501,
+            "lst_mean_celsius": 28.44,
+            "environmental_index": 61.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 61.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -5744,7 +6235,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -6411,39 +6903,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.536,
+          "lst_mean_celsius": 29.16,
+          "environmental_index": 78.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 78.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.544,
+            "lst_mean_celsius": 28.84,
+            "environmental_index": 81.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 81.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.538,
+          "lst_mean_celsius": 29.08,
+          "environmental_index": 79.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 79.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.544,
+            "lst_mean_celsius": 28.84,
+            "environmental_index": 81.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 81.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.54,
+          "lst_mean_celsius": 29,
+          "environmental_index": 80.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 80.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.544,
+            "lst_mean_celsius": 28.84,
+            "environmental_index": 81.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 81.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.542,
+          "lst_mean_celsius": 28.92,
+          "environmental_index": 80.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 80.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.544,
+            "lst_mean_celsius": 28.84,
+            "environmental_index": 81.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 81.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -6452,7 +6988,8 @@
           "environmental_index": 81.9,
           "socioenvironmental_index": null,
           "index_without_territorial": 81.9,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -6461,7 +6998,8 @@
           "environmental_index": 89.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 89.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -6470,7 +7008,8 @@
           "environmental_index": 91.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 91.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -6479,34 +7018,68 @@
           "environmental_index": 96.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 96.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.5329,
+          "lst_mean_celsius": 26.95,
+          "environmental_index": 96.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 96.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.5309,
+            "lst_mean_celsius": 27.03,
+            "environmental_index": 96.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 96.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.5349,
+          "lst_mean_celsius": 26.87,
+          "environmental_index": 97.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 97.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.5309,
+            "lst_mean_celsius": 27.03,
+            "environmental_index": 96.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 96.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.5369,
+          "lst_mean_celsius": 26.79,
+          "environmental_index": 98.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 98.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.5309,
+            "lst_mean_celsius": 27.03,
+            "environmental_index": 96.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 96.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -6598,7 +7171,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -8677,39 +9251,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4088,
+          "lst_mean_celsius": 30.99,
+          "environmental_index": 46.6,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 46.6,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.4168,
+            "lst_mean_celsius": 30.67,
+            "environmental_index": 49.6,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 49.6,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4108,
+          "lst_mean_celsius": 30.91,
+          "environmental_index": 47.6,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 47.6,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.4168,
+            "lst_mean_celsius": 30.67,
+            "environmental_index": 49.6,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 49.6,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4128,
+          "lst_mean_celsius": 30.83,
+          "environmental_index": 48.6,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 48.6,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.4168,
+            "lst_mean_celsius": 30.67,
+            "environmental_index": 49.6,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 49.6,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4148,
+          "lst_mean_celsius": 30.75,
+          "environmental_index": 48.6,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 48.6,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.4168,
+            "lst_mean_celsius": 30.67,
+            "environmental_index": 49.6,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 49.6,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -8718,16 +9336,18 @@
           "environmental_index": 49.6,
           "socioenvironmental_index": null,
           "index_without_territorial": 49.6,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
           "ndvi_mean": 0.4219,
           "lst_mean_celsius": 30.14,
-          "environmental_index": 55.0,
+          "environmental_index": 55,
           "socioenvironmental_index": null,
-          "index_without_territorial": 55.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 55,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -8736,7 +9356,8 @@
           "environmental_index": 56.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 56.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -8745,41 +9366,75 @@
           "environmental_index": 67.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 67.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4196,
+          "lst_mean_celsius": 28.67,
+          "environmental_index": 67.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 67.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.4176,
+            "lst_mean_celsius": 28.75,
+            "environmental_index": 67.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4216,
+          "lst_mean_celsius": 28.59,
+          "environmental_index": 68.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 68.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.4176,
+            "lst_mean_celsius": 28.75,
+            "environmental_index": 67.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.4236,
+          "lst_mean_celsius": 28.51,
+          "environmental_index": 69.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 69.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.4176,
+            "lst_mean_celsius": 28.75,
+            "environmental_index": 67.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
         {
           "variable": "ndvi",
           "direction": "stable",
-          "slope_per_year": 0.0,
+          "slope_per_year": 0,
           "unit": "NDVI/año",
           "years_used": [
             2019,
@@ -8866,7 +9521,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -10441,48 +11097,93 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1463,
+          "lst_mean_celsius": 32.8,
+          "environmental_index": -2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": -2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1543,
+            "lst_mean_celsius": 32.48,
+            "environmental_index": 1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1483,
+          "lst_mean_celsius": 32.72,
+          "environmental_index": -1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": -1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1543,
+            "lst_mean_celsius": 32.48,
+            "environmental_index": 1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1503,
+          "lst_mean_celsius": 32.64,
+          "environmental_index": 0,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 0,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1543,
+            "lst_mean_celsius": 32.48,
+            "environmental_index": 1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1523,
+          "lst_mean_celsius": 32.56,
+          "environmental_index": 0,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 0,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1543,
+            "lst_mean_celsius": 32.48,
+            "environmental_index": 1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
           "ndvi_mean": 0.1543,
           "lst_mean_celsius": 32.48,
-          "environmental_index": 1.0,
+          "environmental_index": 1,
           "socioenvironmental_index": null,
-          "index_without_territorial": 1.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 1,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -10491,7 +11192,8 @@
           "environmental_index": 7.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 7.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -10500,7 +11202,8 @@
           "environmental_index": 10.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 10.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -10509,34 +11212,68 @@
           "environmental_index": 21.4,
           "socioenvironmental_index": null,
           "index_without_territorial": 21.4,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.172,
+          "lst_mean_celsius": 30.37,
+          "environmental_index": 21.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 21.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 30.45,
+            "environmental_index": 21.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 21.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.174,
+          "lst_mean_celsius": 30.29,
+          "environmental_index": 22.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 22.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 30.45,
+            "environmental_index": 21.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 21.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.176,
+          "lst_mean_celsius": 30.21,
+          "environmental_index": 23.4,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 23.4,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 30.45,
+            "environmental_index": 21.4,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 21.4,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -10626,7 +11363,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -11197,39 +11935,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1505,
+          "lst_mean_celsius": 32.22,
+          "environmental_index": 3.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 3.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1585,
+            "lst_mean_celsius": 31.9,
+            "environmental_index": 6.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 6.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1525,
+          "lst_mean_celsius": 32.14,
+          "environmental_index": 4.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 4.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1585,
+            "lst_mean_celsius": 31.9,
+            "environmental_index": 6.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 6.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1545,
+          "lst_mean_celsius": 32.06,
+          "environmental_index": 5.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 5.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1585,
+            "lst_mean_celsius": 31.9,
+            "environmental_index": 6.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 6.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1565,
+          "lst_mean_celsius": 31.98,
+          "environmental_index": 5.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 5.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.1585,
+            "lst_mean_celsius": 31.9,
+            "environmental_index": 6.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 6.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -11238,7 +12020,8 @@
           "environmental_index": 6.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 6.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -11247,7 +12030,8 @@
           "environmental_index": 15.7,
           "socioenvironmental_index": null,
           "index_without_territorial": 15.7,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -11256,7 +12040,8 @@
           "environmental_index": 18.6,
           "socioenvironmental_index": null,
           "index_without_territorial": 18.6,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -11265,34 +12050,68 @@
           "environmental_index": 28.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 28.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.172,
+          "lst_mean_celsius": 29.63,
+          "environmental_index": 28.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 28.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 29.71,
+            "environmental_index": 28.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 28.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.174,
+          "lst_mean_celsius": 29.55,
+          "environmental_index": 29.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 29.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 29.71,
+            "environmental_index": 28.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 28.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.176,
+          "lst_mean_celsius": 29.47,
+          "environmental_index": 30.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 30.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.17,
+            "lst_mean_celsius": 29.71,
+            "environmental_index": 28.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 28.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -11384,7 +12203,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -11967,39 +12787,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3393,
+          "lst_mean_celsius": 29.98,
+          "environmental_index": 47.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 47.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3473,
+            "lst_mean_celsius": 29.66,
+            "environmental_index": 50.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 50.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3413,
+          "lst_mean_celsius": 29.9,
+          "environmental_index": 48.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 48.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3473,
+            "lst_mean_celsius": 29.66,
+            "environmental_index": 50.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 50.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3433,
+          "lst_mean_celsius": 29.82,
+          "environmental_index": 49.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 49.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3473,
+            "lst_mean_celsius": 29.66,
+            "environmental_index": 50.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 50.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3453,
+          "lst_mean_celsius": 29.74,
+          "environmental_index": 49.3,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 49.3,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3473,
+            "lst_mean_celsius": 29.66,
+            "environmental_index": 50.3,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 50.3,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -12008,7 +12872,8 @@
           "environmental_index": 50.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 50.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -12017,7 +12882,8 @@
           "environmental_index": 60.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 60.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -12026,7 +12892,8 @@
           "environmental_index": 63.7,
           "socioenvironmental_index": null,
           "index_without_territorial": 63.7,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -12035,34 +12902,68 @@
           "environmental_index": 67.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 67.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3544,
+          "lst_mean_celsius": 27.72,
+          "environmental_index": 67.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 67.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3524,
+            "lst_mean_celsius": 27.8,
+            "environmental_index": 67.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3564,
+          "lst_mean_celsius": 27.64,
+          "environmental_index": 68.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 68.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3524,
+            "lst_mean_celsius": 27.8,
+            "environmental_index": 67.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3584,
+          "lst_mean_celsius": 27.56,
+          "environmental_index": 69.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 69.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3524,
+            "lst_mean_celsius": 27.8,
+            "environmental_index": 67.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 67.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -12118,7 +13019,7 @@
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -7.0,
+          "acceleration": -7,
           "accelerated": true,
           "notes": []
         },
@@ -12155,7 +13056,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -12826,39 +13728,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.296,
+          "lst_mean_celsius": 30.7,
+          "environmental_index": 35.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 35.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.304,
+            "lst_mean_celsius": 30.38,
+            "environmental_index": 38.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 38.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.298,
+          "lst_mean_celsius": 30.62,
+          "environmental_index": 36.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 36.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.304,
+            "lst_mean_celsius": 30.38,
+            "environmental_index": 38.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 38.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3,
+          "lst_mean_celsius": 30.54,
+          "environmental_index": 37.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 37.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.304,
+            "lst_mean_celsius": 30.38,
+            "environmental_index": 38.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 38.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.302,
+          "lst_mean_celsius": 30.46,
+          "environmental_index": 37.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 37.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.304,
+            "lst_mean_celsius": 30.38,
+            "environmental_index": 38.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 38.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -12867,7 +13813,8 @@
           "environmental_index": 38.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 38.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -12876,7 +13823,8 @@
           "environmental_index": 46.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 46.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -12885,7 +13833,8 @@
           "environmental_index": 51.9,
           "socioenvironmental_index": null,
           "index_without_territorial": 51.9,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -12894,34 +13843,68 @@
           "environmental_index": 54.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 54.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2987,
+          "lst_mean_celsius": 28.44,
+          "environmental_index": 54.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 54.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2967,
+            "lst_mean_celsius": 28.52,
+            "environmental_index": 54.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 54.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3007,
+          "lst_mean_celsius": 28.36,
+          "environmental_index": 55.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 55.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2967,
+            "lst_mean_celsius": 28.52,
+            "environmental_index": 54.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 54.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3027,
+          "lst_mean_celsius": 28.28,
+          "environmental_index": 56.5,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 56.5,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2967,
+            "lst_mean_celsius": 28.52,
+            "environmental_index": 54.5,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 54.5,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -13013,7 +13996,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -15816,39 +16800,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1998,
+          "lst_mean_celsius": 31.54,
+          "environmental_index": 15.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 15.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2078,
+            "lst_mean_celsius": 31.22,
+            "environmental_index": 18.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2018,
+          "lst_mean_celsius": 31.46,
+          "environmental_index": 16.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 16.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2078,
+            "lst_mean_celsius": 31.22,
+            "environmental_index": 18.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2038,
+          "lst_mean_celsius": 31.38,
+          "environmental_index": 17.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2078,
+            "lst_mean_celsius": 31.22,
+            "environmental_index": 18.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2058,
+          "lst_mean_celsius": 31.3,
+          "environmental_index": 17.9,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.9,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2078,
+            "lst_mean_celsius": 31.22,
+            "environmental_index": 18.9,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 18.9,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -15857,7 +16885,8 @@
           "environmental_index": 18.9,
           "socioenvironmental_index": null,
           "index_without_territorial": 18.9,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -15866,7 +16895,8 @@
           "environmental_index": 27.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 27.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -15875,7 +16905,8 @@
           "environmental_index": 32.5,
           "socioenvironmental_index": null,
           "index_without_territorial": 32.5,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -15884,34 +16915,68 @@
           "environmental_index": 36.2,
           "socioenvironmental_index": null,
           "index_without_territorial": 36.2,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2089,
+          "lst_mean_celsius": 29.23,
+          "environmental_index": 36.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 36.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2069,
+            "lst_mean_celsius": 29.31,
+            "environmental_index": 36.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2109,
+          "lst_mean_celsius": 29.15,
+          "environmental_index": 37.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 37.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2069,
+            "lst_mean_celsius": 29.31,
+            "environmental_index": 36.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2129,
+          "lst_mean_celsius": 29.07,
+          "environmental_index": 38.2,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 38.2,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2069,
+            "lst_mean_celsius": 29.31,
+            "environmental_index": 36.2,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 36.2,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -16004,7 +17069,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -16807,39 +17873,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.1985,
+          "lst_mean_celsius": 31.41,
+          "environmental_index": 17.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 17.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2065,
+            "lst_mean_celsius": 31.09,
+            "environmental_index": 20.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 20.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2005,
+          "lst_mean_celsius": 31.33,
+          "environmental_index": 18.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 18.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2065,
+            "lst_mean_celsius": 31.09,
+            "environmental_index": 20.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 20.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2025,
+          "lst_mean_celsius": 31.25,
+          "environmental_index": 19.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 19.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2065,
+            "lst_mean_celsius": 31.09,
+            "environmental_index": 20.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 20.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2045,
+          "lst_mean_celsius": 31.17,
+          "environmental_index": 19.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 19.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.2065,
+            "lst_mean_celsius": 31.09,
+            "environmental_index": 20.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 20.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -16848,7 +17958,8 @@
           "environmental_index": 20.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 20.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
@@ -16857,7 +17968,8 @@
           "environmental_index": 29.3,
           "socioenvironmental_index": null,
           "index_without_territorial": 29.3,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -16866,7 +17978,8 @@
           "environmental_index": 35.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 35.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
@@ -16875,34 +17988,68 @@
           "environmental_index": 40.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 40.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2121,
+          "lst_mean_celsius": 28.85,
+          "environmental_index": 40.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 40.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2101,
+            "lst_mean_celsius": 28.93,
+            "environmental_index": 40.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 40.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2141,
+          "lst_mean_celsius": 28.77,
+          "environmental_index": 41.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 41.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2101,
+            "lst_mean_celsius": 28.93,
+            "environmental_index": 40.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 40.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.2161,
+          "lst_mean_celsius": 28.69,
+          "environmental_index": 42.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 42.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.2101,
+            "lst_mean_celsius": 28.93,
+            "environmental_index": 40.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 40.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -16994,7 +18141,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     },
     {
@@ -18197,39 +19345,83 @@
       "series": [
         {
           "year": 2015,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3221,
+          "lst_mean_celsius": 30.36,
+          "environmental_index": 41.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 41.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3301,
+            "lst_mean_celsius": 30.04,
+            "environmental_index": 44.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 44.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2016,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3241,
+          "lst_mean_celsius": 30.28,
+          "environmental_index": 42.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 42.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3301,
+            "lst_mean_celsius": 30.04,
+            "environmental_index": 44.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 44.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2017,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3261,
+          "lst_mean_celsius": 30.2,
+          "environmental_index": 43.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 43.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3301,
+            "lst_mean_celsius": 30.04,
+            "environmental_index": 44.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 44.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2018,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3281,
+          "lst_mean_celsius": 30.12,
+          "environmental_index": 43.8,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 43.8,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2019,
+            "ndvi_mean": 0.3301,
+            "lst_mean_celsius": 30.04,
+            "environmental_index": 44.8,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 44.8,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2019,
@@ -18238,16 +19430,18 @@
           "environmental_index": 44.8,
           "socioenvironmental_index": null,
           "index_without_territorial": 44.8,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2020,
           "ndvi_mean": 0.3463,
           "lst_mean_celsius": 29.02,
-          "environmental_index": 56.0,
+          "environmental_index": 56,
           "socioenvironmental_index": null,
-          "index_without_territorial": 56.0,
-          "data_quality_flag": "ok"
+          "index_without_territorial": 56,
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2021,
@@ -18256,43 +19450,78 @@
           "environmental_index": 58.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 58.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2022,
           "ndvi_mean": 0.3292,
-          "lst_mean_celsius": 28.0,
+          "lst_mean_celsius": 28,
           "environmental_index": 63.1,
           "socioenvironmental_index": null,
           "index_without_territorial": 63.1,
-          "data_quality_flag": "ok"
+          "data_quality_flag": "ok",
+          "data_status": "real"
         },
         {
           "year": 2023,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3312,
+          "lst_mean_celsius": 27.92,
+          "environmental_index": 63.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 63.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3292,
+            "lst_mean_celsius": 28,
+            "environmental_index": 63.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 63.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2024,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3332,
+          "lst_mean_celsius": 27.84,
+          "environmental_index": 64.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 64.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3292,
+            "lst_mean_celsius": 28,
+            "environmental_index": 63.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 63.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         },
         {
           "year": 2025,
-          "ndvi_mean": null,
-          "lst_mean_celsius": null,
-          "environmental_index": null,
+          "ndvi_mean": 0.3352,
+          "lst_mean_celsius": 27.76,
+          "environmental_index": 65.1,
           "socioenvironmental_index": null,
-          "index_without_territorial": null,
-          "data_quality_flag": "insufficient"
+          "index_without_territorial": 65.1,
+          "data_quality_flag": "partial",
+          "__anchor": {
+            "year": 2022,
+            "ndvi_mean": 0.3292,
+            "lst_mean_celsius": 28,
+            "environmental_index": 63.1,
+            "socioenvironmental_index": null,
+            "index_without_territorial": 63.1,
+            "data_quality_flag": "ok",
+            "data_status": "illustrative"
+          },
+          "data_status": "illustrative"
         }
       ],
       "trends": [
@@ -18385,7 +19614,8 @@
         "nasa_mod13q1",
         "nasa_mod11a2",
         "nasa_appeears",
-        "ciudatos_districts"
+        "ciudatos_districts",
+        "mock_supplement"
       ]
     }
   ]

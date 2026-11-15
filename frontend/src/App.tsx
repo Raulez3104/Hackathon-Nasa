@@ -5,7 +5,7 @@ import { formatValue, getValue } from "./components/map/color-scales";
 import { MapControls } from "./components/map/MapControls";
 import { MapLegend } from "./components/map/MapLegend";
 import { LayerControl } from "./components/map/LayerControl";
-import { TransportControl } from "./components/map/TransportControl";
+import { TransportControl, type TransportRouteInfo } from "./components/map/TransportControl";
 import { MapComparisonControl } from "./components/map/MapComparisonControl";
 import type { IndexView, WmsLayerStatus } from "./components/map/map.types";
 import { useMapUrlState } from "./components/map/useMapUrlState";
@@ -43,6 +43,7 @@ function App() {
   const [transportRoute, setTransportRoute] = useState("");
   const [transportRoutes, setTransportRoutes] = useState<string[]>([]);
   const [transportStatus, setTransportStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
+  const [selectedTransportInfo, setSelectedTransportInfo] = useState<TransportRouteInfo | null>(null);
   const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(() => {
     const urlLayers = new URLSearchParams(window.location.search).get("layers");
     if (urlLayers === null) return buildGamcVisibility();
@@ -91,6 +92,11 @@ function App() {
     [gamcVisibility],
   );
   const selectedValue = selectedDistrict ? getValue(selectedDistrict, year, variable) : null;
+  const yearDataStatus =
+    selectedDistrict?.series.find((point) => point.year === year)?.data_status ??
+    districts.find((district) => district.series.find((point) => point.year === year))?.series.find((point) => point.year === year)
+      ?.data_status ??
+    dataStatus;
   const datasetStatus: DatasetStatus = error ? "error" : districts.length > 0 ? "ready" : "loading";
 
   const handleGamcToggle = useCallback((layerId: string, enabled: boolean) => {
@@ -115,7 +121,7 @@ function App() {
     return (
       <main className="dashboard-state">
         <h1>No se pudo cargar GeoQocha</h1>
-        <p>{error} Revisa el archivo de datos ilustrativos e inténtalo nuevamente.</p>
+        <p>{error} Revisa la disponibilidad del dataset e inténtalo nuevamente.</p>
       </main>
     );
   }
@@ -159,30 +165,50 @@ function App() {
               }}
             />
           </div>
-          <main className="dashboard-main">
-            {districts.length > 0 && (
-              <Suspense fallback={<div className="dashboard-map-loading" role="status">Cargando mapa…</div>}>
-                <MapShell
-                  districts={districts}
-                  year={year}
-                  variable={variable}
-                  indexView={indexView}
-                  selectedDistrictId={selectedDistrictId}
-                  showLstHeatmap={showLstHeatmap}
-                  showTransport={showTransport}
-                  showTransportStops={showTransportStops}
-                  transportRoute={transportRoute}
-                  selectedDistrictGeometry={selectedDistrict?.geometry ?? null}
-                  onTransportRoutesLoaded={setTransportRoutes}
-                  onTransportStatusChange={setTransportStatus}
-                  gamcLayers={activeGamcLayers}
-                  gamcOpacity={gamcOpacity}
-                  gamcReloadToken={gamcReloadToken}
-                  onGamcStatusChange={handleGamcStatusChange}
-                  onDistrictSelect={mapUrl.selectDistrict}
-                />
-              </Suspense>
-            )}
+            <main className="dashboard-main">
+              {districts.length > 0 && (
+                <div className="dashboard-map-column">
+                  <Suspense fallback={<div className="dashboard-map-loading" role="status">Cargando mapa…</div>}>
+                    <MapShell
+                      districts={districts}
+                      year={year}
+                      variable={variable}
+                      indexView={indexView}
+                      selectedDistrictId={selectedDistrictId}
+                      showLstHeatmap={showLstHeatmap}
+                      showTransport={showTransport}
+                      showTransportStops={showTransportStops}
+                      transportRoute={transportRoute}
+                      selectedDistrictGeometry={selectedDistrict?.geometry ?? null}
+                      onTransportRoutesLoaded={setTransportRoutes}
+                      onTransportStatusChange={setTransportStatus}
+                      gamcLayers={activeGamcLayers}
+                      gamcOpacity={gamcOpacity}
+                      gamcReloadToken={gamcReloadToken}
+                      onGamcStatusChange={handleGamcStatusChange}
+                      onDistrictSelect={mapUrl.selectDistrict}
+                    />
+                  </Suspense>
+                  {selectedTransportInfo && (
+                    <section className="transport-line-info" aria-live="polite">
+                      <div className="transport-line-info-heading">
+                        <span className="transport-line-color" style={{ backgroundColor: selectedTransportInfo.color }} />
+                        <div>
+                          <span className="dashboard-panel-label">Información de la línea</span>
+                          <h2>{selectedTransportInfo.label}</h2>
+                        </div>
+                      </div>
+                      <div className="transport-line-details">
+                        <span><strong>Tipo</strong>{selectedTransportInfo.routeTypes.join(" + ")}</span>
+                        <span><strong>Origen</strong>{selectedTransportInfo.origin}</span>
+                        <span><strong>Destino</strong>{selectedTransportInfo.destination}</span>
+                        <span><strong>Identificador</strong>{selectedTransportInfo.routeId}</span>
+                      </div>
+                      <p>Recorrido consultado desde el GeoJSON de transporte incorporado al proyecto. La información es descriptiva y puede estar sujeta a actualización.</p>
+                    </section>
+                  )}
+                </div>
+              )}
             <aside className="dashboard-side-panel">
               <TransportControl
                 enabled={showTransport}
@@ -199,6 +225,7 @@ function App() {
                   mapUrl.setLayers(visible ? [...layers, "transport_stops"] : layers);
                 }}
                 onRouteChange={setTransportRoute}
+                onRouteInfoChange={setSelectedTransportInfo}
               />
               <MapComparisonControl
                 districts={districts}
@@ -225,7 +252,7 @@ function App() {
                 activeValue={selectedValue}
                 showLstHeatmap={showLstHeatmap}
                 gamcLayers={activeGamcLayers}
-                dataStatus={dataStatus}
+                 dataStatus={yearDataStatus}
               />
               <div className="dashboard-map-status">
                 <span className="dashboard-status">15 distritos · {year}</span>

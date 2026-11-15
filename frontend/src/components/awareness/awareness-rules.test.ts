@@ -59,7 +59,7 @@ describe("reglas de concientización", () => {
     expect(strategy.indicator.year).toBe(2025);
     expect(assessment.citations[0]).toMatchObject({
       sourceRef: "mock",
-      label: "Mock ilustrativo de desarrollo",
+      label: "Serie complementada de desarrollo",
       year: 2025,
     });
     expect(assessment.citations.some((citation) => citation.sourceRef === "territorial_reference")).toBe(true);
@@ -151,7 +151,7 @@ describe("reglas de concientización", () => {
     expect(directionLabel("loss")).toBe("Pérdida de vigor");
     expect(directionLabel("gain")).toBe("Ganancia de vigor");
     expect(directionIcon("insufficient")).toBe("?");
-    expect(sourceLabel("mock")).toBe("Mock ilustrativo de desarrollo");
+    expect(sourceLabel("mock")).toBe("Serie complementada de desarrollo");
     expect(sourceLabel("gamc_transport")).toBe("GAMC · transporte");
     expect(sourceLabel("fuente_nueva")).toBe("fuente nueva");
     expect(sourceLabel(null)).toBe("Sin fuente declarada");

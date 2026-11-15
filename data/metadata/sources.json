@@ -1,6 +1,6 @@
 {
   "contract_version": "0.1.0",
-  "generated_at": "2026-11-15T15:10:20Z",
+  "generated_at": "2026-11-15T17:50:23.942Z",
   "sources": [
     {
       "id": "nasa_mod13q1",
@@ -89,18 +89,57 @@
       "limitations": [
         "Indicador sintético de apoyo; no mide bienestar de forma definitiva"
       ]
+    },
+    {
+      "id": "mock_supplement",
+      "name": "Complemento de serie basado en patrones 2019–2022",
+      "organization": "Equipo GeoQocha",
+      "url": "https://github.com/Raulez3104/Hackathon-Nasa",
+      "reference_date": "2015/2025",
+      "license": "CC BY 4.0 para series complementadas",
+      "transformations": [
+        "Se conservaron sin cambios las observaciones reales 2019–2022",
+        "Se generaron valores complementados únicamente para 2015–2018 y 2023–2025",
+        "Ajuste determinista por distrito usando como anclas los valores reales disponibles"
+      ],
+      "limitations": [
+        "No son mediciones NASA ni datos oficiales para los años complementados",
+        "No deben usarse para inferir tendencias oficiales"
+      ]
     }
   ],
   "coverage": {
     "environmental": {
       "districts": 15,
       "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "real_years": [
         2019,
         2020,
         2021,
         2022
       ],
-      "observations": 60
+      "illustrative_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2023,
+        2024,
+        2025
+      ],
+      "observations": 165
     },
     "territorial": "no disponible"
   }

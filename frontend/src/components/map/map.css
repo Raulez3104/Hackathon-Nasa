@@ -150,6 +150,34 @@
   box-sizing: border-box;
 }
 
+.transport-route-list {
+  display: grid;
+  max-height: 310px;
+  gap: 4px;
+  overflow-y: auto;
+  padding-right: 3px;
+}
+
+.transport-route-option {
+  width: 100%;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  background: transparent;
+  cursor: pointer;
+  font-size: .72rem;
+  text-align: left;
+}
+
+.transport-route-option:hover,
+.transport-route-option.is-selected {
+  border-color: var(--color-border);
+  color: var(--color-brand-950);
+  background: var(--color-surface-raised);
+  font-weight: 700;
+}
+
 .dashboard-transport-status {
   color: var(--color-text-muted);
   font-size: .7rem;
@@ -161,6 +189,30 @@
 
 .dashboard-transport-status-error {
   color: var(--color-danger);
+}
+
+.transport-animation {
+  position: relative;
+  height: 48px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.transport-animation-image {
+  position: absolute;
+  top: 3px;
+  left: -78px;
+  width: 72px;
+  height: 42px;
+  object-fit: contain;
+  animation: transport-advance 2.4s ease-in forwards;
+}
+
+@keyframes transport-advance {
+  0% { left: -78px; opacity: 0; transform: scale(.8); }
+  12% { opacity: 1; transform: scale(1); }
+  82% { opacity: 1; }
+  100% { left: calc(100% + 78px); opacity: 0; transform: scale(.9); }
 }
 
 .dashboard-comparison-control {

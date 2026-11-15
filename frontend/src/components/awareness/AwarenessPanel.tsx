@@ -41,7 +41,7 @@ function dataStatusLabel(status: DistrictData["data_status"]): string {
     case "real":
       return "Datos reales";
     case "illustrative":
-      return "Datos ilustrativos";
+      return "Serie complementada";
     default:
       return "Datos insuficientes";
   }

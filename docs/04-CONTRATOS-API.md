@@ -197,6 +197,11 @@ interface SourceMetadata {
 
 > El contrato completo de una fila distrito-año está en [`02-REQUERIMIENTOS.md`](./02-REQUERIMIENTOS.md#diccionario-mínimo-de-campos-distrito-año).
 
+Cuando una serie combine observaciones reales con complemento ilustrativo, `data_status`
+se interpreta por año: 2019–2022 conserva el estado `real` y los años completados llevan
+`illustrative`. El complemento nunca reemplaza una observación real y debe citar
+`mock_supplement`.
+
 ### 3.2 Tipos del cliente, mapa y IA
 
 Estos tipos viven en `shared/types/geoqocha.ts`. `DistrictData` es la vista agregada que consumen el mapa y el panel; `DistrictYearRecord` sigue siendo la fila canónica del pipeline.
@@ -215,6 +220,7 @@ export interface DistrictSeriesPoint {
   socioenvironmental_index: number | null;
   index_without_territorial: number | null;
   data_quality_flag: DataQualityFlag;
+  data_status?: DataStatus;                     // estado de este año en series mixtas
 }
 
 export interface DistrictTrend {

@@ -183,6 +183,18 @@ export class DatasetStore {
   }
 
   getLastDataYear(): number | null {
+    const realYears = new Set<number>();
+    for (const district of this.getDataset().districts) {
+      for (const point of district.series) {
+        if (
+          point.data_status !== "illustrative" &&
+          (point.ndvi_mean !== null || point.lst_mean_celsius !== null || point.environmental_index !== null)
+        ) {
+          realYears.add(point.year);
+        }
+      }
+    }
+    if (realYears.size > 0) return Math.max(...realYears);
     const years = this.getObservedYears();
     return years.length > 0 ? years[years.length - 1] : null;
   }

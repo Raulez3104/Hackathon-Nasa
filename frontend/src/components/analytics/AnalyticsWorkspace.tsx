@@ -65,7 +65,7 @@ export function AnalyticsWorkspace({
         <div className="gq-workspace-meta">
           <span className={`gq-data-badge gq-data-badge--${dataStatus}`}>
             {dataStatus === "illustrative"
-              ? "Datos ilustrativos"
+              ? "Serie complementada"
               : dataStatus === "real"
                 ? "Datos reales"
                 : "Datos insuficientes"}

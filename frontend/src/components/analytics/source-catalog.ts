@@ -1,6 +1,6 @@
 /**
  * Catálogo de fuentes del MVP (docs/04 §4.7 y docs/05). La etiqueta `kind`
- * distingue datos reales de ilustrativos (RN-11) y nunca oculta limitaciones.
+ * distingue datos reales de series complementadas (RN-11) y nunca oculta limitaciones.
  */
 
 export type SourceKind = "real" | "illustrative";
@@ -149,7 +149,7 @@ export const SOURCE_CATALOG: SourceEntry[] = [
     organization: "Equipo GeoQocha",
     url: null,
     reference_date: "2015/2025",
-    license: "Datos ilustrativos de desarrollo",
+    license: "Serie complementada de desarrollo",
     kind: "illustrative",
     transformations: ["Generación sintética para desarrollo", "Cifras ficticias etiquetadas"],
     limitations: [

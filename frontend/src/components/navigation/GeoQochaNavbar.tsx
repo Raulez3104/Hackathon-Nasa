@@ -39,15 +39,13 @@ export function GeoQochaNavbar({
   return (
     <>
       <aside className="geoq-navbar-notice" aria-label="Aviso de validación técnica">
-        <span><Icon name="travel_explore" /> Demo con datos ilustrativos</span>
+        <span><Icon name="travel_explore" /> Demo con serie complementada</span>
         <small>Los resultados deben validarse con fuentes oficiales NASA y GAMC.</small>
       </aside>
       <header className="geoq-navbar">
         <Brand />
         <nav className="geoq-navbar-links" aria-label="Navegación principal">
           <a href="/#como-funciona">Cómo funciona</a>
-          <a href="/#metodologia">Metodología</a>
-          <a href="/#fuentes">Fuentes</a>
           <a href="/areas-verdes" aria-current={activeNav === "areas-verdes" ? "page" : undefined}>Áreas Verdes</a>
         </nav>
         <div className="geoq-navbar-actions">

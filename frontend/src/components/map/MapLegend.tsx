@@ -103,7 +103,7 @@ export function MapLegend({
       <p className="dashboard-disclaimer">
         {isReal
           ? "Datos satelitales reales NASA (2019–2022). El ICVSA completo queda pendiente hasta integrar equipamiento y movilidad del GAMC; por eso se publica también el índice ambiental."
-          : "Datos ilustrativos para desarrollo. El semáforo incluye texto e ícono; el color no es la única señal."}
+          : "Serie complementada para desarrollo. El semáforo incluye texto e ícono; el color no es la única señal."}
       </p>
     </aside>
   );

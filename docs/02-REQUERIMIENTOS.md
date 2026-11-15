@@ -187,6 +187,7 @@ Estos requerimientos amplían los módulos anteriores para cubrir literalmente e
 | `mobility_access_index` | número \| null | 0–100 | Cobertura o proximidad a transporte público. |
 | `trend_acceleration` | número \| null | índice/año² | Diferencia de pendientes entre subperiodos. |
 | `data_quality_flag` | enum | — | `ok` \| `partial` \| `insufficient`. |
+| `data_status` | enum \| ausente | — | Estado del registro anual: `real` \| `illustrative` \| `insufficient`; permite series mixtas. |
 
 > Valores de ejemplo son ficticios y sirven solo para definir interfaces.
 
