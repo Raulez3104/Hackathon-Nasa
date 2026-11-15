@@ -71,6 +71,19 @@ test("diagnóstico incluye tendencias, equipamiento y advertencia territorial", 
   assert.ok(evidenceValues.some((value) => typeof value === "number"));
 });
 
+test("chat ofrece orientaciones cualitativas ante preguntas de solución", async () => {
+  const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
+    mode: "chat",
+    district_id: 1,
+    year: 2022,
+    question: "¿Qué acciones mejorarían la vegetación del distrito?",
+  });
+  assert.equal(status, 200);
+  assert.match(body.answer, /orientaciones cualitativas/i);
+  assert.ok(body.insights.some((insight) => insight.kind === "recommendation"));
+  assert.ok(body.citations.length >= 1);
+});
+
 test("chat responde preguntas demográficas declarando la ausencia de referencia territorial", async () => {
   const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
     mode: "chat",

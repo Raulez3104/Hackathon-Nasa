@@ -60,7 +60,7 @@
   border: 1px solid var(--gq-line);
   border-left: 4px solid var(--gq-green);
   border-radius: 10px;
-  background: #fff;
+  background: var(--gq-paper, var(--color-surface-raised));
   color: var(--gq-ink);
   font-size: 0.82rem;
   line-height: 1.6;
@@ -82,15 +82,15 @@
   border: 1px solid var(--gq-line);
   border-top: 4px solid var(--gq-lime);
   border-radius: 10px;
-  background: #fff;
+  background: var(--gq-paper, var(--color-surface-raised));
 }
 
 .gq-diagnosis-card.gq-severity--warning {
-  border-top-color: #c29522;
+  border-top-color: #D97706;
 }
 
 .gq-diagnosis-card.gq-severity--critical {
-  border-top-color: #b9482c;
+  border-top-color: #DC2626;
 }
 
 .gq-diagnosis-card-head {
@@ -107,20 +107,20 @@
   gap: 5px;
   padding: 3px 8px;
   border-radius: 999px;
-  color: #224a34;
-  background: #e8f1df;
+  color: var(--color-brand-900, #075985);
+  background: var(--gq-paper-alt, #e0f2fe);
   font-size: 0.64rem;
   font-weight: 700;
 }
 
 .gq-severity--warning .gq-severity-chip {
-  color: #654c09;
-  background: #f7edcb;
+  color: var(--color-warn, #92400e);
+  background: var(--color-warn-surface, #fef3c7);
 }
 
 .gq-severity--critical .gq-severity-chip {
-  color: #6f2817;
-  background: #f8ded4;
+  color: var(--color-danger, #991b1b);
+  background: var(--color-danger-surface, #fee2e2);
 }
 
 .gq-diagnosis-card h3 {
@@ -156,7 +156,7 @@
 }
 
 .gq-diagnosis-evidence dt {
-  color: #6f7d76;
+  color: #64748B;
   font-size: 0.66rem;
   letter-spacing: 0.03em;
 }
@@ -173,7 +173,7 @@
   padding: 12px 14px;
   border: 1px dashed var(--gq-line);
   border-radius: 10px;
-  background: #fbfdf9;
+  background: var(--gq-paper-alt, #f8fafc);
 }
 
 .gq-diagnosis-citations h3 {

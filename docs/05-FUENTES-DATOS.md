@@ -10,12 +10,12 @@ Inventario de fuentes, estado de verificación, operaciones disponibles y precau
 |---|---|---|---|---|
 | Catálogo WMS (7 servicios) | GAMC | OGC WMS 1.1.1 | Visualización de capas municipales y consulta puntual | Documentado |
 | Capas vectoriales municipales (distritos, parques, equipamiento, educación, salud) | GAMC | Vector (shp/geojson/gpkg) | Conteos, áreas y accesibilidad por distrito | **Fuente primaria** según el reto; entrega por confirmar |
-| GeoJSON de líneas de transporte | GAMC / recurso incorporado por el equipo | GeoJSON | Dibujo de rutas y análisis de proximidad | Validado estructuralmente en `data/lineas/` y normalizado en `frontend/public/data/transport.geojson`; CRS `EPSG:4326`; licencia del archivo recibido no documentada |
-| GeoJSON de los 15 distritos | Ciudatos Lab (cartografía comunitaria) | GeoJSON | Geometrías de los 15 distritos municipales | Aplicado en `data/geojson/districts.geojson`; 15 polígonos, `district_id` 1–15; licencia y fecha por confirmar |
-| MOD13Q1 (NDVI) | NASA | Raster MODIS agregado por polígono | Serie de vegetación 2019–2022 | Aplicado desde AppEEARS Statistics + QA |
-| MOD11A2 (LST) | NASA | Raster MODIS agregado por polígono | Serie de temperatura superficial 2019–2022 | Aplicado desde AppEEARS Statistics + QA |
+| GeoJSON de líneas de transporte | GAMC / recurso incorporado por el equipo | GeoJSON | Dibujo de rutas y análisis de proximidad | **Disponible, pero no verificado como fuente oficial**: validado estructuralmente en `data/lineas/` y normalizado en `frontend/public/data/transport.geojson`; CRS `EPSG:4326`; licencia, fecha y versión del archivo recibido no documentadas |
+| GeoJSON de los 15 distritos | Ciudatos Lab (cartografía comunitaria) | GeoJSON | Geometrías de los 15 distritos municipales | Aplicado en `data/geojson/districts.geojson`; 15 polígonos, `district_id` 1–15; **no verificado como límite oficial del GAMC**; licencia y fecha por confirmar |
+| MOD13Q1 (NDVI) | NASA | Raster MODIS agregado por polígono | Serie de vegetación 2019–2022 | **Aplicado** desde AppEEARS Statistics + QA |
+| MOD11A2 (LST) | NASA | Raster MODIS agregado por polígono | Serie de temperatura superficial 2019–2022 | **Aplicado** desde AppEEARS Statistics + QA |
 | Proveedor de IA generativa (Gemini u OpenAI) | Tercero | API de lenguaje | Redactar explicaciones y diagnósticos a partir de hechos del dataset | Por configurar |
-| `mock_distritos.json` | Equipo | JSON estático | Datos ilustrativos para desarrollo independiente | Disponible en el Día 0 |
+| `mock_distritos.json` | Equipo | JSON estático | Datos ilustrativos para desarrollo independiente | Disponible; no representa mediciones oficiales |
 
 ---
 
@@ -223,11 +223,92 @@ La IA no es una fuente de datos. Es un servicio de redacción y explicación que
 
 ## 4. Datos derivados del proyecto
 
+### 4.0 Clasificación actual: reales, ilustrativos y no verificados
+
+La revisión del repositorio realizada el **2026-11-14** establece esta clasificación:
+
+#### Datos ilustrativos
+
+- `frontend/public/data/mock_distritos.json`.
+- `data/processed/distritos_data.json`.
+- `data/processed/district_year.json`.
+- `data/processed/trends.json`.
+- `data/processed/index.json`.
+- `data/processed/equipment_metrics.json`.
+- `data/processed/hotspots.json`.
+- `data/processed/gaps.json`.
+- `data/processed/correlations.json`.
+- `data/processed/heatmap_lst.json` y sus imágenes por año.
+- Valores de población, NDVI, LST, equipamiento, movilidad, ICVSA, brechas, tendencias y hotspots derivados de esos productos.
+- Paradas propuestas incluidas en el dataset: no son paradas oficiales ni tienen calificación de seguridad.
+
+Estos productos llevan `data_status: "illustrative"` o proceden del mock y no deben presentarse como mediciones municipales o satelitales reales.
+
+#### Reales o verificables como metadatos, no como mediciones
+
+- El endpoint WMS y la documentación pública del GAMC.
+- Los siete `service_id` públicos del catálogo del proyecto.
+- La metodología y el contrato de datos del propio proyecto.
+
+La existencia de un WMS real no convierte sus imágenes en datos vectoriales descargables ni autoriza a calcular áreas, conteos o accesibilidad a partir de píxeles.
+
+#### Disponibles pero no verificados como datos oficiales
+
+- `frontend/public/data/transport.geojson`: archivo estructuralmente válido y utilizable para visualizar rutas, pero sin licencia, fecha, versión y confirmación oficial documentadas.
+- Geometrías de distritos del equipo: disponibles para desarrollo, pero sin validación oficial de límites, CRS de origen, fecha y licencia.
+
+#### No hay todavía datos analíticos oficiales verificados en el repositorio
+
+No se encontraron en la auditoría exportaciones verificadas de MOD13Q1/MOD11A2, vectores oficiales de equipamiento o una tabla municipal oficial de población que puedan respaldar una publicación de resultados reales.
+
+### 4.1 Información necesaria para sustituir el mock por datos reales
+
+Para cada archivo o servicio se debe entregar la siguiente información, sin enviar credenciales por el chat:
+
+1. **Límites distritales oficiales**
+   - Archivo GeoJSON, Shapefile, GeoPackage o servicio autorizado.
+   - Los 15 polígonos, `district_id`, nombre oficial y relación de equivalencia con otras fuentes.
+   - CRS de origen y CRS de publicación.
+   - Fecha de referencia, organismo propietario, licencia y autorización de uso.
+   - Validación de topología, geometrías multipartes, área y cobertura municipal.
+
+2. **NASA NDVI/LST**
+   - Exportación o acceso autorizado a MOD13Q1 y MOD11A2, colección 6.1.
+   - Periodo exacto 2015–2025 y zona de estudio.
+   - Bandas utilizadas, factores de escala, reglas QA, tratamiento de nubes y valores inválidos.
+   - Ventana estacional fija para NDVI.
+   - Estadísticas zonales por distrito-año: media, conteo de observaciones válidas y fracción de píxeles válidos.
+   - CRS, resolución efectiva, fecha de procesamiento, versión del script y licencia.
+
+3. **Población y equipamiento municipal**
+   - Vectores o tablas oficiales de población, áreas verdes, equipamiento, unidades educativas y centros de salud.
+   - Campos identificadores, categorías, fecha de captura, cobertura y unidad de medida.
+   - Año de referencia territorial (`territorial_reference_year`).
+   - Reglas oficiales para duplicados, entidades fuera de distrito y datos faltantes.
+   - Licencia y permiso para derivar conteos, superficies, tasas y accesibilidad.
+
+4. **Transporte y paradas**
+   - URL o archivo oficial, fecha y versión del GeoJSON de rutas.
+   - Identificador de ruta, nombre, geometría, sentido, operador y cobertura.
+   - Archivo oficial de paradas, si existe, con coordenadas y fecha de validación.
+   - Confirmación escrita de qué elementos son oficiales; hasta entonces las paradas deben seguir siendo propuestas ilustrativas.
+
+5. **Metadatos y control de calidad**
+   - Fuente, fecha de descarga, transformación aplicada y licencia por producto.
+   - Umbrales de cobertura y reglas para marcar `ok`, `partial` e `insufficient`.
+   - Registro de faltantes sin convertir `null` en cero.
+   - Muestra reproducible de entradas y salidas para validar el pipeline.
+
+6. **Accesos de ejecución**
+   - Para GAMC: URL, `service_id` autorizados, operaciones permitidas y una clave entregada únicamente por el canal seguro del equipo para almacenarla en `GAMC_API_KEY`.
+   - Para NASA/GEE o AppEEARS: proyecto, permisos y mecanismo de exportación autorizado.
+   - Para IA, solo si se desea proveedor externo: proveedor, modelo y clave configurada exclusivamente en el servidor mediante `AI_API_KEY`.
+
 | Producto | Descripción | Ubicación |
 |---|---|---|
-| `districts.geojson` | Geometrías validadas de los 15 distritos | `data/geojson/` |
-| `transport.geojson` | Rutas de transporte validadas | `data/geojson/` |
-| `equipment.geojson` | Parques, escuelas, salud y equipamiento municipal | `data/geojson/` |
+| `districts.geojson` | Geometrías oficiales validadas de los 15 distritos | `data/geojson/`; pendiente recibir y validar |
+| `transport.geojson` | Rutas de transporte con fuente, fecha y licencia verificadas | `data/geojson/`; archivo actual no verificado como oficial |
+| `equipment.geojson` | Parques, escuelas, salud y equipamiento municipal oficiales | `data/geojson/`; pendiente recibir |
 | `distritos_data.json` | Dataset principal del MVP, con la forma de `DistrictData` | `data/processed/` y `frontend/public/data/` |
 | `mock_distritos.json` | Datos ilustrativos para desarrollo y demo sin bloqueos | `frontend/public/data/` |
 | `transport_stops` | Paradas propuestas derivadas de rutas y reglas; no oficiales | Incluidas en `distritos_data.json` |
