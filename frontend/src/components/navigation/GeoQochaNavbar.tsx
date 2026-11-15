@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export type GeoQochaView = "map" | "analytics";
 
@@ -17,7 +18,7 @@ function Icon({ name }: { name: string }) {
 function Brand() {
   return (
     <a className="geoq-navbar-brand" href="/" aria-label="GeoQocha, inicio">
-      <span className="geoq-navbar-brand-icon"><Icon name="satellite_alt" /></span>
+      <span className="geoq-navbar-brand-icon"><img src="/brand/logo-geoqocha.png" alt="" /></span>
       <span>
         <strong>GeoQocha</strong>
         <small>VALLE CENTRAL DE COCHABAMBA</small>
@@ -59,6 +60,7 @@ export function GeoQochaNavbar({
           ) : (
             <a className="geoq-navbar-cta" href="/dashboard">Explorar tablero <Icon name="arrow_forward" /></a>
           )}
+          <ThemeToggle />
           {trailing}
         </div>
       </header>

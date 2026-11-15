@@ -38,9 +38,11 @@ function App() {
   const [transportRoute, setTransportRoute] = useState("");
   const [transportRoutes, setTransportRoutes] = useState<string[]>([]);
   const [transportStatus, setTransportStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
-  const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(
-    () => buildGamcVisibility(mapState.layers.filter((layer) => GAMC_LAYERS.some((definition) => definition.id === layer))),
-  );
+  const [gamcVisibility, setGamcVisibility] = useState<Record<string, boolean>>(() => {
+    const urlLayers = new URLSearchParams(window.location.search).get("layers");
+    if (urlLayers === null) return buildGamcVisibility();
+    return buildGamcVisibility(mapState.layers.filter((layer) => GAMC_LAYERS.some((definition) => definition.id === layer)));
+  });
   const [gamcOpacity, setGamcOpacity] = useState(0.82);
   const [gamcReloadToken, setGamcReloadToken] = useState(0);
   const [gamcStatuses, setGamcStatuses] = useState<Record<string, WmsLayerStatus>>({});
@@ -79,7 +81,7 @@ function App() {
       ...(showTransportStops ? ["transport_stops"] : []),
     ];
     if (layers.join(",") !== mapState.layers.join(",")) mapUrl.setLayers(layers);
-  }, [gamcVisibility, mapState.layers, mapUrl.setLayers, showLstHeatmap, showTransport]);
+  }, [gamcVisibility, mapState.layers, mapUrl.setLayers, showLstHeatmap, showTransport, showTransportStops]);
 
   if (error) {
     return (

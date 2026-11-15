@@ -47,4 +47,11 @@ describe("App", () => {
     expect(screen.queryByTestId("analytics-workspace")).not.toBeInTheDocument();
     expect(screen.getByText("Año")).toBeInTheDocument();
   });
+
+  it("activa por defecto la capa municipal de equipamiento", async () => {
+    render(<App />);
+
+    const toggle = await screen.findByRole("checkbox", { name: /equipamiento/i });
+    expect(toggle).toBeChecked();
+  });
 });

@@ -111,6 +111,7 @@ export function LandingPage() {
           <div className="landing-grid-pattern" />
           <div className="landing-container landing-hero-grid">
             <div className="landing-hero-copy">
+              <img className="landing-hero-emblem" src="/brand/logo-escudo.webp" alt="Escudo de Cochabamba" />
               <span className="landing-provenance"><Icon name="travel_explore" /> NASA MODIS · Datos municipales GAMC · 2015–2025</span>
               <h1>Comprende cómo cambia Cochabamba desde el espacio.</h1>
               <p>Explora la vegetación, la temperatura superficial, el equipamiento urbano y las tendencias socioambientales de los 15 distritos municipales.</p>
@@ -190,14 +191,19 @@ export function LandingPage() {
               <p>Explora los 15 distritos, compara sus tendencias y descubre qué historias cuentan los datos.</p>
             </div>
             <a className="landing-button" href="/dashboard">Explorar GeoQocha <Icon name="arrow_forward" /></a>
+            <img className="landing-final-slogan" src="/brand/logo-slogan.webp" alt="GeoQocha, ciencia abierta para Cochabamba" />
           </div>
         </section>
       </main>
 
       <footer className="landing-footer">
         <div className="landing-container landing-footer-inner">
+          <span className="landing-footer-municipal">
+            <img src="/brand/logo-escudo.webp" alt="Escudo de Cochabamba" />
+            Cochabamba, Bolivia
+          </span>
           <a className="geoq-navbar-brand" href="/" aria-label="GeoQocha, inicio">
-            <span className="geoq-navbar-brand-icon"><Icon name="satellite_alt" /></span>
+            <span className="geoq-navbar-brand-icon"><img src="/brand/logo-geoqocha.png" alt="" /></span>
             <span><strong>GeoQocha</strong><small>VALLE CENTRAL DE COCHABAMBA</small></span>
           </a>
           <span>NASA MODIS · GAMC · Código abierto</span>
