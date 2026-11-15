@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { DistrictData } from "../../../../shared/types/geoqocha";
-import { ChatWidget } from "../ai/ChatWidget";
 import { DiagnosisCards } from "../ai/DiagnosisCards";
 import { AwarenessPanel } from "../awareness/AwarenessPanel";
 import { DistrictPanel } from "./DistrictPanel";
@@ -118,7 +117,6 @@ export function AnalyticsWorkspace({
         ) : null}
         {activeView === "diagnosis" ? <DiagnosisCards districts={districts} year={year} /> : null}
       </main>
-      <ChatWidget districts={districts} year={year} />
     </div>
   );
 }

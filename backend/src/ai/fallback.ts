@@ -121,6 +121,45 @@ function hotspotSentence(context: AIContext): string {
   return `El puntaje de hotspot es ${fmt(context.hotspot.score, 1)} con prioridad ${context.hotspot.priority_level}.${rules}`;
 }
 
+function solutionSentence(context: AIContext): string {
+  const ndvi = numeric(context, "ndvi_mean");
+  const lst = numeric(context, "lst_mean_celsius");
+  const green = numeric(context, "green_area_m2_per_capita");
+  const flags = text(context, "deficit_flags") ?? "";
+  const ndviTrend = trend(context, "ndvi");
+  const lstTrend = trend(context, "lst");
+  const actions: string[] = [];
+
+  if (ndviTrend?.direction === "worsening" || (ndvi !== null && ndvi < 0.35)) {
+    actions.push(
+      "Para la vegetación, conviene revisar las áreas con pérdida de vigor y evaluar la recuperación de cobertura con especies adecuadas a la zona.",
+    );
+  }
+  if (lstTrend?.direction === "worsening" || (lst !== null && lst >= 30)) {
+    actions.push(
+      "Para el calor superficial, conviene estudiar sombra urbana, arbolado y materiales de baja absorción térmica.",
+    );
+  }
+  if (green !== null && green < 5) {
+    actions.push(
+      "Para el déficit de área verde, conviene identificar espacios disponibles para parques o corredores verdes y coordinar su mantenimiento.",
+    );
+  }
+  if (/SCHOOLS|HEALTH|EQUIPMENT/.test(flags)) {
+    actions.push("Para el equipamiento, conviene revisar las brechas señaladas con el GAMC antes de definir intervenciones.");
+  }
+  if (/TRANSPORT|MOBILITY/.test(flags)) {
+    actions.push("Para la movilidad, conviene estudiar la cobertura de transporte y la conexión de barrios periféricos.");
+  }
+  if (actions.length === 0) {
+    actions.push(
+      "Con los datos disponibles no hay una señal de déficit específica; conviene mantener el monitoreo y revisar la metodología antes de proponer intervenciones.",
+    );
+  }
+  actions.push("Son orientaciones cualitativas para el análisis, no una priorización oficial de inversión.");
+  return actions.join(" ");
+}
+
 function territorialCaveat(context: AIContext): string {
   return `El componente territorial corresponde al año de referencia ${context.district?.territorial_reference_year ?? "no declarado"} y no se interpola.`;
 }
@@ -259,7 +298,16 @@ function chatDraft(context: AIContext): AIDraft {
   let answer: string;
   const insights: AIDraftInsight[] = [];
 
-  if (/poblaci|habitante|demograf/.test(question)) {
+  if (/soluci|acci[oó]n|recomend|mitigar|reducir|mejorar|c[oó]mo hacer|qu[eé] hacer|estrategia|plan|interven/.test(question)) {
+    answer = `${districtName}: ${vegetationSentence(context)} ${temperatureSentence(context)} ${equipmentSentence(context)} ${solutionSentence(context)} ${territorialCaveat(context)} ${statusCaveat(context)} La lectura es descriptiva y no implica causalidad.`;
+    insights.push(
+      buildInsight(context, "recommendation", "Orientaciones para el análisis", solutionSentence(context), "info", [
+        ["ndvi_mean", context.request.year],
+        ["lst_mean_celsius", context.request.year],
+        ["green_area_m2_per_capita", null],
+      ]),
+    );
+  } else if (/poblaci|habitante|demograf/.test(question)) {
     answer = `${districtName}: ${populationSentence(context)} ${statusCaveat(context)} La lectura es descriptiva y no implica causalidad.`;
     insights.push(
       buildInsight(context, "observation", "Demografía", populationSentence(context), "info", [
