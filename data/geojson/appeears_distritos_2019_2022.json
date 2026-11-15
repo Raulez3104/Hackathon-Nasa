@@ -1,0 +1,528 @@
+{
+  "task_type": "area",
+  "task_name": "GeoQocha_Distritos_2019_2022",
+  "params": {
+    "dates": [
+      {
+        "startDate": "01-01-2019",
+        "endDate": "12-31-2022"
+      }
+    ],
+    "layers": [
+      {
+        "product": "MOD13Q1.061",
+        "layer": "_250m_16_days_NDVI"
+      },
+      {
+        "product": "MOD11A2.061",
+        "layer": "LST_Day_1km"
+      }
+    ],
+    "output": {
+      "format": {
+        "type": "geotiff"
+      },
+      "projection": "geographic"
+    },
+    "geo": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.24,
+                  -17.49
+                ],
+                [
+                  -66.222,
+                  -17.49
+                ],
+                [
+                  -66.222,
+                  -17.472
+                ],
+                [
+                  -66.24,
+                  -17.472
+                ],
+                [
+                  -66.24,
+                  -17.49
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 1
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.215,
+                  -17.49
+                ],
+                [
+                  -66.197,
+                  -17.49
+                ],
+                [
+                  -66.197,
+                  -17.472
+                ],
+                [
+                  -66.215,
+                  -17.472
+                ],
+                [
+                  -66.215,
+                  -17.49
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 2
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.19,
+                  -17.49
+                ],
+                [
+                  -66.172,
+                  -17.49
+                ],
+                [
+                  -66.172,
+                  -17.472
+                ],
+                [
+                  -66.19,
+                  -17.472
+                ],
+                [
+                  -66.19,
+                  -17.49
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 3
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.165,
+                  -17.49
+                ],
+                [
+                  -66.147,
+                  -17.49
+                ],
+                [
+                  -66.147,
+                  -17.472
+                ],
+                [
+                  -66.165,
+                  -17.472
+                ],
+                [
+                  -66.165,
+                  -17.49
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 4
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.14,
+                  -17.49
+                ],
+                [
+                  -66.122,
+                  -17.49
+                ],
+                [
+                  -66.122,
+                  -17.472
+                ],
+                [
+                  -66.14,
+                  -17.472
+                ],
+                [
+                  -66.14,
+                  -17.49
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 5
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.24,
+                  -17.44
+                ],
+                [
+                  -66.222,
+                  -17.44
+                ],
+                [
+                  -66.222,
+                  -17.422
+                ],
+                [
+                  -66.24,
+                  -17.422
+                ],
+                [
+                  -66.24,
+                  -17.44
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 6
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.215,
+                  -17.44
+                ],
+                [
+                  -66.197,
+                  -17.44
+                ],
+                [
+                  -66.197,
+                  -17.422
+                ],
+                [
+                  -66.215,
+                  -17.422
+                ],
+                [
+                  -66.215,
+                  -17.44
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 7
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.19,
+                  -17.44
+                ],
+                [
+                  -66.172,
+                  -17.44
+                ],
+                [
+                  -66.172,
+                  -17.422
+                ],
+                [
+                  -66.19,
+                  -17.422
+                ],
+                [
+                  -66.19,
+                  -17.44
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 8
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.165,
+                  -17.44
+                ],
+                [
+                  -66.147,
+                  -17.44
+                ],
+                [
+                  -66.147,
+                  -17.422
+                ],
+                [
+                  -66.165,
+                  -17.422
+                ],
+                [
+                  -66.165,
+                  -17.44
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 9
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.14,
+                  -17.44
+                ],
+                [
+                  -66.122,
+                  -17.44
+                ],
+                [
+                  -66.122,
+                  -17.422
+                ],
+                [
+                  -66.14,
+                  -17.422
+                ],
+                [
+                  -66.14,
+                  -17.44
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 10
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.24,
+                  -17.39
+                ],
+                [
+                  -66.222,
+                  -17.39
+                ],
+                [
+                  -66.222,
+                  -17.372
+                ],
+                [
+                  -66.24,
+                  -17.372
+                ],
+                [
+                  -66.24,
+                  -17.39
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 11
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.215,
+                  -17.39
+                ],
+                [
+                  -66.197,
+                  -17.39
+                ],
+                [
+                  -66.197,
+                  -17.372
+                ],
+                [
+                  -66.215,
+                  -17.372
+                ],
+                [
+                  -66.215,
+                  -17.39
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 12
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.19,
+                  -17.39
+                ],
+                [
+                  -66.172,
+                  -17.39
+                ],
+                [
+                  -66.172,
+                  -17.372
+                ],
+                [
+                  -66.19,
+                  -17.372
+                ],
+                [
+                  -66.19,
+                  -17.39
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 13
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.165,
+                  -17.39
+                ],
+                [
+                  -66.147,
+                  -17.39
+                ],
+                [
+                  -66.147,
+                  -17.372
+                ],
+                [
+                  -66.165,
+                  -17.372
+                ],
+                [
+                  -66.165,
+                  -17.39
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 14
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -66.14,
+                  -17.39
+                ],
+                [
+                  -66.122,
+                  -17.39
+                ],
+                [
+                  -66.122,
+                  -17.372
+                ],
+                [
+                  -66.14,
+                  -17.372
+                ],
+                [
+                  -66.14,
+                  -17.39
+                ]
+              ]
+            ]
+          },
+          "properties": {
+            "district_id": 15
+          }
+        }
+      ]
+    }
+  }
+}

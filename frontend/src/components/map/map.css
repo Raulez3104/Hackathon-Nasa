@@ -216,6 +216,7 @@
 }
 
 .dashboard-gradient-icvsa,
+.dashboard-gradient-environmental_index,
 .dashboard-gradient-priority {
   background: linear-gradient(90deg, #d95f59, #f2c45b, #009FE3);
 }

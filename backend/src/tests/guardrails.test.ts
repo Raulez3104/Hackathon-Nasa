@@ -6,7 +6,7 @@ import { GuardrailError, validateDraft } from "../ai/guardrails.js";
 import { buildAIContext } from "../ai/retrieval.js";
 
 function context() {
-  return buildAIContext({ mode: "diagnosis", district_id: 1, year: 2025, question: null });
+  return buildAIContext({ mode: "diagnosis", district_id: 1, year: 2022, question: null });
 }
 
 test("valida números y citas contra el contexto recuperado", () => {
@@ -15,17 +15,17 @@ test("valida números y citas contra el contexto recuperado", () => {
   assert.ok(ndvi && typeof ndvi.value === "number");
 
   const draft = {
-    answer: `El NDVI del Distrito 1 es ${ndvi.value.toFixed(2)} en 2025 y la lectura es descriptiva.`,
+    answer: `El NDVI del Distrito 1 es ${ndvi.value.toFixed(2)} en 2022 y la lectura es descriptiva.`,
     insights: [
       {
         kind: "observation" as const,
         title: "Vegetación",
         body: "El NDVI se toma del contexto precalculado.",
         severity: "info" as const,
-        evidence: [{ field: "ndvi_mean", year: 2025, source_ref: ndvi.source_ref }],
+        evidence: [{ field: "ndvi_mean", year: 2022, source_ref: ndvi.source_ref }],
       },
     ],
-    citations: [{ source_ref: ndvi.source_ref, field: "ndvi_mean", year: 2025 }],
+    citations: [{ source_ref: ndvi.source_ref, field: "ndvi_mean", year: 2022 }],
   };
 
   const validated = validateDraft(aiContext, draft);
@@ -47,10 +47,10 @@ test("rechaza cifras inventadas por el proveedor", () => {
             title: "Dato inventado",
             body: "Cifra no verificable.",
             severity: "info",
-            evidence: [{ field: "ndvi_mean", year: 2025, source_ref: "mock" }],
+            evidence: [{ field: "ndvi_mean", year: 2022, source_ref: "nasa_mod13q1" }],
           },
         ],
-        citations: [{ source_ref: "mock" }],
+        citations: [{ source_ref: "nasa_mod13q1" }],
       }),
     GuardrailError,
   );
@@ -68,10 +68,10 @@ test("rechaza intentos de inyección o fuga de secretos en la salida", () => {
             title: "Fuga",
             body: "Contenido no permitido.",
             severity: "warning",
-            evidence: [{ field: "ndvi_mean", year: 2025, source_ref: "mock" }],
+            evidence: [{ field: "ndvi_mean", year: 2022, source_ref: "nasa_mod13q1" }],
           },
         ],
-        citations: [{ source_ref: "mock" }],
+        citations: [{ source_ref: "nasa_mod13q1" }],
       }),
     GuardrailError,
   );

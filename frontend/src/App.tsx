@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { DistrictData, Variable } from "../../shared/types/geoqocha";
 import { loadDistricts } from "./lib/data-source";
 import { formatValue, getValue } from "./components/map/color-scales";
@@ -26,7 +26,12 @@ type AppView = "map" | "analytics";
 function App() {
   const [activeView, setActiveView] = useState<AppView>("map");
   const mapUrl = useMapUrlState();
+  const { setYear, setVariable } = mapUrl;
   const [districts, setDistricts] = useState<DistrictData[]>([]);
+  const [dataStatus, setDataStatus] = useState<DistrictData["data_status"]>("illustrative");
+  const [defaultsApplied, setDefaultsApplied] = useState(false);
+  // Se captura antes de que otros efectos escriban la URL con los valores por defecto.
+  const initialSearch = useRef(window.location.search);
   const { state: mapState } = mapUrl;
   const year = mapState.year;
   const variable = mapState.variable;
@@ -50,9 +55,32 @@ function App() {
 
   useEffect(() => {
     loadDistricts()
-      .then((dataset) => setDistricts(dataset.districts))
+      .then((dataset) => {
+        setDistricts(dataset.districts);
+        setDataStatus(dataset.data_status);
+      })
       .catch(() => setError("No se pudieron cargar los datos del mapa."));
   }, []);
+
+  // Con datos reales 2019-2022, el año por defecto (2025) no tiene observaciones.
+  // Se ajusta una sola vez, y solo si el enlace no pidió año o variable explícitos.
+  useEffect(() => {
+    if (defaultsApplied || districts.length === 0) return;
+    setDefaultsApplied(true);
+    const params = new URLSearchParams(initialSearch.current);
+    const availableYears = districts.flatMap((district) =>
+      district.series
+        .filter((point) => point.ndvi_mean != null || point.lst_mean_celsius != null)
+        .map((point) => point.year),
+    );
+    if (availableYears.length === 0) return;
+    const effectiveYear = availableYears.includes(year) ? year : Math.max(...availableYears);
+    if (!params.has("year") && effectiveYear !== year) setYear(effectiveYear);
+    if (!params.has("variable") && variable === "icvsa") {
+      const hasIcvsa = districts.some((district) => getValue(district, effectiveYear, "icvsa") != null);
+      if (!hasIcvsa) setVariable("ndvi");
+    }
+  }, [defaultsApplied, districts, setVariable, setYear, variable, year]);
 
   const selectedDistrict = useMemo(
     () => districts.find((district) => district.district_id === selectedDistrictId) ?? null,
@@ -197,6 +225,7 @@ function App() {
                 activeValue={selectedValue}
                 showLstHeatmap={showLstHeatmap}
                 gamcLayers={activeGamcLayers}
+                dataStatus={dataStatus}
               />
               <div className="dashboard-map-status">
                 <span className="dashboard-status">15 distritos · {year}</span>

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -15,6 +16,11 @@ from indicators.hotspots import build_hotspot, filter_hotspots  # noqa: E402
 from indicators.index import compute_indexes  # noqa: E402
 from indicators.stats import ols, pearson, spearman  # noqa: E402
 from indicators.trends import compute_trend  # noqa: E402
+from nasa.appeears import (  # noqa: E402
+    aid_to_district_id,
+    load_appeears_directory,
+    qa_code_is_valid,
+)
 from nasa.modis import (  # noqa: E402
     aggregate_observations,
     lst_qc_is_valid,
@@ -56,6 +62,59 @@ class NasaProcessingTests(unittest.TestCase):
         self.assertAlmostEqual(result["lst_mean_celsius"], 26.85)
 
 
+class AppeearsTests(unittest.TestCase):
+    def test_aid_and_qa_codes(self) -> None:
+        self.assertEqual(aid_to_district_id("aid0012"), 12)
+        self.assertIsNone(aid_to_district_id("sin-digitos"))
+        self.assertTrue(qa_code_is_valid(2061))
+        self.assertTrue(qa_code_is_valid(17))
+        self.assertFalse(qa_code_is_valid(2062))
+        self.assertFalse(qa_code_is_valid(2))
+
+    def test_annual_aggregation_filters_low_quality_composites(self) -> None:
+        from datetime import date, timedelta
+
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            start = date(2019, 1, 1)
+            ndvi_rows = ["aid,Date,Count,Mean"]
+            ndvi_qa_rows = ["File,aid,Date,2061,2062"]
+            lst_rows = ["aid,Date,Count,Mean"]
+            lst_qa_rows = ["File,aid,Date,17,2"]
+
+            # 23 compuestos de 16 días: el primero con mala calidad se excluye.
+            for index in range(23):
+                day = (start + timedelta(days=16 * index)).isoformat()
+                ndvi_rows.append(f"aid0001,{day},10,{'0.6' if index == 0 else '0.4'}")
+                ndvi_qa_rows.append(
+                    f"_doy_{day}_aid0001,aid0001,{day},{'2,8' if index == 0 else '10,'}"
+                )
+            # 24 compuestos de 8 días con calidad buena.
+            for index in range(24):
+                day = (start + timedelta(days=8 * index)).isoformat()
+                lst_rows.append(f"aid0001,{day},5,300")
+                lst_qa_rows.append(f"QC_Day_{day}_aid0001,aid0001,{day},5,")
+
+            (directory / "MOD13Q1-061-Statistics.csv").write_text("\n".join(ndvi_rows) + "\n", encoding="utf-8")
+            (directory / "MOD11A2-061-Statistics.csv").write_text("\n".join(lst_rows) + "\n", encoding="utf-8")
+            (directory / "MOD13Q1-061-250m-16-days-VI-Quality-Statistics-QA.csv").write_text(
+                "\n".join(ndvi_qa_rows) + "\n", encoding="utf-8"
+            )
+            (directory / "MOD11A2-061-QC-Day-Statistics-QA.csv").write_text(
+                "\n".join(lst_qa_rows) + "\n", encoding="utf-8"
+            )
+
+            rows = load_appeears_directory(directory, [2019])
+            record = rows[(1, 2019)]
+            self.assertAlmostEqual(record["ndvi_mean"], 0.4)
+            self.assertEqual(record["ndvi_valid_observation_count"], 22)
+            self.assertAlmostEqual(record["ndvi_valid_pixel_fraction"], 222 / 230)
+            self.assertAlmostEqual(record["lst_mean_celsius"], 300 - 273.15)
+
+            with self.assertRaises(ValueError):
+                load_appeears_directory(directory, [2020])
+
+
 class StatisticsTests(unittest.TestCase):
     def test_ols_and_correlation(self) -> None:
         regression = ols([1, 2, 3, 4], [2, 4, 6, 8])
@@ -73,7 +132,7 @@ class StatisticsTests(unittest.TestCase):
 
 
 class IndexTests(unittest.TestCase):
-    def test_missing_territorial_marks_insufficient(self) -> None:
+    def test_missing_territorial_keeps_environmental_quality(self) -> None:
         environmental = {
             (1, 2015): {"district_id": 1, "year": 2015, "ndvi_mean": 0.2, "lst_mean_celsius": 30.0, "ndvi_valid_pixel_fraction": 0.9, "lst_valid_pixel_fraction": 0.9},
             (1, 2016): {"district_id": 1, "year": 2016, "ndvi_mean": 0.3, "lst_mean_celsius": 29.0, "ndvi_valid_pixel_fraction": 0.9, "lst_valid_pixel_fraction": 0.9},
@@ -84,7 +143,8 @@ class IndexTests(unittest.TestCase):
         self.assertIsNotNone(record["environmental_index"])
         self.assertIsNone(record["socioenvironmental_index"])
         self.assertEqual(record["index_without_territorial"], record["environmental_index"])
-        self.assertEqual(record["data_quality_flag"], "insufficient")
+        # RN-23: el ICVSA queda incompleto, pero NDVI/LST sí son observaciones válidas.
+        self.assertEqual(record["data_quality_flag"], "ok")
 
     def test_municipal_equipment_rates(self) -> None:
         payload = {

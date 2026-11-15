@@ -21,8 +21,8 @@ Registro breve y versionado de decisiones, estado y pendientes del proyecto.
 | Ramas oficiales | `dev1`, `dev2`, `dev3`, permanentes y con PR hacia `main` |
 | Flujo de integración | PR, una aprobación mínima, sincronización con `git merge origin/main` |
 | Frontend | React + Vite + TypeScript + Leaflet + Tailwind v4 cableado |
-| Backend | Node.js + Express + TypeScript; actualmente solo healthcheck |
-| Datos reales | No generados; el mock sigue siendo la fuente de desarrollo |
+| Backend | Node.js + Express + TypeScript; rutas de datos, proxy WMS y `/api/ai-analyst` implementadas |
+| Datos reales | Parciales: NDVI/LST 2019–2022 por distrito desde AppEEARS y 15 límites de Ciudatos Lab; equipamiento/movilidad del GAMC pendientes, por eso el ICVSA es `null` |
 | CI | No hay workflow; cada PR declara typecheck, build y validación del mock |
 
 ## Decisiones vigentes
@@ -51,6 +51,7 @@ Registro breve y versionado de decisiones, estado y pendientes del proyecto.
 | D-20 | Paradas de transporte son propuestas ilustrativas hasta validación oficial | `docs/03` AD-11 |
 | D-21 | Cualquier desarrollador puede modificar dependencias; debe incluir package y lockfile coherentes | `docs/06` §5.2 |
 | D-22 | No se usa rama `contract/*`; cambios de contrato requieren aprobación de los tres | `docs/06` §3.1/§5.3 |
+| D-23 | AppEEARS es la fuente NDVI/LST del MVP: estadísticas zonales 2019–2022, QA bits 0–1, media anual ponderada por conteo; `data_quality_flag` califica solo la observación ambiental | `docs/05` §3.1.1/§3.4, `docs/04` §4.3 |
 
 ## Fuentes de verdad
 
@@ -64,11 +65,10 @@ Registro breve y versionado de decisiones, estado y pendientes del proyecto.
 
 ## Próximos pasos
 
-1. Crear y publicar `dev1`, `dev2` y `dev3` desde `main`.
-2. DEV1 implementar T1-01: `data-source.ts`, shell del mapa, coropletas, semáforo y mapa de calor LST.
-3. DEV2 iniciar T2-01: esqueleto y validación del pipeline.
-4. DEV3 iniciar T3-01: panel distrital y comparador.
-5. Cada PR debe declarar tarea, archivos, impacto en contrato y pruebas ejecutadas.
+1. Completar la cobertura NASA 2015–2018 y 2023–2025 con nuevas solicitudes AppEEARS.
+2. Obtener los vectores de equipamiento y movilidad del GAMC para calcular el ICVSA y activar la correlación exploratoria.
+3. DEV1 debe revisar la matriz de avance: las filas T2-03…T2-06 y T3-01…T3-06 no reflejan el código ya presente en el repositorio.
+4. Revisión cruzada y PR de la rama `feature/dev3-nasa` hacia `dev3`.
 
 ## Bitácora
 
@@ -78,3 +78,6 @@ Registro breve y versionado de decisiones, estado y pendientes del proyecto.
 | 2026-11-13 | Se definieron las ramas permanentes `dev1`, `dev2` y `dev3`, con PR hacia `main`. |
 | 2026-11-13 | Se cableó Tailwind v4 y se agregaron tokens visuales base del dashboard. |
 | 2026-11-13 | Se separó la memoria compartida de las notas locales mediante `MEMORY.local.md`. |
+| 2026-11-15 | Se incorporaron los 15 límites distritales reales de Ciudatos Lab y el dataset NDVI/LST 2019–2022 de AppEEARS; `data_status` pasa a `real` (D-23). |
+| 2026-11-15 | El backend usa solo años con observación para `last_processed_year`, rangos válidos y defaults; sin datos territoriales, la correlación responde `NO_DATA` (n=0) en lugar de forzar un coeficiente. |
+| 2026-11-15 | El mock conserva series y equipamiento ilustrativos, pero adopta las geometrías y áreas reales de los 15 distritos para que el fallback nunca muestre cajas. |

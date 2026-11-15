@@ -40,7 +40,8 @@ export function parseAIRequest(body: unknown): AIRequest {
     if (!Number.isInteger(payload.year)) invalid("year debe ser un entero.");
     year = payload.year as number;
     const lastDataYear = store.getLastDataYear();
-    const minYear = store.getYears()[0] ?? 2015;
+    const observedYears = store.getObservedYears();
+    const minYear = observedYears[0] ?? 2015;
     if (year < minYear || year > (lastDataYear ?? year)) {
       invalid(`year debe estar entre ${minYear} y ${lastDataYear ?? year}.`, { year, minYear, maxYear: lastDataYear });
     }

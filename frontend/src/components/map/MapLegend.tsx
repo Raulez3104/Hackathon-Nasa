@@ -10,18 +10,44 @@ interface MapLegendProps {
   activeValue: number | null;
   showLstHeatmap: boolean;
   gamcLayers?: readonly GamcLayerDefinition[];
+  dataStatus?: "real" | "illustrative" | "insufficient";
 }
 
-export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, gamcLayers = [] }: MapLegendProps) {
+export function MapLegend({
+  variable,
+  indexView,
+  activeValue,
+  showLstHeatmap,
+  gamcLayers = [],
+  dataStatus = "illustrative",
+}: MapLegendProps) {
   const semaphore = semaphoreFor(activeValue);
-  const title = variable === "lst" ? "Temperatura superficial" : variable === "ndvi" ? "Vegetación NDVI" : "Índice visible";
+  const title =
+    variable === "lst"
+      ? "Temperatura superficial"
+      : variable === "ndvi"
+        ? "Vegetación NDVI"
+        : variable === "environmental_index"
+          ? "Índice ambiental"
+          : variable === "priority"
+            ? "Prioridad"
+            : "ICVSA";
+  const isReal = dataStatus === "real";
 
   return (
     <aside className="dashboard-panel dashboard-legend-panel" aria-label="Leyenda del mapa">
       <span className="dashboard-panel-label">Lectura del mapa</span>
       <h2>{title}</h2>
       <p className="dashboard-panel-copy">
-        {variable === "lst" ? "Intensidad térmica por distrito." : "Selecciona un distrito para consultar su valor."}
+        {variable === "lst"
+          ? "Intensidad térmica por distrito."
+          : variable === "ndvi"
+            ? "Vigor vegetal medio por distrito (NASA MOD13Q1)."
+            : variable === "environmental_index"
+              ? "Índice 1–100 con NDVI y LST, sin componente territorial."
+              : variable === "icvsa"
+                ? "ICVSA 1–100: requiere NDVI, LST, equipamiento y movilidad."
+                : "Selecciona un distrito para consultar su valor."}
       </p>
 
       {variable === "icvsa" && indexView === "semaphore" ? (
@@ -75,7 +101,9 @@ export function MapLegend({ variable, indexView, activeValue, showLstHeatmap, ga
       )}
 
       <p className="dashboard-disclaimer">
-        Datos ilustrativos para desarrollo. El semáforo incluye texto e ícono; el color no es la única señal.
+        {isReal
+          ? "Datos satelitales reales NASA (2019–2022). El ICVSA completo queda pendiente hasta integrar equipamiento y movilidad del GAMC; por eso se publica también el índice ambiental."
+          : "Datos ilustrativos para desarrollo. El semáforo incluye texto e ícono; el color no es la única señal."}
       </p>
     </aside>
   );

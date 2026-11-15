@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-66.28, -17.53],
+            [-66.07, -17.53],
+            [-66.07, -17.26],
+            [-66.28, -17.26],
+            [-66.28, -17.53]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Cochabamba"
+      }
+    }
+  ]
+}

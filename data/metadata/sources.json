@@ -1,19 +1,77 @@
 {
   "contract_version": "0.1.0",
-  "generated_at": "2026-11-14T02:43:28Z",
+  "generated_at": "2026-11-15T15:10:20Z",
   "sources": [
     {
-      "id": "mock",
-      "name": "Mock de desarrollo GeoQocha",
-      "organization": "Equipo GeoQocha",
-      "url": "https://github.com/Raulez3104/Hackathon-Nasa",
-      "reference_date": "2026-11-13",
-      "license": "CC BY 4.0 para datos ilustrativos",
+      "id": "nasa_mod13q1",
+      "name": "MODIS MOD13Q1 (NDVI), colección 6.1",
+      "organization": "NASA",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
+      "reference_date": "2019/2022",
+      "license": "NASA open data (verificar términos)",
       "transformations": [
-        "Datos sintéticos generados para desarrollo"
+        "Máscara QA",
+        "Ventana estacional fija",
+        "Media anual"
       ],
       "limitations": [
-        "No representa mediciones reales ni datos oficiales"
+        "Resolución 250 m",
+        "Variabilidad estacional"
+      ]
+    },
+    {
+      "id": "nasa_mod11a2",
+      "name": "MODIS MOD11A2 (LST), colección 6.1",
+      "organization": "NASA",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2",
+      "reference_date": "2019/2022",
+      "license": "NASA open data (verificar términos)",
+      "transformations": [
+        "Máscara QC",
+        "Conversión a °C",
+        "Ventana estacional fija",
+        "Media anual"
+      ],
+      "limitations": [
+        "Resolución 1 km",
+        "LST es temperatura superficial, no del aire"
+      ]
+    },
+    {
+      "id": "nasa_appeears",
+      "name": "AppEEARS, estadísticas zonales MODIS por distrito",
+      "organization": "NASA LP DAAC / AppEEARS",
+      "url": "https://appeears.earthdatacloud.nasa.gov/",
+      "reference_date": "2019/2022",
+      "license": "NASA open data (verificar términos)",
+      "transformations": [
+        "Estadísticas zonales por polígono distrital",
+        "Filtro QA por bits 0-1 del código de calidad",
+        "Media anual ponderada por conteo de píxeles",
+        "Conversión de LST a grados Celsius"
+      ],
+      "limitations": [
+        "Cobertura 2019/2022",
+        "LST diurna únicamente",
+        "Estadísticas agregadas por polígono, no píxeles individuales",
+        "Cuatro años: las tendencias son indicativas"
+      ]
+    },
+    {
+      "id": "ciudatos_districts",
+      "name": "Límites de los 15 distritos municipales de Cochabamba",
+      "organization": "Ciudatos Lab",
+      "url": "https://github.com/ciudatoslab/20-distritos-en-cochabamba",
+      "reference_date": "Sin fecha declarada",
+      "license": "Verificar términos del repositorio antes de publicar",
+      "transformations": [
+        "Selección de los 15 distritos del municipio de Cochabamba",
+        "Normalización a district_id 1-15",
+        "Validación de topología y área"
+      ],
+      "limitations": [
+        "Cartografía comunitaria, no una entrega oficial del GAMC",
+        "Licencia y fecha de levantamiento por confirmar"
       ]
     },
     {
@@ -32,5 +90,18 @@
         "Indicador sintético de apoyo; no mide bienestar de forma definitiva"
       ]
     }
-  ]
+  ],
+  "coverage": {
+    "environmental": {
+      "districts": 15,
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "observations": 60
+    },
+    "territorial": "no disponible"
+  }
 }
