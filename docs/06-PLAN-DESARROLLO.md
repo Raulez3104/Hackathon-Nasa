@@ -361,30 +361,30 @@ export interface AIResponse {
 
 ## 4.1 Matriz de seguimiento de tareas
 
-Esta matriz es la fuente operativa para conocer el avance del desarrollo. El estado inicial de todas las tareas es `pendiente`.
+Esta matriz es la fuente operativa para conocer el avance del desarrollo. La siguiente actualización registra la auditoría realizada el **2026-11-14** sobre la rama `dev1`. La palabra `completada` describe implementación y pruebas observadas; `lista para integrar` exige además revisión cruzada y sincronización de la rama según las reglas de este documento.
 
 | ID | Responsable | Entregable resumido | Estado | Evidencia / actualización | Lista para integrar |
 |---|---|---|---|---|---|
-| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `en progreso` | Contrato, mock y configuraciones base creados; frontend y backend pasan typecheck/build y el mock valida; tag `contract-v0.1.0` creado; Tailwind v4 cableado; pendientes ramas `dev1`/`dev2`/`dev3` y `frontend/src/lib/data-source.ts` | No |
+| T-00 | DEV1 + DEV2 + DEV3 | Contrato, mock y andamiaje | `completada` | Contrato, mock, configuraciones base y tag `contract-v0.1.0` disponibles; frontend y backend pasan typecheck/build; el mock valida. La selección mock/real está implementada en `frontend/src/lib/data-source.ts`. La normalización final de ramas queda registrada como pendiente de integración. | No |
 | T1-01 | DEV1 | Shell, mapa, semáforo y mapa de calor LST | `completada` | Shell, mapa base, 15 polígonos del mock, coropletas, semáforo y calor LST implementados en `frontend/src/App.tsx` y `frontend/src/components/map/`; sigue pendiente sustituir el mock por geometría/indicadores oficiales. | No |
 | T1-02 | DEV1 | Proxy WMS seguro | `completada` | Proxy validado con `service_id`, operaciones permitidas, caché, límite, timeout, respuesta PNG/JSON y clave solo en backend; verificado con `npm run typecheck` y respuestas reales 200 del GAMC. | No |
 | T1-03 | DEV1 | Capas WMS, leyendas y degradación | `completada` | `LayerControl` activa/desactiva la capa GAMC y ajusta opacidad; `MapShell` muestra estados de carga, disponibilidad, error y capa no configurada, permite reintentar y conserva mapa base/mock ante fallos. Leyenda `GetLegendGraphic` y `GetFeatureInfo` integrados. Verificado con typecheck/build del frontend. | No |
 | T1-04 | DEV1 | Rutas y paradas propuestas | `completada` | `TransportLayer` carga `frontend/public/data/transport.geojson`, dibuja 628 rutas agrupadas por los 142 nombres de archivo `.geojson`, deduplica 22.320 puntos, filtra por archivo/ruta y distrito y deja las paradas propuestas como control opcional desde zoom 14. Las paradas tienen `data_status: illustrative`, `boarding_recommended: false` y texto explícito de no oficialidad/seguridad. GeoJSON validado con CRS `EPSG:4326`; licencia del recurso recibido queda documentada como no disponible. Verificado con typecheck, tests y build frontend. | No |
-| T1-05 | DEV1 | URL, comparación y eventos | `completada` | `useMapUrlState` lee/escribe `district`, `districts`, `year`, `variable`, `view` y `layers`; `MapComparisonControl` permite comparar dos distritos; los polígonos emiten `geoqocha:district-selected` y los enlaces restauran el estado. Test de URL agregado. Verificado con 89 tests, typecheck y build frontend. | No |
+| T1-05 | DEV1 | URL, comparación y eventos | `completada` | `useMapUrlState` lee/escribe `district`, `districts`, `year`, `variable`, `view` y `layers`; `MapComparisonControl` permite comparar dos distritos; los polígonos emiten `geoqocha:district-selected` y los enlaces restauran el estado. Test de URL agregado. Verificado con 90 tests, typecheck y build frontend. | No |
 | T1-06 | DEV1 | Calidad, pruebas y documentación del mapa | `completada` | Mapa cargado de forma diferida, foco visible para controles, contraste mediante tokens, soporte `prefers-reduced-motion`, README en `frontend/src/components/map/`, tests de URL y cliente WMS, y backend WMS verificado. Frontend: 90 tests, typecheck y build; backend: typecheck y build. Pendiente únicamente revisión cruzada para marcar lista para integrar. | No |
-| T2-01 | DEV2 | Esqueleto y validación del pipeline | `pendiente` | No existen aún `scripts/run.py`, `scripts/config.py` ni `scripts/validate_output.py`; pendiente recibir/validar el GeoJSON oficial de distritos. | No |
-| T2-02 | DEV2 | Procesamiento NASA NDVI/LST | `pendiente` | No existen salidas MOD13Q1/MOD11A2 reales ni proceso QA/estadística zonal; pendiente acceso NASA/GEE y límites distritales oficiales. | No |
-| T2-03 | DEV2 | Índice, brechas, correlaciones, hotspots y APIs de datos | `pendiente` | No existen datos procesados ni rutas de datos; equipamiento/movilidad no pueden calcularse solo desde WMS. | No |
-| T2-04 | DEV2 | RAG ligero y contexto con citas | `pendiente` | No existe `backend/src/ai/retrieval.ts` ni `context.ts`; depende de `distritos_data.json` real. | No |
-| T2-05 | DEV2 | Endpoint de IA | `pendiente` | No existe `backend/src/routes/ai-analyst.ts` ni proveedor configurado para datos procesados. | No |
-| T2-06 | DEV2 | Guardrails, pruebas y documentación de IA | `pendiente` | No iniciada; depende de T2-04 y T2-05. | No |
-| T3-01 | DEV3 | Panel distrital y comparador | `pendiente` | — | No |
-| T3-02 | DEV3 | Fichas, brechas y series históricas | `pendiente` | — | No |
-| T3-03 | DEV3 | Deforestación y concientización | `pendiente` | — | No |
-| T3-04 | DEV3 | Chat IA | `pendiente` | — | No |
-| T3-05 | DEV3 | Diagnóstico automático | `pendiente` | — | No |
-| T3-06 | DEV3 | Hotspots, metodología, fuentes y calidad de UI | `pendiente` | — | No |
-| INT-01 | DEV1 + DEV2 + DEV3 | Integración, QA, despliegue y demo | `pendiente` | — | No aplica |
+| T2-01 | DEV2 | Esqueleto y validación del pipeline | `completada` | Existen `scripts/run.py`, `scripts/config.py` y `scripts/validate_output.py`; `python scripts/validate_output.py` valida 15 distritos, 11 años y productos auxiliares. La ejecución disponible usa mock cuando faltan insumos oficiales. | No |
+| T2-02 | DEV2 | Procesamiento NASA NDVI/LST | `bloqueada` | Existen módulos de procesamiento y controles de contrato, pero no hay salidas verificadas de MOD13Q1/MOD11A2 ni insumos oficiales de distritos en el repositorio. Requiere los insumos descritos en `docs/05-FUENTES-DATOS.md`. | No |
+| T2-03 | DEV2 | Índice, brechas, correlaciones, hotspots y APIs de datos | `completada` | Existen productos en `data/processed/`, lectura normalizada en `backend/src/data/`, rutas REST y validaciones de faltantes, `territorial_reference_year` e `index_without_territorial`. Los productos actuales están marcados como ilustrativos. | No |
+| T2-04 | DEV2 | RAG ligero y contexto con citas | `completada` | Existen `backend/src/ai/retrieval.ts` y `backend/src/ai/context.ts`; el backend recupera contexto acotado, evidencia y citas sin base vectorial externa. | No |
+| T2-05 | DEV2 | Endpoint `/api/ai-analyst` | `completada` | Existe el endpoint con modos `chat` y `diagnosis`, fallback por reglas, timeout, rate limit y proveedor exclusivamente servidor. | No |
+| T2-06 | DEV2 | Guardrails, pruebas y documentación de IA | `completada` | Existen guardrails, pruebas de consistencia, resistencia a inyección, rate limit, fallback y `backend/src/ai/README.md`. El proveedor externo no es necesario para el fallback local. | No |
+| T3-01 | DEV3 | Panel distrital y comparador | `completada` | Existen `DistrictPanel` y `ComparisonPanel`, navegación por URL, foco, estados de carga/vacío/error y comparación de dos distritos; hay pruebas frontend. | No |
+| T3-02 | DEV3 | Fichas, brechas y series históricas | `completada` | Existen fichas, brechas, series NDVI/LST/ICVSA, calidad del dato, tratamiento de `null` y gráficos con Recharts; hay pruebas frontend. | No |
+| T3-03 | DEV3 | Deforestación y concientización | `completada` | Existe `AwarenessPanel` con reglas, mensajes, citas, advertencias metodológicas y diferenciación de datos ilustrativos; hay pruebas frontend. | No |
+| T3-04 | DEV3 | Chat IA | `completada` | Existe `ChatWidget` con historial, carga, error, reintento, citas y fallback local cuando la API no está disponible; hay pruebas frontend. | No |
+| T3-05 | DEV3 | Diagnóstico automático | `completada` | Existen `DiagnosisCards`, consumo del modo `diagnosis`, severidad, evidencia, citas y reintento; hay pruebas frontend. | No |
+| T3-06 | DEV3 | Hotspots, metodología, fuentes, calidad y pruebas de analítica | `completada` | Existen paneles de hotspots, metodología y fuentes; se muestran reglas, pesos, `t_ref`, faltantes, estados ilustrativos y accesibilidad. Frontend: 90 pruebas, typecheck y build correctos. | No |
+| INT-01 | DEV1 + DEV2 + DEV3 | Integración, QA, despliegue y demo | `integrada-demo` | Integración técnica cerrada con datos ilustrativos. Frontend y backend levantaron conjuntamente; smoke test de salud, distritos, ficha, indicadores, comparación, hotspots, heatmap, correlación, metodología, fuentes, chat y diagnóstico completada. La sustitución por datos oficiales NASA/GAMC queda pendiente y no se presenta como validación territorial real. | No aplica |
 
 ### Estados permitidos
 
@@ -395,6 +395,7 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 | `bloqueada` | No puede avanzar por una dependencia o decisión documentada. |
 | `completada` | Cumple el criterio de aceptación y tiene pruebas/documentación correspondientes. |
 | `lista para integrar` | Está completada, revisada y puede conectarse con los otros frentes. |
+| `integrada-demo` | Integración técnica validada con datos ilustrativos; no autoriza publicar resultados oficiales. |
 | `integrada` | Está conectada en la aplicación conjunta y pasó la verificación de integración. |
 
 ### Regla de actualización
@@ -404,13 +405,13 @@ Esta matriz es la fuente operativa para conocer el avance del desarrollo. El est
 3. DEV1 actualiza la fila correspondiente después de revisar y fusionar el PR en `main`.
 4. `completada` exige cumplir la definición de terminado de la sección 10.
 5. `lista para integrar` requiere revisión cruzada y pruebas verdes en la rama del frente.
-6. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`.
+6. La fila `INT-01` solo pasa a `en progreso` cuando DEV1, DEV2 y DEV3 están `lista para integrar`, salvo la excepción explícita de integración técnica/demo con mock documentada en la sección 4.1.
 7. Si DEV1 trabaja en su propia tarea, la matriz se actualiza mediante un commit separado o después de validar su propio PR.
 8. Solo DEV1 actualiza `MEMORY.md`, y únicamente si el avance cambia una decisión, contrato, alcance, riesgo o hito general. Los demás desarrolladores usan `MEMORY.local.md`, que no se versiona.
 
 ### Criterio para iniciar la integración
 
-La integración puede comenzar únicamente cuando las 18 tareas de `T1-*`, `T2-*` y `T3-*` estén en estado `lista para integrar`. En ese punto, la matriz debe mostrar:
+Para la **integración de publicación con datos oficiales**, las 18 tareas de `T1-*`, `T2-*` y `T3-*` deben estar en estado `lista para integrar`. En ese punto, la matriz debe mostrar:
 
 ```text
 DEV1: listo para integrar
@@ -419,7 +420,63 @@ DEV3: listo para integrar
 INT-01: pendiente
 ```
 
-Después de validar la aplicación completa, `INT-01` pasa a `integrada` y la matriz debe registrar las pruebas, el despliegue y el estado de la demo.
+Para la **integración técnica y demo con datos ilustrativos**, se adopta la siguiente excepción documentada:
+
+1. `INT-01` puede pasar a `en progreso` aunque T2-02 permanezca `bloqueada`.
+2. Todos los productos mostrados deben conservar `data_status: "illustrative"` y la interfaz debe advertirlo.
+3. La demo no puede presentar NDVI, LST, población, equipamiento, ICVSA, brechas o hotspots como mediciones oficiales.
+4. La sustitución por datos oficiales requiere revalidar el pipeline, las fuentes, las licencias, los metadatos y las pruebas antes de publicar.
+
+Después de validar la aplicación completa con mock, `INT-01` puede pasar a `integrada-demo` y la matriz debe registrar las pruebas, el despliegue y el estado de la demo. El estado `integrada` queda reservado para la integración validada con datos oficiales o para una decisión posterior del equipo.
+
+### 4.2 Resultado de la auditoría de integración
+
+La auditoría confirma que el código de los tres frentes está presente y que frontend y backend pasan sus verificaciones principales. La integración demo quedó validada con ambos servidores: frontend HTTP 200, backend `health=ok`, 15 distritos y respuesta del chat con fallback y citas.
+
+La integración demo no equivale a una publicación con datos oficiales. Permanecen estas pendientes para una futura integración oficial:
+
+1. Las 18 tareas no tienen revisión cruzada registrada ni estado `lista para integrar`.
+2. T2-02 está bloqueada por la ausencia de insumos NASA y límites distritales oficiales verificados.
+3. Los productos de `data/processed/` y `frontend/public/data/` usados por el MVP están marcados como `illustrative`.
+4. `frontend/package.json` no define el script `lint`.
+5. La suite Python no pudo ejecutarse en la auditoría porque el entorno no tiene instalado `pytest`.
+6. Las ramas observadas no coinciden completamente con la nomenclatura permanente prevista (`dev1`, `dev2`, `dev3`).
+
+La integración demo queda cerrada. Cualquier demo que muestre resultados territoriales debe mantener visible la etiqueta de datos ilustrativos. La publicación con datos reales requiere completar la información de `docs/05-FUENTES-DATOS.md`.
+
+### 4.3 Revisión de tareas por desarrollador — alcance demo
+
+Revisión actualizada el **2026-11-14**, considerando como alcance aprobado la integración técnica con datos ilustrativos:
+
+| Desarrollador | Tareas revisadas | Resultado para la demo | Pendientes |
+|---|---|---|---|
+| DEV1 | T1-01 a T1-06 | **Completadas técnicamente**: mapa, WMS, capas, movilidad, URL, comparación, accesibilidad, typecheck, build y pruebas frontend/backend observadas. | Revisión cruzada formal; validar fuentes oficiales para reemplazar geometrías y transporte no verificados. |
+| DEV2 | T2-01, T2-03 a T2-06 | **Completadas para demo**: pipeline con mock, productos derivados, API, RAG, endpoint IA, fallback, guardrails y pruebas. | T2-02 bloqueada: faltan salidas verificadas MOD13Q1/MOD11A2 y límites oficiales. La sustitución por datos reales exige reprocesar y validar todos los productos derivados. |
+| DEV3 | T3-01 a T3-06 | **Completadas técnicamente para demo**: paneles, fichas, brechas, series, concientización, chat, diagnóstico, hotspots, metodología, fuentes y pruebas frontend. | Revisión cruzada formal y validación de comportamiento con datos oficiales cuando estén disponibles. |
+
+Resultado: el sistema queda **integrado-demo con mock**, no autorizado para declarar resultados oficiales. La matriz conserva `No` en “Lista para integrar” porque esa marca corresponde a la futura integración con fuentes oficiales y revisión cruzada formal.
+
+### 4.4 Cierre de INT-01 — integración demo
+
+**Fecha de cierre:** 2026-11-14
+**Alcance:** integración técnica y demo con datos ilustrativos.
+**Estado:** `integrada-demo`.
+
+Verificaciones realizadas:
+
+- Frontend: typecheck, build y 90 pruebas correctas.
+- Backend: typecheck, build y 34 pruebas correctas.
+- Mock: 15 distritos y 11 observaciones por serie validados.
+- Pipeline: contrato de datos válido con 15 distritos, 11 años y productos auxiliares.
+- Smoke test: frontend HTTP 200, proxy `/api/health`, backend `health=ok`, ficha distrital, indicadores 2015–2025, comparación para 2025, hotspots, heatmap, raster, correlación con `n=15`, metodología, fuentes, chat y diagnóstico.
+- IA: fallback operativo, citas visibles y diagnóstico con 4 insights.
+
+Limitaciones aceptadas para este cierre:
+
+- Los productos analíticos son `illustrative`.
+- T2-02 continúa bloqueada hasta recibir y validar datos NASA y límites oficiales.
+- `pytest` no se ejecutó porque no está instalado en el entorno.
+- La sustitución por datos oficiales requerirá una nueva validación antes de publicar.
 
 ---
 
