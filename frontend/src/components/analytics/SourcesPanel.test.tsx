@@ -9,13 +9,13 @@ describe("SourcesPanel", () => {
     render(<SourcesPanel />);
 
     expect(screen.getByRole("heading", { name: /catálogo de fuentes/i })).toBeInTheDocument();
-    expect(screen.getByText("5 reales")).toBeInTheDocument();
+    expect(screen.getByText("7 reales")).toBeInTheDocument();
     expect(screen.getByText("1 ilustrativas")).toBeInTheDocument();
 
     expect(screen.getByRole("heading", { name: /MODIS MOD13Q1 \(NDVI\), colección 6.1/i })).toBeInTheDocument();
     expect(screen.getAllByText("Máscara de calidad QA").length).toBe(2);
     expect(screen.getByText("Resolución espacial de 250 m")).toBeInTheDocument();
-    expect(screen.getAllByText(/datos abiertos nasa/i).length).toBe(2);
+    expect(screen.getAllByText(/datos abiertos nasa/i).length).toBe(3);
 
     const link = screen.getByRole("link", { name: /MODIS_061_MOD13Q1/i });
     expect(link).toHaveAttribute("href", expect.stringContaining("MODIS_061_MOD13Q1"));
@@ -40,7 +40,7 @@ describe("SourcesPanel", () => {
 
     expect(screen.getByRole("heading", { name: "mock_distritos.json" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: /MODIS MOD13Q1/i })).not.toBeInTheDocument();
-    expect(screen.getByText(/1 de 6 fuentes visibles/i)).toBeInTheDocument();
+    expect(screen.getByText(/1 de 8 fuentes visibles/i)).toBeInTheDocument();
   });
 
   it("muestra un estado vacío si no hay fuentes", () => {
@@ -49,9 +49,10 @@ describe("SourcesPanel", () => {
   });
 
   it("acepta un catálogo publicado y lo cuenta", () => {
-    render(<SourcesPanel sources={[SOURCE_CATALOG[5]]} />);
+    const illustrative = SOURCE_CATALOG.filter((source) => source.kind === "illustrative");
+    render(<SourcesPanel sources={illustrative} />);
     expect(screen.getByText("0 reales")).toBeInTheDocument();
-    expect(screen.getByText("1 ilustrativas")).toBeInTheDocument();
+    expect(screen.getByText(`${illustrative.length} ilustrativas`)).toBeInTheDocument();
   });
 
   it("muestra carga, error y reintento", async () => {

@@ -19,7 +19,13 @@ RAW_DIR = DATA_DIR / "raw"
 DEFAULT_DISTRICTS_GEOJSON = GEOJSON_DIR / "districts.geojson"
 DEFAULT_NASA_CSV = RAW_DIR / "nasa" / "zonal_annual.csv"
 DEFAULT_NASA_OBSERVATIONS = RAW_DIR / "nasa" / "modis_observations.json"
+DEFAULT_APPEARS_DIR = RAW_DIR / "nasa"
 DEFAULT_MUNICIPAL_JSON = RAW_DIR / "municipal" / "equipment.json"
+
+# Origen de las siluetas distritales de `districts.geojson`.
+# Ciudatos Lab publica los 15 distritos del municipio de Cochabamba; el archivo
+# se normalizo a `district_id` 1-15 sin alterar los poligonos.
+GEOMETRY_SOURCE_ID = "ciudatos_districts"
 MOCK_PATH = REPO_ROOT / "frontend" / "public" / "data" / "mock_distritos.json"
 FRONTEND_OUTPUT = REPO_ROOT / "frontend" / "public" / "data" / "distritos_data.json"
 

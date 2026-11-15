@@ -2,9 +2,10 @@ import type { DistrictData, DistrictSeriesPoint, RiskLevel, Variable } from "../
 import type { IndexView } from "./map.types";
 
 export const VARIABLE_OPTIONS: Array<{ value: Variable; label: string }> = [
+  { value: "ndvi", label: "NDVI (vegetación)" },
+  { value: "lst", label: "LST (temperatura)" },
+  { value: "environmental_index", label: "Índice ambiental" },
   { value: "icvsa", label: "ICVSA" },
-  { value: "ndvi", label: "NDVI" },
-  { value: "lst", label: "LST" },
   { value: "priority", label: "Prioridad" },
 ];
 

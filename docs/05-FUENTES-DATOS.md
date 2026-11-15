@@ -11,9 +11,9 @@ Inventario de fuentes, estado de verificación, operaciones disponibles y precau
 | Catálogo WMS (7 servicios) | GAMC | OGC WMS 1.1.1 | Visualización de capas municipales y consulta puntual | Documentado |
 | Capas vectoriales municipales (distritos, parques, equipamiento, educación, salud) | GAMC | Vector (shp/geojson/gpkg) | Conteos, áreas y accesibilidad por distrito | **Fuente primaria** según el reto; entrega por confirmar |
 | GeoJSON de líneas de transporte | GAMC / recurso incorporado por el equipo | GeoJSON | Dibujo de rutas y análisis de proximidad | Validado estructuralmente en `data/lineas/` y normalizado en `frontend/public/data/transport.geojson`; CRS `EPSG:4326`; licencia del archivo recibido no documentada |
-| GeoJSON de distritos (equipo) | Por confirmar | GeoJSON | Geometrías de los 15 distritos | Disponible; estructura por verificar |
-| MOD13Q1 (NDVI) | NASA | Raster MODIS | Serie de vegetación 2015–2025 | Propuesto |
-| MOD11A2 (LST) | NASA | Raster MODIS | Serie de temperatura superficial 2015–2025 | Propuesto |
+| GeoJSON de los 15 distritos | Ciudatos Lab (cartografía comunitaria) | GeoJSON | Geometrías de los 15 distritos municipales | Aplicado en `data/geojson/districts.geojson`; 15 polígonos, `district_id` 1–15; licencia y fecha por confirmar |
+| MOD13Q1 (NDVI) | NASA | Raster MODIS agregado por polígono | Serie de vegetación 2019–2022 | Aplicado desde AppEEARS Statistics + QA |
+| MOD11A2 (LST) | NASA | Raster MODIS agregado por polígono | Serie de temperatura superficial 2019–2022 | Aplicado desde AppEEARS Statistics + QA |
 | Proveedor de IA generativa (Gemini u OpenAI) | Tercero | API de lenguaje | Redactar explicaciones y diagnósticos a partir de hechos del dataset | Por configurar |
 | `mock_distritos.json` | Equipo | JSON estático | Datos ilustrativos para desarrollo independiente | Disponible en el Día 0 |
 
@@ -133,6 +133,8 @@ Se trabaja con dos variables mínimas exigidas por el desafío.
 
 **Periodo objetivo del MVP:** **2015–2025** (11 años calendario, incluyendo ambos extremos). La cobertura real, la calidad y la disponibilidad por distrito deben comprobarse.
 
+**Cobertura real aplicada (2026-11-15):** la entrega de AppEEARS recibida cubre únicamente **2019–2022** (4 años). Los años 2015–2018 y 2023–2025 se publican con `null` y `data_quality_flag: "insufficient"`; no se interpolan ni se extrapolan (RN-05, RN-06). Las tendencias calculadas sobre 4 años son **indicativas** y así se declaran en la UI.
+
 ### 3.1 Fuentes y documentación
 
 - NASA Earthdata: https://www.earthdata.nasa.gov/
@@ -140,6 +142,28 @@ Se trabaja con dos variables mínimas exigidas por el desafío.
 - Catálogo MOD13Q1 (GEE): https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1
 - Catálogo MOD11A2 (GEE): https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2
 - Google Earth Engine: https://earthengine.google.com/
+
+### 3.1.1 Insumos AppEEARS utilizados
+
+Los archivos crudos viven en `data/raw/nasa/` (no versionados) y se procesan con `scripts/nasa/appeears.py`.
+
+| Archivo | Contenido | Uso en el pipeline |
+|---|---|---|
+| `MOD13Q1-061-Statistics.csv` | Media, mediana y conteo de NDVI por polígono y compuesto de 16 días | Serie NDVI por distrito-año |
+| `MOD13Q1-061-250m-16-days-VI-Quality-Statistics-QA.csv` | Códigos de calidad `VI Quality` por polígono y compuesto | Filtro QA bits 0–1 |
+| `MOD11A2-061-Statistics.csv` | Media y conteo de LST por polígono y compuesto de 8 días | Serie LST por distrito-año |
+| `MOD11A2-061-QC-Day-Statistics-QA (1).csv` | Códigos `QC Day` por polígono y compuesto diurno | Filtro QA bits 0–1 |
+| `*.json` de solicitud y lista de gránulos | Metadatos de la petición AppEEARS | Detección del rango 2019–2022 y trazabilidad |
+
+**Reglas de agregación aplicadas:**
+
+1. `aid000N` se mapea directamente a `district_id = N`; las dos tablas Statistics incluyen los 15 distritos.
+2. Los valores de AppEEARS ya vienen escalados a unidades físicas (NDVI como fracción, LST en kelvin). No se reaplica el factor 0.02/0.0001 de MODIS; solo se convierte LST a °C restando 273.15.
+3. Una observación es válida cuando `(QA & 0b11) ∈ {0, 1}` (bits 0–1: calidad buena o aceptable).
+4. Se descartan los compuestos cuya fracción de píxeles válidos sea menor que 0.5.
+5. Se exige un mínimo de 12 compuestos NDVI o 24 compuestos LST por año para publicar promedio anual.
+6. El promedio anual se pondera por el `Count` de píxeles de cada compuesto.
+7. Solo se publican los años dentro del rango solicitado a AppEEARS; el resto queda `null`.
 
 ### 3.2 Procesamiento
 
@@ -329,14 +353,14 @@ Las claves del GAMC y de proveedores de IA nunca se solicitan por el chat ni se 
 
 ### Checklist operativo
 
-- [ ] El GeoJSON abre y contiene 15 polígonos.
-- [ ] El CRS está identificado y es transformable.
-- [ ] Los `district_id` coinciden entre GeoJSON, NASA y datos municipales.
+- [x] El GeoJSON abre y contiene 15 polígonos.
+- [x] El CRS está identificado y es transformable.
+- [x] Los `district_id` coinciden entre GeoJSON, NASA y datos municipales.
 - [ ] Existen vectores de áreas verdes, educación, salud y transporte (o se declara su ausencia).
 - [ ] Cada `service_id` responde con `GetMap`.
 - [ ] `GetFeatureInfo` devuelve JSON utilizable.
 - [ ] El proxy funciona sin exponer la clave.
-- [ ] Las series NASA cubren 2015–2025 con cobertura aceptable.
+- [x] Las series NASA cubren 2019–2022 con cobertura validada; 2015–2018 y 2023–2025 se declaran sin datos.
 - [ ] La serie mensual, si existe, se construye con observaciones válidas.
 - [ ] Cada registro conserva fuente, fecha y `territorial_reference_year`.
 - [ ] Las paradas propuestas están etiquetadas como ilustrativas y no como oficiales.

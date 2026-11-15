@@ -25,12 +25,14 @@ if __package__ in (None, ""):
 from config import (  # noqa: E402
     CONTRACT_VERSION,
     CORRELATION_MIN_N,
+    DEFAULT_APPEARS_DIR,
     DEFAULT_DISTRICTS_GEOJSON,
     DEFAULT_MUNICIPAL_JSON,
     DEFAULT_NASA_CSV,
     DEFAULT_NASA_OBSERVATIONS,
     EXPECTED_DISTRICTS,
     FRONTEND_OUTPUT,
+    GEOMETRY_SOURCE_ID,
     HEATMAP_RESOLUTION_M,
     METHODOLOGY_VERSION,
     MOCK_PATH,
@@ -47,6 +49,7 @@ from indicators.heatmap import build_heatmap, build_risk_levels, render_raster  
 from indicators.hotspots import build_hotspots_by_year  # noqa: E402
 from indicators.index import compute_indexes, series_for_district  # noqa: E402
 from indicators.trends import compute_trends  # noqa: E402
+from nasa.appeears import load_appeears_directory, resolve_inputs, summarize as summarize_appeears  # noqa: E402
 from nasa.ingest import load_observations, load_zonal_csv, nasa_rows_from_mock  # noqa: E402
 from utils import read_json, risk_level_from_index, round_number, write_json  # noqa: E402
 from validate_output import validate_dataset  # noqa: E402
@@ -136,8 +139,16 @@ def contract_equipment(equipment: dict[str, Any]) -> dict[str, Any]:
     return {field: equipment.get(field) for field in CONTRACT_FIELDS}
 
 
-def build_sources(demo: bool, env_real: bool, equipment_real: bool) -> list[dict[str, Any]]:
+def build_sources(
+    demo: bool,
+    env_real: bool,
+    equipment_real: bool,
+    appeears: dict[str, Any] | None = None,
+    env_years: list[int] | None = None,
+    geometry_real: bool = False,
+) -> list[dict[str, Any]]:
     sources: list[dict[str, Any]] = []
+    coverage = f"{env_years[0]}/{env_years[-1]}" if env_years else "2019/2022"
     if env_real:
         sources.extend(
             [
@@ -146,9 +157,9 @@ def build_sources(demo: bool, env_real: bool, equipment_real: bool) -> list[dict
                     "name": "MODIS MOD13Q1 (NDVI), colección 6.1",
                     "organization": "NASA",
                     "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
-                    "reference_date": "2015/2025",
+                    "reference_date": coverage,
                     "license": "NASA open data (verificar términos)",
-                    "transformations": ["Máscara QA", "Escala 0.0001", "Ventana estacional fija", "Media anual"],
+                    "transformations": ["Máscara QA", "Ventana estacional fija", "Media anual"],
                     "limitations": ["Resolución 250 m", "Variabilidad estacional"],
                 },
                 {
@@ -156,12 +167,35 @@ def build_sources(demo: bool, env_real: bool, equipment_real: bool) -> list[dict
                     "name": "MODIS MOD11A2 (LST), colección 6.1",
                     "organization": "NASA",
                     "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2",
-                    "reference_date": "2015/2025",
+                    "reference_date": coverage,
                     "license": "NASA open data (verificar términos)",
                     "transformations": ["Máscara QC", "Conversión a °C", "Ventana estacional fija", "Media anual"],
                     "limitations": ["Resolución 1 km", "LST es temperatura superficial, no del aire"],
                 },
             ]
+        )
+    if appeears:
+        sources.append(
+            {
+                "id": "nasa_appeears",
+                "name": "AppEEARS, estadísticas zonales MODIS por distrito",
+                "organization": "NASA LP DAAC / AppEEARS",
+                "url": "https://appeears.earthdatacloud.nasa.gov/",
+                "reference_date": coverage,
+                "license": "NASA open data (verificar términos)",
+                "transformations": [
+                    "Estadísticas zonales por polígono distrital",
+                    "Filtro QA por bits 0-1 del código de calidad",
+                    "Media anual ponderada por conteo de píxeles",
+                    "Conversión de LST a grados Celsius",
+                ],
+                "limitations": [
+                    f"Cobertura {coverage}",
+                    "LST diurna únicamente",
+                    "Estadísticas agregadas por polígono, no píxeles individuales",
+                    "Cuatro años: las tendencias son indicativas",
+                ],
+            }
         )
     if equipment_real:
         sources.extend(
@@ -198,6 +232,26 @@ def build_sources(demo: bool, env_real: bool, equipment_real: bool) -> list[dict
                 },
             ]
         )
+    if geometry_real:
+        sources.append(
+            {
+                "id": GEOMETRY_SOURCE_ID,
+                "name": "Límites de los 15 distritos municipales de Cochabamba",
+                "organization": "Ciudatos Lab",
+                "url": "https://github.com/ciudatoslab/20-distritos-en-cochabamba",
+                "reference_date": "Sin fecha declarada",
+                "license": "Verificar términos del repositorio antes de publicar",
+                "transformations": [
+                    "Selección de los 15 distritos del municipio de Cochabamba",
+                    "Normalización a district_id 1-15",
+                    "Validación de topología y área",
+                ],
+                "limitations": [
+                    "Cartografía comunitaria, no una entrega oficial del GAMC",
+                    "Licencia y fecha de levantamiento por confirmar",
+                ],
+            }
+        )
     if demo:
         sources.append(
             {
@@ -233,6 +287,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--geojson", type=Path, default=DEFAULT_DISTRICTS_GEOJSON)
     parser.add_argument("--nasa-csv", type=Path, default=None)
     parser.add_argument("--nasa-observations", type=Path, default=None)
+    parser.add_argument(
+        "--appeears-dir",
+        type=Path,
+        default=None,
+        help="Directorio con los CSV Statistics/QA de AppEEARS (por defecto data/raw/nasa).",
+    )
     parser.add_argument("--municipal", type=Path, default=None)
     parser.add_argument("--demo", action="store_true", help="Fuerza datos ilustrativos del mock")
     parser.add_argument("--no-frontend-copy", action="store_true")
@@ -271,10 +331,25 @@ def main() -> int:
         if args.municipal is not None
         else (DEFAULT_MUNICIPAL_JSON if DEFAULT_MUNICIPAL_JSON.exists() else None)
     )
+
+    appeears_dir = args.appeears_dir
+    if appeears_dir is None and not args.demo and DEFAULT_APPEARS_DIR.exists():
+        appeears_dir = DEFAULT_APPEARS_DIR
+    if appeears_dir is not None:
+        try:
+            resolve_inputs(appeears_dir)
+        except FileNotFoundError as error:
+            if args.appeears_dir is not None:
+                raise SystemExit(str(error)) from error
+            appeears_dir = None
+
     if args.demo:
         observations_path = None
         nasa_csv = None
         municipal_path = None
+        appeears_dir = None
+
+    appeears_summary: dict[str, Any] | None = None
 
     for explicit, path in (
         (args.nasa_csv is not None, args.nasa_csv),
@@ -284,7 +359,7 @@ def main() -> int:
         if explicit and path is not None and not path.exists():
             raise SystemExit(f"No existe el insumo indicado: {path}")
 
-    env_real = observations_path is not None or nasa_csv is not None
+    env_real = observations_path is not None or nasa_csv is not None or appeears_dir is not None
     equipment_real = municipal_path is not None
     demo = not env_real and not equipment_real
 
@@ -292,6 +367,11 @@ def main() -> int:
         environmental_rows = nasa_rows_from_mock(mock_districts)
     elif observations_path is not None:
         environmental_rows = load_observations(observations_path, years, NDVI_SEASONAL_WINDOW)
+    elif args.nasa_csv is not None:
+        environmental_rows = load_zonal_csv(args.nasa_csv)
+    elif appeears_dir is not None:
+        environmental_rows = load_appeears_directory(appeears_dir, years)
+        appeears_summary = summarize_appeears(environmental_rows)
     elif nasa_csv is not None:
         environmental_rows = load_zonal_csv(nasa_csv)
     else:
@@ -329,8 +409,10 @@ def main() -> int:
                     records[(district_id, year)]["data_quality_flag"] = mock_point["data_quality_flag"]
 
     environment_sources = ["nasa_mod13q1", "nasa_mod11a2"] if env_real else []
+    if appeears_summary is not None:
+        environment_sources.append("nasa_appeears")
     equipment_sources = ["gamc_equipment", "gamc_population", "gamc_transport"] if equipment_real else []
-    geometry_sources = ["gamc_districts"] if not demo else []
+    geometry_sources = [GEOMETRY_SOURCE_ID] if args.geojson.exists() else []
     base_sources = ["mock"] if demo else []
     row_sources = list(dict.fromkeys(base_sources + environment_sources + equipment_sources + geometry_sources))
 
@@ -467,7 +549,14 @@ def main() -> int:
         ],
     }
 
-    sources = build_sources(demo, env_real, equipment_real)
+    sources = build_sources(
+        demo,
+        env_real,
+        equipment_real,
+        appeears=appeears_summary,
+        env_years=sorted({year for _, year in environmental_rows}) if env_real else [],
+        geometry_real=args.geojson.exists(),
+    )
 
     write_json(PROCESSED_DIR / "distritos_data.json", dataset)
     write_json(
@@ -534,6 +623,10 @@ def main() -> int:
             "contract_version": CONTRACT_VERSION,
             "generated_at": generated_at,
             "sources": sources,
+            "coverage": {
+                "environmental": appeears_summary,
+                "territorial": "no disponible" if not equipment_real else "declarado en equipment_metrics.json",
+            },
         },
     )
 
@@ -544,6 +637,12 @@ def main() -> int:
         f"OK: {len(district_outputs)} distritos × {len(years)} años | "
         f"data_status={dataset_status} | fuentes={','.join(row_sources) or 'ninguna'}"
     )
+    if appeears_summary:
+        print(
+            f"AppEEARS: {appeears_summary['districts']} distritos × {len(appeears_summary['years'])} años "
+            f"({appeears_summary['years'][0]}-{appeears_summary['years'][-1]}), "
+            f"{appeears_summary['observations']} registros distrito-año."
+        )
     print(f"Salida principal: {PROCESSED_DIR / 'distritos_data.json'}")
     return 0
 

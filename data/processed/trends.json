@@ -1,6 +1,6 @@
 {
   "methodology_version": "0.1.0",
-  "generated_at": "2026-11-14T02:43:28Z",
+  "generated_at": "2026-11-15T15:10:20Z",
   "districts": [
     {
       "district_id": 1,
@@ -8,49 +8,37 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0105,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0191,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.837,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": -0.365,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -58,50 +46,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.34,
+          "slope_per_year": 8.9,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0286,
-          "accelerated": false,
+          "acceleration": 1.0,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6427,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0086,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -111,49 +82,37 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0091,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0149,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.755,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": -0.515,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -161,50 +120,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3436,
+          "slope_per_year": 7.94,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0143,
-          "accelerated": false,
+          "acceleration": 2.85,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6418,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -214,48 +156,34 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0065,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.0024,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.721,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
+          "acceleration": -0.025,
           "accelerated": false,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
@@ -264,50 +192,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.34,
+          "slope_per_year": 7.34,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.65,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.64,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -317,49 +228,37 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0039,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0138,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.601,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": 0.275,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -367,50 +266,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3409,
+          "slope_per_year": 5.89,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0114,
-          "accelerated": false,
+          "acceleration": -4.05,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6445,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0143,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -420,100 +302,74 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0036,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0324,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.554,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "is_significant": false,
+          "acceleration": 0.75,
+          "accelerated": true,
           "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %.",
             "LST es temperatura superficial, no temperatura del aire."
           ]
         },
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3482,
+          "slope_per_year": 5.46,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0086,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -10.75,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6391,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -522,101 +378,75 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "worsening",
+          "slope_per_year": -0.0031,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0293,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.638,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "is_significant": false,
+          "acceleration": 1.035,
+          "accelerated": true,
           "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %.",
             "LST es temperatura superficial, no temperatura del aire."
           ]
         },
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3518,
+          "slope_per_year": 5.43,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0143,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -12.9,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6427,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0086,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -625,50 +455,38 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "worsening",
+          "slope_per_year": -0.0032,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0156,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.551,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": 0.28,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -676,50 +494,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.35,
+          "slope_per_year": 4.64,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0029,
-          "accelerated": false,
+          "acceleration": -4.4,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6464,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0171,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -728,101 +529,74 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "stable",
+          "slope_per_year": 0.0,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0072,
+          "accelerated": true,
+          "notes": [
+            "Pendiente pequeña comparada con la variabilidad anual.",
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.594,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "is_significant": false,
+          "acceleration": -0.165,
+          "accelerated": true,
           "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %.",
             "LST es temperatura superficial, no temperatura del aire."
           ]
         },
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3436,
+          "slope_per_year": 5.43,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.7,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6445,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0143,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -832,49 +606,35 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.005,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": -0.0016,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.637,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": -0.1,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -882,50 +642,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3545,
+          "slope_per_year": 6.41,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0114,
-          "accelerated": false,
+          "acceleration": 0.75,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.65,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0086,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -935,49 +678,37 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0043,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0046,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.678,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.24,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -985,50 +716,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3491,
+          "slope_per_year": 6.68,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0171,
-          "accelerated": false,
+          "acceleration": -2.7,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6427,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0086,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -1037,50 +751,39 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "stable",
+          "slope_per_year": 0.0007,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0264,
+          "accelerated": true,
+          "notes": [
+            "Pendiente pequeña comparada con la variabilidad anual.",
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.601,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": 0.42,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -1088,50 +791,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3445,
+          "slope_per_year": 5.54,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": -7.0,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6391,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -1140,50 +826,38 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "worsening",
+          "slope_per_year": -0.0029,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0053,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.629,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.345,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -1191,50 +865,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3455,
+          "slope_per_year": 5.36,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0114,
-          "accelerated": false,
+          "acceleration": -3.7,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6445,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0143,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -1243,50 +900,39 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "stable",
+          "slope_per_year": 0.0002,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": 0.004,
+          "accelerated": true,
+          "notes": [
+            "Pendiente pequeña comparada con la variabilidad anual.",
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.627,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
+          "acceleration": 0.44,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -1294,50 +940,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3382,
+          "slope_per_year": 5.73,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0086,
-          "accelerated": false,
+          "acceleration": -3.65,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6373,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0029,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -1347,49 +976,37 @@
         {
           "variable": "ndvi",
           "direction": "improving",
-          "slope_per_year": 0.002,
+          "slope_per_year": 0.0013,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0017,
+          "accelerated": true,
+          "notes": [
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.709,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": 0.42,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -1397,50 +1014,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.34,
+          "slope_per_year": 6.58,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0286,
-          "accelerated": false,
+          "acceleration": -3.8,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6391,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0171,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     },
@@ -1449,50 +1049,39 @@
       "trends": [
         {
           "variable": "ndvi",
-          "direction": "improving",
-          "slope_per_year": 0.002,
+          "direction": "stable",
+          "slope_per_year": 0.0002,
           "unit": "NDVI/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0,
-          "accelerated": false,
-          "notes": []
+          "is_significant": false,
+          "acceleration": -0.0247,
+          "accelerated": true,
+          "notes": [
+            "Pendiente pequeña comparada con la variabilidad anual.",
+            "La pendiente no es estadísticamente significativa al 5 %."
+          ]
         },
         {
           "variable": "lst",
           "direction": "improving",
-          "slope_per_year": -0.08,
+          "slope_per_year": -0.63,
           "unit": "°C/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": -0.0,
-          "accelerated": false,
+          "acceleration": 0.51,
+          "accelerated": true,
           "notes": [
             "LST es temperatura superficial, no temperatura del aire."
           ]
@@ -1500,50 +1089,33 @@
         {
           "variable": "environmental_index",
           "direction": "improving",
-          "slope_per_year": 2.3518,
+          "slope_per_year": 5.7,
           "unit": "índice/año",
           "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
             2019,
             2020,
             2021,
-            2022,
-            2023,
-            2024,
-            2025
+            2022
           ],
           "method": "OLS sobre medias anuales",
           "is_significant": true,
-          "acceleration": 0.0229,
-          "accelerated": false,
+          "acceleration": -7.65,
+          "accelerated": true,
           "notes": []
         },
         {
           "variable": "socioenvironmental_index",
-          "direction": "improving",
-          "slope_per_year": 1.6427,
+          "direction": "undetermined",
+          "slope_per_year": null,
           "unit": "índice/año",
-          "years_used": [
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025
-          ],
+          "years_used": [],
           "method": "OLS sobre medias anuales",
-          "is_significant": true,
-          "acceleration": 0.0086,
+          "is_significant": null,
+          "acceleration": null,
           "accelerated": false,
-          "notes": []
+          "notes": [
+            "Pocos años válidos: la tendencia es indicativa y no concluyente."
+          ]
         }
       ]
     }

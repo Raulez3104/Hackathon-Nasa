@@ -59,13 +59,15 @@ def compute_indexes(
                 )
 
             environmental_available = ndvi is not None and lst is not None
-            territorial_available = equipment_index is not None and mobility_index is not None
-            if quality_override and environmental_available and territorial_available:
+            # La bandera describe la observacion ambiental del año (RF-14). La
+            # ausencia de equipamiento o movilidad no invalida NDVI/LST: se
+            # refleja en `socioenvironmental_index = null` (RN-23).
+            if quality_override and environmental_available:
                 quality = "ok"
             else:
                 quality = data_quality_flag(
                     environmental_available,
-                    territorial_available,
+                    True,
                     environmental.get("ndvi_valid_pixel_fraction"),
                     environmental.get("lst_valid_pixel_fraction"),
                 )
@@ -87,12 +89,14 @@ def compute_indexes(
                 "data_quality_flag": quality,
             }
 
+    observed_years = sorted({year for (_, year) in environmental_rows})
+    reference_years = observed_years or years
     normalization = {
         "ndvi_min": round_number(ndvi_min, 4),
         "ndvi_max": round_number(ndvi_max, 4),
         "lst_min_celsius": round_number(lst_min, 2),
         "lst_max_celsius": round_number(lst_max, 2),
-        "reference_period": f"{years[0]}-{years[-1]}" if years else None,
+        "reference_period": f"{reference_years[0]}-{reference_years[-1]}" if reference_years else None,
         "description": "Min-max fijo sobre todas las observaciones distrito-año del periodo.",
     }
     return results, normalization

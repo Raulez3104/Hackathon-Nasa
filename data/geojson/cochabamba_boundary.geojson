@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "cochabamba",
+      "properties": {
+        "name": "Municipio de Cochabamba",
+        "description": "Envolvente del área metropolitana y distritos municipales"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-66.2807, -17.5312],
+            [-66.0695, -17.5312],
+            [-66.0695, -17.2573],
+            [-66.2807, -17.2573],
+            [-66.2807, -17.5312]
+          ]
+        ]
+      }
+    }
+  ]
+}

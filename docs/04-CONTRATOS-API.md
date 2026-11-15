@@ -64,6 +64,9 @@ type IndexView = "numeric" | "semaphore";
 type Aggregation = "annual" | "monthly";
 
 type DataQualityFlag = "ok" | "partial" | "insufficient";
+// Calidad de la observación ambiental (NDVI/LST) del registro. No describe el
+// equipamiento ni la movilidad: si faltan, los índices van en null y el
+// `risk_level` del distrito es "insufficient_data" (RN-23).
 
 type TrendDirection = "improving" | "stable" | "worsening" | "undetermined";
 
@@ -484,7 +487,7 @@ Serie histórica distrito-año.
 }
 ```
 
-**Contrato de completitud:** la respuesta incluye **un elemento por año del rango solicitado**. Los años sin datos llevan `null` en las variables y `data_quality_flag: "insufficient"`.
+**Contrato de completitud:** la respuesta incluye **un elemento por año del rango solicitado**. Los años sin datos llevan `null` en las variables y `data_quality_flag: "insufficient"`. El flag califica solo la observación ambiental: un año con NDVI y LST válidos es `"ok"` aunque el ICVSA sea `null` por falta de datos territoriales.
 
 ---
 
@@ -688,7 +691,7 @@ Catálogo de fuentes y metadatos.
 {
   "status": "ok",
   "uptime_seconds": 3600,
-  "data": { "last_processed_year": 2025, "methodology_version": "0.1.0", "data_mode": "mock" },
+  "data": { "last_processed_year": 2022, "methodology_version": "0.1.0", "data_mode": "real" },
   "dependencies": { "gamc_wms": "reachable", "ai_provider": "configured" }
 }
 ```

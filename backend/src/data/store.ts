@@ -171,8 +171,19 @@ export class DatasetStore {
     return [...years].sort((a, b) => a - b);
   }
 
+  /** Años con al menos una observación NDVI o LST; los años vacíos no cuentan como datos. */
+  getObservedYears(): number[] {
+    const years = new Set<number>();
+    for (const district of this.getDataset().districts) {
+      for (const point of district.series) {
+        if (point.ndvi_mean !== null || point.lst_mean_celsius !== null) years.add(point.year);
+      }
+    }
+    return [...years].sort((a, b) => a - b);
+  }
+
   getLastDataYear(): number | null {
-    const years = this.getYears();
+    const years = this.getObservedYears();
     return years.length > 0 ? years[years.length - 1] : null;
   }
 

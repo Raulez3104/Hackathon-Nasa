@@ -37,14 +37,14 @@ test("chat responde con fallback por reglas, citas y evidencia", async () => {
   const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
     mode: "chat",
     district_id: 1,
-    year: 2025,
+    year: 2022,
     question: "¿Cómo está la vegetación del distrito?",
     locale: "es",
   });
   assert.equal(status, 200);
   assert.equal(body.fallback_used, true);
   assert.equal(body.model, null);
-  assert.equal(body.data_status, "illustrative");
+  assert.equal(body.data_status, "real");
   assert.match(body.answer, /Distrito 1/);
   assert.ok(body.insights.length >= 1);
   assert.ok(body.insights[0].evidence.length >= 1);
@@ -57,12 +57,12 @@ test("diagnóstico incluye tendencias, equipamiento y advertencia territorial", 
   const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
     mode: "diagnosis",
     district_id: 1,
-    year: 2025,
+    year: 2022,
   });
   assert.equal(status, 200);
   assert.equal(body.mode, "diagnosis");
   assert.equal(body.district_id, 1);
-  assert.equal(body.year, 2025);
+  assert.equal(body.year, 2022);
   assert.match(body.answer, /ICVSA/);
   assert.match(body.answer, /año de referencia/);
   assert.ok(body.insights.some((insight) => insight.kind === "caveat"));
@@ -71,16 +71,17 @@ test("diagnóstico incluye tendencias, equipamiento y advertencia territorial", 
   assert.ok(evidenceValues.some((value) => typeof value === "number"));
 });
 
-test("chat responde preguntas demográficas con la referencia territorial", async () => {
+test("chat responde preguntas demográficas declarando la ausencia de referencia territorial", async () => {
   const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
     mode: "chat",
     district_id: 1,
-    year: 2025,
+    year: 2022,
     question: "¿Cuántos habitantes tiene el distrito?",
   });
   assert.equal(status, 200);
   assert.match(body.answer, /habitantes/);
-  assert.match(body.answer, /2024/);
+  // El dataset real no trae población del GAMC; null nunca se convierte en cero (RN-06).
+  assert.match(body.answer, /no disponible/i);
   assert.ok(body.insights.some((insight) => insight.kind === "observation"));
 });
 
@@ -133,7 +134,7 @@ test("si el proveedor falla, responde con fallback y sin modelo", async () => {
     const { status, body } = await postJson<AIResponseBody>(testServer.baseUrl, "/api/ai-analyst", {
       mode: "diagnosis",
       district_id: 2,
-      year: 2025,
+      year: 2022,
     });
     assert.equal(status, 200);
     assert.equal(body.fallback_used, true);

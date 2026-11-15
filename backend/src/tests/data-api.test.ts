@@ -24,8 +24,8 @@ test("GET /api/health reporta dataset y modo", async () => {
   }>(testServer.baseUrl, "/api/health");
   assert.equal(status, 200);
   assert.equal(body.status, "ok");
-  assert.equal(body.data.last_processed_year, 2025);
-  assert.equal(body.data.data_mode, "mock");
+  assert.equal(body.data.last_processed_year, 2022);
+  assert.equal(body.data.data_mode, "real");
   assert.equal(body.data.methodology_version, "0.1.0");
 });
 
@@ -55,7 +55,8 @@ test("GET /api/districts/:id entrega ficha, tendencias y resumen", async () => {
   }>(testServer.baseUrl, "/api/districts/1");
   assert.equal(status, 200);
   assert.equal(body.district_id, 1);
-  assert.equal(body.latest.year, 2025);
+  assert.equal(body.latest.year, 2022);
+  assert.equal(body.latest.data_quality_flag, "ok");
   assert.ok(body.trends.length >= 3);
   assert.match(body.summary_text, /Distrito 1/);
 });
@@ -69,18 +70,19 @@ test("GET /api/districts/:id responde 404 para distrito inexistente", async () =
 test("GET /api/districts/:id/indicators completa el rango y filtra variables", async () => {
   const full = await getJson<{ series: Array<Record<string, unknown>>; metadata: { methodology_version: string } }>(
     testServer.baseUrl,
-    "/api/districts/1/indicators?from=2024&to=2025",
+    "/api/districts/1/indicators?from=2021&to=2022",
   );
   assert.equal(full.status, 200);
   assert.equal(full.body.series.length, 2);
-  assert.equal(full.body.series[0].year, 2024);
-  assert.equal(full.body.series[1].year, 2025);
+  assert.equal(full.body.series[0].year, 2021);
+  assert.equal(full.body.series[1].year, 2022);
   assert.equal(full.body.metadata.methodology_version, "0.1.0");
 
   const filtered = await getJson<{ series: Array<Record<string, unknown>> }>(
     testServer.baseUrl,
-    "/api/districts/1/indicators?from=2025&to=2025&variables=ndvi",
+    "/api/districts/1/indicators?from=2022&to=2022&variables=ndvi",
   );
+  assert.equal(filtered.body.series[0].year, 2022);
   assert.equal(Object.hasOwn(filtered.body.series[0], "ndvi_mean"), true);
   assert.equal(Object.hasOwn(filtered.body.series[0], "lst_mean_celsius"), false);
 });
@@ -100,9 +102,9 @@ test("GET /api/comparison calcula brechas y diferencias", async () => {
     districts: unknown[];
     gaps_vs_municipal_average: unknown[];
     differences: unknown[];
-  }>(testServer.baseUrl, "/api/comparison?districts=1,2&year=2025");
+  }>(testServer.baseUrl, "/api/comparison?districts=1,2&year=2022");
   assert.equal(status, 200);
-  assert.equal(body.year, 2025);
+  assert.equal(body.year, 2022);
   assert.equal(body.districts.length, 2);
   assert.ok(body.gaps_vs_municipal_average.length > 0);
   assert.ok(body.differences.length > 0);
@@ -125,9 +127,9 @@ test("GET /api/hotspots devuelve ranking explicable", async () => {
     year: number;
     disclaimer: string;
     hotspots: Array<{ score: number | null; priority_level: string; rules: unknown[] }>;
-  }>(testServer.baseUrl, "/api/hotspots?year=2025&min_priority=low");
+  }>(testServer.baseUrl, "/api/hotspots?year=2022&min_priority=low");
   assert.equal(status, 200);
-  assert.equal(body.year, 2025);
+  assert.equal(body.year, 2022);
   assert.match(body.disclaimer, /No es una evaluación oficial/);
   assert.ok(body.hotspots.length > 0);
   assert.ok(body.hotspots[0].rules.length > 0);
@@ -158,7 +160,7 @@ test("GET /api/sources lista fuentes con licencia y limitaciones", async () => {
 test("GET /api/heatmap entrega celdas y raster", async () => {
   const cells = await getJson<{ variable: string; cells: unknown[]; resolution_m: number }>(
     testServer.baseUrl,
-    "/api/heatmap?variable=lst&year=2025",
+    "/api/heatmap?variable=lst&year=2022",
   );
   assert.equal(cells.status, 200);
   assert.equal(cells.body.variable, "lst");
@@ -167,10 +169,10 @@ test("GET /api/heatmap entrega celdas y raster", async () => {
 
   const raster = await getJson<{ raster_url: string; bbox: number[] }>(
     testServer.baseUrl,
-    "/api/heatmap?variable=lst&year=2025&format=raster",
+    "/api/heatmap?variable=lst&year=2022&format=raster",
   );
   assert.equal(raster.status, 200);
-  assert.equal(raster.body.raster_url, "/api/heatmap/2025/lst.png");
+  assert.equal(raster.body.raster_url, "/api/heatmap/2022/lst.png");
   assert.equal(raster.body.bbox.length, 4);
 
   const image = await fetch(`${testServer.baseUrl}${raster.body.raster_url}`);
@@ -178,28 +180,16 @@ test("GET /api/heatmap entrega celdas y raster", async () => {
   assert.match(image.headers.get("content-type") ?? "", /image\/png/);
 });
 
-test("GET /api/analysis/correlation informa n y no calcula sin variación", async () => {
-  const defaultCase = await getJson<{
-    coefficient: number | null;
-    n: number;
-    method: string;
-    interpretation: string;
-    disclaimer: string;
+test("GET /api/analysis/correlation no calcula sin datos territoriales", async () => {
+  // El dataset real 2019-2022 aún no tiene equipamiento ni movilidad del GAMC,
+  // por lo que la regla RN-08 debe impedir el cálculo (n < 8) en lugar de forzar un coeficiente.
+  const { status, body } = await getJson<{
+    error: { code: string; details: { n: number; min_n: number } };
   }>(testServer.baseUrl, "/api/analysis/correlation?x=ndvi_trend&y=equipment_access_index");
-  assert.equal(defaultCase.status, 200);
-  assert.equal(defaultCase.body.n, 15);
-  assert.equal(defaultCase.body.coefficient, null);
-  assert.match(defaultCase.body.interpretation, /no tiene variación suficiente/);
-  assert.match(defaultCase.body.disclaimer, /No establecer causalidad/);
-
-  const varied = await getJson<{ coefficient: number; n: number; method: string }>(
-    testServer.baseUrl,
-    "/api/analysis/correlation?x=environmental_index_trend&y=equipment_access_index",
-  );
-  assert.equal(varied.status, 200);
-  assert.equal(varied.body.n, 15);
-  assert.equal(varied.body.method, "spearman");
-  assert.equal(typeof varied.body.coefficient, "number");
+  assert.equal(status, 404);
+  assert.equal(body.error.code, "NO_DATA");
+  assert.equal(body.error.details.n, 0);
+  assert.equal(body.error.details.min_n, 8);
 });
 
 test("GET /api/analysis/correlation valida el parámetro x", async () => {

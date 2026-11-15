@@ -332,13 +332,14 @@ export function buildAIContext(input: {
       unit: "distritos",
       source_ref: METHODOLOGY_SOURCE,
     });
+    const observedYears = store.getObservedYears();
     addFact(facts, {
       key: "period",
       district_id: null,
       year: null,
       field: "period",
       label: "Periodo del dataset",
-      value: `${store.getYears()[0] ?? ""}-${lastDataYear ?? ""}`,
+      value: `${observedYears[0] ?? ""}-${lastDataYear ?? ""}`,
       unit: null,
       source_ref: METHODOLOGY_SOURCE,
     });

@@ -7,1182 +7,1182 @@
     "2015": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 31.38,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 31.26,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 31.14,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 31.02,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.9,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.78,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.66,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.54,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.42,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 30.3,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 30.18,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 30.06,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.94,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.82,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.7,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2016": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 31.3,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 31.18,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 31.06,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.94,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.82,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.7,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.58,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.46,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.34,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 30.22,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 30.1,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.98,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.86,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.74,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.62,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2017": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 31.22,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 31.1,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.98,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.86,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.74,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.62,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.5,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.38,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.26,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 30.14,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 30.02,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.9,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.78,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.66,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.54,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2018": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 31.14,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 31.02,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.9,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.78,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.66,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.54,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.42,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.3,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.18,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 30.06,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.94,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.82,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.7,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.58,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.46,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2019": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 31.06,
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": 29.78,
         "class": "medium"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.94,
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": 30.47,
         "class": "medium"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.82,
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": 31.45,
         "class": "medium"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.7,
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": 31.21,
         "class": "medium"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.58,
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": 31.94,
         "class": "medium"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.46,
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": 30.66,
         "class": "medium"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.34,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": 28.84,
+        "class": "low"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.22,
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": 30.67,
         "class": "medium"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.1,
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": 32.48,
         "class": "medium"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.98,
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": 31.9,
         "class": "medium"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.86,
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": 29.66,
         "class": "medium"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.74,
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": 30.38,
         "class": "medium"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.62,
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": 31.22,
         "class": "medium"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.5,
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": 31.09,
         "class": "medium"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.38,
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": 30.04,
         "class": "medium"
       }
     ],
     "2020": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.98,
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": 29.16,
         "class": "medium"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.86,
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": 30.05,
         "class": "medium"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.74,
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": 30.71,
         "class": "medium"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.62,
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": 30.42,
         "class": "medium"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.5,
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": 30.83,
         "class": "medium"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.38,
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": 29.23,
         "class": "medium"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.26,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": 28.05,
+        "class": "low"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
+        "latitude": -17.454518,
+        "longitude": -66.112673,
         "value": 30.14,
         "class": "medium"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 30.02,
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": 31.87,
         "class": "medium"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.9,
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": 31.01,
         "class": "medium"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.78,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": 28.76,
+        "class": "low"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.66,
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": 29.53,
         "class": "medium"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.54,
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": 30.29,
         "class": "medium"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.42,
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": 30.09,
         "class": "medium"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.3,
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": 29.02,
         "class": "medium"
       }
     ],
     "2021": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.9,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": 28.56,
+        "class": "low"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.78,
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": 29.37,
         "class": "medium"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.66,
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": 30.31,
         "class": "medium"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.54,
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": 29.87,
         "class": "medium"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.42,
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": 30.78,
         "class": "medium"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.3,
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": 29.51,
         "class": "medium"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.18,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": 27.97,
+        "class": "low"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 30.06,
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": 29.96,
         "class": "medium"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 29.94,
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": 31.59,
         "class": "medium"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.82,
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": 30.8,
         "class": "medium"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.7,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": 28.33,
+        "class": "low"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.58,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": 28.82,
+        "class": "low"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.46,
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": 29.75,
         "class": "medium"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.34,
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": 29.48,
         "class": "medium"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.22,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": 28.84,
+        "class": "low"
       }
     ],
     "2022": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.82,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": 27.19,
+        "class": "low"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.7,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": 28.18,
+        "class": "low"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.58,
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": 29.18,
         "class": "medium"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.46,
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": 29.39,
         "class": "medium"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.34,
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": 30.11,
         "class": "medium"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.22,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": 28.44,
+        "class": "low"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.1,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": 27.03,
+        "class": "low"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 29.98,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": 28.75,
+        "class": "low"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 29.86,
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": 30.45,
         "class": "medium"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.74,
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": 29.71,
         "class": "medium"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.62,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": 27.8,
+        "class": "low"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.5,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": 28.52,
+        "class": "low"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.38,
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": 29.31,
         "class": "medium"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.26,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": 28.93,
+        "class": "low"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.14,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": 28.0,
+        "class": "low"
       }
     ],
     "2023": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.74,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.62,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.5,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.38,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.26,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.14,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 30.02,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 29.9,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 29.78,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.66,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.54,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.42,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.3,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.18,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 29.06,
-        "class": "medium"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2024": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.66,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.54,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.42,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.3,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.18,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 30.06,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 29.94,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 29.82,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 29.7,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.58,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.46,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.34,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.22,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.1,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 28.98,
-        "class": "low"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ],
     "2025": [
       {
         "district_id": 1,
-        "latitude": -17.4828,
-        "longitude": -66.2328,
-        "value": 30.58,
-        "class": "medium"
+        "latitude": -17.36347,
+        "longitude": -66.140122,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 2,
-        "latitude": -17.4828,
-        "longitude": -66.2078,
-        "value": 30.46,
-        "class": "medium"
+        "latitude": -17.354495,
+        "longitude": -66.167527,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 3,
-        "latitude": -17.4828,
-        "longitude": -66.1828,
-        "value": 30.34,
-        "class": "medium"
+        "latitude": -17.368886,
+        "longitude": -66.191151,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 4,
-        "latitude": -17.4828,
-        "longitude": -66.1578,
-        "value": 30.22,
-        "class": "medium"
+        "latitude": -17.396634,
+        "longitude": -66.197578,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 5,
-        "latitude": -17.4828,
-        "longitude": -66.1328,
-        "value": 30.1,
-        "class": "medium"
+        "latitude": -17.425604,
+        "longitude": -66.167826,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 6,
-        "latitude": -17.4478,
-        "longitude": -66.2328,
-        "value": 29.98,
-        "class": "medium"
+        "latitude": -17.411375,
+        "longitude": -66.137277,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 7,
-        "latitude": -17.4478,
-        "longitude": -66.2078,
-        "value": 29.86,
-        "class": "medium"
+        "latitude": -17.421683,
+        "longitude": -66.119318,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 8,
-        "latitude": -17.4478,
-        "longitude": -66.1828,
-        "value": 29.74,
-        "class": "medium"
+        "latitude": -17.454518,
+        "longitude": -66.112673,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 9,
-        "latitude": -17.4478,
-        "longitude": -66.1578,
-        "value": 29.62,
-        "class": "medium"
+        "latitude": -17.446689,
+        "longitude": -66.186041,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 10,
-        "latitude": -17.4478,
-        "longitude": -66.1328,
-        "value": 29.5,
-        "class": "medium"
+        "latitude": -17.397239,
+        "longitude": -66.158602,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 11,
-        "latitude": -17.4128,
-        "longitude": -66.2328,
-        "value": 29.38,
-        "class": "medium"
+        "latitude": -17.388376,
+        "longitude": -66.134805,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 12,
-        "latitude": -17.4128,
-        "longitude": -66.2078,
-        "value": 29.26,
-        "class": "medium"
+        "latitude": -17.374999,
+        "longitude": -66.157848,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 13,
-        "latitude": -17.4128,
-        "longitude": -66.1828,
-        "value": 29.14,
-        "class": "medium"
+        "latitude": -17.313897,
+        "longitude": -66.154143,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 14,
-        "latitude": -17.4128,
-        "longitude": -66.1578,
-        "value": 29.02,
-        "class": "medium"
+        "latitude": -17.437581,
+        "longitude": -66.110275,
+        "value": null,
+        "class": "insufficient"
       },
       {
         "district_id": 15,
-        "latitude": -17.4128,
-        "longitude": -66.1328,
-        "value": 28.9,
-        "class": "low"
+        "latitude": -17.478103,
+        "longitude": -66.127199,
+        "value": null,
+        "class": "insufficient"
       }
     ]
   },
-  "generated_at": "2026-11-14T02:43:28Z",
+  "generated_at": "2026-11-15T15:10:20Z",
   "raster_urls": {
     "2015": "/api/heatmap/2015/lst.png",
     "2016": "/api/heatmap/2016/lst.png",
@@ -1197,10 +1197,10 @@
     "2025": "/api/heatmap/2025/lst.png"
   },
   "bbox": [
-    -66.24,
-    -17.49,
-    -66.122,
-    -17.402
+    -66.280266,
+    -17.534057,
+    -66.067174,
+    -17.278124
   ],
   "attribution": "NASA MODIS MOD11A2 / GAMC / Mock GeoQocha"
 }
