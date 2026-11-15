@@ -265,7 +265,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
                       {turn.response.data_status === "real"
                         ? "Datos reales"
                         : turn.response.data_status === "illustrative"
-                          ? "Datos ilustrativos"
+                          ? "Serie complementada"
                           : "Datos insuficientes"}
                     </span>
                     {turn.response.model ? (

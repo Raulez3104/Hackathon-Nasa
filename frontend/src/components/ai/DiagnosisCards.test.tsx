@@ -33,7 +33,7 @@ function makeDiagnosis(overrides: Partial<AIResponse> = {}): AIResponse {
       },
     ],
     citations: [
-      { source_ref: "mock", label: "Mock ilustrativo de desarrollo", field: "ndvi_mean", year: 2025 },
+      { source_ref: "mock", label: "Serie complementada de desarrollo", field: "ndvi_mean", year: 2025 },
       { source_ref: "gamc_equipment", label: "GAMC, equipamiento y movilidad", field: "territorial_reference_year", year: 2024 },
     ],
     disclaimer:

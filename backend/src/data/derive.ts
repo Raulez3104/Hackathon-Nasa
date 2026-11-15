@@ -37,9 +37,17 @@ export function getTrend(district: DistrictData, variable: DistrictTrend["variab
 
 export function lastYearWithData(district: DistrictData): number | null {
   const years = district.series
+    .filter(
+      (point) =>
+        point.data_status !== "illustrative" &&
+        (point.ndvi_mean !== null || point.lst_mean_celsius !== null || point.environmental_index !== null),
+    )
+    .map((point) => point.year);
+  if (years.length > 0) return Math.max(...years);
+  const anyYears = district.series
     .filter((point) => point.ndvi_mean !== null || point.lst_mean_celsius !== null || point.environmental_index !== null)
     .map((point) => point.year);
-  return years.length > 0 ? Math.max(...years) : district.latest_year;
+  return anyYears.length > 0 ? Math.max(...anyYears) : district.latest_year;
 }
 
 export function districtSummary(district: DistrictData): Record<string, unknown> {

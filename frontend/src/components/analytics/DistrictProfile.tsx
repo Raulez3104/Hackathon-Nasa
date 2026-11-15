@@ -215,7 +215,7 @@ export function DistrictProfile({ district, districts, year }: DistrictProfilePr
         <p className="gq-caveat">
           Fuentes: {district.source_refs.length > 0 ? district.source_refs.join(", ") : "sin fuente declarada"}.
           {district.data_status === "illustrative"
-            ? " Los valores son ilustrativos y no representan mediciones oficiales."
+            ? " Esta serie está complementada en años sin observación real y no sustituye mediciones oficiales."
             : district.data_status === "insufficient"
               ? " El distrito no cuenta con datos suficientes para todas las dimensiones."
               : ""}

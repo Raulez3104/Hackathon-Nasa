@@ -28,6 +28,8 @@ export interface DistrictSeriesPoint {
   socioenvironmental_index: number | null;
   index_without_territorial: number | null;
   data_quality_flag: DataQualityFlag;
+  /** Estado del dato para este año; permite distinguir una serie mixta. */
+  data_status?: DataStatus;
 }
 
 export interface DistrictTrend {

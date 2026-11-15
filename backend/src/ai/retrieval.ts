@@ -64,10 +64,14 @@ export function buildAIContext(input: {
   const facts: AIFact[] = [];
   const trends: AIContextTrend[] = [];
   const currentYear = year;
+  const requestedPoint = district ? getPoint(district, currentYear) : null;
+  const requestedDataStatus = requestedPoint?.data_status ?? district?.data_status ?? dataset.data_status;
 
   if (district) {
-    const ndviSource = pickSource(district.source_refs, "nasa_mod13q1");
-    const lstSource = pickSource(district.source_refs, "nasa_mod11a2");
+    const ndviSource =
+      requestedDataStatus === "illustrative" ? "mock_supplement" : pickSource(district.source_refs, "nasa_mod13q1");
+    const lstSource =
+      requestedDataStatus === "illustrative" ? "mock_supplement" : pickSource(district.source_refs, "nasa_mod11a2");
     const derivedSource = pickSource(district.source_refs, "geoqocha_methodology");
     const equipmentSource = pickSource(district.source_refs, "gamc_equipment");
     const mobilitySource = pickSource(district.source_refs, "gamc_transport");
@@ -205,11 +209,13 @@ export function buildAIContext(input: {
           value,
           unit: field === "lst_mean_celsius" ? "Â°C" : field === "ndvi_mean" ? "Ã­ndice" : "Ã­ndice 1-100",
           source_ref:
-            field === "ndvi_mean"
-              ? ndviSource
-              : field === "lst_mean_celsius"
-                ? lstSource
-                : derivedSource,
+            seriesPoint.data_status === "illustrative"
+              ? "mock_supplement"
+              : field === "ndvi_mean"
+                ? ndviSource
+                : field === "lst_mean_celsius"
+                  ? lstSource
+                  : derivedSource,
           data_quality_flag: seriesPoint.data_quality_flag,
         });
       }
@@ -394,7 +400,7 @@ export function buildAIContext(input: {
           territorial_reference_year: district.territorial_reference_year,
           latest_year: district.latest_year,
           risk_level: district.risk_level,
-          data_status: district.data_status,
+          data_status: requestedDataStatus,
         }
       : null,
     facts,
@@ -405,7 +411,7 @@ export function buildAIContext(input: {
         .filter((fact) => fact.field.startsWith("municipal_average_"))
         .map((fact) => [fact.field.replace("municipal_average_", ""), typeof fact.value === "number" ? fact.value : null]),
     ),
-    data_status: dataset.data_status,
+    data_status: district ? requestedDataStatus : dataset.data_status,
     generated_at: dataset.generated_at,
     sources,
     context_text: "",

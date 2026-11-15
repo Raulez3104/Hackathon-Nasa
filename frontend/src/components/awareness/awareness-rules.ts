@@ -11,7 +11,7 @@ import {
 
 /** Nombres legibles de las fuentes declaradas por el dataset. */
 export const SOURCE_LABELS: Record<string, string> = {
-  mock: "Mock ilustrativo de desarrollo",
+  mock: "Serie complementada de desarrollo",
   nasa_mod13q1: "NASA MOD13Q1 · NDVI",
   nasa_mod11a2: "NASA MOD11A2 · LST",
   gamc_districts: "GAMC · límites distritales",
@@ -114,7 +114,7 @@ function buildCaveats(district: DistrictData): string[] {
     "Las cifras describen el pasado observado en la serie. No demuestran causas ni permiten atribuir responsabilidades.",
   ];
   if (district.data_status === "illustrative") {
-    caveats.push("Los valores de este conjunto son ilustrativos y no representan mediciones oficiales.");
+    caveats.push("Los valores complementados no representan mediciones oficiales.");
   }
   if (district.data_status === "insufficient") {
     caveats.push("El distrito no cuenta con datos suficientes para todas las dimensiones; se muestran vacíos explícitos.");

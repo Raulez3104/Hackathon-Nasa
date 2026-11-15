@@ -10,7 +10,7 @@ describe("SourcesPanel", () => {
 
     expect(screen.getByRole("heading", { name: /catálogo de fuentes/i })).toBeInTheDocument();
     expect(screen.getByText("7 reales")).toBeInTheDocument();
-    expect(screen.getByText("1 ilustrativas")).toBeInTheDocument();
+    expect(screen.getByText("1 complementadas")).toBeInTheDocument();
 
     expect(screen.getByRole("heading", { name: /MODIS MOD13Q1 \(NDVI\), colección 6.1/i })).toBeInTheDocument();
     expect(screen.getAllByText("Máscara de calidad QA").length).toBe(2);
@@ -22,12 +22,12 @@ describe("SourcesPanel", () => {
     expect(link).toHaveAttribute("rel", "noreferrer noopener");
   });
 
-  it("distingue la fuente ilustrativa con texto e ícono", () => {
+  it("distingue la fuente complementada con texto e ícono", () => {
     render(<SourcesPanel />);
 
     const mockCard = screen.getByRole("heading", { name: "mock_distritos.json" }).closest("li");
     expect(mockCard).not.toBeNull();
-    expect(within(mockCard as HTMLElement).getByText(/dato ilustrativo/i)).toBeInTheDocument();
+    expect(within(mockCard as HTMLElement).getByText(/dato complementado/i)).toBeInTheDocument();
     expect(within(mockCard as HTMLElement).getByText(/no representa mediciones oficiales/i)).toBeInTheDocument();
     expect(within(mockCard as HTMLElement).getByText(/no usar para conclusiones/i)).toBeInTheDocument();
   });
@@ -52,7 +52,7 @@ describe("SourcesPanel", () => {
     const illustrative = SOURCE_CATALOG.filter((source) => source.kind === "illustrative");
     render(<SourcesPanel sources={illustrative} />);
     expect(screen.getByText("0 reales")).toBeInTheDocument();
-    expect(screen.getByText(`${illustrative.length} ilustrativas`)).toBeInTheDocument();
+    expect(screen.getByText(`${illustrative.length} complementadas`)).toBeInTheDocument();
   });
 
   it("muestra carga, error y reintento", async () => {

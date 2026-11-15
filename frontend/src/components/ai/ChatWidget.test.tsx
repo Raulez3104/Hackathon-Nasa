@@ -26,7 +26,7 @@ function makeResponse(overrides: Partial<AIResponse> = {}): AIResponse {
       },
     ],
     citations: [
-      { source_ref: "mock", label: "Mock ilustrativo de desarrollo", field: "ndvi_mean", year: 2025 },
+      { source_ref: "mock", label: "Serie complementada de desarrollo", field: "ndvi_mean", year: 2025 },
     ],
     disclaimer:
       "Respuesta generada a partir de datos precalculados. No es una evaluación oficial del GAMC ni una priorización de inversión. No implica causalidad.",
@@ -89,7 +89,7 @@ describe("ChatWidget", () => {
     });
 
     expect(screen.getByText(/vegetación estable/i)).toBeInTheDocument();
-    expect(screen.getByText(/Mock ilustrativo de desarrollo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Serie complementada de desarrollo/i)).toBeInTheDocument();
     expect(screen.getByText(/no implica causalidad/i)).toBeInTheDocument();
     expect(screen.queryByText(/respuesta por reglas/i)).not.toBeInTheDocument();
     expect(screen.getByText(/gemini · modelo-configurado/i)).toBeInTheDocument();
@@ -150,7 +150,7 @@ describe("ChatWidget", () => {
 
     expect(await screen.findByText(/Distrito 1, 2025/i)).toBeInTheDocument();
     expect(screen.getAllByText(/respuesta por reglas/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Mock ilustrativo de desarrollo/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Serie complementada de desarrollo/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/No implica causalidad/i).length).toBeGreaterThan(0);
   });
 

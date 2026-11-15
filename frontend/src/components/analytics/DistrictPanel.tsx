@@ -234,7 +234,7 @@ export function DistrictPanel({
 
             <p className="gq-source-note">
               Fuentes declaradas: {selected.source_refs.length > 0 ? selected.source_refs.join(", ") : "sin fuente declarada"}.
-              {selected.data_status === "illustrative" ? " Datos ilustrativos de desarrollo." : ""}
+              {selected.data_status === "illustrative" ? " Serie complementada en años sin observación real." : ""}
             </p>
           </div>
         )}
