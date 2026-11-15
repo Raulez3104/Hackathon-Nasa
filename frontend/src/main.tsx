@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "leaflet/dist/leaflet.css";
 import "./styles.css";
+import "./theme.css";
 import "./components/map/map.css";
 import { App } from "./App";
 import { ChatWidgetHost } from "./components/ai/ChatWidgetHost";

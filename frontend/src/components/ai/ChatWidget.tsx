@@ -152,6 +152,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
   if (!open) {
     return (
       <button type="button" className="gq-chat-launcher" onClick={openPanel} aria-label="Abrir copiloto de IA">
+        <span className="gq-chat-launcher-logo"><img src="/brand/logo-geoqocha.png" alt="" /></span>
         <span aria-hidden="true">✦</span> Copiloto
       </button>
     );
@@ -160,16 +161,19 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
   return (
     <div className="gq-chat" ref={panelRef} role="dialog" aria-modal="false" aria-labelledby={titleId}>
         <header className="gq-chat-header">
+          <span className="gq-chat-logo"><img src="/brand/logo-geoqocha.png" alt="" /></span>
           <div>
             <p className="gq-eyebrow">Copiloto GeoQocha</p>
             <h2 id={titleId}>Preguntas sobre los datos</h2>
-            <p className="gq-chat-context">
+            <p className="gq-chat-context"><span className="gq-chat-status"><i />En línea</span>{" "}
               {selected ? selected.name : "Contexto municipal"} · {effectiveYear ?? NOT_AVAILABLE}
             </p>
           </div>
-          <button type="button" className="gq-icon-button" onClick={closePanel} aria-label="Cerrar copiloto de IA">
-            ×
-          </button>
+          <div className="gq-chat-window-actions">
+            <button type="button" className="gq-icon-button" onClick={closePanel} aria-label="Cerrar copiloto de IA">
+              ×
+            </button>
+          </div>
         </header>
 
         <div className="gq-chat-context-row">
@@ -221,6 +225,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
 
               {turn.response ? (
                 <div className="gq-chat-answer">
+                  <span className="gq-chat-avatar" aria-hidden="true"><img src="/brand/logo-geoqocha.png" alt="" /></span>
                   <p className="gq-chat-role">Copiloto</p>
                   <p>{turn.response.answer}</p>
 

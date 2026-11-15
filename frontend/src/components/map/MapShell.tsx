@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { MapContainer, TileLayer, useMap, useMapEvents, WMSTileLayer } from "react-leaflet";
+import { useEffect, useMemo } from "react";
+import { MapContainer, Pane, TileLayer, useMap, useMapEvents, WMSTileLayer } from "react-leaflet";
 import { CRS, type LatLngBoundsExpression, type Map as LeafletMap, type WMSParams } from "leaflet";
 import type { DistrictData, Variable } from "../../../../shared/types/geoqocha";
 import { DistrictLayer } from "./DistrictLayer";
@@ -83,14 +83,17 @@ export function MapShell(props: MapShellProps) {
             onStatusChange={props.onTransportStatusChange}
           />
         )}
-        {props.gamcLayers.map((layer) => (
-          <GamcWmsLayer
-            key={`${layer.id}-${props.gamcReloadToken}`}
-            layer={layer}
-            opacity={props.gamcOpacity * layer.defaultOpacity}
-            onStatusChange={props.onGamcStatusChange}
-          />
-        ))}
+        {/* Las capas municipales van sobre el relleno distrital para que sean visibles. */}
+        <Pane name="gamc-wms-layers" style={{ zIndex: 450 }}>
+          {props.gamcLayers.map((layer) => (
+            <GamcWmsLayer
+              key={`${layer.id}-${props.gamcReloadToken}`}
+              layer={layer}
+              opacity={props.gamcOpacity * layer.defaultOpacity}
+              onStatusChange={props.onGamcStatusChange}
+            />
+          ))}
+        </Pane>
         <GamcFeatureInfo layers={props.gamcLayers.filter((layer) => layer.supportsFeatureInfo)} />
       </MapContainer>
     </div>
@@ -104,11 +107,23 @@ interface GamcWmsLayerProps {
 }
 
 function GamcWmsLayer({ layer, opacity, onStatusChange }: GamcWmsLayerProps) {
+  // Referencias estables: si `params` cambia en cada render, react-leaflet
+  // redibuja la capa, lo que reinicia la carga y realimenta el estado.
+  const params = useMemo(() => ({ service_id: layer.id }) as unknown as WMSParams, [layer.id]);
+  const eventHandlers = useMemo(
+    () => ({
+      loading: () => onStatusChange(layer.id, "loading"),
+      load: () => onStatusChange(layer.id, "ready"),
+      tileerror: () => onStatusChange(layer.id, "error"),
+    }),
+    [layer.id, onStatusChange],
+  );
+
   return (
     <WMSTileLayer
       url={`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/gamc/wms`}
       layers=""
-      params={{ service_id: layer.id } as unknown as WMSParams}
+      params={params}
       format="image/png"
       transparent
       version="1.1.1"
@@ -120,11 +135,7 @@ function GamcWmsLayer({ layer, opacity, onStatusChange }: GamcWmsLayerProps) {
       opacity={opacity}
       uppercase={false}
       attribution="Fuente: Gobierno Autónomo Municipal de Cochabamba"
-      eventHandlers={{
-        loading: () => onStatusChange(layer.id, "loading"),
-        load: () => onStatusChange(layer.id, "ready"),
-        tileerror: () => onStatusChange(layer.id, "error"),
-      }}
+      eventHandlers={eventHandlers}
     />
   );
 }
