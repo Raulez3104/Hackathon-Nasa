@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import type { AIRequest, AIResponse, DistrictData } from "../../../../shared/types/geoqocha";
 import { NOT_AVAILABLE } from "../analytics/format";
 import { districtById } from "../analytics/stats";
 import { useFocusTrap } from "../analytics/use-focus-trap";
 import { useUrlState, writeUrlPatch } from "../analytics/use-url-state";
 import { AIClientError, MAX_QUESTION_LENGTH, postAIRequest, shouldUseLocalFallback } from "./ai-client";
-import { CHAT_SUGGESTIONS, buildLocalResponse } from "./local-fallback";
+import { buildChatSuggestions, buildLocalResponse } from "./local-fallback";
 import "./chat.css";
 
 export interface ChatWidgetProps {
   districts: DistrictData[];
-  year: number | null;
+  year?: number | null;
   endpoint?: string;
   fetchImpl?: typeof fetch;
   /** Permite incrustar el widget abierto en pruebas o en una vista dedicada. */
@@ -43,12 +43,15 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
   const [input, setInput] = useState("");
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [pending, setPending] = useState(false);
+  const pendingRef = useRef(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const logRef = useRef<HTMLDivElement | null>(null);
   const titleId = useId();
 
-  const selected = districtById(districts, state.districtId) ?? districts[0] ?? null;
-  const effectiveYear = year ?? selected?.latest_year ?? null;
+  const selected = districtById(districts, state.districtId);
+  const effectiveYear = year ?? state.year ?? selected?.latest_year ?? null;
+  const suggestions = useMemo(() => buildChatSuggestions(selected, effectiveYear), [selected, effectiveYear]);
 
   const openPanel = useCallback(() => setPanel("chat"), [setPanel]);
   const closePanel = useCallback(() => setPanel(null), [setPanel]);
@@ -59,10 +62,17 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  useEffect(() => {
+    const log = logRef.current;
+    if (log && typeof log.scrollTo === "function") {
+      log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
+    }
+  }, [turns, pending]);
+
   const submit = useCallback(
     async (question: string, options: { forceLocal?: boolean } = {}) => {
       const trimmed = question.trim();
-      if (trimmed.length === 0 || pending) return;
+      if (trimmed.length === 0 || pendingRef.current) return;
 
       const turn: ChatTurn = {
         id: nextTurnId(),
@@ -73,6 +83,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
       };
       setTurns((current) => [...current, turn]);
       setInput("");
+      pendingRef.current = true;
       setPending(true);
 
       const request: AIRequest = {
@@ -84,7 +95,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
       };
 
       const resolveLocal = () => {
-        const local = buildLocalResponse(request, selected);
+        const local = buildLocalResponse(request, selected, districts);
         setTurns((current) =>
           current.map((item) => (item.id === turn.id ? { ...item, response: local, local: true, error: null } : item)),
         );
@@ -92,6 +103,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
 
       if (options.forceLocal) {
         resolveLocal();
+        pendingRef.current = false;
         setPending(false);
         return;
       }
@@ -108,10 +120,11 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
           );
         }
       } finally {
+        pendingRef.current = false;
         setPending(false);
       }
     },
-    [effectiveYear, endpoint, fetchImpl, pending, selected],
+    [districts, effectiveYear, endpoint, fetchImpl, selected],
   );
 
   const retry = useCallback((turn: ChatTurn) => {
@@ -151,7 +164,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
             <p className="gq-eyebrow">Copiloto GeoQocha</p>
             <h2 id={titleId}>Preguntas sobre los datos</h2>
             <p className="gq-chat-context">
-              {selected ? selected.name : "Sin distrito"} · {effectiveYear ?? NOT_AVAILABLE}
+              {selected ? selected.name : "Contexto municipal"} · {effectiveYear ?? NOT_AVAILABLE}
             </p>
           </div>
           <button type="button" className="gq-icon-button" onClick={closePanel} aria-label="Cerrar copiloto de IA">
@@ -165,11 +178,16 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
             <select
               value={selected?.district_id ?? ""}
               onChange={(event) => {
-                const id = Number(event.target.value);
+                const raw = event.target.value;
+                if (raw === "") {
+                  writeUrlPatch({ districtId: null, panel: "chat" });
+                  return;
+                }
+                const id = Number(raw);
                 if (Number.isInteger(id) && id > 0) writeUrlPatch({ districtId: id, panel: "chat" });
               }}
             >
-              <option value="">Sin distrito</option>
+              <option value="">Sin distrito (contexto municipal)</option>
               {districts.map((district) => (
                 <option key={district.district_id} value={district.district_id}>
                   {district.name}
@@ -179,12 +197,14 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
           </label>
         </div>
 
-        <div className="gq-chat-log" role="log">
+        <div className="gq-chat-log" role="log" ref={logRef}>
           {turns.length === 0 ? (
             <div className="gq-chat-empty">
               <p>
-                Pregunta por el ICVSA, el NDVI, la temperatura superficial o los datos territoriales. Las respuestas
-                solo explican hechos precalculados y citan su fuente.
+                {selected
+                  ? `Pregunta por el ICVSA, el NDVI, la temperatura superficial o los datos territoriales de ${selected.name}.`
+                  : "No hay un distrito seleccionado: el copiloto responde con contexto municipal y te pide elegir un distrito para consultar cifras específicas."}{" "}
+                Las respuestas solo explican hechos precalculados y citan su fuente.
               </p>
               <p className="gq-caveat">
                 El copiloto no calcula índices ni prioriza inversiones, y no guarda la conversación.
@@ -273,8 +293,8 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
         </div>
 
         {turns.length === 0 ? (
-          <div className="gq-chat-suggestions">
-            {CHAT_SUGGESTIONS.map((suggestion) => (
+          <div className="gq-chat-suggestions" aria-label="Preguntas sugeridas">
+            {suggestions.map((suggestion) => (
               <button
                 key={suggestion}
                 type="button"

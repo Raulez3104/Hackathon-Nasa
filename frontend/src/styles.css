@@ -835,6 +835,7 @@ h1 span, h2 span { color: #57945c; }
 .geoq-navbar-links { display: flex; align-items: center; gap: 28px; margin-left: auto; }
 .geoq-navbar-links a { color: #59655b; font-family: "Hanken Grotesk", var(--font-sans); font-size: 12px; font-weight: 600; line-height: 1; }
 .geoq-navbar-links a:hover { color: #191c1b; }
+.geoq-navbar-links a[aria-current="page"] { color: #0d631b; text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: #2e7d32; text-underline-offset: 6px; }
 .geoq-navbar-actions { display: flex; align-items: center; gap: 14px; }
 .geoq-navbar-districts { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid #bfcaba; border-radius: 3px; color: #707a6c; background: #e7e9e6; font-family: "JetBrains Mono", monospace; font-size: 10px; white-space: nowrap; }
 .geoq-navbar-districts i { width: 7px; height: 7px; border-radius: 50%; background: #2e7d32; box-shadow: 0 0 0 3px rgb(46 125 50 / 14%); }

@@ -5,6 +5,7 @@ export type GeoQochaView = "map" | "analytics";
 interface GeoQochaNavbarProps {
   variant: "landing" | "dashboard";
   activeView?: GeoQochaView;
+  activeNav?: "areas-verdes";
   onViewChange?: (view: GeoQochaView) => void;
   trailing?: ReactNode;
 }
@@ -28,6 +29,7 @@ function Brand() {
 export function GeoQochaNavbar({
   variant,
   activeView = "map",
+  activeNav,
   onViewChange,
   trailing,
 }: GeoQochaNavbarProps) {
@@ -42,9 +44,10 @@ export function GeoQochaNavbar({
       <header className="geoq-navbar">
         <Brand />
         <nav className="geoq-navbar-links" aria-label="Navegación principal">
-          <a href={isDashboard ? "/" : "#como-funciona"}>Cómo funciona</a>
-          <a href={isDashboard ? "/#metodologia" : "#metodologia"}>Metodología</a>
-          <a href={isDashboard ? "/#fuentes" : "#fuentes"}>Fuentes</a>
+          <a href="/#como-funciona">Cómo funciona</a>
+          <a href="/#metodologia">Metodología</a>
+          <a href="/#fuentes">Fuentes</a>
+          <a href="/areas-verdes" aria-current={activeNav === "areas-verdes" ? "page" : undefined}>Áreas Verdes</a>
         </nav>
         <div className="geoq-navbar-actions">
           <span className="geoq-navbar-districts"><i />15 distritos · Cochabamba</span>

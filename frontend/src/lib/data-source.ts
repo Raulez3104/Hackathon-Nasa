@@ -10,7 +10,9 @@ interface MockDataset {
 const MOCK_URL = "/data/mock_distritos.json";
 const REAL_URL = "/data/distritos_data.json";
 
-export async function loadDistricts(): Promise<MockDataset> {
+let districtsRequest: Promise<MockDataset> | null = null;
+
+async function fetchDistricts(): Promise<MockDataset> {
   const mode = import.meta.env.VITE_DATA_MODE ?? "mock";
   const url = mode === "real" ? REAL_URL : MOCK_URL;
 
@@ -25,4 +27,15 @@ export async function loadDistricts(): Promise<MockDataset> {
     }
     throw error;
   }
+}
+
+/** Comparte una sola carga entre el mapa, la analítica y el copiloto global. */
+export function loadDistricts(): Promise<MockDataset> {
+  if (!districtsRequest) {
+    districtsRequest = fetchDistricts().catch((error: unknown) => {
+      districtsRequest = null;
+      throw error;
+    });
+  }
+  return districtsRequest;
 }

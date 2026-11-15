@@ -46,6 +46,7 @@ function jsonResponse(body: unknown, status = 200): Response {
 }
 
 function renderWidget(fetchImpl: typeof fetch = vi.fn(async () => jsonResponse(makeResponse()))) {
+  window.history.replaceState({}, "", "/?district=1");
   return render(<ChatWidget districts={TEST_DISTRICTS} year={2025} fetchImpl={fetchImpl} defaultOpen />);
 }
 
@@ -189,7 +190,7 @@ describe("ChatWidget", () => {
     const fetchImpl = vi.fn(async () => jsonResponse(makeResponse()));
     renderWidget(fetchImpl as unknown as typeof fetch);
 
-    await user.click(screen.getByRole("button", { name: /¿Cómo está la vegetación en este distrito\?/i }));
+    await user.click(screen.getByRole("button", { name: /¿Cómo está la vegetación en Distrito 1\?/i }));
     expect(await screen.findByText(/condición intermedia según los datos citados/i)).toBeInTheDocument();
 
     await user.type(screen.getByRole("textbox", { name: /pregunta/i }), "Segunda pregunta");
@@ -198,7 +199,47 @@ describe("ChatWidget", () => {
     await waitFor(() => expect(fetchImpl).toHaveBeenCalledTimes(2));
     expect(screen.getByText("Segunda pregunta")).toBeInTheDocument();
     expect(screen.getAllByText(/condición intermedia según los datos citados/i).length).toBe(2);
-    expect(screen.queryByRole("button", { name: /¿Cómo está la vegetación en este distrito\?/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /¿Cómo está la vegetación en Distrito 1\?/i })).not.toBeInTheDocument();
+  });
+
+  it("responde con orientaciones cuando se piden acciones", async () => {
+    const user = userEvent.setup();
+    const fetchImpl = vi.fn(async () => {
+      throw new TypeError("Failed to fetch");
+    });
+    renderWidget(fetchImpl as unknown as typeof fetch);
+
+    await user.type(screen.getByRole("textbox", { name: /pregunta/i }), "¿Qué acciones mejorarían la vegetación?");
+    await user.click(screen.getByRole("button", { name: /^enviar$/i }));
+
+    expect((await screen.findAllByText(/Para el déficit de área verde/i)).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/orientaciones cualitativas/i).length).toBeGreaterThan(0);
+  });
+
+  it("adapta las sugerencias al distrito seleccionado", async () => {
+    window.history.replaceState({}, "", "/?district=2");
+    render(<ChatWidget districts={TEST_DISTRICTS} year={2025} defaultOpen />);
+
+    expect(
+      screen.getByRole("button", { name: /¿Qué acciones podrían recuperar la vegetación en Distrito 2\?/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /¿Cómo aumentar el área verde por habitante en Distrito 2\?/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("responde con contexto municipal cuando no hay distrito seleccionado", async () => {
+    const user = userEvent.setup();
+    const fetchImpl = vi.fn(async () => {
+      throw new TypeError("Failed to fetch");
+    });
+    render(<ChatWidget districts={TEST_DISTRICTS} year={2025} fetchImpl={fetchImpl as unknown as typeof fetch} defaultOpen />);
+
+    expect(screen.getAllByText(/contexto municipal/i).length).toBeGreaterThan(0);
+    await user.type(screen.getByRole("textbox", { name: /pregunta/i }), "¿Cuántos distritos cubre?");
+    await user.click(screen.getByRole("button", { name: /^enviar$/i }));
+
+    expect(await screen.findByText(/El tablero reúne 3 distritos/i)).toBeInTheDocument();
   });
 
   it("limita la pregunta a 500 caracteres y deshabilita el envío vacío", async () => {
