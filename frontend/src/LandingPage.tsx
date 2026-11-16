@@ -64,6 +64,15 @@ function MiniMap() {
             <filter id="landing-map-shadow" x="-20%" y="-20%" width="150%" height="170%">
               <feDropShadow dx="0" dy="10" stdDeviation="8" floodColor="#020617" floodOpacity=".42" />
             </filter>
+            <linearGradient id="landing-cristo-front" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#f8fafc" />
+              <stop offset=".45" stopColor="#cbd5e1" />
+              <stop offset="1" stopColor="#64748b" />
+            </linearGradient>
+            <linearGradient id="landing-cristo-side" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#94a3b8" />
+              <stop offset="1" stopColor="#334155" />
+            </linearGradient>
           </defs>
           <path d="M0 92Q100 24 190 76T370 42T600 88V0H0Z" fill="#213348" opacity=".72" />
           <path d="M0 142Q130 78 250 120T480 92L600 138V82H0Z" fill="#2c4960" opacity=".55" />
@@ -83,10 +92,10 @@ function MiniMap() {
                 </g>
               ))}
             </g>
-          ) : (
-            <text className="landing-map-loading-label" x="300" y="220" textAnchor="middle">CARGANDO DISTRITOS…</text>
-          )}
-          <path className="landing-map-scan" d="M20 300H580" />
+           ) : (
+             <text className="landing-map-loading-label" x="300" y="220" textAnchor="middle">CARGANDO DISTRITOS…</text>
+           )}
+           <path className="landing-map-scan" d="M20 300H580" />
           <g className="landing-map-node">
             <circle cx="302" cy="222" r="5" />
             <circle cx="302" cy="222" r="15" />
@@ -95,12 +104,24 @@ function MiniMap() {
         <div className="map-chip map-chip-top"><i className="chip-dot chip-dot-red" /><span><small>DISTRITO 10 · DEMO</small><b>ICVSA: referencia</b></span></div>
         <div className="map-chip map-chip-right"><i className="chip-dot chip-dot-green" /><span>D-12: NDVI de referencia</span></div>
         <div className="map-chip map-chip-bottom"><i className="chip-dot chip-dot-yellow" /><span><small>DISTRITO 3 · DEMO</small><b>LST: valor de referencia</b></span></div>
-        <div className="map-legend">
+         <div className="map-legend">
           <span><i className="legend-green" /> Vegetación</span>
           <span><i className="legend-yellow" /> Atención</span>
           <span><i className="legend-red" /> Calor</span>
-        </div>
-      </div>
+         </div>
+         <div className="landing-cristo-model" aria-label="Cristo de la Concordia en 3D">
+           <model-viewer
+             src="/media/cristo_de_la_concordia_optimizado.glb"
+             alt="Modelo 3D del Cristo de la Concordia de Cochabamba"
+             camera-controls
+             auto-rotate
+             shadow-intensity="1"
+             exposure="1.1"
+             interaction-prompt="none"
+           />
+           <span className="landing-cristo-model-label">CRISTO DE LA CONCORDIA · 3D</span>
+         </div>
+       </div>
       <div className="landing-map-footer">
         <span>Vista previa del tablero</span>
         <strong>15/15 distritos configurados</strong>
@@ -181,6 +202,12 @@ function FeatureCard({
 }
 
 export function LandingPage() {
+  useEffect(() => {
+    if (import.meta.env.MODE !== "test" && typeof window !== "undefined" && !customElements.get("model-viewer")) {
+      void import("@google/model-viewer");
+    }
+  }, []);
+
   return (
     <div className="landing-page">
       <GeoQochaNavbar variant="landing" />

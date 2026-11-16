@@ -573,6 +573,35 @@
   background: #000;
 }
 
+.green-video-player {
+  position: relative;
+}
+
+.green-video-volume {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid rgb(186 230 253 / 38%);
+  border-radius: 999px;
+  color: #E0F2FE;
+  background: rgb(2 6 23 / 72%);
+  font-size: 0.7rem;
+}
+
+.green-video-volume .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+.green-video-volume input {
+  width: 86px;
+  accent-color: #38BDF8;
+  cursor: pointer;
+}
+
 .green-section-volunteer {
   border-top: 1px solid var(--lp-border);
   background: linear-gradient(140deg, #E6F4FF, #F0F7FF 62%, #EFF6FF);

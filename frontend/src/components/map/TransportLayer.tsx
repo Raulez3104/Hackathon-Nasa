@@ -81,6 +81,7 @@ export function TransportLayer({
     stops: Feature<Point, TransportProperties>[];
   }>(() => {
     if (!data) return { lines: [], stops: [] };
+    if (routeId === "__none__") return { lines: [], stops: [] };
     const features = data.features.filter((feature) => {
       const properties = feature.properties ?? {};
       if (!routeId) return true;

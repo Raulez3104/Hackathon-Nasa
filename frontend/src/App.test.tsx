@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import type { DistrictData } from "../../shared/types/geoqocha";
 import { App } from "./App";
@@ -7,10 +6,6 @@ import { loadDistricts } from "./lib/data-source";
 
 vi.mock("./components/map/MapShell", () => ({
   MapShell: () => <div data-testid="map-shell" />,
-}));
-
-vi.mock("./components/analytics/AnalyticsWorkspace", () => ({
-  AnalyticsWorkspace: () => <div data-testid="analytics-workspace" />,
 }));
 
 vi.mock("./lib/data-source", () => ({
@@ -25,29 +20,12 @@ vi.mock("./lib/data-source", () => ({
 }));
 
 describe("App", () => {
-  it("alterna entre la vista de mapa y la vista de analítica", async () => {
-    const user = userEvent.setup();
+  it("muestra el mapa sin una vista de analítica en el navbar", async () => {
     render(<App />);
 
-    const mapButton = screen.getByRole("button", { name: "Mapa" });
-    const analyticsButton = screen.getByRole("button", { name: "Analítica" });
-
-    expect(mapButton).toHaveAttribute("aria-pressed", "true");
-    expect(analyticsButton).toHaveAttribute("aria-pressed", "false");
     expect(screen.getByText("Año")).toBeInTheDocument();
-    expect(screen.queryByTestId("analytics-workspace")).not.toBeInTheDocument();
-
-    await user.click(analyticsButton);
-
-    expect(analyticsButton).toHaveAttribute("aria-pressed", "true");
-    expect(await screen.findByTestId("analytics-workspace")).toBeInTheDocument();
-    expect(screen.queryByText("Año")).not.toBeInTheDocument();
-
-    await user.click(mapButton);
-
-    expect(mapButton).toHaveAttribute("aria-pressed", "true");
-    expect(screen.queryByTestId("analytics-workspace")).not.toBeInTheDocument();
-    expect(screen.getByText("Año")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Mapa" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Analítica" })).not.toBeInTheDocument();
   });
 
   it("activa por defecto la capa municipal de equipamiento", async () => {

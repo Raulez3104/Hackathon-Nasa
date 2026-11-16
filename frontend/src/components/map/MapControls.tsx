@@ -31,7 +31,7 @@ export function MapControls({
           {YEAR_OPTIONS.map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
       </label>
-      <label className="dashboard-control-label">
+      <label className="dashboard-control-label dashboard-variable-control">
         <span>Variable</span>
         <select
           className="dashboard-control"

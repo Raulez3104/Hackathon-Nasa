@@ -16,6 +16,7 @@ interface MapShellProps {
   indexView: IndexView;
   selectedDistrictId: number | null;
   showLstHeatmap: boolean;
+  showDistricts: boolean;
   showTransport: boolean;
   showTransportStops: boolean;
   transportRoute: string;
@@ -53,14 +54,21 @@ export function MapShell(props: MapShellProps) {
         zoom={12}
         minZoom={10}
         maxZoom={17}
-        maxBounds={TRANSPORT_BOUNDS}
-        preferCanvas
-        zoomAnimation
+         maxBounds={TRANSPORT_BOUNDS}
+         maxBoundsViscosity={0.35}
+         preferCanvas
+         scrollWheelZoom
+         dragging
+         touchZoom
+         doubleClickZoom
+         keyboard
+         zoomAnimation
         zoomAnimationThreshold={4}
         fadeAnimation={false}
         markerZoomAnimation={false}
-        wheelDebounceTime={80}
-        wheelPxPerZoomLevel={120}
+         wheelDebounceTime={40}
+         wheelPxPerZoomLevel={80}
+        zoomSnap={0.5}
         className="map-canvas"
       >
         <TileLayer
@@ -72,7 +80,7 @@ export function MapShell(props: MapShellProps) {
         />
         <MapBounds />
         <MapLayoutSync />
-        <DistrictLayer {...props} />
+         {props.showDistricts && <DistrictLayer {...props} />}
         {props.showLstHeatmap && <LstHeatmapLayer districts={props.districts} year={props.year} />}
         {props.showTransport && (
           <TransportLayer
@@ -233,9 +241,11 @@ function MapLayoutSync() {
     const observer = new ResizeObserver(invalidate);
 
     observer.observe(container);
+    window.addEventListener("resize", invalidate);
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      window.removeEventListener("resize", invalidate);
     };
   }, [map]);
 

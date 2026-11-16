@@ -23,4 +23,4 @@ export type MetricKey =
   | "ndvi_mean"
   | "lst_mean_celsius";
 
-export type PanelTab = "profile" | "compare";
+export type PanelTab = "profile";

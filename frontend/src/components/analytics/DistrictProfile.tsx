@@ -6,6 +6,8 @@ import {
   formatNdvi,
   formatPerCapita,
   formatPopulation,
+  formatPopulationDensity,
+  populationLevel,
   formatRate,
   formatSigned,
   formatSignedPercent,
@@ -70,6 +72,14 @@ export function DistrictProfile({ district, districts, year }: DistrictProfilePr
           <div>
             <dt>Año de población</dt>
             <dd>{district.population_year ?? "No disponible"}</dd>
+          </div>
+          <div>
+            <dt>Nivel poblacional</dt>
+            <dd>{populationLevel(district.population)}</dd>
+          </div>
+          <div>
+            <dt>Densidad de referencia</dt>
+            <dd>{formatPopulationDensity(district.population, district.area_km2)}</dd>
           </div>
           <div>
             <dt>Superficie</dt>
@@ -142,6 +152,10 @@ export function DistrictProfile({ district, districts, year }: DistrictProfilePr
         <div className="gq-section-heading">
           <h4 id="gq-equipment-title">Salud, educación y áreas verdes</h4>
           <p>Indicadores territoriales del año de referencia declarado.</p>
+          <p className="gq-caveat">
+            Valores ilustrativos/mock 2024 construidos a partir del catálogo territorial del GAMC; requieren
+            validación con el inventario oficial por distrito.
+          </p>
         </div>
         <div className="gq-metric-cards">
           {topEquipment.map((item) => (
@@ -177,7 +191,10 @@ export function DistrictProfile({ district, districts, year }: DistrictProfilePr
       <section className="gq-profile-section" aria-labelledby="gq-trends-title">
         <div className="gq-section-heading">
           <h4 id="gq-trends-title">Tendencias históricas</h4>
-          <p>Pendientes calculadas por el pipeline; se muestran sin reinterpretar las cifras.</p>
+          <p>
+            Pendientes calculadas por el pipeline; NDVI y LST se basan en la serie disponible. El ICVSA se
+            completa con una serie ilustrativa cuando no hay observaciones oficiales.
+          </p>
         </div>
         {district.trends.length === 0 ? (
           <p className="gq-caveat">No hay tendencias disponibles para este distrito.</p>

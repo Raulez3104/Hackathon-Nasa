@@ -1,13 +1,9 @@
 import type { ReactNode } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
-export type GeoQochaView = "map" | "analytics";
-
 interface GeoQochaNavbarProps {
   variant: "landing" | "dashboard";
-  activeView?: GeoQochaView;
   activeNav?: "areas-verdes";
-  onViewChange?: (view: GeoQochaView) => void;
   trailing?: ReactNode;
 }
 
@@ -29,9 +25,7 @@ function Brand() {
 
 export function GeoQochaNavbar({
   variant,
-  activeView = "map",
   activeNav,
-  onViewChange,
   trailing,
 }: GeoQochaNavbarProps) {
   const isDashboard = variant === "dashboard";
@@ -50,12 +44,7 @@ export function GeoQochaNavbar({
         </nav>
         <div className="geoq-navbar-actions">
           <span className="geoq-navbar-districts"><i />15 distritos · Cochabamba</span>
-          {isDashboard ? (
-            <nav className="geoq-navbar-view-switch" aria-label="Vistas principales">
-              <button type="button" aria-pressed={activeView === "map"} onClick={() => onViewChange?.("map")}>Mapa</button>
-              <button type="button" aria-pressed={activeView === "analytics"} onClick={() => onViewChange?.("analytics")}>Analítica</button>
-            </nav>
-          ) : (
+          {!isDashboard && (
             <a className="geoq-navbar-cta" href="/dashboard">Explorar tablero <Icon name="arrow_forward" /></a>
           )}
           <ThemeToggle />

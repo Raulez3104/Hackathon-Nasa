@@ -13,6 +13,7 @@
     "validate:mock": "node ../scripts/validate-mock.mjs"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.4.0",
     "leaflet": "latest",
     "react": "latest",
     "react-dom": "latest",

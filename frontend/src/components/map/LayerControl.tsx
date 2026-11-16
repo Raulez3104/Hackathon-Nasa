@@ -9,6 +9,8 @@ interface LayerControlProps {
   onToggle: (layerId: string, enabled: boolean) => void;
   onOpacityChange: (opacity: number) => void;
   onRetry: () => void;
+  showDistricts: boolean;
+  onDistrictsToggle: (enabled: boolean) => void;
 }
 
 const STATUS_LABELS: Record<WmsLayerStatus, string> = {
@@ -29,6 +31,8 @@ export function LayerControl({
   onToggle,
   onOpacityChange,
   onRetry,
+  showDistricts,
+  onDistrictsToggle,
 }: LayerControlProps) {
   const activeLayers = layers.filter((layer) => visibility[layer.id]);
   const hasError = activeLayers.some((layer) => statuses[layer.id] === "error");
@@ -50,6 +54,10 @@ export function LayerControl({
           {summary}
         </span>
       </div>
+      <label className="dashboard-check dashboard-layer-toggle">
+        <input type="checkbox" checked={showDistricts} onChange={(event) => onDistrictsToggle(event.target.checked)} />
+        <span className="dashboard-layer-name">Distritos socioambientales</span>
+      </label>
 
       {GROUP_ORDER.map((group) => {
         const groupLayers = layers.filter((layer) => layer.group === group);

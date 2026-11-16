@@ -85,6 +85,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
       setInput("");
       pendingRef.current = true;
       setPending(true);
+      let previewTimer: ReturnType<typeof setTimeout> | null = null;
 
       const request: AIRequest = {
         mode: "chat",
@@ -108,6 +109,12 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
         return;
       }
 
+      // Evita que la espera del proveedor deje la conversación en blanco.
+      // La respuesta real reemplaza esta vista preliminar cuando llega.
+      previewTimer = setTimeout(() => {
+        if (pendingRef.current) resolveLocal();
+      }, 900);
+
       try {
         const response = await postAIRequest(request, { endpoint, fetchImpl });
         setTurns((current) => current.map((item) => (item.id === turn.id ? { ...item, response } : item)));
@@ -120,6 +127,7 @@ export function ChatWidget({ districts, year, endpoint, fetchImpl, defaultOpen =
           );
         }
       } finally {
+        if (previewTimer !== null) clearTimeout(previewTimer);
         pendingRef.current = false;
         setPending(false);
       }
