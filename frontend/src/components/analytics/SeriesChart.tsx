@@ -4,6 +4,7 @@ import {
   Legend,
   Line,
   LineChart,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -87,6 +88,26 @@ function buildRows(
     });
 }
 
+function chartDomain(config: VariableConfig, rows: ChartRow[]): [number | string, number | string] {
+  if (config.domain[0] === "auto") return config.domain;
+  const values = rows
+    .flatMap((row) => [row.primary, row.secondary])
+    .filter((value): value is number => typeof value === "number");
+  if (values.length === 0) return config.domain;
+
+  const minimum = Math.min(...values);
+  const maximum = Math.max(...values);
+  const span = Math.max(maximum - minimum, config.field === "ndvi_mean" ? 0.04 : 1);
+  const padding = span * 0.16;
+  const lowerLimit = config.field === "ndvi_mean" ? -1 : config.field === "socioenvironmental_index" ? 0 : -Infinity;
+  const upperLimit = config.field === "ndvi_mean" ? 1 : config.field === "socioenvironmental_index" ? 100 : Infinity;
+
+  return [
+    Math.max(lowerLimit, Math.floor((minimum - padding) * 10) / 10),
+    Math.min(upperLimit, Math.ceil((maximum + padding) * 10) / 10),
+  ];
+}
+
 export interface SeriesChartProps {
   primary: DistrictData;
   secondary?: DistrictData | null;
@@ -98,11 +119,19 @@ export function SeriesChart({ primary, secondary = null, year = null, defaultVar
   const [variable, setVariable] = useState<SeriesVariable>(defaultVariable);
   const config = VARIABLES[variable];
   const rows = useMemo(() => buildRows(primary, secondary, config.field), [config.field, primary, secondary]);
+  const domain = useMemo(() => chartDomain(config, rows), [config, rows]);
   const tabsId = useId();
 
   const firstYear = rows[0]?.year ?? null;
   const lastYear = rows[rows.length - 1]?.year ?? null;
   const missingYears = rows.filter((row) => row.primary == null).map((row) => row.year);
+  const primaryValues = rows.map((row) => row.primary).filter((value): value is number => typeof value === "number");
+  const minimum = primaryValues.length > 0 ? Math.min(...primaryValues) : null;
+  const maximum = primaryValues.length > 0 ? Math.max(...primaryValues) : null;
+  const average = primaryValues.length > 0
+    ? primaryValues.reduce((sum, value) => sum + value, 0) / primaryValues.length
+    : null;
+  const change = primaryValues.length > 1 ? primaryValues[primaryValues.length - 1] - primaryValues[0] : null;
   const chartLabel = `Serie de ${config.label} de ${primary.name}${
     secondary ? ` y ${secondary.name}` : ""
   }, ${firstYear ?? "sin año"} a ${lastYear ?? "sin año"}.`;
@@ -145,18 +174,51 @@ export function SeriesChart({ primary, secondary = null, year = null, defaultVar
         ))}
       </div>
 
+      <div className="gq-chart-summary" aria-label={`Resumen de variación de ${config.label}`}>
+        <div>
+          <span>Mínimo</span>
+          <strong>{config.format(minimum)}</strong>
+        </div>
+        <div>
+          <span>Máximo</span>
+          <strong>{config.format(maximum)}</strong>
+        </div>
+        <div>
+          <span>Variación total</span>
+          <strong className={change != null && change < 0 ? "is-negative" : ""}>
+            {change == null ? NOT_AVAILABLE : `${change >= 0 ? "+" : ""}${config.format(change)}`}
+          </strong>
+        </div>
+      </div>
+
       <div className="gq-chart-canvas" role="img" aria-label={chartLabel}>
-        <ResponsiveContainer width="100%" height={230}>
+        <ResponsiveContainer width="100%" height={270}>
           <LineChart data={rows} margin={{ top: 8, right: 12, bottom: 4, left: -8 }} accessibilityLayer>
             <CartesianGrid stroke="#e8eee5" strokeDasharray="3 3" />
             <XAxis dataKey="year" tick={{ fontSize: 11 }} tickLine={false} />
-            <YAxis domain={config.domain} tick={{ fontSize: 11 }} tickLine={false} width={48} />
+            <YAxis domain={domain} tick={{ fontSize: 11 }} tickLine={false} width={48} />
             <Tooltip
               labelFormatter={(label) => `Año ${label}`}
               formatter={(value) => (typeof value === "number" ? config.format(value) : NOT_AVAILABLE)}
               contentStyle={{ borderRadius: 8, border: "1px solid #dce7db", fontSize: 12 }}
             />
             <Legend wrapperStyle={{ fontSize: 11 }} />
+            {year != null && rows.some((row) => row.year === year) ? (
+              <ReferenceLine
+                x={year}
+                stroke="#075985"
+                strokeDasharray="4 4"
+                label={{ value: "Año seleccionado", position: "insideTop", fontSize: 10, fill: "#075985" }}
+              />
+            ) : null}
+            {average != null ? (
+              <ReferenceLine
+                y={average}
+                stroke="#94A3B8"
+                strokeDasharray="2 3"
+                label={{ value: "Promedio", position: "insideBottomRight", fontSize: 10, fill: "#64748B" }}
+              />
+            ) : null}
             <Line
               type="monotone"
               dataKey="primary"

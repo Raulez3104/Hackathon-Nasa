@@ -1,19 +1,20 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { DistrictData } from "../../../../shared/types/geoqocha";
-import { ComparisonPanel } from "./ComparisonPanel";
 import { DistrictProfile } from "./DistrictProfile";
 import { SeriesChart } from "./SeriesChart";
 import {
   formatArea,
   formatIndex,
   formatPopulation,
+  formatPopulationDensity,
+  populationLevel,
   riskLabel,
   semaphoreForScore,
 } from "./format";
 import { districtById, latestSeriesPoint } from "./stats";
 import type { DatasetStatus } from "./types";
 import { useFocusTrap } from "./use-focus-trap";
-import { requestDiagnosis, useCrossFrontEvents, useUrlState } from "./use-url-state";
+import { useCrossFrontEvents, useUrlState } from "./use-url-state";
 import type { PanelTab } from "./types";
 import "./analytics.css";
 
@@ -23,6 +24,7 @@ export interface DistrictPanelProps {
   error?: string | null;
   year: number | null;
   variant?: "drawer" | "inline";
+  selectedDistrictId?: number | null;
   onRetry?: () => void;
 }
 
@@ -32,22 +34,29 @@ export function DistrictPanel({
   error = null,
   year,
   variant = "drawer",
+  selectedDistrictId,
   onRetry,
 }: DistrictPanelProps) {
-  const { state, selectDistrict, closePanel, setComparison, setPanel } = useUrlState();
+  const { state, selectDistrict, closePanel, setPanel } = useUrlState();
   const [tab, setTab] = useState<PanelTab>("profile");
   const [dismissedId, setDismissedId] = useState<number | null>(null);
   const panelRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const tabsId = useId();
+  const effectiveDistrictId = variant === "inline" && selectedDistrictId !== undefined
+    ? selectedDistrictId
+    : state.districtId;
 
   useCrossFrontEvents(status !== "error");
 
   const autoOpen = state.districtId != null && state.panel == null && dismissedId !== state.districtId;
   const open = variant === "inline" || state.panel === "district" || autoOpen;
-  const selected = districtById(districts, state.districtId);
+  const selected = districtById(districts, effectiveDistrictId);
   const latest = selected ? latestSeriesPoint(selected) : null;
-  const icvsa = latest?.socioenvironmental_index ?? selected?.latest_socioenvironmental_index ?? null;
+  const selectedPoint = selected?.series.find((point) => point.year === year) ?? latest;
+  const displayYear = year ?? selectedPoint?.year ?? selected?.latest_year ?? null;
+  const icvsa = selectedPoint?.socioenvironmental_index
+    ?? (displayYear === selected?.latest_year ? selected?.latest_socioenvironmental_index : null);
   const semaphore = semaphoreForScore(icvsa);
   const risk = riskLabel(selected?.risk_level);
 
@@ -66,12 +75,6 @@ export function DistrictPanel({
 
   if (!open) return null;
 
-  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-    event.preventDefault();
-    setTab((current) => (current === "profile" ? "compare" : "profile"));
-  };
-
   const content = (
     <aside
       ref={panelRef}
@@ -86,9 +89,9 @@ export function DistrictPanel({
           <h2 id={titleId}>{selected ? selected.name : "Panel distrital"}</h2>
           {selected ? (
             <p className="gq-panel-subtitle">
-              Distrito {selected.district_id} · {formatArea(selected.area_km2)} ·{" "}
-              {formatPopulation(selected.population)}
-              {selected.population_year ? ` (${selected.population_year})` : ""}
+               Distrito {selected.district_id} · {formatArea(selected.area_km2)} ·{" "}
+               {formatPopulation(selected.population)}
+               {selected.population_year ? ` (${selected.population_year})` : ""} · Nivel poblacional: {populationLevel(selected.population)}
             </p>
           ) : null}
         </div>
@@ -108,21 +111,8 @@ export function DistrictPanel({
           aria-controls={`${tabsId}-profile-panel`}
           className={`gq-tab ${tab === "profile" ? "is-active" : ""}`}
           onClick={() => setTab("profile")}
-          onKeyDown={handleTabKeyDown}
         >
           Ficha
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id={`${tabsId}-compare`}
-          aria-selected={tab === "compare"}
-          aria-controls={`${tabsId}-compare-panel`}
-          className={`gq-tab ${tab === "compare" ? "is-active" : ""}`}
-          onClick={() => setTab("compare")}
-          onKeyDown={handleTabKeyDown}
-        >
-          Comparar
         </button>
       </div>
 
@@ -147,7 +137,7 @@ export function DistrictPanel({
               </button>
             ) : null}
           </div>
-        ) : state.districtId == null ? (
+        ) : effectiveDistrictId == null ? (
           <div className="gq-empty">
             <strong>Selecciona un distrito</strong>
             <p>Elige un distrito para ver su ficha, sus brechas y su serie histórica.</p>
@@ -171,23 +161,14 @@ export function DistrictPanel({
           </div>
         ) : !selected ? (
           <div className="gq-state gq-state--error" role="alert">
-            No se encontró el distrito {state.districtId} en el conjunto de datos.
+            No se encontró el distrito {effectiveDistrictId} en el conjunto de datos.
           </div>
-        ) : tab === "compare" ? (
-          <ComparisonPanel
-            districts={districts}
-            leftId={state.compareIds[0] ?? null}
-            rightId={state.compareIds[1] ?? null}
-            year={year ?? selected.latest_year}
-            onChange={setComparison}
-            labels={{ left: "Distrito A", right: "Distrito B" }}
-          />
         ) : (
           <div className="gq-profile">
             <section className={`gq-index-hero gq-tone--${semaphore.key}`} aria-labelledby={`${titleId}-icvsa`}>
               <div>
                 <p className="gq-eyebrow" id={`${titleId}-icvsa`}>
-                  ICVSA {latest?.year ?? selected.latest_year ?? ""}
+                   ICVSA {displayYear ?? ""}
                 </p>
                 <p className="gq-index-value">
                   {formatIndex(icvsa)} <span>/ 100</span>
@@ -209,30 +190,10 @@ export function DistrictPanel({
               </p>
             </section>
 
-            <DistrictProfile district={selected} districts={districts} year={latest?.year ?? year ?? selected.latest_year} />
-            <SeriesChart primary={selected} year={latest?.year ?? year ?? null} />
+             <DistrictProfile district={selected} districts={districts} year={displayYear} />
+             <SeriesChart primary={selected} year={displayYear} />
 
-            <div className="gq-panel-actions">
-              <button
-                type="button"
-                className="gq-button"
-                onClick={() => requestDiagnosis(selected.district_id, year ?? selected.latest_year ?? 2025)}
-              >
-                Ver diagnóstico automático
-              </button>
-              <button
-                type="button"
-                className="gq-button gq-button--ghost"
-                onClick={() => {
-                  setComparison([selected.district_id, state.compareIds[1] ?? districts.find((d) => d.district_id !== selected.district_id)?.district_id ?? 1]);
-                  setTab("compare");
-                }}
-              >
-                Comparar distrito
-              </button>
-            </div>
-
-            <p className="gq-source-note">
+             <p className="gq-source-note">
               Fuentes declaradas: {selected.source_refs.length > 0 ? selected.source_refs.join(", ") : "sin fuente declarada"}.
               {selected.data_status === "illustrative" ? " Serie complementada en años sin observación real." : ""}
             </p>

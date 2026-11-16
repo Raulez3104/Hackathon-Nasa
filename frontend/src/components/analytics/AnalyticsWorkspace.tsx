@@ -58,7 +58,7 @@ export function AnalyticsWorkspace({
           <p className="gq-eyebrow">GeoQocha · DEV3</p>
           <h1>Analítica y concientización</h1>
           <p>
-            Panel distrital, comparación, series históricas, hotspots, metodología, fuentes y copiloto IA. La URL
+            Panel distrital, series históricas, hotspots, metodología, fuentes y copiloto IA. La URL
             conserva el distrito, el año y la vista activa.
           </p>
         </div>

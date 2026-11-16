@@ -28,7 +28,7 @@ describe("SeriesChart", () => {
     await user.click(screen.getByRole("tab", { name: "LST" }));
     expect(screen.getByRole("img", { name: /serie de LST/i })).toBeInTheDocument();
     await user.click(screen.getByText(/ver tabla de datos accesible/i));
-    expect(screen.getByText("30,5 °C")).toBeInTheDocument();
+    expect(screen.getAllByText("30,5 °C").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/LST es temperatura superficial/i)).toBeInTheDocument();
 
     await user.click(screen.getByRole("tab", { name: "ICVSA" }));

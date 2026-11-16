@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { GeoQochaNavbar } from "../navigation/GeoQochaNavbar";
 import "./green-areas.css";
@@ -23,10 +23,55 @@ type IconName =
   | "travel_explore"
   | "verified"
   | "volunteer_activism"
+  | "volume_up"
   | "water_drop";
 
 function Icon({ name }: { name: IconName }) {
   return <span className="material-symbols-outlined" aria-hidden="true">{name}</span>;
+}
+
+function LoopingGreenAreasVideo() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [volume, setVolume] = useState(0);
+
+  const handleVolumeChange = (value: number) => {
+    setVolume(value);
+    if (videoRef.current) {
+      videoRef.current.volume = value;
+      videoRef.current.muted = value === 0;
+    }
+  };
+
+  return (
+    <div className="green-video-player">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        preload="auto"
+        playsInline
+        aria-label="Video: Cochabamba, parques de la ciudad"
+      >
+        <source src="/media/cochabamba-parques-de-la-ciudad.mp4" type="video/mp4" />
+        Tu navegador no puede reproducir este video. Puedes descargarlo en{" "}
+        <a href="/media/cochabamba-parques-de-la-ciudad.mp4">este enlace</a>.
+      </video>
+      <label className="green-video-volume">
+        <Icon name="volume_up" />
+        <span>Volumen</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.05"
+          value={volume}
+          onChange={(event) => handleVolumeChange(Number(event.target.value))}
+          aria-label="Volumen del video"
+        />
+      </label>
+    </div>
+  );
 }
 
 const AWARENESS_CARDS = [
@@ -408,13 +453,9 @@ export function GreenAreasPage() {
                 <span><Icon name="park" /> Parques y áreas verdes urbanas</span>
               </div>
             </div>
-            <div className="green-video-frame">
-              <video controls preload="metadata" playsInline aria-label="Video: Cochabamba, parques de la ciudad">
-                <source src="/media/cochabamba-parques-de-la-ciudad.mp4" type="video/mp4" />
-                Tu navegador no puede reproducir este video. Puedes descargarlo en{" "}
-                <a href="/media/cochabamba-parques-de-la-ciudad.mp4">este enlace</a>.
-              </video>
-            </div>
+             <div className="green-video-frame">
+               <LoopingGreenAreasVideo />
+             </div>
           </div>
         </section>
 

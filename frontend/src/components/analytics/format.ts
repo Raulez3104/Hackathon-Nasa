@@ -33,6 +33,19 @@ export function formatPopulation(value: number | null | undefined): string {
   return `${toLocale(value, { maximumFractionDigits: 0 })} hab.`;
 }
 
+export function formatPopulationDensity(population: number | null | undefined, areaKm2: number | null | undefined): string {
+  if (!isFiniteNumber(population) || !isFiniteNumber(areaKm2) || areaKm2 <= 0) return NOT_AVAILABLE;
+  const density = population / (areaKm2 * 100);
+  return `${toLocale(density, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} hab./ha`;
+}
+
+export function populationLevel(value: number | null | undefined): string {
+  if (!isFiniteNumber(value)) return NOT_AVAILABLE;
+  if (value >= 50000) return "Alta";
+  if (value >= 30000) return "Media";
+  return "Baja";
+}
+
 export function formatArea(value: number | null | undefined): string {
   if (!isFiniteNumber(value)) return NOT_AVAILABLE;
   return `${toLocale(value, { minimumFractionDigits: 1, maximumFractionDigits: 2 })} km²`;
